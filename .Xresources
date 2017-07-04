@@ -1,0 +1,29 @@
+! █▓▒░ color scheme
+! █▓▒░ miasma
+*.foreground:   #c2c2b0
+*.background:   #222222
+*.cursorColor:  #918f6e
+! black
+URxvt.colorIT:  #78824B
+URxvt.colorBD:  #d3d3d3
+URxvt.colorUL: #40413E
+
+! █▓▒░ fonts
+URxvt*font: xft:Source Code Pro:pixelsize=14:foundry=adobe:weight=normal:width=normal:spacing=100:scalable=true
+URxvt*boldFont: xft:Source Code Pro:bold:pixelsize=14:foundry=adobe:width=normal:spacing=100:scalable=true
+URxvt.letterSpace: -1
+
+! █▓▒░ interface
+URxvt*scrollBar: false
+URxvt*scrollTtyKeypress: true
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer:  false
+
+URxvt*transparent: false
+URxvt*externalBorder: 5
+URxvt*borderColor: #1c1c1c
+URxvt*borderLess: false
+
+! █▓▒░ misc
+URxvt.saveLines: 9999
+URxvt.iso14755: false
