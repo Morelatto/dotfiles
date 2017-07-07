@@ -1,17 +1,41 @@
 ! █▓▒░ color scheme
-! █▓▒░ miasma
+! █▓▒░ blaque magick
 *.foreground:   #c2c2b0
-*.background:   #222222
-*.cursorColor:  #918f6e
+*.background:   #121212
+*.cursorColor:  #c2c2b0
 ! black
-URxvt.colorIT:  #78824B
+*.color0:       #121212
+*.color8:       #121212
+! red
+*.color1:       #5F8787
+*.color9:       #5F8787
+! green
+*.color2:       #444444
+*.color10:      #444444
+! yellow
+*.color3:       #666666
+*.color11:      #666666
+! blue
+*.color4:       #888888
+*.color12:      #888888
+! magenta
+*.color5:       #999999
+*.color13:      #999999
+! cyan
+*.color6:       #aaaaaa
+*.color14:      #aaaaaa
+! white
+*.color7:       #c1c1c1
+*.color15:      #c1c1c1
+! others
+URxvt.colorIT:  #5F8787
 URxvt.colorBD:  #d3d3d3
-URxvt.colorUL: #40413E
+URxvt.colorUL: #5F8787
 
 ! █▓▒░ fonts
 URxvt*font: xft:Source Code Pro:pixelsize=14:foundry=adobe:weight=normal:width=normal:spacing=100:scalable=true
 URxvt*boldFont: xft:Source Code Pro:bold:pixelsize=14:foundry=adobe:width=normal:spacing=100:scalable=true
-URxvt.letterSpace: -1
+URxvt.letterSpace: 1
 
 ! █▓▒░ interface
 URxvt*scrollBar: false
