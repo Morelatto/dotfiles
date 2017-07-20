@@ -1,8 +1,8 @@
 /******
 * name: ghacks user.js
-* date: 14 June 2017
-* version 54: Pantsthumping
-*   "I get pulled down, but I get up again, you're never gonna keep me down"
+* date: 09 July 2017
+* version 55-beta: There Must Be an Angel [Playing with My Pants]
+*   "I walk into an empty room, and suddenly my pants go boom"
 * authors: v52+ github | v51- www.ghacks.net
 * url: https://github.com/ghacksuserjs/ghacks-user.js
 
@@ -19,6 +19,7 @@
   3. If you skipped steps 1 and 2 above (shame on you), then here is the absolute minimum
      * Auto-installing updates for Firefox and extensions/addon-ons are disabled (section 0302's)
      * Some user data is erased (section 2800), namely history (browsing, form, download)
+     * Cookies (and thus logins) are denied by default (2701). Use site exceptions or an extension
      * Site breakage WILL happen
          - There are often trade-offs and conflicts between Security vs Privacy vs Anti-Fingerprinting
            and these need to be balanced against Functionality & Convenience & Breakage
@@ -26,8 +27,8 @@
          - Search this file for the "[SETUP]" tag to find SOME common items you could check
            before using to avoid unexpected surprises
          - Search this file for the "[WARNING]" tag to troubleshoot or prevent SOME common issues
-  4. BACKUP BACKUP BACKUP your profile folder before implementing (and/or test in a new profile)
-  5. Did you do a BACKUP?
+  4. BACKUP your profile folder before implementing (and/or test in a new/cloned profile)
+  5. KEEP UP TO DATE: https://github.com/ghacksuserjs/ghacks-user.js/wiki/1.5-Keeping-Up-To-Date
 
  ******/
 
@@ -215,7 +216,7 @@ user_pref("social.share.activationPanelEnabled", false);
 user_pref("social.enabled", false); // (hidden pref)
 /* 0376: disable FlyWeb, a set of APIs for advertising and discovering local-area web servers
  * [1] https://wiki.mozilla.org/FlyWeb
- * [2] http://www.ghacks.net/2016/07/26/firefox-flyweb/ ***/
+ * [2] https://www.ghacks.net/2016/07/26/firefox-flyweb/ ***/
 user_pref("dom.flyweb.enabled", false);
 
 /*** 0400: BLOCKLISTS / SAFE BROWSING / TRACKING PROTECTION
@@ -294,10 +295,11 @@ user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", ""); //
     There are NO privacy concerns here, but we strongly recommend to use uBlock Origin as well,
     as it offers more comprehensive and specialized lists. It also allows per domain control. ***/
 /* 0420: enable Tracking Protection in all windows
+ * [NOTE] TP sends DNT headers regardless of the DNT pref (see 1610)
  * [1] https://wiki.mozilla.org/Security/Tracking_protection
  * [2] https://support.mozilla.org/en-US/kb/tracking-protection-firefox ***/
-user_pref("privacy.trackingprotection.pbmode.enabled", true);
-user_pref("privacy.trackingprotection.enabled", true);
+   // user_pref("privacy.trackingprotection.pbmode.enabled", true); // default true
+   // user_pref("privacy.trackingprotection.enabled", true); // default false
 /* 0421: enable more Tracking Protection choices under Options>Privacy>Use Tracking Protection
  * Displays three choices: "Always", "Only in private windows", "Never" ***/
 user_pref("privacy.trackingprotection.ui.enabled", true);
@@ -306,7 +308,7 @@ user_pref("privacy.trackingprotection.ui.enabled", true);
    // user_pref("urlclassifier.trackingTable", "test-track-simple,base-track-digest256"); // basic
    // user_pref("urlclassifier.trackingTable", "test-track-simple,base-track-digest256,content-track-digest256"); // strict
 /* 0423: disable Mozilla's blocklist for known Flash tracking/fingerprinting (FF48+)
- * [1] http://www.ghacks.net/2016/07/18/firefox-48-blocklist-against-plugin-fingerprinting/
+ * [1] https://www.ghacks.net/2016/07/18/firefox-48-blocklist-against-plugin-fingerprinting/
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1237198 ***/
    // user_pref("browser.safebrowsing.blockedURIs.enabled", false);
 /* 0424: disable Mozilla's tracking protection and Flash blocklist updates ***/
@@ -319,7 +321,7 @@ user_pref("ghacks_user.js.parrot", "0600 syntax error: the parrot's no more!");
  * [1] https://developer.mozilla.org/en-US/docs/Web/HTTP/Link_prefetching_FAQ ***/
 user_pref("network.prefetch-next", false);
 /* 0602: disable DNS prefetching
- * [1] http://www.ghacks.net/2013/04/27/firefox-prefetching-what-you-need-to-know/
+ * [1] https://www.ghacks.net/2013/04/27/firefox-prefetching-what-you-need-to-know/
  * [2] https://developer.mozilla.org/en-US/docs/Web/HTTP/Controlling_DNS_prefetching ***/
 user_pref("network.dns.disablePrefetch", true);
 user_pref("network.dns.disablePrefetchFromHTTPS", true); // (hidden pref)
@@ -334,7 +336,7 @@ user_pref("captivedetect.canonicalURL", "");
 user_pref("network.captive-portal-service.enabled", false); // (FF52+)
 /* 0605: disable link-mouseover opening connection to linked server
  * [1] http://news.slashdot.org/story/15/08/14/2321202/how-to-quash-firefoxs-silent-requests
- * [2] http://www.ghacks.net/2015/08/16/block-firefox-from-connecting-to-sites-when-you-hover-over-links ***/
+ * [2] https://www.ghacks.net/2015/08/16/block-firefox-from-connecting-to-sites-when-you-hover-over-links ***/
 user_pref("network.http.speculative-parallel-limit", 0);
 /* 0606: disable pings (but enforce same host in case)
  * [1] http://kb.mozillazine.org/Browser.send_pings
@@ -342,7 +344,7 @@ user_pref("network.http.speculative-parallel-limit", 0);
 user_pref("browser.send_pings", false);
 user_pref("browser.send_pings.require_same_host", true);
 /* 0607: disable links launching Windows Store on Windows 8/8.1/10 [WINDOWS]
- * [1] http://www.ghacks.net/2016/03/25/block-firefox-chrome-windows-store/ ***/
+ * [1] https://www.ghacks.net/2016/03/25/block-firefox-chrome-windows-store/ ***/
 user_pref("network.protocol-handler.external.ms-windows-store", false);
 /* 0608: disable predictor / prefetching (FF48+) ***/
 user_pref("network.predictor.enable-prefetch", false);
@@ -418,7 +420,7 @@ user_pref("browser.urlbar.suggest.history", false);
 user_pref("browser.urlbar.autoFill", false);
 user_pref("browser.urlbar.autoFill.typed", false);
 /* 0850e: disable location bar one-off searches (FF51+)
- * [1] http://www.ghacks.net/2016/08/09/firefox-one-off-searches-address-bar/ ***/
+ * [1] https://www.ghacks.net/2016/08/09/firefox-one-off-searches-address-bar/ ***/
 user_pref("browser.urlbar.oneOffSearches", false);
 /* 0860: disable search and form history
  * [SETTING] Options>Privacy>History>Custom Settings>Remember search and form history
@@ -500,6 +502,7 @@ user_pref("browser.cache.disk_cache_ssl", false);
 /* 1003: disable memory cache
  * [NOTE] Not recommended due to performance issues ***/
    // user_pref("browser.cache.memory.enable", false);
+   // user_pref("browser.cache.memory.capacity", 0); // (hidden pref)
 /* 1004: disable offline cache ***/
 user_pref("browser.cache.offline.enable", false);
 /* 1005: disable fastback cache
@@ -567,7 +570,7 @@ user_pref("alerts.showFavicons", false);
    // user_pref("browser.tabs.remote.force-enable", true); // (hidden pref)
    // user_pref("extensions.e10sBlocksEnabling", false);
 /* 1102: control number of content rendering processes
- * [1] http://www.ghacks.net/2016/02/15/change-how-many-processes-multi-process-firefox-uses/
+ * [1] https://www.ghacks.net/2016/02/15/change-how-many-processes-multi-process-firefox-uses/
  * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=1207306 ***/
    // user_pref("dom.ipc.processCount", 4);
 /* 1103: enable WebExtension add-on code to run in a separate process (webext-oop) (FF53+)
@@ -575,7 +578,7 @@ user_pref("alerts.showFavicons", false);
    // user_pref("extensions.webextensions.remote", true);
 /* 1104: enforce separate content process for file://URLs (FF53+)
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1147911
- * [2] http://www.ghacks.net/2016/11/27/firefox-53-exclusive-content-process-for-local-files/ ***/
+ * [2] https://www.ghacks.net/2016/11/27/firefox-53-exclusive-content-process-for-local-files/ ***/
    // user_pref("browser.tabs.remote.separateFileUriProcess", true);
 /* 1105: enable console shim warnings for add-ons with the 'multiprocessCompatible' flag as false ***/
 user_pref("dom.ipc.shims.enabledWarnings", true);
@@ -584,7 +587,7 @@ user_pref("dom.ipc.shims.enabledWarnings", true);
 /* 1110: set sandbox level. DO NOT MEDDLE WITH THESE. They are included to inform you NOT to play
  * with them. The values are integers, but the code below deliberately contains a data mismatch
  * [1] https://wiki.mozilla.org/Sandbox
- * [2] http://www.ghacks.net/2017/01/23/how-to-change-firefoxs-sandbox-security-level/#comment-4105173 ***/
+ * [2] https://www.ghacks.net/2017/01/23/how-to-change-firefoxs-sandbox-security-level/#comment-4105173 ***/
    // user_pref("security.sandbox.content.level", "donotuse");
    // user_pref("dom.ipc.plugins.sandbox-level.default", "donotuse");
    // user_pref("dom.ipc.plugins.sandbox-level.flash", "donotuse");
@@ -614,10 +617,13 @@ user_pref("ghacks_user.js.parrot", "1200 syntax error: the parrot's a stiff!");
    // user_pref("security.ssl.require_safe_negotiation", true);
 /* 1202: control TLS versions with min and max
  * 1=min version of TLS 1.0, 2=min version of TLS 1.1, 3=min version of TLS 1.2 etc
- * [WARNING] Firefox and Chrome currently allow TLS 1.0 by default, so this is your call.
+ * [NOTE] Jul-2017: Telemetry indicates approx 2% of TLS web traffic uses 1.0 or 1.1
+ * [WARNING] If you get an "SSL_ERROR_NO_CYPHER_OVERLAP" error temporarily
+ * set a lower value for 'security.tls.version.min' in about:config
  * [1] http://kb.mozillazine.org/Security.tls.version.*
- * [2] https://www.ssl.com/how-to/turn-off-ssl-3-0-and-tls-1-0-in-your-browser/ ***/
-   // user_pref("security.tls.version.min", 2);
+ * [2] https://www.ssl.com/how-to/turn-off-ssl-3-0-and-tls-1-0-in-your-browser/
+ * [2] archived: https://archive.is/hY2Mm ***/
+user_pref("security.tls.version.min", 3);
 user_pref("security.tls.version.fallback-limit", 3);
 user_pref("security.tls.version.max", 4); // 4 = allow up to and including TLS 1.3
 /* 1203: disable SSL session tracking (FF36+)
@@ -632,7 +638,8 @@ user_pref("security.ssl.disable_session_identifiers", true); // (hidden pref)
 user_pref("security.ssl.errorReporting.automatic", false);
 user_pref("security.ssl.errorReporting.enabled", false);
 user_pref("security.ssl.errorReporting.url", "");
-/** OCSP (Online Certificate Status Protocol) ***/
+/** OCSP (Online Certificate Status Protocol)
+    #Required reading [#] https://scotthelme.co.uk/revocation-is-broken/ ***/
 /* 1210: enable OCSP Stapling
  * [1] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/ ***/
 user_pref("security.ssl.enable_ocsp_stapling", true);
@@ -645,10 +652,9 @@ user_pref("security.ssl.enable_ocsp_stapling", true);
 user_pref("security.OCSP.enabled", 1);
 /* 1212: enable OCSP revocation. When a CA cannot be reached to validate a cert, Firefox currently
  * continues the connection. With OCSP revocation, Firefox terminates the connection instead.
- * [WARNING] Since FF44 the default is false. If set to true, this may/will cause some
- * site breakage. Some users have previously mentioned issues with youtube, microsoft etc
+ * [WARNING] Since FF44 the default is false. If set to true, this will cause some site breakage
  * [1] https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/ ***/
-   // user_pref("security.OCSP.require", true);
+user_pref("security.OCSP.require", true);
 /** CERTS / HSTS (HTTP Strict Transport Security) / HPKP (HTTP Public Key Pinning) ***/
 /* 1220: disable Windows 8.1's Microsoft Family Safety cert [WINDOWS] (FF50+)
  * 0=disable detecting Family Safety mode and importing the root
@@ -826,8 +832,12 @@ user_pref("network.http.referer.userControlPolicy", 3);
  * TBB (Tor Browser Bundle) which is specifically designed for the dark web
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1305144 ***/
 user_pref("network.http.referer.hideOnionSource", true);
-/* 1610: ALL: disable the DNT HTTP header (this is essentially USELESS and raises entropy)
- * [SETTING] Options>Privacy>Tracking>Request that sites not track you
+/* 1610: ALL: disable the DNT HTTP header, which is essentially USELESS
+ * It is voluntary and most ad networks do not honor it. DNT is *NOT* how you stop being data mined.
+ * Don't encourage a setting that gives any legitimacy to 3rd parties being in control of your privacy.
+ * Sending a DNT header *highly likely* raises entropy, especially in standard windows.
+ * [SETTING] Options>Privacy>Use Tracking Protecting>manage your Do Not Track settings
+ * [NOTE] DNT is enforced with TP (see 0420) regardless of this pref (eg in default PB Mode)
  * [NOTE] If you use NoScript MAKE SURE to set the pref noscript.doNotTrack.enabled to match ***/
 user_pref("privacy.donottrackheader.enabled", false);
 
@@ -864,7 +874,7 @@ user_pref("plugin.sessionPermissionNow.intervalInMinutes", 0);
 /* 1803: set a plugin state: 0=deactivated 1=ask 2=enabled (Flash example)
  * you can set all these plugin.state's via Add-ons>Plugins or search for plugin.state in about:config
  * [NOTE] You can still over-ride individual sites eg youtube via site permissions
- * [1] http://www.ghacks.net/2013/07/09/how-to-make-sure-that-a-firefox-plugin-never-activates-again/ ***/
+ * [1] https://www.ghacks.net/2013/07/09/how-to-make-sure-that-a-firefox-plugin-never-activates-again/ ***/
    // user_pref("plugin.state.flash", 0);
 /* 1804: disable plugins using external/untrusted scripts with XPCOM or XPConnect ***/
 user_pref("security.xpconnect.plugin.unrestricted", false);
@@ -894,7 +904,7 @@ user_pref("media.gmp-manager.url", "data:text/plain,");
 /*** 2000: MEDIA / CAMERA / MIC ***/
 user_pref("ghacks_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");
 /* 2001: disable WebRTC (Web Real-Time Communication)
- * [1] https://www.privacytools.io/#webrtc ***/
+ * [1] https://privacytoolsio.github.io/privacytools.io/#webrtc ***/
 user_pref("media.peerconnection.enabled", false);
 user_pref("media.peerconnection.use_document_iceservers", false);
 user_pref("media.peerconnection.video.enabled", false);
@@ -938,7 +948,7 @@ user_pref("media.getusermedia.audiocapture.enabled", false);
 /* 2023: disable camera stuff ***/
 user_pref("camera.control.face_detection.enabled", false);
 /* 2024: enable/disable MSE (Media Source Extensions)
- * [1] http://www.ghacks.net/2014/05/10/enable-media-source-extensions-firefox/ ***/
+ * [1] https://www.ghacks.net/2014/05/10/enable-media-source-extensions-firefox/ ***/
 user_pref("media.mediasource.enabled", true);
 user_pref("media.mediasource.mp4.enabled", true);
 user_pref("media.mediasource.webm.audio.enabled", true);
@@ -956,7 +966,7 @@ user_pref("gfx.offscreencanvas.enabled", false);
  * [WARNING] This may break video playback on various sites ***/
    // user_pref("media.autoplay.enabled", false);
 /* 2031: disable audio auto-play in non-active tabs (FF51+)
- * [1] http://www.ghacks.net/2016/11/14/firefox-51-blocks-automatic-audio-playback-in-non-active-tabs/ ***/
+ * [1] https://www.ghacks.net/2016/11/14/firefox-51-blocks-automatic-audio-playback-in-non-active-tabs/ ***/
 user_pref("media.block-autoplay-until-in-foreground", true);
 
 /*** 2200: UI MEDDLING
@@ -1008,6 +1018,7 @@ user_pref("dom.disable_beforeunload", true);
      [3] Service Worker: https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API
      [4]   SharedWorker: https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker
      [5]   ChromeWorker: https://developer.mozilla.org/en-US/docs/Web/API/ChromeWorker
+     [6]  Notifications: https://support.mozilla.org/en-US/questions/1165867#answer-981820
  ***/
 user_pref("ghacks_user.js.parrot", "2300 syntax error: the parrot's off the twig!");
 /* 2301: disable workers
@@ -1042,7 +1053,7 @@ user_pref("ghacks_user.js.parrot", "2400 syntax error: the parrot's kicked the b
  * [WARNING] This will break some sites functionality such as pasting into facebook, wordpress
  * this applies to onCut, onCopy, onPaste events - i.e you have to interact with
  * the website for it to look at the clipboard
- * [1] http://www.ghacks.net/2014/01/08/block-websites-reading-modifying-clipboard-contents-firefox/ ***/
+ * [1] https://www.ghacks.net/2014/01/08/block-websites-reading-modifying-clipboard-contents-firefox/ ***/
 user_pref("dom.event.clipboardevents.enabled", false);
 /* 2403: disable clipboard commands (cut/copy) from "non-privileged" content (FF41+)
  * this disables document.execCommand("cut"/"copy") to protect your clipboard
@@ -1069,7 +1080,7 @@ user_pref("dom.vibrator.enabled", false);
 /* 2415: set max popups from a single non-click event - default is 20! ***/
 user_pref("dom.popup_maximum", 3);
 /* 2415b: limit events that can cause a popup
- * default is "change click dblclick mouseup notificationclick reset submit touchend"
+ * default is "change click dblclick mouseup pointerup notificationclick reset submit touchend"
  * [1] http://kb.mozillazine.org/Dom.popup_allowed_events ***/
 user_pref("dom.popup_allowed_events", "click dblclick");
 /* 2416: disable idle observation ***/
@@ -1118,7 +1129,7 @@ user_pref("ghacks_user.js.parrot", "2500 syntax error: the parrot's shuffled off
 /* 2501: disable gamepad API - USB device ID enumeration
  * [1] https://trac.torproject.org/projects/tor/ticket/13023 ***/
 user_pref("dom.gamepad.enabled", false);
-/* 2503: disable giving away network info
+/* 2503: disable giving away network info (FF31+)
  * eg bluetooth, cellular, ethernet, wifi, wimax, other, mixed, unknown, none
  * [1] https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API
  * [2] https://wicg.github.io/netinfo/
@@ -1322,7 +1333,7 @@ user_pref("device.storage.enabled", false);
 /* 2665: remove webchannel whitelist ***/
 user_pref("webchannel.allowObject.urlWhitelist", "");
 /* 2666: disable HTTP Alternative Services
- * [1] http://www.ghacks.net/2015/08/18/a-comprehensive-list-of-firefox-privacy-and-security-settings/#comment-3970881 ***/
+ * [1] https://www.ghacks.net/2015/08/18/a-comprehensive-list-of-firefox-privacy-and-security-settings/#comment-3970881 ***/
 user_pref("network.http.altsvc.enabled", false);
 user_pref("network.http.altsvc.oe", false);
 /* 2667: disable various developer tools in browser context
@@ -1332,7 +1343,7 @@ user_pref("devtools.chrome.enabled", false);
 /* 2668: lock down allowed extension directories
  * [WARNING] This will break add-ons that do not use the default XPI directories
  * [1] https://mike.kaply.com/2012/02/21/understanding-add-on-scopes/
- * [2] archived: http://archive.is/DYjAM ***/
+ * [1] archived: http://archive.is/DYjAM ***/
 user_pref("extensions.enabledScopes", 1); // (hidden pref)
 user_pref("extensions.autoDisableScopes", 15);
 /* 2669: remove paths when sending URLs to PAC scripts (FF51+)
@@ -1481,8 +1492,10 @@ user_pref("ghacks_user.js.parrot", "2700 syntax error: the parrot's joined the b
 /* 2701: disable cookies on all sites [SETUP]
  * You can set exceptions under site permissions or use an extension (eg Cookie Controller)
  * 0=allow all 1=allow same host 2=disallow all 3=allow 3rd party if it already set a cookie
- * [SETTING] Options>Privacy>History>Custom Settings>Accept cookies from sites ***/
-user_pref("network.cookie.cookieBehavior", 0);
+ * [SETTING] Options>Privacy>History>Custom Settings>Accept cookies from sites
+ * [NOTE] This also controls access to 3rd party Web Storage, IndexedDB, Cache API and Service Worker Cache
+ * [1] https://www.fxsitecompat.com/en-CA/docs/2015/web-storage-indexeddb-cache-api-now-obey-third-party-cookies-preference/ ***/
+user_pref("network.cookie.cookieBehavior", 3);
 /* 2702: set third-party cookies (if enabled, see above pref) to session-only
  * [1] https://feeding.cloud.geek.nz/posts/tweaking-cookies-for-privacy-in-firefox/
  * [2] http://kb.mozillazine.org/Network.cookie.thirdparty.sessionOnly ***/
@@ -1594,7 +1607,7 @@ user_pref("browser.backspace_action", 0);
  * [SETTING] Options>General>Tabs>Open new windows in a new tab instead ***/
 user_pref("browser.link.open_newwindow", 3);
 /* 3009: enable APZ (Async Pan/Zoom) - requires e10s
- * [1] http://www.ghacks.net/2015/07/28/scrolling-in-firefox-to-get-a-lot-better-thanks-to-apz/ ***/
+ * [1] https://www.ghacks.net/2015/07/28/scrolling-in-firefox-to-get-a-lot-better-thanks-to-apz/ ***/
    // user_pref("layers.async-pan-zoom.enabled", true);
 /* 3010: enable ctrl-tab previews ***/
    // user_pref("browser.ctrlTab.previews", true);
