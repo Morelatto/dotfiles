@@ -90,11 +90,46 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+
+# bar {
+#	status_command i3blocks
+# }
+
 bar {
-	status_command i3blocks
+	font pango:DejaVu Sans Mono 11
+	position top
+	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+
+colors {
+        background #242424
+        statusline #bfbdbd
+	separator #666666
+
+        focused_workspace #242424 #D5D5D5 #242424
+        active_workspace   #333333 #5f676a #ffffff
+        inactive_workspace #242424 #282828 #CCCACA
+        urgent_workspace   #2A1A1A #858774 #1b1b1b
+        binding_mode       #2f343a #900000 #ffffff
+    }
 }
 
 for_window [class="^.*"] border pixel 0
 
 gaps inner 10
 gaps outer 15
+
+workspace 1 output HDMI-0
+workspace 2 output HDMI-0
+workspace 3 output HDMI-0
+workspace 4 output DVI-D-0
+workspace 5 output DVI-D-0
+workspace 6 output DVI-D-0
+
+assign [class="Firefox"] 1
+assign [class="Spotify"] 5
+assign [class="PyCharm"] 2
+assign [class="URxvt"] 4
+
+exec --no-startup-id i3-msg 'workspace 1; exec firefox; workspace 1'
+exec --no-startup-id i3-msg 'workspace 5; exec spotify; workspace 1'
+exec --no-startup-id i3-msg 'workspace 4; exec urxvt; workspace 1'
