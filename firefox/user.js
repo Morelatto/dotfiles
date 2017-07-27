@@ -1433,11 +1433,11 @@ user_pref("general.oscpu.override", "Linux x86_64"); // (hidden pref)
 /* 2698a: enable First Party Isolation (FF51+)
  * [WARNING] May break cross-domain logins and site functionality until perfected
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1260931 ***/
-user_pref("privacy.firstparty.isolate", true);
+   // user_pref("privacy.firstparty.isolate", true);
 /* 2698b: enforce FPI restriction for window.opener (FF54+)
  * [NOTE] Setting this to false may reduce the breakage in 2698a
  * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1319773#c22 ***/
-user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
+   // user_pref("privacy.firstparty.isolate.restrict_opener_access", true);
 
 /*** 2699: privacy.resistFingerprinting
    This master switch will be used for a wide range of items,
