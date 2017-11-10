@@ -1421,11 +1421,11 @@ user_pref("_user.js.parrot", "2700 syntax error: the parrot's joined the bleedin
  * [SETTING-ESR] Options>Privacy>History>Custom Settings>Accept cookies from sites
  * [NOTE] This also controls access to 3rd party Web Storage, IndexedDB, Cache API and Service Worker Cache
  * [1] https://www.fxsitecompat.com/en-CA/docs/2015/web-storage-indexeddb-cache-api-now-obey-third-party-cookies-preference/ ***/
-user_pref("network.cookie.cookieBehavior", 2);
+user_pref("network.cookie.cookieBehavior", 0);
 /* 2702: set third-party cookies (if enabled, see above pref) to session-only
  * [1] https://feeding.cloud.geek.nz/posts/tweaking-cookies-for-privacy-in-firefox/
  * [2] http://kb.mozillazine.org/Network.cookie.thirdparty.sessionOnly ***/
-user_pref("network.cookie.thirdparty.sessionOnly", true);
+   // user_pref("network.cookie.thirdparty.sessionOnly", true);
 /* 2703: set cookie lifetime policy
  * 0=until they expire (default), 2=until you close Firefox, 3=for n days (see next pref)
  * [SETTING-56+] Options>Privacy & Security>History>Custom Settings>Accept cookies from sites>Keep until
