@@ -1,0 +1,1 @@
+/home/baron/.mozilla/firefox/ab37ytm0.dev-edition-default/user-overrides.js
