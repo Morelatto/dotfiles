@@ -44,7 +44,7 @@ URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer:  false
 
 URxvt*transparent: false
-URxvt*externalBorder: 5
+URxvt*externalBorder: 1
 URxvt*borderColor: #1c1c1c
 URxvt*borderLess: false
 

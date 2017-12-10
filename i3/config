@@ -131,7 +131,10 @@ workspace 4 output $secondary
 workspace 5 output $secondary
 workspace 6 output $secondary
 
-assign [class="Spotify"] 5
-
 bindsym --release Shift+Print exec "scregcp -s ~/Pictures/"
 bindsym --release Print exec "scregcp ~/Pictures/"
+
+for_window [class="Spotify"] move to workspace 4
+assign [class="^Musixmatch$"] → 4
+assign [class="^Steam$"] → 3
+assign [class="^RocketLeague$"] → 3
