@@ -1,1 +1,17 @@
-/home/baron/.mozilla/firefox/ab37ytm0.dev-edition-default/user-overrides.js
+user_pref("keyword.enabled", true);
+user_pref("browser.urlbar.suggest.bookmark", true);
+user_pref("browser.urlbar.suggest.openpage", true);
+user_pref("signon.rememberSignons", false);
+user_pref("browser.sessionstore.max_tabs_undo", 10);
+user_pref("browser.sessionstore.max_windows_undo", 10);
+user_pref("browser.sessionstore.resume_from_crash", true);
+user_pref("full-screen-api.enabled", true);
+user_pref("browser.download.forbid_open_with", false);
+user_pref("network.cookie.cookieBehavior", 0);
+user_pref("network.cookie.thirdparty.sessionOnly", false);
+user_pref("privacy.firstparty.isolate", false);
+user_pref("privacy.firstparty.isolate.restrict_opener_access", false);
+user_pref("browser.tabs.closeWindowWithLastTab", true);
+user_pref("browser.backspace_action", 0);
+user_pref("dom.event.clipboardevents.enabled", true);
+user_pref("dom.allow_cut_copy", true);

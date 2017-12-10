@@ -1,1 +1,28 @@
-/home/baron/.config/zsh/.aliases
+# ls
+alias ls="ls -l --color=auto --indicator-style=classify --human-readable"
+alias la="ls --almost-all"
+alias lr="ls --recursive"
+alias lra="lr --almost-all"
+
+# Grep
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+
+# VPN
+export VPN_COUNTRY="Brazil"
+alias pia_vpn_con="sudo systemctl start pia@\$VPN_COUNTRY"
+alias pia_vpn_discon="sudo systemctl stop pia@\$VPN_COUNTRY"
+
+alias pia_br="export VPN_COUNTRY=\"Brazil\"; pia_vpn_con"
+alias pia_us_cali="export VPN_COUNTRY=\"US-California\"; pia_vpn_con"
+alias pia_us_tex="export VPN_COUNTRY=\"US-Texas\"; pia_vpn_con"
+alias pia_us_flo="export VPN_COUNTRY=\"US-Florida\"; pia_vpn_con"
+alias pia_ca="export VPN_COUNTRY=\"CA-Toronto\"; pia_vpn_con"
+alias pia_mx="export VPN_COUNTRY=\"Mexico\"; pia_vpn_con"
+alias pia_sw="export VPN_COUNTRY=\"Sweden\"; pia_vpn_con"
+
+# Other
+alias ffox="firefox-developer"
+alias upd="yaourt -Syua --noconfirm"
+alias zsh_debug="zsh -xv &> >(tee ~/omz-debug.log 2>/dev/null)"
