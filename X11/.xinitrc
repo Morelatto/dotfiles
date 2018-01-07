@@ -33,6 +33,7 @@ fi
 
 xset b off &
 xset s off &
-sh ~/.screenlayout/default.sh &
-sh ~/.fehbg & 
+sh ~/.config/default-screenlayout.sh &
+feh --bg-scale ~/Pictures/converge-janedoe.png &
+udiskie &
 exec i3
