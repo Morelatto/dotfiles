@@ -138,3 +138,5 @@ for_window [class="Spotify"] move to workspace 4
 assign [class="^Musixmatch$"] → 4
 assign [class="^Steam$"] → 3
 assign [class="^RocketLeague$"] → 3
+
+bindsym Control+$mod+l exec i3lock
