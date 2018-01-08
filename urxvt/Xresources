@@ -1,0 +1,39 @@
+! █▓▒░ Color scheme
+! Relative path from $HOME
+#define COLOR_SCHEME ".config/urxvt/base16-grayscale-dark.Xcolors"
+#include COLOR_SCHEME
+
+! █▓▒░ Fonts
+URxvt.font:             xft:Source Code Pro:Semibold:size=11, xft:DejaVu Sans Mono:Book:size=11
+URxvt.boldFont:         xft:Source Code Pro:Bold:size=11, xft:DejaVu Sans Mono:Bold:size=11
+URxvt.italicFont:       xft:Source Code Pro:Semibold Italic:size=11, xft:DejaVu Sans Mono:Oblique:size=11
+URxvt.boldItalicFont:   xft:Source Code Pro:Bold Italic:size=11, xft:DejaVu Sans Mono:Bold Oblique:size=11
+URxvt.letterSpace: 1
+
+! █▓▒░ Interface
+URxvt*scrollBar: false
+URxvt*scrollTtyKeypress: true
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer:  false
+
+URxvt*internalBorder: 0
+URxvt*externalBorder: 0
+URxvt*transparent: false
+URxvt*borderColor: #1c1c1c
+URxvt*borderLess: false
+URxvt*fading: 30
+
+! █▓▒░ Extensions
+! Install urxvt-perls and urxvt-resize-font-git
+URxvt.perl-ext-common:      default,url-select,keyboard-select,resize-font
+
+URxvt.url-select.launcher:  firefox-developer-edition
+URxvt.url-select.underline: true
+
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
+
+! █▓▒░ Misc
+URxvt.saveLines: 9999
+URxvt.iso14755: false
