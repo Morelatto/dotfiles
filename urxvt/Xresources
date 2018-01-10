@@ -8,20 +8,24 @@ URxvt.font:             xft:Source Code Pro:Semibold:size=11, xft:DejaVu Sans Mo
 URxvt.boldFont:         xft:Source Code Pro:Bold:size=11, xft:DejaVu Sans Mono:Bold:size=11
 URxvt.italicFont:       xft:Source Code Pro:Semibold Italic:size=11, xft:DejaVu Sans Mono:Oblique:size=11
 URxvt.boldItalicFont:   xft:Source Code Pro:Bold Italic:size=11, xft:DejaVu Sans Mono:Bold Oblique:size=11
-URxvt.letterSpace: 1
+URxvt.letterSpace: 	1
 
 ! █▓▒░ Interface
-URxvt*scrollBar: false
+URxvt*scrollBar:	 false
 URxvt*scrollTtyKeypress: true
-URxvt*scrollTtyOutput: false
+URxvt*scrollTtyOutput:	 false
 URxvt*scrollWithBuffer:  false
 
-URxvt*internalBorder: 0
-URxvt*externalBorder: 0
-URxvt*transparent: false
-URxvt*borderColor: #1c1c1c
-URxvt*borderLess: false
-URxvt*fading: 30
+URxvt*internalBorder: 	4
+URxvt*externalBorder: 	4
+URxvt*borderColor: 	#1c1c1c
+URxvt*borderLess:	false
+URxvt*transparent: 	false
+URxvt*fading: 		30
+
+! █▓▒░ Misc
+URxvt.saveLines: 	9999
+URxvt.iso14755: 	false
 
 ! █▓▒░ Extensions
 ! Install urxvt-perls and urxvt-resize-font-git
@@ -34,6 +38,12 @@ URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
 URxvt.keysym.M-s:           perl:keyboard-select:search
 
-! █▓▒░ Misc
-URxvt.saveLines: 9999
-URxvt.iso14755: false
+! █▓▒░ Keybinds
+URxvt.keysym.Prior:         \033[5~
+URxvt.keysym.Next:          \033[6~
+URxvt.keysym.Home:          \033[7~
+URxvt.keysym.End:           \033[8~
+URxvt.keysym.Up:            \033[A
+URxvt.keysym.Down:          \033[B
+URxvt.keysym.Right:         \033[C
+URxvt.keysym.Left:          \033[D
