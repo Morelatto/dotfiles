@@ -5,4 +5,4 @@ export ZSH_CACHE="$XDG_CACHE_HOME/zsh"
 mkdir -p $ZSH_CACHE
 export EDITOR="vim"
 export BROWSER="firefox-developer-edition"
-
+export VPN_COUNTRY="Brazil"

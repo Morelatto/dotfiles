@@ -56,7 +56,6 @@ alias pacman="sudo pacman"
 alias systemctl="sudo systemctl"
 
 # vpn
-export VPN_COUNTRY="Brazil"
 alias pia_vpn_con="systemctl start pia@\$VPN_COUNTRY"
 alias pia_vpn_discon="systemctl stop pia@\$VPN_COUNTRY"
  
