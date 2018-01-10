@@ -1,7 +1,3 @@
-export EDITOR="vim"
- 
-bindkey -e
-
 alias aedit=" $EDITOR $ZSH_CONFIG/aliases.zsh; source $ZSH_CONFIG/aliases.zsh"
  
 # Standard aliases
@@ -9,6 +5,7 @@ alias aedit=" $EDITOR $ZSH_CONFIG/aliases.zsh; source $ZSH_CONFIG/aliases.zsh"
 # vim
 alias v="vim"
 alias vi="vim"
+alias nano="vim"
 alias emacs="vim"
 
 # ls
