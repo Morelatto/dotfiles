@@ -16,7 +16,7 @@ URxvt*scrollTtyKeypress: true
 URxvt*scrollTtyOutput:	 false
 URxvt*scrollWithBuffer:  false
 
-URxvt*internalBorder: 	0
+URxvt*internalBorder: 	5
 URxvt*externalBorder: 	0
 URxvt*borderColor: 	#1c1c1c
 URxvt*borderLess:	false
