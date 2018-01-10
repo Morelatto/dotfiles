@@ -16,8 +16,8 @@ URxvt*scrollTtyKeypress: true
 URxvt*scrollTtyOutput:	 false
 URxvt*scrollWithBuffer:  false
 
-URxvt*internalBorder: 	4
-URxvt*externalBorder: 	4
+URxvt*internalBorder: 	0
+URxvt*externalBorder: 	0
 URxvt*borderColor: 	#1c1c1c
 URxvt*borderLess:	false
 URxvt*transparent: 	false
@@ -43,7 +43,7 @@ URxvt.keysym.Prior:         \033[5~
 URxvt.keysym.Next:          \033[6~
 URxvt.keysym.Home:          \033[7~
 URxvt.keysym.End:           \033[8~
-URxvt.keysym.Up:            \033[A
-URxvt.keysym.Down:          \033[B
-URxvt.keysym.Right:         \033[C
-URxvt.keysym.Left:          \033[D
+!URxvt.keysym.Up:            \033[A
+!URxvt.keysym.Down:          \033[B
+!URxvt.keysym.Right:         \033[C
+!URxvt.keysym.Left:          \033[D
