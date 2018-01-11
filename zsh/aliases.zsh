@@ -1,4 +1,4 @@
-alias aedit=" $EDITOR $ZSH_CONFIG/aliases.zsh; source $ZSH_CONFIG/aliases.zsh"
+alias aedit=" $EDITOR $ZDOTDIR/aliases.zsh; source $ZDOTDIR/aliases.zsh"
  
 # Standard aliases
 
