@@ -54,6 +54,7 @@ alias cp"cp -r"
 alias mkdir="mkdir -p"
 alias pacman="sudo pacman"
 alias systemctl="sudo systemctl"
+alias dog="pygmentize -g"
 
 # vpn
 alias pia_vpn_con="systemctl start pia@\$VPN_COUNTRY"
