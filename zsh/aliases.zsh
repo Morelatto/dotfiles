@@ -40,8 +40,9 @@ alias gp="git push"
 alias gu="git unstage"
 alias gg="git graph"
 alias gco="git checkout"
+alias gl="git log"
 
-# other
+# linux
 alias p=" ps aux | grep"
 alias d=" dirs -v"
 alias clear=" clear"
@@ -54,6 +55,9 @@ alias cp"cp -r"
 alias mkdir="mkdir -p"
 alias pacman="sudo pacman"
 alias systemctl="sudo systemctl"
+alias openvpn="sudo openvpn"
+alias fdisk="sudo fdisk"
+alias mount="sudo mount"
 alias dog="pygmentize -g"
 
 # vpn
