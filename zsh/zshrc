@@ -3,12 +3,15 @@ sources+="$ZDOTDIR/options.zsh"
 sources+="$ZDOTDIR/prompt.zsh"
 sources+="$ZDOTDIR/aliases.zsh"
 sources+="$ZDOTDIR/keybindings.zsh"
-sources+="$ZDOTDIR/zsh-syntax-highlighting.zsh" 
+sources+="$ZFUNCTIONS/zsh-syntax-highlighting.zsh" 
 sources+="$ZDOTDIR/completions.zsh"
 sources+="$ZDOTDIR/vi-mode.zsh"
+sources+="$ZDOTDIR/prompt.zsh"
 
 foreach file (`echo $sources`)
     if [[ -a $file ]]; then
         source $file
     fi
 end
+
+fpath=( $ZFUNCTIONS $fpath )

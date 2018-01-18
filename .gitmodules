@@ -1,3 +1,9 @@
 [submodule "firefox/ghacks-user.js"]
 	path = firefox/ghacks-user.js
 	url = https://github.com/ghacksuserjs/ghacks-user.js.git
+[submodule "zsh/functions/pure"]
+	path = zsh/functions/pure
+	url = https://github.com/sindresorhus/pure
+[submodule "zsh/functions/zsh-syntax-highlighting"]
+	path = zsh/functions/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
