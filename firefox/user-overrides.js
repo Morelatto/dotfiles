@@ -3,12 +3,11 @@
 user_pref("_user.js.parrot", "CUSTOM PREFS");
 
 // TEMPORARY
-user_pref("privacy.firstparty.isolate", false);           // 'true' breaks functionality of apparently several add-ons that deal with deleting cookies, local and indexDB storage
-user_pref("ui.use_standins_for_native_colors", false);    // 'true' cause tool-tip text to be the same color as the background color, at least on Linux
+// user_pref("privacy.firstparty.isolate", false);           // 'true' breaks functionality of apparently several add-ons that deal with deleting cookies, local and indexDB storage
+// user_pref("ui.use_standins_for_native_colors", false);    // 'true' cause tool-tip text to be the same color as the background color, at least on Linux
 
 // DIFFS
 user_pref("keyword.enabled", true);               // enable location bar using search 
-user_pref("browser.bookmarks.max_backups", 5);                  // extra backups of bookmarks
 user_pref("browser.display.use_document_fonts", 1);             // '0' breaks the display of uBlock and uMatrix on Linux
 user_pref("browser.download.forbid_open_with", false);          // allow the `open with` option when downloading a file
 user_pref("browser.sessionstore.max_tabs_undo", 10);            // allow to restore closed tabs
@@ -20,7 +19,6 @@ user_pref("dom.event.clipboardevents.enabled", true);           // `false' break
 user_pref("dom.popup_allowed_events", "change click dblclick mouseup notificationclick reset submit touchend");  // allow all default JS pop-up events
 user_pref("dom.workers.enabled", true);                         // unbreak coin-hive.com login, some other sites
 user_pref("full-screen-api.enabled", true);                     // enable full-screen video capability
-user_pref("layout.css.visited_links_enabled", true);            // though it is a privacy trade-off, differentiating between visited and not visited links is important to me
 user_pref("layout.spellcheckDefault", 2);                       // enable spell-check for single line inputs
 user_pref("network.cookie.cookieBehavior", 1);                  // allow all 1st party cookies by default and control them with an add-on
 user_pref("signon.rememberSignons", false);           // do not remember logins and passwords
