@@ -1,11 +1,11 @@
 typeset -ga sources
 sources+="$ZDOTDIR/options.zsh"
-sources+="$ZDOTDIR/prompt.zsh"
 sources+="$ZDOTDIR/aliases.zsh"
-sources+="$ZDOTDIR/keybindings.zsh"
+sources+="$ZFUNCTIONS/functions.zsh"
 sources+="$ZFUNCTIONS/zsh-syntax-highlighting.zsh" 
 sources+="$ZDOTDIR/completions.zsh"
 sources+="$ZDOTDIR/vi-mode.zsh"
+sources+="$ZDOTDIR/keybindings.zsh"
 sources+="$ZDOTDIR/prompt.zsh"
 
 foreach file (`echo $sources`)

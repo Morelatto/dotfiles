@@ -1,10 +1,4 @@
 bindkey -v
-bindkey -a 'gg' beginning-of-buffer-or-history
-bindkey -a 'G' end-of-buffer-or-history
-bindkey -a 'g~' vi-oper-swap-case
-bindkey '^?' backward-delete-char
-bindkey '^H' backward-delete-char
-bindkey '^G' what-cursor-position
 
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
@@ -28,8 +22,8 @@ key[PageDown]="$terminfo[knp]"
 [[ -n "$key[Insert]"    ]] && bindkey -- "$key[Insert]"    overwrite-mode
 [[ -n "$key[Backspace]" ]] && bindkey -- "$key[Backspace]" backward-delete-char
 [[ -n "$key[Delete]"    ]] && bindkey -- "$key[Delete]"    delete-char
-[[ -n "$key[Up]"        ]] && bindkey -- "$key[Up]"        history-beginning-search-backward
-[[ -n "$key[Down]"      ]] && bindkey -- "$key[Down]"      history-beginning-search-forward
+[[ -n "$key[Up]"        ]] && bindkey -- "$key[Up]"        history-beginning-search-backward-end
+[[ -n "$key[Down]"      ]] && bindkey -- "$key[Down]"      history-beginning-search-forward-end
 [[ -n "$key[Left]"      ]] && bindkey -- "$key[Left]"      backward-char
 [[ -n "$key[Right]"     ]] && bindkey -- "$key[Right]"     forward-char
 

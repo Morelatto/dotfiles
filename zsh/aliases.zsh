@@ -2,15 +2,33 @@ alias aedit=" $EDITOR $ZDOTDIR/aliases.zsh; source $ZDOTDIR/aliases.zsh"
  
 # Standard aliases
 
-# vim
+# #
+alias _="sudo"
+alias c="clear"
+alias d=" dirs -v"
+alias g="git"
+alias l="ls"
+alias m="man"
+alias p=" ps aux | grep"
+alias q="exit"
+alias s="sudo"
 alias v="vim"
+
+# sudo
+alias fdisk="sudo fdisk"
+alias mount="sudo mount"
+alias openvpn="sudo openvpn"
+alias pacman="sudo pacman"
+alias systemctl="sudo systemctl"
+
+# vim
 alias vi="vim"
 alias nano="vim"
 alias emacs="vim"
+alias sv="sudo vim"
 
 # ls
 alias ls=" ls --color=always --classify --human-readable -l"
-alias l="ls"
 alias la="ls --almost-all"
 alias lr="ls --recursive"
 alias lra="lr --almost-all"
@@ -39,50 +57,40 @@ alias ....="up; ..."
 
 # grep
 alias grep="grep --color=auto --binary-files=without-match --ignore-case"
-alias fgrep="grep -F"
 alias egrep="grep -E"
+alias fgrep="grep -F"
 
 # git
-alias g="git"
 alias ga="git add"
 alias gc="git commit -m"
-alias gs="git status"
+alias gco="git checkout"
 alias gd="git diff"
 alias gf="git fetch"
-alias gm="git merge"
-alias gr="git rebase"
-alias gp="git push"
-alias gu="git unstage"
 alias gg="git graph"
-alias gco="git checkout"
 alias gl="git log"
+alias gm="git merge"
+alias gp="git push"
+alias gr="git rebase"
+alias gs="git status"
+alias gu="git unstage"
 
 # linux
-alias p=" ps aux | grep"
-alias d=" dirs -v"
 alias clear=" clear"
-alias c="clear"
-alias q="exit"
+alias cp"cp -r"
 alias ka="killall"
 alias k9="kill -9"
-alias rmrf="rm -rf"
-alias cp"cp -r"
 alias mkdir="mkdir -p"
 alias path='echo $PATH | tr -s ":" "\n"'
+alias rmrf="rm -rf"
+alias upg="pacman -Su"
+alias upd="pacman -Syy"
 
 # nocorrect
-alias mv="nocorrect mv"
 alias cp="nocorrect cp"
 alias man="nocorrect man"
 alias mkdir="nocorrect mkdir"
+alias mv="nocorrect mv"
 alias rm="nocorrect rm"
-
-# sudo
-alias pacman="sudo pacman"
-alias systemctl="sudo systemctl"
-alias openvpn="sudo openvpn"
-alias fdisk="sudo fdisk"
-alias mount="sudo mount"
 
 # vpn
 alias pia="systemctl start pia@$VPN_COUNTRY"
@@ -97,11 +105,12 @@ alias piamx="export VPN_COUNTRY=Mexico; pia"
 alias piasw="export VPN_COUNTRY=Sweden; pia"
  
 # other
-alias ff="firefox-developer-edition"
-alias upd="yaourt -Syua --noconfirm"
-alias zsh_debug="zsh -xv &> >(tee ~/omz-debug.log 2>/dev/null)"
-alias rleague="steam steam://rungameid/252950"
 alias dog="pygmentize -g"
+alias ff="firefox-developer-edition"
+alias rleague="steam steam://rungameid/252950"
+alias windows="sudo mount /dev/sda4 /mnt/Windows"
+alias zsh_debug="zsh -xv &> >(tee ~/omz-debug.log 2>/dev/null)"
+alias i3edit=" $EDITOR $XDG_CONFIG_HOME/i3/config; i3-msg reload"
 
 # Global aliases
  
