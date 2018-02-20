@@ -26,6 +26,7 @@ user_pref("browser.sessionstore.resume_from_crash", true);    // enable resuming
 user_pref("browser.tabs.closeWindowWithLastTab", true);     // enable closing browser with last tab
 user_pref("browser.backspace_action", 0);             // backspace goes back one page
 user_pref("dom.allow_cut_copy", true);              // enables clipboard commands
+user_pref("browser.ctrlTab.previews", false);      // disable Ctrl+Tab previews
 // user_pref("security.OCSP.enabled", 0);                          // disable on-line verification of SSL certificates (can cause sites to load slower or not at all if the service is down - you should typically NOT disable this)
 // user_pref("webgl.disabled", false);                             // `true` will break some sites including Google Earth Street View on Google Maps - WenGL appears to be dependant upon JS being enabled (which should be disabled globally by default) so if you trust a site enough to enable JS, you may as well enable WebGL as well since the security risks with WebGL appear to be far less of a problem than JS
 // user_pref("webgl.disable-extensions", false);                   // 'true' breaks Google Earth Street View on Google Maps
