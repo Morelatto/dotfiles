@@ -7,3 +7,12 @@
 [submodule "zsh/functions/zsh-syntax-highlighting"]
 	path = zsh/functions/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "urxvt/urxvt-perls"]
+	path = urxvt/urxvt-perls
+	url = https://github.com/muennich/urxvt-perls
+[submodule "urxvt/urxvt-font-size"]
+	path = urxvt/urxvt-font-size
+	url = https://github.com/majutsushi/urxvt-font-size
+[submodule "i3/i3lock-multimonitor"]
+	path = i3/i3lock-multimonitor
+	url = https://github.com/ShikherVerma/i3lock-multimonitor
