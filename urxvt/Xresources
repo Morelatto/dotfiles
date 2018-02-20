@@ -28,21 +28,29 @@ URxvt.saveLines: 	9999
 URxvt.iso14755: 	false
 
 ! █▓▒░ Extensions
-! Install urxvt-perls and urxvt-resize-font-git
-URxvt.perl-ext-common:      default,url-select,keyboard-select,resize-font
+URxvt.perl-lib: .config/urxvt/
+URxvt.perl-ext-common:      default,url-select,keyboard-select,font-size
 
 URxvt.url-select.launcher:  firefox-developer-edition
 URxvt.url-select.underline: true
-
-URxvt.keysym.M-u:           perl:url-select:select_next
-URxvt.keysym.M-Escape:      perl:keyboard-select:activate
-URxvt.keysym.M-s:           perl:keyboard-select:search
 
 ! █▓▒░ Keybinds
 URxvt.keysym.Prior:         \033[5~
 URxvt.keysym.Next:          \033[6~
 URxvt.keysym.Home:          \033[7~
 URxvt.keysym.End:           \033[8~
+
+URxvt.keysym.C-u:           url-select:select_next
+URxvt.keysym.C-Escape:      keyboard-select:activate
+URxvt.keysym.C-f:           keyboard-select:search
+
+URxvt.keysym.C-Up:	    font-size:increase
+URxvt.keysym.C-Down:        font-size:decrease
+URxvt.keysym.C-S-Up:        font-size:incglobal
+URxvt.keysym.C-S-Down:      font-size:decglobal
+URxvt.keysym.C-equal:       font-size:reset
+URxvt.keysym.C-slash:       font-size:show
+
 !URxvt.keysym.Up:            \033[A
 !URxvt.keysym.Down:          \033[B
 !URxvt.keysym.Right:         \033[C
