@@ -6,6 +6,7 @@ alias ffedit=" $EDITOR $MOZ_PATH; killall firefox; firefox &"
 
 # a-z
 alias _="sudo"
+alias a="apt"
 alias c="clear"
 alias d=" dirs -v"
 alias g="git"
@@ -15,14 +16,12 @@ alias p=" ps aux | grep"
 alias q="exit"
 alias s="sudo"
 alias v="vim"
-alias y="yaourt"
 
 # sudo
 alias fdisk="sudo fdisk"
 alias mount="sudo mount"
-alias openvpn="sudo openvpn"
-alias pacman="sudo pacman"
 alias systemctl="sudo systemctl"
+alias apt="sudo apt"
 
 # vim
 alias vi="vim"
@@ -80,32 +79,26 @@ alias gu="git unstage"
 
 # linux
 alias clear=" clear"
-alias cp"cp -r"
 alias ka="killall"
 alias k9="kill -9"
-alias mkdir="mkdir -p"
 alias path='echo $PATH | tr -s ":" "\n"'
 alias rmrf="rm -rf"
-alias upg="pacman -Su"
-alias upd="pacman -Syy"
-alias vr="veracrypt"
-alias venv="virtualenv ENV"
+alias upg="sudo apt upgrade"
+alias upd="sudo apt update" 
 
 # nocorrect
-alias cp="nocorrect cp"
+alias cp="nocorrect cp -r"
 alias man="nocorrect man"
-alias mkdir="nocorrect mkdir"
+alias mkdir="nocorrect mkdir -p"
 alias mv="nocorrect mv"
 alias rm="nocorrect rm"
 
 # other
 alias dog="pygmentize -g"
 alias ff="firefox-developer-edition"
-alias rleague="steam steam://rungameid/252950"
-alias windows="sudo mount /dev/sda4 /mnt/Windows && cd /mnt/Windows"
 alias zsh_debug="zsh -xv &> >(tee ~/omz-debug.log 2>/dev/null)"
-alias vpn="expressvpn connect"
-alias vpnd="expressvpn disconnect"
+alias vr="veracrypt"
+alias venv="virtualenv ENV"
 
 # Global aliases
  
