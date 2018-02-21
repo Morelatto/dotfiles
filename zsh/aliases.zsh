@@ -1,8 +1,10 @@
 alias aedit=" $EDITOR $ZDOTDIR/aliases.zsh; source $ZDOTDIR/aliases.zsh"
+alias i3edit=" $EDITOR $XDG_CONFIG_HOME/i3/config; i3-msg reload"
+alias ffedit=" $EDITOR $MOZ_PATH; killall firefox; firefox &"
  
 # Standard aliases
 
-# #
+# a-z
 alias _="sudo"
 alias c="clear"
 alias d=" dirs -v"
@@ -13,6 +15,7 @@ alias p=" ps aux | grep"
 alias q="exit"
 alias s="sudo"
 alias v="vim"
+alias y="yaourt"
 
 # sudo
 alias fdisk="sudo fdisk"
@@ -70,6 +73,7 @@ alias gg="git graph"
 alias gl="git log"
 alias gm="git merge"
 alias gp="git push"
+alias gpl="git pull"
 alias gr="git rebase"
 alias gs="git status"
 alias gu="git unstage"
@@ -84,6 +88,8 @@ alias path='echo $PATH | tr -s ":" "\n"'
 alias rmrf="rm -rf"
 alias upg="pacman -Su"
 alias upd="pacman -Syy"
+alias vr="veracrypt"
+alias venv="virtualenv ENV"
 
 # nocorrect
 alias cp="nocorrect cp"
@@ -92,25 +98,14 @@ alias mkdir="nocorrect mkdir"
 alias mv="nocorrect mv"
 alias rm="nocorrect rm"
 
-# vpn
-alias pia="systemctl start pia@$VPN_COUNTRY"
-alias piad="systemctl stop pia@$VPN_COUNTRY"
- 
-alias piabr="export VPN_COUNTRY=Brazil; pia"
-alias piausc="export VPN_COUNTRY=US-California; pia"
-alias piaust="export VPN_COUNTRY=US-Texas; pia"
-alias piausf="export VPN_COUNTRY=US-Florida; pia"
-alias piaca="export VPN_COUNTRY=CA-Toronto; pia"
-alias piamx="export VPN_COUNTRY=Mexico; pia"
-alias piasw="export VPN_COUNTRY=Sweden; pia"
- 
 # other
 alias dog="pygmentize -g"
 alias ff="firefox-developer-edition"
 alias rleague="steam steam://rungameid/252950"
-alias windows="sudo mount /dev/sda4 /mnt/Windows"
+alias windows="sudo mount /dev/sda4 /mnt/Windows && cd /mnt/Windows"
 alias zsh_debug="zsh -xv &> >(tee ~/omz-debug.log 2>/dev/null)"
-alias i3edit=" $EDITOR $XDG_CONFIG_HOME/i3/config; i3-msg reload"
+alias vpn="expressvpn connect"
+alias vpnd="expressvpn disconnect"
 
 # Global aliases
  

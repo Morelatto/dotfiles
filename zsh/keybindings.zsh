@@ -1,4 +1,5 @@
 bindkey -v
+bindkey '^R' history-incremental-search-backward
 
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
