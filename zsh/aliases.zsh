@@ -61,6 +61,7 @@ alias ....="up; ..."
 alias grep="grep --color=auto --binary-files=without-match --ignore-case"
 alias egrep="grep -E"
 alias fgrep="grep -F"
+alias lgrep="grep -rnw '.' -e"
 
 # git
 alias ga="git add"
@@ -76,6 +77,11 @@ alias gpl="git pull"
 alias gr="git rebase"
 alias gs="git status"
 alias gu="git unstage"
+
+# tar
+alias targz="tar xzf"
+alias tarbz2="tar xjf"
+alias tarls="tar tvf"
 
 # linux
 alias clear=" clear"
@@ -99,6 +105,11 @@ alias ff="firefox-developer-edition"
 alias zsh_debug="zsh -xv &> >(tee ~/omz-debug.log 2>/dev/null)"
 alias vr="veracrypt"
 alias venv="virtualenv ENV"
+
+# work
+alias rabbit="docker start cayman-rabbit-server"
+alias switch="~/Devel/pagseguro-switch/start-server.sh"
+alias mobile="sudo /etc/init.d/ps-mobile-be-app start"
 
 # Global aliases
  
