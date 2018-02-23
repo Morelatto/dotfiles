@@ -1,11 +1,14 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
+
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export ZFUNCTIONS="$ZDOTDIR/functions"
 export ZSH_CACHE="$XDG_CACHE_HOME/zsh"
 mkdir -p $ZSH_CACHE
-export MOZ_PATH="~/.mozilla/firefox/"
+
+export DIR_COLORS="$XDG_CONFIG_HOME/ls/dir_colors"
 export VISUAL="vim"
 export EDITOR="$VISUAL"
+
+export MOZ_PATH="$HOME/.mozilla/firefox/"
 export BROWSER="firefox-developer-edition"
-export VPN_COUNTRY="Brazil"

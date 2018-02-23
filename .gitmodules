@@ -1,9 +1,6 @@
 [submodule "firefox/ghacks-user.js"]
 	path = firefox/ghacks-user.js
 	url = https://github.com/ghacksuserjs/ghacks-user.js.git
-[submodule "zsh/functions/pure"]
-	path = zsh/functions/pure
-	url = https://github.com/sindresorhus/pure
 [submodule "zsh/functions/zsh-syntax-highlighting"]
 	path = zsh/functions/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
@@ -16,3 +13,12 @@
 [submodule "i3/i3lock-multimonitor"]
 	path = i3/i3lock-multimonitor
 	url = https://github.com/ShikherVerma/i3lock-multimonitor
+[submodule "urxvt/nord-xresources"]
+	path = urxvt/nord-xresources
+	url = https://github.com/arcticicestudio/nord-xresources
+[submodule "misc/nord-dircolors"]
+	path = misc/nord-dircolors
+	url = https://github.com/arcticicestudio/nord-dircolors
+[submodule "zsh/functions/spaceship-prompt"]
+	path = zsh/functions/spaceship-prompt
+	url = https://github.com/denysdovhan/spaceship-prompt

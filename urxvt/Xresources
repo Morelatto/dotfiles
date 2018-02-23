@@ -1,6 +1,6 @@
 ! █▓▒░ Color scheme
 ! Relative path from $HOME
-#define COLOR_SCHEME ".config/urxvt/base16-grayscale-dark.Xcolors"
+#define COLOR_SCHEME ".config/urxvt/nord"
 #include COLOR_SCHEME
 
 ! █▓▒░ Fonts
@@ -22,10 +22,12 @@ URxvt*borderColor: 	#1c1c1c
 URxvt*borderLess:	false
 URxvt*transparent: 	false
 URxvt*fading: 		30
+URxvt*background:	#1b1d1e	
 
 ! █▓▒░ Misc
 URxvt.saveLines: 	9999
 URxvt.iso14755: 	false
+URxvt.termName: 	rxvt-unicode-256color
 
 ! █▓▒░ Extensions
 URxvt.perl-lib: .config/urxvt/
