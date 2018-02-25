@@ -6,7 +6,6 @@ alias ffedit=" $EDITOR $MOZ_PATH; killall firefox; firefox &"
 
 # a-z
 alias _="sudo"
-alias a="apt"
 alias c="clear"
 alias d=" dirs -v"
 alias g="git"
@@ -16,12 +15,14 @@ alias p=" ps aux | grep"
 alias q="exit"
 alias s="sudo"
 alias v="vim"
+alias y="yaourt"
 
 # sudo
 alias fdisk="sudo fdisk"
 alias mount="sudo mount"
+alias openvpn="sudo openvpn"
+alias pacman="sudo pacman"
 alias systemctl="sudo systemctl"
-alias apt="sudo apt"
 
 # vim
 alias vi="vim"
@@ -30,10 +31,14 @@ alias emacs="vim"
 alias sv="sudo vim"
 
 # ls
-alias ls=" ls --color=always --classify --human-readable -l"
+alias ls=" ls --color=always --classify"
+alias ll="ls -l --human-readable"
 alias la="ls --almost-all"
+alias lla="ll --almost-all"
 alias lr="ls --recursive"
+alias llr="ll --recursive"
 alias lra="lr --almost-all"
+
 alias lad='ls -d -- .*(/)'				# only show dot-directories
 alias lsa='ls -a -- .*(.)'				# only show dot-files
 alias lsd='ls -d -- *(/)'				# only show directories
@@ -59,8 +64,8 @@ alias ....="up; ..."
 
 # grep
 alias grep="grep --color=auto --binary-files=without-match --ignore-case"
-alias egrep="grep -E"
 alias fgrep="grep -F"
+alias egrep="grep -E"
 alias lgrep="grep -rnw '.' -e"
 
 # git
@@ -89,27 +94,24 @@ alias ka="killall"
 alias k9="kill -9"
 alias path='echo $PATH | tr -s ":" "\n"'
 alias rmrf="rm -rf"
-alias upg="sudo apt upgrade"
-alias upd="sudo apt update" 
+alias upg="pacman -Su"
+alias upd="pacman -Syy"
 
 # nocorrect
+alias mv="nocorrect mv"
 alias cp="nocorrect cp -r"
 alias man="nocorrect man"
 alias mkdir="nocorrect mkdir -p"
-alias mv="nocorrect mv"
 alias rm="nocorrect rm"
 
 # other
-alias dog="pygmentize -g"
 alias ff="firefox-developer-edition"
+alias upd="yaourt -Syua --noconfirm"
 alias zsh_debug="zsh -xv &> >(tee ~/omz-debug.log 2>/dev/null)"
+alias rleague="steam steam://rungameid/252950"
+alias dog="pygmentize -g"
 alias vr="veracrypt"
 alias venv="virtualenv ENV"
-
-# work
-alias rabbit="docker start cayman-rabbit-server"
-alias switch="~/Devel/pagseguro-switch/start-server.sh"
-alias mobile="sudo /etc/init.d/ps-mobile-be-app start"
 
 # Global aliases
  
