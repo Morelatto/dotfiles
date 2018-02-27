@@ -3,10 +3,10 @@ fpath=( $ZFUNCTIONS $fpath )
 typeset -ga sources
 sources+="$ZDOTDIR/options.zsh"
 sources+="$ZDOTDIR/aliases.zsh"
+sources+="$ZDOTDIR/dir_colors.zsh"
 sources+="$ZDOTDIR/completions.zsh"
 sources+="$ZDOTDIR/keybindings.zsh"
 sources+="$ZDOTDIR/prompt.zsh"
-sources+="$ZDOTDIR/dir_colors.zsh"
 sources+="$ZFUNCTIONS/functions.zsh"
 
 foreach file (`echo $sources`)
