@@ -1,0 +1,9 @@
+#### START GAPS CONFIG ####
+
+for_window [class="^.*"] border pixel 0
+
+gaps inner 10
+gaps outer 15
+smart_gaps on
+
+#### END GAPS CONFIG ####
