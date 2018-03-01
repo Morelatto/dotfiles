@@ -1,4 +1,4 @@
-alias aedit=" $EDITOR $ZDOTDIR/aliases.zsh; source $ZDOTDIR/aliases.zsh"
+alias aedit=" $EDITOR $ZALIASES; source $ZALIASES/aliases.zsh"
 alias i3edit=" $EDITOR $XDG_CONFIG_HOME/i3/config; i3-msg reload"
 alias ffedit=" $EDITOR $MOZ_PATH; killall firefox; firefox &"
  
@@ -15,13 +15,11 @@ alias p=" ps aux | grep"
 alias q="exit"
 alias s="sudo"
 alias v="vim"
-alias y="yaourt"
 
 # sudo
 alias fdisk="sudo fdisk"
 alias mount="sudo mount"
 alias openvpn="sudo openvpn"
-alias pacman="sudo pacman"
 alias systemctl="sudo systemctl"
 
 # vim
@@ -94,8 +92,7 @@ alias ka="killall"
 alias k9="kill -9"
 alias path='echo $PATH | tr -s ":" "\n"'
 alias rmrf="rm -rf"
-alias upg="pacman -Su"
-alias upd="pacman -Syy"
+alias tf="tail -F"
 
 # nocorrect
 alias mv="nocorrect mv"
@@ -106,9 +103,7 @@ alias rm="nocorrect rm"
 
 # other
 alias ff="firefox-developer-edition"
-alias upd="yaourt -Syua --noconfirm"
 alias zsh_debug="zsh -xv &> >(tee ~/omz-debug.log 2>/dev/null)"
-alias rleague="steam steam://rungameid/252950"
 alias dog="pygmentize -g"
 alias vr="veracrypt"
 alias venv="virtualenv ENV"

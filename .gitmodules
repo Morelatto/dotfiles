@@ -22,3 +22,9 @@
 [submodule "zsh/functions/spaceship-prompt"]
 	path = zsh/functions/spaceship-prompt
 	url = https://github.com/denysdovhan/spaceship-prompt
+[submodule "zsh/functions/zsh-autosuggestions"]
+	path = zsh/functions/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh/functions/zsh-completions"]
+	path = zsh/functions/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions
