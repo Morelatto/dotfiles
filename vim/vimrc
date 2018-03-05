@@ -180,11 +180,14 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
+map <Space> /
+map <C-Space> ?
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
+
+map <ESC>[65;5u   :echo "ctrl-shift-a received"<CR>
+map <C-a>         :echo "ctrl-a received"<CR>
 
 " Smart way to move between windows
 map <C-j> <C-W>j
@@ -192,10 +195,10 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-map <C-S-j> <C-W>J
-map <C-S-k> <C-W>K
-map <C-S-h> <C-W>H
-map <C-S-l> <C-W>L
+map <ESC>[74;5u <C-W>J
+map <ESC>[75;5u <C-W>K
+map <ESC>[72;5u <C-W>H
+map <ESC>[76;5u <C-W>L
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
