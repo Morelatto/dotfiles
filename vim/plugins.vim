@@ -9,7 +9,7 @@ call pathogen#helptags()
 " => Nerd Tree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos = "left"
 let NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize=35
@@ -24,6 +24,22 @@ map <leader>nf :NERDTreeFind<cr>
 
 nnoremap <F5> :GundoToggle<CR>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Airline 
+""""""""""""""""""""""""""""
+
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='base16_grayscale'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Nerd Commenter 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:NERDSpaceDelims = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Tagbar 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nmap <F8> :TagbarToggle<CR>
