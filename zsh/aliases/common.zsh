@@ -69,6 +69,7 @@ alias lgrep="grep -rnw '.' -e"
 # git
 alias ga="git add"
 alias gc="git commit -m"
+alias gcl="git clone"
 alias gco="git checkout"
 alias gd="git diff"
 alias gf="git fetch"
