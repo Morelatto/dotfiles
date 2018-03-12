@@ -179,15 +179,16 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Open new split panes to right and bottom
+set splitbelow
+set splitright
+
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 map <Space> /
 map <C-Space> ?
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
-
-map <ESC>[65;5u   :echo "ctrl-shift-a received"<CR>
-map <C-a>         :echo "ctrl-a received"<CR>
 
 " Smart way to move between windows
 map <C-j> <C-W>j
@@ -218,7 +219,7 @@ map <leader>t<leader> :tabnext
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
-nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
+nmap <leader>tl :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 
 
