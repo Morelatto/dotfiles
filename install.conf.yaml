@@ -1,13 +1,45 @@
 - defaults:
     link:
+      create: true
       relink: true
 
 - clean: ['~']
 
-- link:
-    ~/.vim:
-    ~/.vimrc:
-      relink: true
-
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+
+- link:
+    ~/.config/i3/config: i3/config
+    ~/.config/i3/i3blocks.conf: i3/i3blocks.conf
+    ~/.config/i3/lock: i3/i3lock-multimonitor/lock
+
+    ~/.vimrc: vim/vimrc
+    ~/.vim/plugins.vim: vim/plugins.vim
+    
+    ~/.zshenv: zsh/zshenv
+    ~/.config/zsh/.zshrc: zsh/zshrc
+    ~/.config/zsh/.zlogin: zsh/zlogin
+    ~/.config/zsh/completions.zsh: zsh/completions.zsh
+    ~/.config/zsh/dir_colors.zsh: zsh/dir_colors.zsh
+    ~/.config/zsh/keybindings.zsh: zsh/keybindings.zsh
+    ~/.config/zsh/options.zsh: zsh/options.zsh
+    ~/.config/zsh/prompt.zsh: zsh/prompt.zsh
+    ~/.config/zsh/aliases/aliases.zsh: zsh/aliases/aliases.zsh
+    ~/.config/zsh/aliases/common.zsh: zsh/aliases/common.zsh
+    ~/.config/zsh/functions/functions.zsh: zsh/functions/functions.zsh
+    ~/.config/zsh/functions/history-search-end: zsh/functions/history-search-end
+    ~/.config/zsh/functions/history-search-multi-word: zsh/functions/history-search-multi-word/history-search-multi-word
+    ~/.config/zsh/functions/prompt_spaceship-setup: zsh/functions/spaceship-prompt/spaceship.zsh
+    ~/.config/zsh/functions/vi-mode.zsh: zsh/functions/vi-mode.zsh
+    ~/.config/zsh/functions/zsh-autosuggestions.zsh: zsh/functions/zsh-autosuggestions/zsh-autosuggestions.zsh
+    ~/.config/zsh/functions/zsh-syntax-highlighting.zsh: zsh/functions/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+    ~/.Xresources: urxvt/Xresources
+    ~/.config/urxvt/font-size: urxvt/urxvt-font-size/font-size
+    ~/.config/urxvt/keyboard-select: urxvt/urxvt-perls/keyboard-select
+    ~/.config/urxvt/url-select: urxvt/urxvt-perls/deprecated/url-select
+    ~/.config/urxvt/nord: urxvt/nord-xresources/src/nord
+
+    ~/.xinitrc: X11/xinitrc
+
+    ~/.config/ls/dir_colors: misc/nord-dircolors/src/dir_colors
