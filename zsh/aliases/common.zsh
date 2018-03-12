@@ -5,7 +5,7 @@ alias ffedit=" $EDITOR $MOZ_PATH; killall firefox; firefox &"
 # Standard aliases
 
 # a-z
-alias _="sudo"
+alias _="sudo "
 alias c="clear"
 alias d=" dirs -v"
 alias g="git"
@@ -13,7 +13,7 @@ alias l="ls"
 alias m="man"
 alias p=" ps aux | grep"
 alias q="exit"
-alias s="sudo"
+alias s="sudo "
 alias v="vim"
 
 # sudo
