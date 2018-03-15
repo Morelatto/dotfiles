@@ -166,6 +166,9 @@ set si
 " Wrap lines
 set wrap
 
+" Display tabs and trailing spaces visually
+set list listchars=tab:\ \ ,trail:·
+
 """"""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""
