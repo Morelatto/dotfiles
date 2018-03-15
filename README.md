@@ -14,7 +14,7 @@
 ### [rxvt-unicode](https://www.archlinux.org/packages/community/x86_64/rxvt-unicode/)
 * [urxvt-perls](https://github.com/muennich/urxvt-perls)
 * [urxvt-resize-font-git](https://github.com/majutsushi/urxvt-font-size)
-* [nord-xresources] (https://github.com/arcticicestudio/nord-xresources)
+* [nord-xresources](https://github.com/arcticicestudio/nord-xresources)
 
 ### [zsh](https://www.archlinux.org/packages/extra/x86_64/zsh/)
 * [spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt)
