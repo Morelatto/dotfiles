@@ -11,7 +11,7 @@ alias d=" dirs -v"
 alias g="git"
 alias l="ls"
 alias m="man"
-alias p=" ps aux | grep"
+alias p="ps -xe --forest | less -S"
 alias q="exit"
 alias s="sudo "
 alias v="vim"
@@ -53,6 +53,12 @@ alias dua='du -s *(/DN) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; d
 alias duv='du -s ^.*(/N) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; done'	# show sorted directory sizes for visible directories only
 alias duh='du -s .*(/N) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; done'	# show sorted directory sizes for hidden directories only
 
+# ps
+alias ps=" ps"
+alias pp="ps -xe --forest | less -S --pattern"
+alias pmem="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head"
+alias pcpu="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head"
+
 # cd
 alias cd=" cd"
 alias up="cd ../"
@@ -80,6 +86,7 @@ alias gp="git push"
 alias gpl="git pull"
 alias gr="git rebase"
 alias gs="git status"
+alias gsb="git submodule"
 alias gu="git unstage"
 
 # tar
@@ -94,6 +101,7 @@ alias k9="kill -9"
 alias path='echo $PATH | tr -s ":" "\n"'
 alias rmrf="rm -rf"
 alias tf="tail -F"
+alias bye="=systemctl poweroff"
 
 # nocorrect
 alias mv="nocorrect mv"
