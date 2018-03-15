@@ -7,6 +7,11 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+  - [mkdir -p ~/.vim/temp_dirs/undodir]
+  - [mkdir -p ~/.config/i3]
+  - [mkdir -p ~/.config/urxvt]
+  - [mkdir -p ~/.config/zsh/functions ~/.config/zsh/aliases]
+  - [mkdir -p ~/.config/ls]
 
 - link:
     ~/.config/i3/config: i3/config
@@ -15,7 +20,7 @@
 
     ~/.vimrc: vim/vimrc
     ~/.vim/plugins.vim: vim/plugins.vim
-    
+
     ~/.zshenv: zsh/zshenv
     ~/.config/zsh/.zshrc: zsh/zshrc
     ~/.config/zsh/.zlogin: zsh/zlogin
