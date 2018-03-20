@@ -7,11 +7,8 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
-  - [mkdir -p ~/.vim/temp_dirs/undodir]
-  - [mkdir -p ~/.config/i3]
-  - [mkdir -p ~/.config/urxvt]
-  - [mkdir -p ~/.config/zsh/functions ~/.config/zsh/aliases]
-  - [mkdir -p ~/.config/ls]
+  - [mkdir -p ~/.vim/temp_dirs/undodir ~/.config/i3 ~/.config/urxvt ~/.config/zsh/functions ~/.config/zsh/aliases ~/.config/ls ]
+  - [cat i3/config/* > i3/config/config]
 
 - link:
     ~/.config/i3/config: i3/config
