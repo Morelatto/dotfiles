@@ -1,13 +1,13 @@
-""""""""""""""""""""""""""""""
-" => Load pathogen paths
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""
+" Load pathogen paths "
+"""""""""""""""""""""""
 
 execute pathogen#infect()
 call pathogen#helptags()
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Nerd Tree
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""
+" Nerd Tree "
+"""""""""""""
 
 let g:NERDTreeWinPos = "left"
 let NERDTreeShowHidden=1
@@ -18,28 +18,28 @@ map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Gundo
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""
+" Gundo "
+"""""""""
 
 nnoremap <F5> :GundoToggle<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Airline 
-""""""""""""""""""""""""""""
+"""""""""""""
+" Lightline "
+"""""""""""""
 
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='base16_grayscale'
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ }
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Nerd Commenter 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""
+" Nerd Commenter "
+""""""""""""""""""
 
 let g:NERDSpaceDelims = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Tagbar 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""
+" Tagbar "
+""""""""""
 
 nmap <F8> :TagbarToggle<CR>
