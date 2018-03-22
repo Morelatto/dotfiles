@@ -1,0 +1,6 @@
+- shell:
+  - [mkdir -p ~/.config/ls ]
+
+- link:
+    ~/.config/ls/dir_colors: misc/nord-dircolors/src/dir_colors
+

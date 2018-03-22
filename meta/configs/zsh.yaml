@@ -1,29 +1,8 @@
-- defaults:
-    link:
-      create: true
-      relink: true
-      force: true
-
-- clean: ['~']
-
 - shell:
-  - [mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.vim/temp_dirs/undodir ~/.config/i3 ~/.config/urxvt ~/.config/zsh/functions ~/.config/zsh/aliases ~/.config/ls ]
-  - [/bin/ls -Q | grep -v *work | xargs cat > i3/config/config]
+  - [mkdir -p ~/.config/zsh/functions ~/.config/zsh/aliases]
   - [rm -rf ~/.zshrc]
 
 - link:
-    ~/.config/i3/config: i3/config/config
-    ~/.config/i3/i3blocks.conf: i3/i3blocks.conf
-    ~/.config/i3/lock: i3/i3lock-multimonitor/lock
-    ~/.config/i3/img: i3/i3lock-multimonitor/img
-
-    ~/.vimrc: vim/vimrc
-    ~/.vim/plugins.vim: vim/plugins.vim
-    ~/.vim/bundle/gundo: vim/bundle/gundo.vim
-    ~/.vim/bundle/nerdtree: vim/bundle/nerdtree
-    ~/.vim/bundle/nerdcommenter: vim/bundle/nerdcommenter
-    ~/.vim/bundle/tagbar: vim/bundle/tagbar
-
     ~/.zshenv: zsh/zshenv
     ~/.config/zsh/.zshrc: zsh/zshrc
     ~/.config/zsh/.zlogin: zsh/zlogin
@@ -42,12 +21,4 @@
     ~/.config/zsh/functions/zsh-autosuggestions.zsh: zsh/functions/zsh-autosuggestions/zsh-autosuggestions.zsh
     ~/.config/zsh/functions/zsh-syntax-highlighting.zsh: zsh/functions/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-    ~/.Xresources: urxvt/Xresources
-    ~/.config/urxvt/font-size: urxvt/urxvt-font-size/font-size
-    ~/.config/urxvt/keyboard-select: urxvt/urxvt-perls/keyboard-select
-    ~/.config/urxvt/url-select: urxvt/urxvt-perls/deprecated/url-select
-    ~/.config/urxvt/nord: urxvt/nord-xresources/src/nord
 
-    ~/.xinitrc: X11/xinitrc
-
-    ~/.config/ls/dir_colors: misc/nord-dircolors/src/dir_colors
