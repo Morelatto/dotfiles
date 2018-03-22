@@ -1,8 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Based on https://github.com/amix/vimrc
-"
-" Version: 
-"       6.0 - 01/04/17
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -17,7 +14,7 @@ source ~/.vim/plugins.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Sets how many lines of history Vim has to remember
-set history=500
+set history=1500
 
 " Enable filetype plugins
 filetype plugin on
@@ -166,7 +163,8 @@ set si
 set wrap
 
 " Display tabs and trailing spaces visually
-set list listchars=tab:\ \ ,trail:·
+set list listchars=tab:→\ ,trail:⋅,nbsp:·,extends:❯,precedes:❮
+set showbreak=↪
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
