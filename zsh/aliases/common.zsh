@@ -14,6 +14,7 @@ alias m="man"
 alias p="ps -xe --forest | less -S"
 alias q="exit"
 alias s="sudo "
+alias u=" cd ../"
 alias v="vim"
 
 # sudo
@@ -37,21 +38,21 @@ alias lr="ls --recursive"
 alias llr="ll --recursive"
 alias lra="lr --almost-all"
 
-alias lad='ls -d -- .*(/)'				# only show dot-directories
-alias lsa='ls -a -- .*(.)'				# only show dot-files
-alias lsd='ls -d -- *(/)'				# only show directories
-alias lse='ls -d -- *(/^F)'				# only show empty directories
-alias lsen='ls -d *(/om[1])'				# newest directory
-alias lsx='ls -l -- *(*) | head $@ 2&>/dev/null'        # only show executables
-alias lsnew='=ls -rtlh -- *(.) | tail $@ 2&>/dev/null'  # only the newest files
-alias lsold="=ls -rtl -- *(.) | head $@ 2&>/dev/null"   # display the oldest files
-alias lssmall="=ls -Sl -- *(.) | tail $@ 2&>/dev/null"  # display the smallest files
-alias lsbig="=ls -lSh -- *(.) | grep -v total | head $@ 2&>/dev/null"    # display the biggest files
+alias lad='ls -d -- .*(/)'                                              # hidden directories
+alias lsa='ls -a -- .*(.)'                                              # hidden files
+alias lsd='ls -d -- *(/)'                                               # directories
+alias lse='ls -d -- *(/^F)'                                             # empty directories
+alias lsen='ls -d *(/om[1])'                                            # newest directory
+alias lsx='ls -l -- *(*) | head $@ 2&>/dev/null'                        # executables
+alias lsnew='=ls -rtlh -- *(.) | tail $@ 2&>/dev/null'                  # newest files
+alias lsold="=ls -rtl -- *(.) | head $@ 2&>/dev/null"                   # oldest files
+alias lsmall="=ls -Sl -- *(.) | tail $@ 2&>/dev/null"                   # smallest files
+alias lsbig="=ls -lSh -- *(.) | grep -v total | head $@ 2&>/dev/null"   # biggest files
 
 # du
-alias dua='du -s *(/DN) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; done'	# show sorted directory sizes for all directories
-alias duv='du -s ^.*(/N) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; done'	# show sorted directory sizes for visible directories only
-alias duh='du -s .*(/N) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; done'	# show sorted directory sizes for hidden directories only
+alias dua='du -s *(/DN) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; done'    # all directories sorted by size
+alias duv='du -s ^.*(/N) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; done'   # visible directories sorted by size
+alias duh='du -s .*(/N) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; done'    # hidden directories sorted by size
 
 # ps
 alias ps=" ps"
@@ -74,6 +75,7 @@ alias lgrep="grep -rnw '.' -e"
 
 # git
 alias ga="git add"
+alias gb="git branch"
 alias gc="git commit -m"
 alias gcl="git clone"
 alias gco="git checkout"
@@ -119,12 +121,12 @@ alias vr="veracrypt"
 alias venv="virtualenv ENV"
 
 # Global aliases
- 
+
 alias -g G="| grep "
 alias -g L="| less"
 alias -g H="| head"
 alias -g T="| tail"
- 
+
 # Suffix aliases
 alias -s {ogg,flac,mpg,mpeg,avi,ogm,wmv,m4v,mp4,mov}="vlc"
 alias -s {jpg,JPG,jpeg,JPEG,png,PNG}="feh"
