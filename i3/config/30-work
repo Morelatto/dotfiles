@@ -1,6 +1,0 @@
-#### START WORK CONFIG ####
-
-set $primary DVI-1
-set $secondary DVI-0
-
-#### END WORK CONFIG ####
