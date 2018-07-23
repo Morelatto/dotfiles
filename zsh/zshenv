@@ -12,4 +12,4 @@ export VISUAL="vim"
 export EDITOR="$VISUAL"
 
 export MOZ_PATH="$HOME/.mozilla/firefox/"
-export BROWSER="firefox-developer-edition"
+export BROWSER="firefox"

@@ -7,14 +7,14 @@ alias ffedit=" $EDITOR $MOZ_PATH; killall firefox; firefox &"
 # a-z
 alias _="sudo "
 alias c="clear"
-alias d=" dirs -v"
+alias d="dirs -v"
 alias g="git"
 alias l="ls"
 alias m="man"
 alias p="ps -xe --forest | less -S"
 alias q="exit"
 alias s="sudo "
-alias u=" cd ../"
+alias u="cd ../"
 alias v="vim"
 
 # sudo
@@ -30,7 +30,7 @@ alias emacs="vim"
 alias sv="sudo vim"
 
 # ls
-alias ls=" ls --color=always --classify"
+alias ls="ls --color=always --classify"
 alias ll="ls -l --human-readable"
 alias la="ls --almost-all"
 alias lla="ll --almost-all"
@@ -55,13 +55,11 @@ alias duv='du -s ^.*(/N) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; 
 alias duh='du -s .*(/N) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; done'    # hidden directories sorted by size
 
 # ps
-alias ps=" ps"
 alias pp="ps -xe --forest | less -S --pattern"
 alias pmem="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head"
 alias pcpu="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head"
 
 # cd
-alias cd=" cd"
 alias up="cd ../"
 alias ..="up; ls"
 alias ...="up; .."
@@ -95,26 +93,22 @@ alias gu="git unstage"
 # tar
 alias targz="tar xzf"
 alias tarbz2="tar xjf"
+alias tarxz="tar xf"
 alias tarls="tar tvf"
 
 # linux
-alias clear=" clear"
+alias clear="clear"
+alias cp="cp -r"
 alias ka="killall"
 alias k9="kill -9"
+alias mkdir="mkdir -p"
 alias path='echo $PATH | tr -s ":" "\n"'
 alias rmrf="rm -rf"
 alias tf="tail -F"
 alias bye="=systemctl poweroff"
 
-# nocorrect
-alias mv="nocorrect mv"
-alias cp="nocorrect cp -r"
-alias man="nocorrect man"
-alias mkdir="nocorrect mkdir -p"
-alias rm="nocorrect rm"
-
 # other
-alias ff="firefox-developer-edition"
+alias ff="firefox"
 alias zsh_debug="zsh -xv &> >(tee ~/omz-debug.log 2>/dev/null)"
 alias dog="pygmentize -g"
 alias vr="veracrypt"
