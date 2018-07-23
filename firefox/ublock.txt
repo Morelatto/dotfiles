@@ -1,6 +1,6 @@
 {
-  "timeStamp": 1512924731900,
-  "version": "1.14.20",
+  "timeStamp": 1532185009100,
+  "version": "1.16.14",
   "userSettings": {
     "advancedUserEnabled": true,
     "alwaysDetachLogger": false,
@@ -33,10 +33,8 @@
     "fanboy-annoyance",
     "adguard-annoyance",
     "spam404-0",
-    "disconnect-malware",
     "malware-1",
     "malware-0",
-    "disconnect-malvertising",
     "fanboy-enhanced",
     "easyprivacy",
     "easylist",
@@ -48,87 +46,21 @@
     "ublock-filters",
     "user-filters"
   ],
-  "hiddenSettingsString": "assetFetchTimeout 30\nautoUpdateAssetFetchPeriod 120\nautoUpdatePeriod 7\nignoreRedirectFilters false\nignoreScriptInjectFilters false\nmanualUpdateAssetFetchPeriod 2000\npopupFontSize unset\nsuspendTabsUntilReady false\nuserResourcesLocation unset",
-  "netWhitelist": "about-scheme\nbehind-the-scene\nchrome-extension-scheme\nchrome-scheme\nmoz-extension-scheme\nopera-scheme\nvivaldi-scheme",
-  "dynamicFilteringString": "behind-the-scene * 3p-frame noop\nbehind-the-scene * 3p noop",
+  "hiddenSettings": {
+    "assetFetchTimeout": 30,
+    "autoUpdateAssetFetchPeriod": 120,
+    "autoUpdatePeriod": 7,
+    "debugScriptlets": false,
+    "ignoreRedirectFilters": false,
+    "ignoreScriptInjectFilters": false,
+    "manualUpdateAssetFetchPeriod": 500,
+    "popupFontSize": "unset",
+    "suspendTabsUntilReady": false,
+    "userResourcesLocation": "unset"
+  },
+  "netWhitelist": "about-scheme\nchrome-extension-scheme\nchrome-scheme\nmoz-extension-scheme\nopera-scheme\nvivaldi-scheme",
+  "dynamicFilteringString": "behind-the-scene * * noop\nbehind-the-scene * inline-script noop\nbehind-the-scene * 1p-script noop\nbehind-the-scene * 3p-script noop\nbehind-the-scene * 3p-frame noop\nbehind-the-scene * image noop\nbehind-the-scene * 3p noop",
   "urlFilteringString": "",
-  "hostnameSwitchesString": "no-csp-reports: * true",
-  "userFilters": "",
-  "filterLists": {
-    "spa-1": {
-      "off": false
-    },
-    "assets/thirdparties/pgl.yoyo.org/as/serverlist": {
-      "off": false
-    },
-    "http://winhelp2002.mvps.org/hosts.txt": {
-      "off": false
-    },
-    "http://hosts-file.net/.%5Cad_servers.txt": {
-      "off": false
-    },
-    "http://someonewhocares.org/hosts/hosts": {
-      "off": false
-    },
-    "https://easylist-downloads.adblockplus.org/fanboy-social.txt": {
-      "off": false
-    },
-    "fanboy-cookiemonster": {
-      "off": false
-    },
-    "https://easylist-downloads.adblockplus.org/fanboy-annoyance.txt": {
-      "off": false
-    },
-    "adguard-annoyance": {
-      "off": false
-    },
-    "https://raw.githubusercontent.com/Dawsey21/Lists/master/adblock-list.txt": {
-      "off": false
-    },
-    "https://s3.amazonaws.com/lists.disconnect.me/simple_malware.txt": {
-      "off": false
-    },
-    "assets/thirdparties/mirror1.malwaredomains.com/files/justdomains": {
-      "off": false
-    },
-    "assets/thirdparties/www.malwaredomainlist.com/hostslist/hosts.txt": {
-      "off": false
-    },
-    "https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt": {
-      "off": false
-    },
-    "https://www.fanboy.co.nz/enhancedstats.txt": {
-      "off": false
-    },
-    "assets/thirdparties/easylist-downloads.adblockplus.org/easyprivacy.txt": {
-      "off": false
-    },
-    "assets/thirdparties/easylist-downloads.adblockplus.org/easylist.txt": {
-      "off": false
-    },
-    "https://easylist-downloads.adblockplus.org/antiadblockfilters.txt": {
-      "off": false
-    },
-    "assets/ublock/unbreak.txt": {
-      "off": false
-    },
-    "ublock-abuse": {
-      "off": false
-    },
-    "assets/ublock/privacy.txt": {
-      "off": false
-    },
-    "assets/ublock/badware.txt": {
-      "off": false
-    },
-    "assets/ublock/filters.txt": {
-      "off": false
-    },
-    "assets/user/filters.txt": {
-      "off": false
-    },
-    "assets/ublock/experimental.txt": {
-      "off": true
-    }
-  }
+  "hostnameSwitchesString": "no-csp-reports: * true\nno-large-media: behind-the-scene false",
+  "userFilters": ""
 }
