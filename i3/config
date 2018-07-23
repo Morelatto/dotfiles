@@ -217,3 +217,4 @@ bindsym XF86AudioStop "exec playerctl stop"
 
 for_window [class="Spotify"] move to workspace $ws4
 for_window [class="jetbrains-pycharm"] move to workspace $ws2
+for_window [class="Steam"] move to workspace $ws1
