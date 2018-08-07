@@ -106,6 +106,7 @@ alias path='echo $PATH | tr -s ":" "\n"'
 alias rmrf="rm -rf"
 alias tf="tail -F"
 alias bye="=systemctl poweroff"
+alias vol="alsamixer"
 
 # other
 alias ff="firefox"
