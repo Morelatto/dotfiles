@@ -11,6 +11,7 @@ user_pref("browser.urlbar.suggest.openpage", true);             // allow auto-co
 user_pref("browser.download.forbid_open_with", false);          // allow the `open with` option when downloading a file
 user_pref("browser.sessionstore.max_tabs_undo", 10);            // allow to restore closed tabs
 user_pref("browser.sessionstore.max_windows_undo", 10);         // allow to restore closed windows
+user_pref("network.cookie.cookieBehavior", 1);                  // allow all cookies
 user_pref("full-screen-api.enabled", true);                     // enable full-screen video capability
 user_pref("layout.spellcheckDefault", 2);                       // enable spell-check for single line inputs
 user_pref("signon.rememberSignons", false);                     // do not remember logins and passwords
