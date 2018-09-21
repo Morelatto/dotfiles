@@ -108,6 +108,14 @@ alias tf="tail -F"
 alias bye="=systemctl poweroff"
 alias vol="alsamixer"
 
+# gradle
+alias grc="./gradlew clean"
+alias grb="./gradlew build"
+alias grbr="./gradlew build --refresh-dependencies"
+alias gri="./gradlew install"
+alias grcb="grc && grb"
+alias gw="./gradlew"
+
 # other
 alias ff="firefox"
 alias zsh_debug="zsh -xv &> >(tee ~/omz-debug.log 2>/dev/null)"
