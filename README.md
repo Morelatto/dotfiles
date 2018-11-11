@@ -1,8 +1,6 @@
 
 # .files
 
-### [dotbot](https://github.com/anishathalye/dotbot)
-
 ### [i3](https://github.com/Airblader/i3)
 * [i3lock-multimonitor](https://github.com/ShikherVerma/i3lock-multimonitor)
 * [i3blocks](https://github.com/vivien/i3blocks)
