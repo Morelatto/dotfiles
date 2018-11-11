@@ -110,12 +110,14 @@ alias bye="=systemctl poweroff"
 alias vol="alsamixer"
 
 # gradle
-alias grc="./gradlew clean"
-alias grb="./gradlew build"
-alias grbr="./gradlew build --refresh-dependencies"
-alias gri="./gradlew install"
+alias gr="./gradlew"
+alias grc="gr clean"
+alias grb="gr build"
+alias grbr="gr bootRun"
+alias grbrd="gr build --refresh-dependencies"
+alias gri="gr install"
 alias grcb="grc && grb"
-alias gw="./gradlew"
+alias grci="grc && gri"
 
 # other
 alias ff="firefox"
