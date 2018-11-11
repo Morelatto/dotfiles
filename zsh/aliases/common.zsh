@@ -6,6 +6,7 @@ alias ffedit=" $EDITOR $MOZ_PATH; killall firefox; firefox &"
 
 # a-z
 alias _="sudo "
+alias b="bluetoothctl"
 alias c="clear"
 alias d="dirs -v"
 alias g="git"

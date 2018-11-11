@@ -190,7 +190,8 @@ gaps outer 15
 smart_gaps on
 
 set $primary HDMI-0
-set $secondary DVI-D-0
+set $secondary DVI-I-1
+set $tertiary DVI-D-0
 
 workspace $ws1 output $primary
 workspace $ws2 output $primary
@@ -198,6 +199,9 @@ workspace $ws3 output $primary
 workspace $ws4 output $secondary
 workspace $ws5 output $secondary
 workspace $ws6 output $secondary
+workspace $ws7 output $tertiary
+workspace $ws8 output $tertiary
+workspace $ws9 output $tertiary
 
 bindsym $mod+Tab workspace next
 bindsym $mod+n workspace next
@@ -215,6 +219,9 @@ bindsym XF86AudioPrev "exec playerctl previous"
 bindsym XF86AudioPlay "exec playerctl play-pause"
 bindsym XF86AudioStop "exec playerctl stop"
 
-for_window [class="Spotify"] move to workspace $ws4
+for_window [class="Spotify"] move to workspace $ws8
 for_window [class="jetbrains-pycharm"] move to workspace $ws2
-for_window [class="Steam"] move to workspace $ws1
+for_window [class="jetbrains-idea"] move to workspace $ws2
+for_window [class="Steam"] move to workspace $ws4
+for_window [class="RocketLeague"] move to workspace $ws1
+for_window [class="Google-chrome"] move to workspace $ws7
