@@ -21,6 +21,7 @@ alias v="vim"
 # sudo
 alias fdisk="sudo fdisk"
 alias mount="sudo mount"
+alias umount="sudo umount"
 alias openvpn="sudo openvpn"
 alias systemctl="sudo systemctl"
 
@@ -93,6 +94,7 @@ alias gu="git unstage"
 
 # tar
 alias targz="tar xzf"
+alias targzC="tar -czvf"
 alias tarbz2="tar xjf"
 alias tarxz="tar xf"
 alias tarls="tar tvf"
