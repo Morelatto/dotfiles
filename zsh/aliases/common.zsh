@@ -121,6 +121,11 @@ alias gri="gr install"
 alias grcb="grc && grb"
 alias grci="grc && gri"
 
+# maven
+alias mvc="mvn clean"
+alias mvi="mvn install"
+alias mvci="mvc && mvi"
+
 # other
 alias ff="firefox"
 alias zsh_debug="zsh -xv &> >(tee ~/omz-debug.log 2>/dev/null)"
