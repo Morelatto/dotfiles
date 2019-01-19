@@ -1,33 +1,34 @@
-
 # .files
 
-### [i3](https://github.com/Airblader/i3)
+### [i3-gaps](https://github.com/Airblader/i3)
 * [i3lock-multimonitor](https://github.com/ShikherVerma/i3lock-multimonitor)
+  + ImageMagick
 * [i3blocks](https://github.com/vivien/i3blocks)
-  - [sysstat](https://github.com/sysstat/sysstat)
-  - [acpi](https://www.archlinux.org/packages/community/x86_64/acpi/)
-  - [alsa-utils](https://www.archlinux.org/packages/extra/x86_64/alsa-utils/)
-  - [playerctl](https://github.com/acrisci/playerctl)
-  - [lm-sensors](https://github.com/groeck/lm-sensors)
-* [rofi](https://github.com/DaveDavenport/rofi)
+  + [sysstat](https://github.com/sysstat/sysstat)
+  + ACPI
+  + alsa-utils
+  + [playerctl](https://github.com/acrisci/playerctl)
+  + [lm-sensors](https://github.com/groeck/lm-sensors)
+* [Rofi](https://github.com/DaveDavenport/rofi)
 
-### [rxvt-unicode](https://www.archlinux.org/packages/community/x86_64/rxvt-unicode/)
+### urxvt
 * [urxvt-perls](https://github.com/muennich/urxvt-perls)
 * [urxvt-resize-font-git](https://github.com/majutsushi/urxvt-font-size)
 * [nord-xresources](https://github.com/arcticicestudio/nord-xresources)
 
-### [zsh](https://www.archlinux.org/packages/extra/x86_64/zsh/)
+### zsh
 * [spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt)
 * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 * [zsh-completions](https://github.com/zsh-users/zsh-completions)
 * [history-search-multi-word](https://github.com/zdharma/history-search-multi-word)
 
-### [firefox](https://www.archlinux.org/packages/community/x86_64/firefox-developer-edition/)
+### firefox
 * [uBlock Origin](https://github.com/gorhill/uBlock)
 * [uMatrix](https://github.com/gorhill/uMatrix)
 
-### [vim](https://www.archlinux.org/packages/extra/x86_64/vim/)
+### vim
+* [Pathogen](https://github.com/tpope/vim-pathogen)
 * [Gundo](https://github.com/sjl/gundo.vim)
 * [NERDTree](https://github.com/scrooloose/nerdtree)
 * [NERD Commenter](https://github.com/scrooloose/nerdcommenter)
@@ -36,5 +37,5 @@
 
 ### misc
 * [Adobe Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
-* [pygmentize](https://www.archlinux.org/packages/community/any/pygmentize/)
+* [pygmentize](http://pygments.org/docs/cmdline/)
 * [nord-dircolors](https://github.com/arcticicestudio/nord-dircolors)
