@@ -24,8 +24,13 @@
 * [history-search-multi-word](https://github.com/zdharma/history-search-multi-word)
 
 ### firefox
+* [ghacks-user.js](https://github.com/ghacksuserjs/ghacks-user.js)
 * [uBlock Origin](https://github.com/gorhill/uBlock)
 * [uMatrix](https://github.com/gorhill/uMatrix)
+* [Cookie-AutoDelete](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete)
+* [Decentraleyes](https://git.synz.io/Synzvato/decentraleyes)
+* [HTTPS Everywhere](https://github.com/piratenpanda/https-everywhere)
+* [Vimium](https://github.com/philc/vimium)
 
 ### vim
 * [Pathogen](https://github.com/tpope/vim-pathogen)
