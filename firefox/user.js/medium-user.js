@@ -37,3 +37,4 @@ user_pref("browser.backspace_action", 0);
 user_pref("general.autoScroll", true);
 user_pref("ui.key.menuAccessKey", 0);
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr", false);
+user_pref("browser.ctrlTab.recentlyUsedOrder", false);

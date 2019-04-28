@@ -29,7 +29,7 @@
 * [uMatrix](https://github.com/gorhill/uMatrix)
 * [Cookie-AutoDelete](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete)
 * [Decentraleyes](https://git.synz.io/Synzvato/decentraleyes)
-* [HTTPS Everywhere](https://github.com/piratenpanda/https-everywhere)
+* [HTTPS Everywhere](https://github.com/EFForg/https-everywhere)
 * [Vimium](https://github.com/philc/vimium)
 
 ### vim
