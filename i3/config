@@ -190,8 +190,8 @@ gaps outer 15
 smart_gaps on
 
 set $primary HDMI-0
-set $secondary DVI-I-1
-set $tertiary DVI-D-0
+set $secondary DVI-D-0
+set $tertiary DVI-I-1aee
 
 workspace $ws1 output $primary
 workspace $ws2 output $primary
@@ -212,6 +212,7 @@ bindsym Control+q exec ?
 bindsym Control+$mod+l exec ~/.config/i3/lock
 bindsym --release Shift+Print exec "scregcp -s ~/Pictures/"
 bindsym --release Print exec "scregcp ~/Pictures/"
+bindsym --release Insert exec "python ~/gui.py"
 
 bindsym XF86AudioMute "exec amixer set Master toggle;  exec pkill -RTMIN+10 i3blocks"
 bindsym XF86AudioRaiseVolume "exec amixer set Master 5%+; exec pkill -RTMIN+10 i3blocks"
