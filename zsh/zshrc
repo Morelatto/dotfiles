@@ -1,9 +1,8 @@
-fpath=( ~/Devel/dotfiles/zsh/functions/zsh-completions/src $ZFUNCTIONS $fpath )
+fpath=( $ZFUNCTIONS $fpath )
 
 typeset -ga sources
 sources+="$ZDOTDIR/options.zsh"
-sources+="$ZDOTDIR/aliases/aliases.zsh"
-sources+="$ZDOTDIR/dir_colors.zsh"
+sources+="$ZALIASES/aliases.zsh"
 sources+="$ZDOTDIR/completions.zsh"
 sources+="$ZDOTDIR/keybindings.zsh"
 sources+="$ZDOTDIR/prompt.zsh"

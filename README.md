@@ -17,7 +17,6 @@
 * [nord-xresources](https://github.com/arcticicestudio/nord-xresources)
 
 ### zsh
-* [spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt)
 * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 * [zsh-completions](https://github.com/zsh-users/zsh-completions)

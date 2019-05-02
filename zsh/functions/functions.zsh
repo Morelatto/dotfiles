@@ -7,5 +7,6 @@ source $ZFUNCTIONS/expand-aliases.zsh
 source $ZFUNCTIONS/time-functions.zsh
 source $ZFUNCTIONS/zsh-autosuggestions.zsh
 source $ZFUNCTIONS/history-search-multi-word/history-search-multi-word.plugin.zsh
-source /usr/share/autojump/autojump.zsh
+source $ZFUNCTIONS/autojump.zsh
+source $ZFUNCTIONS/zsh-completions/zsh-completions.plugin.zsh
 source $ZFUNCTIONS/zsh-syntax-highlighting.zsh
