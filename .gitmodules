@@ -10,15 +10,9 @@
 [submodule "urxvt/urxvt-font-size"]
 	path = urxvt/urxvt-font-size
 	url = https://github.com/majutsushi/urxvt-font-size
-[submodule "i3/i3lock-multimonitor"]
-	path = i3/i3lock-multimonitor
-	url = https://github.com/ShikherVerma/i3lock-multimonitor
 [submodule "urxvt/nord-xresources"]
 	path = urxvt/nord-xresources
 	url = https://github.com/arcticicestudio/nord-xresources
-[submodule "misc/nord-dircolors"]
-	path = misc/nord-dircolors
-	url = https://github.com/arcticicestudio/nord-dircolors
 [submodule "zsh/functions/spaceship-prompt"]
 	path = zsh/functions/spaceship-prompt
 	url = https://github.com/denysdovhan/spaceship-prompt
@@ -49,3 +43,9 @@
 [submodule "vim/bundle/vim-airline"]
 	path = vim/bundle/vim-airline
 	url = https://github.com/vim-airline/vim-airline
+[submodule "i3/corrupter"]
+	path = i3/corrupter
+	url = https://github.com/r00tman/corrupter
+[submodule "zsh/functions/autojump"]
+	path = zsh/functions/autojump
+	url = https://github.com/wting/autojump.git

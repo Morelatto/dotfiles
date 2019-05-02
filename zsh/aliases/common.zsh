@@ -1,7 +1,7 @@
-alias aee=" $EDITOR $ZALIASES; source $ZALIASES/aliases.zsh"
-alias i3edit=" $EDITOR $XDG_CONFIG_HOME/i3/config; i3-msg reload"
-alias ffedit=" $EDITOR $MOZ_PATH; killall firefox; firefox &"
-alias rxvtedit=" $EDITOR ~/.Xresources; xrdb -load ~/.Xresources"
+alias aee="$EDITOR $ZALIASES; source $ZALIASES/aliases.zsh"
+alias i3edit="$EDITOR $XDG_CONFIG_HOME/i3/config; i3-msg reload"
+alias ffedit="$EDITOR $MOZ_PATH; killall firefox; firefox &"
+alias rxvtedit="$EDITOR ~/.Xresources; xrdb -load ~/.Xresources"
 
 # a-z
 alias b="bluetoothctl"
@@ -64,6 +64,7 @@ alias gr="git rebase"
 alias gs="git status"
 alias gsb="git submodule"
 alias gu="git unstage"
+alias authors="git ls-files | while read f; do git blame -w -M -C -C --line-porcelain \"$f\" | grep -I '^author '; done | sort -f | uniq -ic | sort -n"
 
 # grep
 alias grep="grep --color=always --ignore-case"

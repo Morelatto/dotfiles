@@ -7,7 +7,6 @@ export ZALIASES="$ZDOTDIR/aliases"
 export ZSH_CACHE="$XDG_CACHE_HOME/zsh"
 mkdir -p $ZSH_CACHE
 
-export DIR_COLORS="$XDG_CONFIG_HOME/ls/dir_colors"
 export VISUAL="vim"
 export EDITOR="$VISUAL"
 
