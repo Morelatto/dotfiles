@@ -1,26 +1,26 @@
 # .files
 
 ### [i3-gaps](https://github.com/Airblader/i3)
-* [i3lock-multimonitor](https://github.com/ShikherVerma/i3lock-multimonitor)
-  + ImageMagick
 * [i3blocks](https://github.com/vivien/i3blocks)
   + [sysstat](https://github.com/sysstat/sysstat)
   + ACPI
   + alsa-utils
   + [playerctl](https://github.com/acrisci/playerctl)
   + [lm-sensors](https://github.com/groeck/lm-sensors)
-* [Rofi](https://github.com/DaveDavenport/rofi)
+* [corrupter](https://github.com/r00tman/corrupter)
+  + Go
 
 ### urxvt
 * [urxvt-perls](https://github.com/muennich/urxvt-perls)
-* [urxvt-resize-font-git](https://github.com/majutsushi/urxvt-font-size)
+* [urxvt-font-size](https://github.com/majutsushi/urxvt-font-size)
 * [nord-xresources](https://github.com/arcticicestudio/nord-xresources)
 
 ### zsh
-* [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+* [autojump](https://github.com/wting/autojump)
+* [history-search-multi-word](https://github.com/zdharma/history-search-multi-word)
 * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 * [zsh-completions](https://github.com/zsh-users/zsh-completions)
-* [history-search-multi-word](https://github.com/zdharma/history-search-multi-word)
+* [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 
 ### firefox
 * [ghacks-user.js](https://github.com/ghacksuserjs/ghacks-user.js)
@@ -41,5 +41,5 @@
 
 ### misc
 * [Adobe Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
+* [Rofi](https://github.com/DaveDavenport/rofi)
 * [pygmentize](http://pygments.org/docs/cmdline/)
-* [nord-dircolors](https://github.com/arcticicestudio/nord-dircolors)
