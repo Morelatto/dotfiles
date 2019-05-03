@@ -1,10 +1,8 @@
 user_pref("keyword.enabled", true);
-user_pref("browser.search.suggest.enabled", true);
-user_pref("browser.urlbar.suggest.searches", true);
-user_pref("browser.urlbar.suggest.history", true);
 user_pref("browser.urlbar.suggest.bookmark", true);
 user_pref("browser.urlbar.suggest.openpage", true);
-user_pref("browser.urlbar.maxRichResults", 25);
+user_pref("browser.urlbar.maxRichResults", 15);
+user_pref("signon.rememberSignons", false);
 user_pref("browser.urlbar.autoFill", true);
 user_pref("browser.formfill.enable", true);
 user_pref("browser.sessionstore.privacy_level", 0);
@@ -38,3 +36,4 @@ user_pref("general.autoScroll", true);
 user_pref("ui.key.menuAccessKey", 0);
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr", false);
 user_pref("browser.ctrlTab.recentlyUsedOrder", false);
+user_pref("dom.webnotifications.enabled", false);
