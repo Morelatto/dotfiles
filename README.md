@@ -17,6 +17,7 @@
 * [nord-xresources](https://github.com/arcticicestudio/nord-xresources)
 
 ### zsh
+* [antigen](https://github.com/zsh-users/antigen)
 * [autojump](https://github.com/wting/autojump)
 * [history-search-multi-word](https://github.com/zdharma/history-search-multi-word)
 * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
