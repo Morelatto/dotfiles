@@ -1,7 +1,6 @@
 user_pref("keyword.enabled", true);
 user_pref("browser.urlbar.suggest.bookmark", true);
 user_pref("browser.urlbar.suggest.openpage", true);
-user_pref("browser.urlbar.maxRichResults", 15);
 user_pref("signon.rememberSignons", false);
 user_pref("browser.download.forbid_open_with", false);
 user_pref("browser.startup.homepage_override.mstone", "ignore");
