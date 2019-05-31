@@ -1,9 +1,6 @@
 [submodule "firefox/ghacks-user.js"]
 	path = firefox/ghacks-user.js
 	url = https://github.com/ghacksuserjs/ghacks-user.js.git
-[submodule "zsh/functions/zsh-syntax-highlighting"]
-	path = zsh/functions/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting
 [submodule "urxvt/urxvt-perls"]
 	path = urxvt/urxvt-perls
 	url = https://github.com/muennich/urxvt-perls
@@ -13,21 +10,6 @@
 [submodule "urxvt/nord-xresources"]
 	path = urxvt/nord-xresources
 	url = https://github.com/arcticicestudio/nord-xresources
-[submodule "zsh/functions/spaceship-prompt"]
-	path = zsh/functions/spaceship-prompt
-	url = https://github.com/denysdovhan/spaceship-prompt
-[submodule "zsh/functions/zsh-autosuggestions"]
-	path = zsh/functions/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "zsh/functions/zsh-completions"]
-	path = zsh/functions/zsh-completions
-	url = https://github.com/zsh-users/zsh-completions
-[submodule "zsh/functions/history-search-multi-word"]
-	path = zsh/functions/history-search-multi-word
-	url = https://github.com/zdharma/history-search-multi-word
-[submodule "dotbot"]
-	path = dotbot
-	url = https://github.com/anishathalye/dotbot
 [submodule "vim/bundle/gundo.vim"]
 	path = vim/bundle/gundo.vim
 	url = https://github.com/sjl/gundo.vim
@@ -46,6 +28,6 @@
 [submodule "i3/corrupter"]
 	path = i3/corrupter
 	url = https://github.com/r00tman/corrupter
-[submodule "zsh/functions/autojump"]
-	path = zsh/functions/autojump
-	url = https://github.com/wting/autojump.git
+[submodule "zsh/antigen"]
+	path = zsh/antigen
+	url = https://github.com/zsh-users/antigen.git

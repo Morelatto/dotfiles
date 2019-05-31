@@ -1,15 +1,11 @@
 fpath=( $ZFUNCTIONS $fpath )
 
-typeset -ga sources
-sources+="$ZDOTDIR/options.zsh"
-sources+="$ZALIASES/aliases.zsh"
-sources+="$ZDOTDIR/completions.zsh"
-sources+="$ZDOTDIR/keybindings.zsh"
-sources+="$ZDOTDIR/prompt.zsh"
-sources+="$ZFUNCTIONS/functions.zsh"
+source "$ANTIGEN_PATH/antigen.zsh"
+source "$ZDOTDIR/options.zsh"
+source "$ZDOTDIR/keybindings.zsh"
+source "$ZDOTDIR/prompt.zsh"
+source "$ZFUNCTIONS/functions.zsh"
+antigen init $ZDOTDIR/.antigenrc
 
-foreach file (`echo $sources`)
-    if [[ -a $file ]]; then
-        source $file
-    fi
-end
+# Overrides oh-my-zsh aliases
+source "$ZALIASES/aliases.zsh"
