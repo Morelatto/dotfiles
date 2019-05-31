@@ -7,9 +7,6 @@
 [submodule "urxvt/urxvt-font-size"]
 	path = urxvt/urxvt-font-size
 	url = https://github.com/majutsushi/urxvt-font-size
-[submodule "urxvt/nord-xresources"]
-	path = urxvt/nord-xresources
-	url = https://github.com/arcticicestudio/nord-xresources
 [submodule "vim/bundle/gundo.vim"]
 	path = vim/bundle/gundo.vim
 	url = https://github.com/sjl/gundo.vim
