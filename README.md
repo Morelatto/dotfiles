@@ -9,6 +9,7 @@
   + [lm-sensors](https://github.com/groeck/lm-sensors)
 * [corrupter](https://github.com/r00tman/corrupter)
   + Go
+  + [scrot](https://github.com/dreamer/scrot)
 
 ### urxvt
 * [urxvt-perls](https://github.com/muennich/urxvt-perls)
