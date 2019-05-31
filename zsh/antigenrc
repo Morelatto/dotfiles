@@ -7,8 +7,11 @@ antigen bundle gradle
 antigen bundle vi-mode
 antigen bundle command-not-found
 antigen bundle autojump
+antigen bundle colored-man-pages
 antigen bundle zdharma/history-search-multi-word
 antigen bundle popstas/zsh-command-time
+antigen bundle djui/alias-tips
+antigen bundle desyncr/auto-ls
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting

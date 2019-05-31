@@ -2,11 +2,12 @@
 
 ### [i3-gaps](https://github.com/Airblader/i3)
 * [i3blocks](https://github.com/vivien/i3blocks)
-  + [sysstat](https://github.com/sysstat/sysstat)
-  + ACPI
-  + alsa-utils
-  + [playerctl](https://github.com/acrisci/playerctl)
-  + [lm-sensors](https://github.com/groeck/lm-sensors)
+  + [i3blocks-contrib](https://github.com/vivien/i3blocks-contrib)
+    - [sysstat](https://github.com/sysstat/sysstat)
+    - ACPI
+    - alsa-utils
+    - [playerctl](https://github.com/acrisci/playerctl)
+    - [lm-sensors](https://github.com/groeck/lm-sensors)
 * [corrupter](https://github.com/r00tman/corrupter)
   + Go
   + [scrot](https://github.com/dreamer/scrot)
@@ -18,11 +19,15 @@
 
 ### zsh
 * [antigen](https://github.com/zsh-users/antigen)
-* [autojump](https://github.com/wting/autojump)
-* [history-search-multi-word](https://github.com/zdharma/history-search-multi-word)
 * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 * [zsh-completions](https://github.com/zsh-users/zsh-completions)
 * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+* [zsh-history-substring-search](https://github.com/zsh-users/zsh-history-substring-search)
+* [autojump](https://github.com/wting/autojump)
+* [history-search-multi-word](https://github.com/zdharma/history-search-multi-word)
+* [zsh-command-time](https://github.com/popstas/zsh-command-time)
+* [alias-tips](https://github.com/djui/alias-tips)
+* [auto-ls](https://github.com/desyncr/auto-ls)
 
 ### firefox
 * [ghacks-user.js](https://github.com/ghacksuserjs/ghacks-user.js)
