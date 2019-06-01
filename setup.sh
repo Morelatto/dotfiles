@@ -38,4 +38,4 @@ ln -s ${DOTFILES_DIR}/urxvt/Xresources $HOME/.Xresources
 
 # TODO vim setup
 
-git config --global core.excludesfile '$DOTFILES_DIR/misc/gitignore_global'
+git config --global core.excludesfile ${DOTFILES_DIR}/misc/gitignore_global
