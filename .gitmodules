@@ -28,3 +28,6 @@
 [submodule "zsh/antigen"]
 	path = zsh/antigen
 	url = https://github.com/zsh-users/antigen.git
+[submodule "i3/i3blocks-contrib"]
+	path = i3/i3blocks-contrib
+	url = https://github.com/vivien/i3blocks-contrib

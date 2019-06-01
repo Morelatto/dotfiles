@@ -209,7 +209,7 @@ bindsym $mod+p workspace prev
 
  # disable firefox quit
 bindsym Control+q exec ?
-bindsym Control+$mod+l exec ~/.config/i3/lock
+bindsym Control+$mod+l exec ~/.config/i3/lock.sh
 bindsym --release Shift+Print exec "scregcp -s ~/Pictures/"
 bindsym --release Print exec "scregcp ~/Pictures/"
 bindsym --release Insert exec "python ~/gui.py"
