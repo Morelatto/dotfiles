@@ -23,3 +23,4 @@ user_pref("ui.key.menuAccessKey", 0);
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr", false);
 user_pref("browser.ctrlTab.recentlyUsedOrder", false);
 user_pref("dom.webnotifications.enabled", false);
+user_pref("privacy.resistFingerprinting.letterboxing", false);
