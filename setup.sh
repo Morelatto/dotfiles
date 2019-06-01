@@ -30,9 +30,12 @@ ln -s ${DOTFILES_DIR}/i3/i3blocks.conf ${I3_CONFIG_DIR}/i3blocks.conf
 ln -s ${DOTFILES_DIR}/i3/lock.sh ${I3_CONFIG_DIR}/lock
 
 URXVT_CONFIG_DIR=$HOME/.config/urxvt
+ln -s ${DOTFILES_DIR}/urxvt/base16-classic-dark-256.Xresources ${URXVT_CONFIG_DIR}/base16-classic-dark-256.Xresources
 ln -s ${DOTFILES_DIR}/urxvt/urxvt-font-size/font-size ${URXVT_CONFIG_DIR}/font-size
 ln -s ${DOTFILES_DIR}/urxvt/urxvt-perls/keyboard-select ${URXVT_CONFIG_DIR}/keyboard-select
 ln -s ${DOTFILES_DIR}/urxvt/urxvt-perls/deprecated/url-select ${URXVT_CONFIG_DIR}/url-select
 ln -s ${DOTFILES_DIR}/urxvt/Xresources $HOME/.Xresources
 
 # TODO vim setup
+
+git config --global core.excludesfile '$DOTFILES_DIR/misc/gitignore_global'

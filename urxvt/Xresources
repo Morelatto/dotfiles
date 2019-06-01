@@ -1,3 +1,7 @@
+! █▓▒░ Color scheme
+#define COLOR_SCHEME ".config/urxvt/base16-classic-dark-256.Xresources"
+#include COLOR_SCHEME
+
 ! █▓▒░ Fonts
 URxvt.font:                 xft:Source Code Pro:Semibold:size=11, xft:DejaVu Sans Mono:Book:size=11
 URxvt.boldFont:             xft:Source Code Pro:Bold:size=11, xft:DejaVu Sans Mono:Bold:size=11
