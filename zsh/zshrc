@@ -2,7 +2,6 @@ fpath=( $ZFUNCTIONS $fpath )
 
 source "$ANTIGEN_PATH/antigen.zsh"
 source "$ZDOTDIR/options.zsh"
-source "$ZDOTDIR/keybindings.zsh"
 source "$ZFUNCTIONS/functions.zsh"
 antigen init $ZDOTDIR/.antigenrc
 
