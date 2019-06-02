@@ -31,3 +31,6 @@
 [submodule "i3/i3blocks-contrib"]
 	path = i3/i3blocks-contrib
 	url = https://github.com/vivien/i3blocks-contrib
+[submodule "scripts/speedtest-cli"]
+	path = scripts/speedtest-cli
+	url = https://github.com/sivel/speedtest-cli

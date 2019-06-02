@@ -50,4 +50,5 @@
 * [Adobe Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
 * [Rofi](https://github.com/DaveDavenport/rofi)
 * [pygmentize](http://pygments.org/docs/cmdline/)
+* [speedtest-cli](https://github.com/sivel/speedtest-cli)
 * [scrot](http://freshmeat.sourceforge.net/projects/scrot)
