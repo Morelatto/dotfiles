@@ -1,5 +1,7 @@
 DOTFILES_DIR=$(dirname $(realpath -s $0))
 
+# TODO add submodule init
+
 mkdir -p $HOME/Pictures/Wallpapers/
 ln -s ${DOTFILES_DIR}/X11/xinitrc $HOME/.xinitrc
 ln -s ${DOTFILES_DIR}/X11/fehbg $HOME/.fehbg
@@ -39,3 +41,7 @@ ln -s ${DOTFILES_DIR}/urxvt/Xresources $HOME/.Xresources
 # TODO vim setup
 
 git config --global core.excludesfile ${DOTFILES_DIR}/misc/gitignore_global
+
+pip install speedtest-cli --user
+pip install Pygments --user
+
