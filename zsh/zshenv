@@ -15,5 +15,3 @@ export BROWSER="firefox"
 
 export ANTIGEN_PATH="/home/morel/dotfiles/zsh/antigen"
 
-export AUTO_LS_COMMANDS=(ls)
-export AUTO_LS_NEWLINE=false
