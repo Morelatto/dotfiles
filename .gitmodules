@@ -25,6 +25,7 @@
 [submodule "i3/corrupter"]
 	path = i3/corrupter
 	url = https://github.com/r00tman/corrupter
+    ignore = all
 [submodule "zsh/antigen"]
 	path = zsh/antigen
 	url = https://github.com/zsh-users/antigen.git
