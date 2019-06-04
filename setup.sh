@@ -43,5 +43,5 @@ ln -s ${DOTFILES_DIR}/urxvt/Xresources $HOME/.Xresources
 git config --global core.excludesfile ${DOTFILES_DIR}/misc/gitignore_global
 
 pip install speedtest-cli --user
-pip install Pygments --user
 
+# TODO install ripgrep and bat

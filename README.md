@@ -28,6 +28,8 @@
 * [zsh-command-time](https://github.com/popstas/zsh-command-time)
 * [alias-tips](https://github.com/djui/alias-tips)
 * [auto-ls](https://github.com/desyncr/auto-ls)
+* [command-not-found](https://github.com/metti/command-not-found)
+* [thefuck](https://github.com/nvbn/thefuck)
 
 ### firefox
 * [ghacks-user.js](https://github.com/ghacksuserjs/ghacks-user.js)
@@ -49,6 +51,8 @@
 ### misc
 * [Adobe Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
 * [Rofi](https://github.com/DaveDavenport/rofi)
-* [pygmentize](http://pygments.org/docs/cmdline/)
 * [speedtest-cli](https://github.com/sivel/speedtest-cli)
 * [scrot](http://freshmeat.sourceforge.net/projects/scrot)
+* [ripgrep](https://github.com/BurntSushi/ripgrep)
+* [bat](https://github.com/sharkdp/bat)
+
