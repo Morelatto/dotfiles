@@ -4,7 +4,7 @@ antigen bundle git
 antigen bundle pip
 antigen bundle docker
 antigen bundle gradle
-antigen bundle vi-mode
+antigen bundle thefuck
 antigen bundle command-not-found
 antigen bundle autojump
 antigen bundle colored-man-pages
