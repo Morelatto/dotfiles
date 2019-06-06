@@ -1,7 +1,8 @@
 alias aee="$EDITOR $ZALIASES; source $ZALIASES/aliases.zsh"
 alias i3edit="$EDITOR $XDG_CONFIG_HOME/i3/config; i3-msg reload"
-alias ffedit="$EDITOR $MOZ_PATH; killall firefox; firefox &"
+alias ffedit="$EDITOR $MOZ_PATH;"
 alias rxvtedit="$EDITOR ~/.Xresources; xrdb -load ~/.Xresources"
+alias zshedit="$EDITOR $ZDOTDIR; source $ZDOTDIR/.zshrc"
 
 # a-z
 alias b="bluetoothctl"
