@@ -118,6 +118,7 @@ alias pcpu="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head"
 
 # python
 alias freeze="pip3 freeze > requirements.txt"
+alias py="python3"
 alias requires="pip3 install -r requirements.txt"
 alias sc="scrapy"
 alias scc="scrapy crawl"
@@ -155,6 +156,7 @@ alias pvpnf="pvpn -f"
 alias bat="bat --theme=base16"
 alias cat="bat"
 alias fox="firefox -no-remote"
+alias noidea="find . -type d -name '.idea' -ls -delete"
 alias vr="veracrypt"
 alias zshdebug="zsh -xv &> >(tee ~/zsh-debug.log 2>/dev/null)"
 
