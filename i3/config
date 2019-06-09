@@ -168,7 +168,8 @@ bindsym $mod+r mode "resize"
 bar {
         font pango:Source Code Pro  12
         position top
-        status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+       # status_command 2>/tmp/i3blocks.err i3blocks -vvv -c ~/.config/i3/i3blocks.conf | tee /tmp/i3blocks.out
 
 colors {
         background #242424
