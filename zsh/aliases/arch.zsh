@@ -1,6 +1,6 @@
 # arch
-alias upg="pacman -Su"
-alias upd="pacman -Syy && yay -Syua"
+alias upg="pacman -Su && yay -Syua"
+alias upd="pacman -Syy"
 
 # pacman
 alias pacman="sudo pacman"
@@ -12,3 +12,6 @@ alias pcsu="pacman -Q -u"
 
 # aur
 alias yi="yay -S"
+
+# other
+alias mongod="sudo systemctl start mongodb.service"
