@@ -156,7 +156,7 @@ alias pvpnf="pvpn -f"
 alias bat="bat --theme=base16"
 alias cat="bat"
 alias fox="firefox -no-remote"
-alias noidea="find . -type d -name '.idea' -ls -delete"
+alias noidea="find . -type d -name .idea -ls -exec rm -rf {} +"
 alias vr="veracrypt"
 alias zshdebug="zsh -xv &> >(tee ~/zsh-debug.log 2>/dev/null)"
 
