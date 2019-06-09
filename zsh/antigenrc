@@ -5,7 +5,6 @@ antigen bundle pip
 antigen bundle docker
 antigen bundle gradle
 antigen bundle thefuck
-antigen bundle command-not-found
 antigen bundle autojump
 antigen bundle colored-man-pages
 antigen bundle zdharma/history-search-multi-word
