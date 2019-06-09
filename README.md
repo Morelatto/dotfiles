@@ -28,7 +28,6 @@
 * [zsh-command-time](https://github.com/popstas/zsh-command-time)
 * [alias-tips](https://github.com/djui/alias-tips)
 * [auto-ls](https://github.com/desyncr/auto-ls)
-* [command-not-found](https://github.com/metti/command-not-found)
 * [thefuck](https://github.com/nvbn/thefuck)
 
 ### firefox
