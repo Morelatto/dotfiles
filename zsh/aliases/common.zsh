@@ -18,9 +18,8 @@ alias v="vim"
 
 # cd
 alias up="cd ../"
-alias ..="up; ls"
-alias ...="up; .."
-alias ....="up; ..."
+alias ..="cd ../"
+alias ...="cd ../../"
 
 # du
 alias dua='du -s *(/DN) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; done'    # all directories sorted by size
@@ -81,6 +80,7 @@ alias journal="sudo journalctl --since=today"
 alias ka="killall"
 alias k9="kill -9"
 alias mkdir="mkdir -p"
+alias off="xset dpms force off"
 alias path='echo $PATH | tr -s ":" "\n"'
 alias rmrf="rm -rf"
 alias tf="tail -F"
@@ -108,7 +108,7 @@ alias mvi="mvn install"
 alias mvci="mvc && mvi"
 
 # network
-alias resolv="sudo vim /etc/resolv.conf"
+alias resolv="cat /etc/resolv.conf && sudo vim /etc/resolv.conf"
 alias pingd="ping -c3 duckduckgo.com"
 
 # ps
@@ -118,13 +118,18 @@ alias pcpu="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head"
 
 # python
 alias freeze="pip3 freeze > requirements.txt"
+alias pipi="pip install"
 alias py="python3"
+alias pycache="find . -type f -name '*.pyc' -delete && find . -type d -name '__pycache__' -delete"
 alias requires="pip3 install -r requirements.txt"
 alias sc="scrapy"
 alias scc="scrapy crawl"
+alias scs="scrapy shell"
+alias server="python2 -m SimpleHTTPServer"
 alias venv="virtualenv venv && source ./venv/bin/activate"
 
 # sudo
+alias dhcpcd="sudo dhcpcd"
 alias fdisk="sudo fdisk"
 alias mount="sudo mount"
 alias umount="sudo umount"
@@ -157,6 +162,7 @@ alias bat="bat --theme=base16"
 alias cat="bat"
 alias fox="firefox -no-remote"
 alias noidea="find . -type d -name .idea -ls -exec rm -rf {} +"
+alias other="vim ~/todo"
 alias vr="veracrypt"
 alias zshdebug="zsh -xv &> >(tee ~/zsh-debug.log 2>/dev/null)"
 
