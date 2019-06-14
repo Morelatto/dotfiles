@@ -160,7 +160,7 @@ alias pvpnf="pvpn -f"
 # other
 alias bat="bat --theme=base16"
 alias cat="bat"
-alias fox="firefox -no-remote"
+alias fox="firefox"
 alias noidea="find . -type d -name .idea -ls -exec rm -rf {} +"
 alias other="vim ~/todo"
 alias vr="veracrypt"
