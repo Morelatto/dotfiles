@@ -1,5 +1,5 @@
 typeset -U path
-path=(~/.local/bin  $path[@])
+path=($path[@] ~/.local/bin $HOME/.cargo/bin)
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
