@@ -46,6 +46,7 @@ alias grci="grc && gri"
 # git
 alias ga="git add"
 alias gb="git branch"
+alias gbl="git branch --list"
 alias gc="git commit -m"
 alias gca="git commit --amend -m"
 alias gcl="git clone"
