@@ -3,60 +3,50 @@
 #include COLOR_SCHEME
 
 ! █▓▒░ Fonts
-URxvt.font:                 xft:Source Code Pro:Semibold:size=11, xft:DejaVu Sans Mono:Book:size=11
-URxvt.boldFont:             xft:Source Code Pro:Bold:size=11, xft:DejaVu Sans Mono:Bold:size=11
-URxvt.italicFont:           xft:Source Code Pro:Semibold Italic:size=11, xft:DejaVu Sans Mono:Oblique:size=11
-URxvt.boldItalicFont:       xft:Source Code Pro:Bold Italic:size=11, xft:DejaVu Sans Mono:Bold Oblique:size=11
-URxvt.letterSpace:          1
+URxvt.font: xft:Source Code Pro:Semibold:size=11, xft:DejaVu Sans Mono:Book:size=11
+URxvt.boldFont: xft:Source Code Pro:Bold:size=11, xft:DejaVu Sans Mono:Bold:size=11
+URxvt.italicFont: xft:Source Code Pro:Semibold Italic:size=11, xft:DejaVu Sans Mono:Oblique:size=11
+URxvt.boldItalicFont: xft:Source Code Pro:Bold Italic:size=11, xft:DejaVu Sans Mono:Bold Oblique:size=11
+URxvt.letterSpace: 1
 
 ! █▓▒░ Interface
-URxvt*scrollBar:    	    false
-URxvt*scrollTtyKeypress:    true
-URxvt*scrollTtyOutput:	    false
-URxvt*scrollWithBuffer:     false
+URxvt*scrollBar: false
+URxvt*scrollTtyKeypress: true
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: false
 
-URxvt*internalBorder:       5
-URxvt*externalBorder: 	    0
-URxvt*borderColor: 	        #1c1c1c
-URxvt*borderLess:	        false
-URxvt*transparent: 	        false
-URxvt*fading: 		        30
-URxvt*background:	        #1b1d1e
+URxvt*internalBorder: 5
+URxvt*externalBorder: 0
+URxvt*borderColor: #1c1c1c
+URxvt*borderLess: false
+URxvt*transparent: false
+URxvt*fading: 30
+URxvt*background: #1b1d1e
 
 ! █▓▒░ Misc
-URxvt.saveLines: 	        9999
-URxvt.iso14755: 	        false
-URxvt.iso14755_52:          false
-URxvt.termName: 	        rxvt-unicode-256color
+URxvt.saveLines: 9999
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.termName: rxvt-unicode-256color
 
 ! █▓▒░ Extensions
-URxvt.perl-lib:             .config/urxvt/
-URxvt.perl-ext-common:      default,url-select,keyboard-select,font-size
+URxvt.perl-ext-common: default,confirm-paste,keyboard-select,matcher,selection-to-clipboard,resize-font
 
-URxvt.url-select.launcher:  firefox
-URxvt.url-select.underline: true
+URxvt.matcher.button: 1
+URxvt.matcher.pattern.1: \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.clipboard.autocopy: true
+URxvt.keyboard-select.clipboard: true
 
 ! █▓▒░ Keybinds
-URxvt.keysym.Prior:         \033[5~
-URxvt.keysym.Next:          \033[6~
-URxvt.keysym.Home:          \033[7~
-URxvt.keysym.End:           \033[8~
+URxvt.keysym.C-Escape: keyboard-select:activate
+URxvt.keysym.C-f: keyboard-select:search
+URxvt.keysym.C-u: matcher:last
 
-URxvt.keysym.C-u:           url-select:select_next
-URxvt.keysym.C-Escape:      keyboard-select:activate
-URxvt.keysym.C-f:           keyboard-select:search
-
-URxvt.keysym.C-Up:	        font-size:increase
-URxvt.keysym.C-Down:        font-size:decrease
-URxvt.keysym.C-S-Up:        font-size:incglobal
-URxvt.keysym.C-S-Down:      font-size:decglobal
-URxvt.keysym.C-equal:       font-size:reset
-URxvt.keysym.C-slash:       font-size:show
-
-URxvt.keysym.C-H:           \033[72;5u
-URxvt.keysym.C-J:           \033[74;5u
-URxvt.keysym.C-K:           \033[75;5u
-URxvt.keysym.C-L:           \033[76;5u
+!URxvt.keysym.Prior:         \033[5~
+!URxvt.keysym.Next:          \033[6~
+!URxvt.keysym.Home:          \033[7~
+!URxvt.keysym.End:           \033[8~
 
 !URxvt.keysym.Up:            \033[A
 !URxvt.keysym.Down:          \033[B
