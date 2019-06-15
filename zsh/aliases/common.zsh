@@ -181,4 +181,5 @@ alias -g L="| less"
 alias -g H="| head"
 alias -g T="| tail"
 alias -g J="| python3 -m json.tool"
-alias -g X="| xclip -selection clipboard -i"
+# TODO replace by xclip
+alias -g X="| xsel -ib"
