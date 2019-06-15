@@ -49,15 +49,15 @@ ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/temperature/temperature ${I3_BLOCKS_D
 ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/volume/volume ${I3_BLOCKS_DIR}/volume
 
 # Urxvt
-# yay -S rxvt-unicode-pixbuf
+# sudo yay -S rxvt-unicode-pixbuf
 # PKGBUILD: add --enable-wide-glyphs to ./configure options
-# pacman -S urxvt-perls 
+# sudo pacman -S urxvt-perls 
 URXVT_CONFIG_DIR=$HOME/.config/urxvt
 ln -s ${DOTFILES_DIR}/urxvt/Xresources $HOME/.Xresources
 ln -s ${DOTFILES_DIR}/urxvt/base16-classic-dark-256.Xresources ${URXVT_CONFIG_DIR}/
 
 # Vim
-# yay -S vundle-git vim-command-t vim-python-mode-git 
+# sudo yay -S vundle-git vim-command-t vim-python-mode-git 
 ln -s ${DOTFILES_DIR}/vim/vimrc $HOME/.vimrc
 
 # Ranger
@@ -69,7 +69,7 @@ ln -s ${DOTFILES_DIR}/ranger/rc.conf $RANGER_CONFIG_DIR/
 ln -s ${DOTFILES_DIR}/ranger/scope.sh $RANGER_CONFIG_DIR/
 
 # Misc
-# pacman -S ripgrep bat
-# yay -S speedtest-cli-git
+# sudo pacman -S ripgrep bat
+# sudo yay -S speedtest-cli-git
 git config --global core.excludesfile ${DOTFILES_DIR}/misc/gitignore_global
 
