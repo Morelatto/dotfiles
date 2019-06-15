@@ -1,19 +1,6 @@
 [submodule "firefox/ghacks-user.js"]
 	path = firefox/ghacks-user.js
 	url = https://github.com/ghacksuserjs/ghacks-user.js.git
-[submodule "urxvt/urxvt-perls"]
-	path = urxvt/urxvt-perls
-	url = https://github.com/muennich/urxvt-perls
-[submodule "urxvt/urxvt-font-size"]
-	path = urxvt/urxvt-font-size
-	url = https://github.com/majutsushi/urxvt-font-size
-[submodule "i3/corrupter"]
-	path = i3/corrupter
-	url = https://github.com/r00tman/corrupter
-    ignore = all
-[submodule "zsh/antigen"]
-	path = zsh/antigen
-	url = https://github.com/zsh-users/antigen.git
 [submodule "i3/i3blocks-contrib"]
 	path = i3/i3blocks-contrib
 	url = https://github.com/vivien/i3blocks-contrib
