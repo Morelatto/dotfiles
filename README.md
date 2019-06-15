@@ -1,21 +1,17 @@
 # .files
 
-### [i3-gaps](https://github.com/Airblader/i3)
-* [i3blocks](https://github.com/vivien/i3blocks)
-  + [i3blocks-contrib](https://github.com/vivien/i3blocks-contrib)
-    - [sysstat](https://github.com/sysstat/sysstat)
-    - ACPI
-    - alsa-utils
-    - [playerctl](https://github.com/acrisci/playerctl)
-    - [lm-sensors](https://github.com/groeck/lm-sensors)
+### i3 
+* [i3-gaps](https://github.com/Airblader/i3)
+* [i3blocks-gaps](https://github.com/Airblader/i3blocks-gaps)
+* [i3blocks-contrib](https://github.com/vivien/i3blocks-contrib)
+* [rofi](https://github.com/DaveDavenport/rofi)
 * [corrupter](https://github.com/r00tman/corrupter)
-  + Go
-  + [scrot](https://github.com/dreamer/scrot)
 
 ### urxvt
+* [rxvt-unicode-pixbuf](https://aur.archlinux.org/packages/rxvt-unicode-pixbuf/)
+* [base16-xresources](https://github.com/chriskempson/base16-xresources)
 * [urxvt-perls](https://github.com/muennich/urxvt-perls)
-* [urxvt-font-size](https://github.com/majutsushi/urxvt-font-size)
-* [nord-xresources](https://github.com/arcticicestudio/nord-xresources)
+* [urxvt-resize-font](https://github.com/simmel/urxvt-resize-font)
 
 ### zsh
 * [antigen](https://github.com/zsh-users/antigen)
@@ -23,12 +19,10 @@
 * [zsh-completions](https://github.com/zsh-users/zsh-completions)
 * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 * [zsh-history-substring-search](https://github.com/zsh-users/zsh-history-substring-search)
-* [autojump](https://github.com/wting/autojump)
 * [history-search-multi-word](https://github.com/zdharma/history-search-multi-word)
-* [zsh-command-time](https://github.com/popstas/zsh-command-time)
 * [alias-tips](https://github.com/djui/alias-tips)
 * [auto-ls](https://github.com/desyncr/auto-ls)
-* [thefuck](https://github.com/nvbn/thefuck)
+* [zsh-command-time](https://github.com/popstas/zsh-command-time)
 
 ### firefox
 * [ghacks-user.js](https://github.com/ghacksuserjs/ghacks-user.js)
@@ -40,18 +34,20 @@
 * [Vimium](https://github.com/philc/vimium)
 
 ### vim
-* [Pathogen](https://github.com/tpope/vim-pathogen)
-* [Gundo](https://github.com/sjl/gundo.vim)
-* [NERDTree](https://github.com/scrooloose/nerdtree)
-* [NERD Commenter](https://github.com/scrooloose/nerdcommenter)
-* [Tagbar](https://github.com/majutsushi/tagbar)
-* [vim-airline](https://github.com/vim-airline/vim-airline)
+* [Vundle](https://github.com/VundleVim/Vundle.vim)
+* [command-t](https://github.com/wincent/command-t)
+* [python-mode](https://github.com/python-mode/python-mode)
+* [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
+* [vim-startify](https://github.com/mhinz/vim-startify)
 
 ### misc
 * [Adobe Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
-* [Rofi](https://github.com/DaveDavenport/rofi)
-* [speedtest-cli](https://github.com/sivel/speedtest-cli)
-* [scrot](http://freshmeat.sourceforge.net/projects/scrot)
-* [ripgrep](https://github.com/BurntSushi/ripgrep)
+* [autojump](https://github.com/wting/autojump)
 * [bat](https://github.com/sharkdp/bat)
+* [feh](https://github.com/derf/feh)
+* [ranger](https://github.com/ranger/ranger)
+* [ripgrep](https://github.com/BurntSushi/ripgrep)
+* [scrot](https://github.com/dreamer/scrot)
+* [speedtest-cli](https://github.com/sivel/speedtest-cli)
+* [thefuck](https://github.com/nvbn/thefuck)
 
