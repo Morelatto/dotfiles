@@ -16,5 +16,4 @@ export EDITOR="$VISUAL"
 export MOZ_PATH="$HOME/.mozilla/firefox/"
 export BROWSER="firefox"
 
-export ANTIGEN_PATH="/home/morel/dotfiles/zsh/antigen"
-
+export ANTIGEN_PATH="/usr/share/zsh/share/"
