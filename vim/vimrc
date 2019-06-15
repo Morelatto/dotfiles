@@ -13,8 +13,7 @@ Plugin 'mhinz/vim-startify'
 
 call vundle#end()            
 
-filetype plugin on   
-filetype indent on   
+filetype plugin indent on   
 
 syntax on 
 
@@ -25,6 +24,7 @@ set ruler
 set number
 
 " search
+set incsearch
 set ignorecase
 set smartcase
 
@@ -35,3 +35,13 @@ set smarttab
 set showmatch
 set history=1500
 set updatetime=100
+set scrolloff=5
+set backspace=indent,eol,start
+set mouse=a
+
+" return to last position
+autocmd BufReadPost *
+       \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+       \ |   exe "normal! g`\""
+       \ | endif
+
