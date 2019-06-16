@@ -1,20 +1,25 @@
 DOTFILES_DIR=$(dirname $(realpath -s $0))
 
-# sudo ln -sf ${DOTFILES_DIR}/misc/pacman.conf /etc/pacman.conf
-# sudo pacman -S yay
+sudo ln -sf ${DOTFILES_DIR}/misc/pacman.conf /etc/pacman.conf
+
+# TODO install yay
 
 # X11
-# sudo pacman -S xorg feh
-mkdir -p $HOME/Pictures/Wallpapers/
-ln -s ${DOTFILES_DIR}/X11/xinitrc $HOME/.xinitrc
-sudo ln -s ${DOTFILES_DIR}/X11/10-monitor.conf /etc/X11/xorg.conf.d/
-ln -s ${DOTFILES_DIR}/X11/fehbg $HOME/.fehbg
-# ln -s ${DOTFILES_DIR}/X11/screenlayout-h.sh $HOME/.screenlayout
+sudo pacman -S --needed xorg xorg-xinit feh
 
-# Zsh
-# sudo pacman -S zsh autojump
-# sudo yay -S antigen-git
-# sudo pip install --local thefuck
+mkdir -p $HOME/Pictures/Wallpapers/
+sudo mkdir -p /etc/X11/xorg.conf.d/
+
+ln -s ${DOTFILES_DIR}/X11/xinitrc $HOME/.xinitrc
+ln -s ${DOTFILES_DIR}/X11/fehbg $HOME/.fehbg
+#ln -s ${DOTFILES_DIR}/X11/screenlayout-h.sh $HOME/.screenlayout
+sudo ln -s ${DOTFILES_DIR}/X11/10-monitor.conf /etc/X11/xorg.conf.d/
+
+# zsh
+sudo pacman -S --needed zsh autojump
+yay -S --needed --nodiffmenu --nocleanmenu antigen-git python-pip
+pip install --user thefuck
+
 ZSH_CONFIG_DIR=$HOME/.config/zsh
 mkdir -p ${ZSH_CONFIG_DIR}/aliases
 mkdir -p ${ZSH_CONFIG_DIR}/functions
@@ -28,48 +33,57 @@ ln -s ${DOTFILES_DIR}/zsh/aliases/*.zsh ${ZSH_CONFIG_DIR}/aliases/
 ln -s ${DOTFILES_DIR}/zsh/functions/*.zsh ${ZSH_CONFIG_DIR}/functions/
 
 # i3
-# sudo pacman i3-gaps rofi bc lm-sensors scrot sysstat alsa-utils playerctl openvpn
-# sudo yay -S i3blocks-gaps-git corrupter-git
+sudo pacman -S --needed i3-gaps rofi bc lm_sensors scrot sysstat alsa-utils playerctl openvpn
+yay -S --needed --nodiffmenu --nocleanmenu i3blocks-gaps-git corrupter-git
+
 I3_CONFIG_DIR=$HOME/.config/i3
 I3_BLOCKS_DIR=/usr/lib/i3blocks
+mkdir -p ${I3_CONFIG_DIR}
+
 ln -s ${DOTFILES_DIR}/i3/config ${I3_CONFIG_DIR}/
 ln -s ${DOTFILES_DIR}/i3/i3blocks.conf ${I3_CONFIG_DIR}/
 ln -s ${DOTFILES_DIR}/i3/lock.sh ${I3_CONFIG_DIR}/
 # TODO for each folder in i3blocks-contrib ln -sf
-ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/bandwith/bandwith ${I3_BLOCKS_DIR}/bandwith
-ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/cpu_usage/cpu_usage ${I3_BLOCKS_DIR}/cpu_usage
-ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/disk/disk ${I3_BLOCKS_DIR}/disk
-ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/disk-io/disk-io ${I3_BLOCKS_DIR}/disk-io
-ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/iface/iface ${I3_BLOCKS_DIR}/iface
-ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/load_average/load_average ${I3_BLOCKS_DIR}/load_average
-ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/mediaplayer/mediaplayer ${I3_BLOCKS_DIR}/mediaplayer
-ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/memory/memory ${I3_BLOCKS_DIR}/memory
-ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/openvpn/openvpn ${I3_BLOCKS_DIR}/openvpn
-ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/temperature/temperature ${I3_BLOCKS_DIR}/temperature
-ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/volume/volume ${I3_BLOCKS_DIR}/volume
+sudo ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/bandwith/bandwith ${I3_BLOCKS_DIR}/bandwith
+sudo ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/cpu_usage/cpu_usage ${I3_BLOCKS_DIR}/cpu_usage
+sudo ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/disk/disk ${I3_BLOCKS_DIR}/disk
+sudo ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/disk-io/disk-io ${I3_BLOCKS_DIR}/disk-io
+sudo ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/iface/iface ${I3_BLOCKS_DIR}/iface
+sudo ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/load_average/load_average ${I3_BLOCKS_DIR}/load_average
+sudo ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/mediaplayer/mediaplayer ${I3_BLOCKS_DIR}/mediaplayer
+sudo ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/memory/memory ${I3_BLOCKS_DIR}/memory
+sudo ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/openvpn/openvpn ${I3_BLOCKS_DIR}/openvpn
+sudo ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/temperature/temperature ${I3_BLOCKS_DIR}/temperature
+sudo ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/volume/volume ${I3_BLOCKS_DIR}/volume
 
-# Urxvt
-# sudo yay -S rxvt-unicode-pixbuf
+# urxvt
 # PKGBUILD: add --enable-wide-glyphs to ./configure options
-# sudo pacman -S urxvt-perls 
+yay -S --needed --nodiffmenu --nocleanmenu rxvt-unicode-pixbuf
+sudo pacman -S --needed urxvt-perls 
+
 URXVT_CONFIG_DIR=$HOME/.config/urxvt
+mkdir -p ${URXVT_CONFIG_DIR}
+
 ln -s ${DOTFILES_DIR}/urxvt/Xresources $HOME/.Xresources
 ln -s ${DOTFILES_DIR}/urxvt/base16-classic-dark-256.Xresources ${URXVT_CONFIG_DIR}/
 
-# Vim
-# sudo yay -S vundle-git vim-command-t vim-python-mode-git 
+# vim
+yay -S --needed --nodiffmenu --nocleanmenu vundle-git vim-command-t vim-python-mode-git 
+
 ln -s ${DOTFILES_DIR}/vim/vimrc $HOME/.vimrc
 
-# Ranger
-# sudo pacman -S ranger
+# ranger
+sudo pacman -S --needed ranger
+
 RANGER_CONFIG_DIR=$HOME/.config/ranger
 mkdir -p $RANGER_CONFIG_DIR 
 mkdir -p $HOME/.cache/ranger
+
 ln -s ${DOTFILES_DIR}/ranger/rc.conf $RANGER_CONFIG_DIR/
 ln -s ${DOTFILES_DIR}/ranger/scope.sh $RANGER_CONFIG_DIR/
 
-# Misc
-# sudo pacman -S ripgrep bat
-# sudo yay -S speedtest-cli-git
+# misc
+sudo pacman -S --needed ripgrep bat
+yay -S --needed --nodiffmenu --nocleanmenu adobe-source-code-pro-fonts adobe-source-sans-pro-fonts adobe-source-serif-pro-fonts speedtest-cli-git
 git config --global core.excludesfile ${DOTFILES_DIR}/misc/gitignore_global
 
