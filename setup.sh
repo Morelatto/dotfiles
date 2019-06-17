@@ -12,7 +12,7 @@ sudo mkdir -p /etc/X11/xorg.conf.d/
 
 ln -s ${DOTFILES_DIR}/X11/xinitrc $HOME/.xinitrc
 ln -s ${DOTFILES_DIR}/X11/fehbg $HOME/.fehbg
-#ln -s ${DOTFILES_DIR}/X11/screenlayout-h.sh $HOME/.screenlayout
+sudo chattr +i $HOME/.fehbg
 sudo ln -s ${DOTFILES_DIR}/X11/10-monitor.conf /etc/X11/xorg.conf.d/
 
 # zsh
@@ -33,7 +33,7 @@ ln -s ${DOTFILES_DIR}/zsh/aliases/*.zsh ${ZSH_CONFIG_DIR}/aliases/
 ln -s ${DOTFILES_DIR}/zsh/functions/*.zsh ${ZSH_CONFIG_DIR}/functions/
 
 # i3
-sudo pacman -S --needed i3-gaps rofi bc lm_sensors scrot sysstat alsa-utils playerctl openvpn
+sudo pacman -S --needed i3-gaps i3lock rofi bc lm_sensors scrot sysstat alsa-utils playerctl openvpn
 yay -S --needed --nodiffmenu --nocleanmenu i3blocks-gaps-git corrupter-git
 
 I3_CONFIG_DIR=$HOME/.config/i3
