@@ -75,7 +75,7 @@ alias egrep="grep --extended-regexp"
 alias lgrep="grep -rnw '.' -e"
 
 # linux
-alias bye="=systemctl poweroff"
+alias bye="systemctl poweroff"
 alias clear="clear"
 alias cp="cp -r"
 alias journal="sudo journalctl --since=today"
@@ -84,6 +84,7 @@ alias k9="kill -9"
 alias mkdir="mkdir -p"
 alias off="xset dpms force off"
 alias path='echo $PATH | tr -s ":" "\n"'
+alias reboot="systemctl reboot"
 alias rmrf="rm -rf"
 alias tf="tail -F"
 
@@ -110,6 +111,7 @@ alias mvi="mvn install"
 alias mvci="mvc && mvi"
 
 # network
+alias hosts="cat /etc/hosts && sudo vim /etc/hosts"
 alias resolv="cat /etc/resolv.conf && sudo vim /etc/resolv.conf"
 alias pingd="ping -c3 duckduckgo.com"
 
