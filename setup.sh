@@ -44,7 +44,7 @@ ln -s ${DOTFILES_DIR}/i3/config ${I3_CONFIG_DIR}/
 ln -s ${DOTFILES_DIR}/i3/i3blocks.conf ${I3_CONFIG_DIR}/
 ln -s ${DOTFILES_DIR}/i3/lock.sh ${I3_CONFIG_DIR}/
 # TODO for each folder in i3blocks-contrib ln -sf
-sudo ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/bandwith/bandwith ${I3_BLOCKS_DIR}/bandwith
+sudo ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/bandwidth/bandwidth ${I3_BLOCKS_DIR}/bandwidth
 sudo ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/cpu_usage/cpu_usage ${I3_BLOCKS_DIR}/cpu_usage
 sudo ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/disk/disk ${I3_BLOCKS_DIR}/disk
 sudo ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/disk-io/disk-io ${I3_BLOCKS_DIR}/disk-io
