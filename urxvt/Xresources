@@ -3,7 +3,7 @@
 #include COLOR_SCHEME
 
 ! █▓▒░ Fonts
-URxvt.font: xft:Source Code Pro:Semibold:size=11, xft:DejaVu Sans Mono:Book:size=11
+URxvt.font: xft:SauceCodePro Nerd Font Mono:Semibold:size=11,xft:DejaVu Sans Mono:Book:size=11,xft:FreeSerif:style=Regular,xft:unifont:style=Medium:antialias=false
 URxvt.boldFont: xft:Source Code Pro:Bold:size=11, xft:DejaVu Sans Mono:Bold:size=11
 URxvt.italicFont: xft:Source Code Pro:Semibold Italic:size=11, xft:DejaVu Sans Mono:Oblique:size=11
 URxvt.boldItalicFont: xft:Source Code Pro:Bold Italic:size=11, xft:DejaVu Sans Mono:Bold Oblique:size=11
