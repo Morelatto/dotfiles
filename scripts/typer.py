@@ -10,7 +10,7 @@ SPECIAL_KEYS = {'(': ['shift', '9'], ')': ['shift', '0']}
 
 
 def get_clipboard_data():
-    p = subprocess.Popen(['xclip', '-selection', 'clipboard', '-o'], stdout=subprocess.PIPE)
+    p = subprocess.Popen(['xsel', '-bo'], stdout=subprocess.PIPE)
     return p.stdout.read()
 
 
