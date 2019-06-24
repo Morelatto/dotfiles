@@ -40,8 +40,7 @@
 * [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
 * [vim-startify](https://github.com/mhinz/vim-startify)
 
-### misc
-* [Adobe Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
+### tools
 * [autojump](https://github.com/wting/autojump)
 * [bat](https://github.com/sharkdp/bat)
 * [feh](https://github.com/derf/feh)
@@ -50,4 +49,8 @@
 * [scrot](https://github.com/dreamer/scrot)
 * [speedtest-cli](https://github.com/sivel/speedtest-cli)
 * [thefuck](https://github.com/nvbn/thefuck)
+
+### fonts
+* [Adobe Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
+* [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
 
