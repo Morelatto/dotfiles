@@ -17,6 +17,7 @@ user_pref("general.warnOnAboutConfig", false);
 user_pref("browser.download.autohideButton", true);
 user_pref("toolkit.cosmeticAnimations.enabled", false);
 user_pref("clipboard.autocopy", false);
+user_pref("dom.event.clipboardevents.enabled", true);
 user_pref("layout.spellcheckDefault", 2);
 user_pref("browser.backspace_action", 0);
 user_pref("general.autoScroll", true);
