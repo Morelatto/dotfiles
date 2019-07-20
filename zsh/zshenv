@@ -17,3 +17,4 @@ export MOZ_PATH="$HOME/.mozilla/firefox/"
 export BROWSER="firefox"
 
 export ANTIGEN_PATH="/usr/share/zsh/share/"
+export ADOTDIR="$ZDOTDIR/antigen"

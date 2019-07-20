@@ -134,7 +134,7 @@ alias pycache="find . -type f -name '*.pyc' -delete && find . -type d -name '__p
 alias sc="scrapy"
 alias scc="scrapy crawl"
 alias scs="scrapy shell"
-alias server="python2 -m SimpleHTTPServer"
+alias server="python3 -m http.server"
 alias venv="virtualenv venv && source ./venv/bin/activate"
 
 # sudo
