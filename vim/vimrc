@@ -6,13 +6,13 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'wincent/command-t'
-" Plugin 'davidhalter/jedi-vim'
-Plugin 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'mhinz/vim-startify'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'scrooloose/nerdtree'
 call vundle#end()            
 
 filetype plugin indent on   
@@ -42,6 +42,29 @@ set backspace=indent,eol,start
 set mouse=a
 set background=dark
 
+" Protect changes between writes. Default values of
+" updatecount (200 keystrokes) and updatetime
+" (4 seconds) are fine
+set swapfile
+set directory^=~/.vim/swap//
+
+" protect against crash-during-write
+set writebackup
+" but do not persist backup after successful write
+set nobackup
+" use rename-and-write-new method whenever safe
+set backupcopy=auto
+" patch required to honor double slash at end
+if has("patch-8.1.0251")
+	" consolidate the writebackups -- not a big
+	" deal either way, since they usually get deleted
+	set backupdir^=~/.vim/backup//
+end
+
+" persist the undo tree for each file
+set undofile
+set undodir^=~/.vim/undo//
+
 " return to last position
 autocmd BufReadPost *
        \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
@@ -52,3 +75,6 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='minimalist'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+autocmd vimenter * NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
