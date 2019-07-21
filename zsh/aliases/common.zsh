@@ -84,6 +84,7 @@ alias ka="killall"
 alias k9="kill -9"
 alias mkdir="mkdir -p"
 alias off="xset dpms force off"
+alias paste="xsel -o"
 alias path='echo $PATH | tr -s ":" "\n"'
 alias reboot="systemctl reboot"
 alias rmrf="rm -rf"
@@ -138,6 +139,7 @@ alias server="python3 -m http.server"
 alias venv="virtualenv venv && source ./venv/bin/activate"
 
 # sudo
+alias chown="sudo chown"
 alias dhcpcd="sudo dhcpcd"
 alias fdisk="sudo fdisk"
 alias mount="sudo mount"
