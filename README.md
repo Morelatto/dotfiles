@@ -36,14 +36,21 @@
 ### vim
 * [Vundle](https://github.com/VundleVim/Vundle.vim)
 * [command-t](https://github.com/wincent/command-t)
-* [python-mode](https://github.com/python-mode/python-mode)
+* [NERDTree](https://github.com/scrooloose/nerdtree)
+* [vim-airline](https://github.com/vim-airline/vim-airline)
+* [vim-airline-themes](https://github.com/vim-airline/vim-airline-themes)
+* [vim-fugitive](https://github.com/tpope/vim-fugitive)
 * [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
 * [vim-startify](https://github.com/mhinz/vim-startify)
+* [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe)
 
 ### tools
 * [autojump](https://github.com/wting/autojump)
 * [bat](https://github.com/sharkdp/bat)
+* [cht.sh](https://github.com/chubin/cheat.sh)
+* [fd](https://github.com/sharkdp/fd)
 * [feh](https://github.com/derf/feh)
+* [httpie](https://github.com/jakubroztocil/httpie)
 * [ranger](https://github.com/ranger/ranger)
 * [ripgrep](https://github.com/BurntSushi/ripgrep)
 * [scrot](https://github.com/dreamer/scrot)

@@ -27,7 +27,7 @@ alias duv='du -s ^.*(/N) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; 
 alias duh='du -s .*(/N) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; done'    # hidden directories sorted by size
 
 # find
-alias fd='find . -maxdepth 1 -not -path "*./.*" -type d | sort'
+alias fdd='find . -maxdepth 1 -not -path "*./.*" -type d | sort'
 alias ff='find . -maxdepth 1 -not -path "*./.*"  -type f | sort'
 alias fdotd='find . -maxdepth 1 -path "*/.*" -type d | sort'
 alias fdotf='find . -maxdepth 1 -path "*./.*" -type f | sort'
