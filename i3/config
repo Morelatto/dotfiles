@@ -117,8 +117,8 @@ colors {
     }
 }
 
-gaps inner 10
-gaps outer 15
+gaps inner 5 
+gaps outer 5
 
 for_window [class="^.*"] border pixel 0
 for_window [class="jetbrains-pycharm"] move to workspace $ws2
