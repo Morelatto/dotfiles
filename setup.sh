@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 DOTFILES_DIR=$(dirname $(realpath -s $0))
 
 sudo ln -sf ${DOTFILES_DIR}/misc/pacman.conf /etc/pacman.conf
@@ -57,7 +58,6 @@ sudo ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/temperature/temperature ${I3_BLO
 sudo ln -sf ${DOTFILES_DIR}/i3/i3blocks-contrib/volume/volume ${I3_BLOCKS_DIR}/volume
 
 # urxvt
-# PKGBUILD: add --enable-wide-glyphs to ./configure options
 yay -S --needed --nodiffmenu --nocleanmenu rxvt-unicode-pixbuf
 sudo pacman -S --needed urxvt-perls 
 
@@ -68,7 +68,7 @@ ln -s ${DOTFILES_DIR}/urxvt/Xresources $HOME/.Xresources
 ln -s ${DOTFILES_DIR}/urxvt/base16-classic-dark-256.Xresources ${URXVT_CONFIG_DIR}/
 
 # vim
-yay -S --needed --nodiffmenu --nocleanmenu vundle-git vim-command-t vim-python-mode-git 
+yay -S --needed --nodiffmenu --nocleanmenu vundle-git vim-command-t vim-youcompleteme-git
 
 ln -s ${DOTFILES_DIR}/vim/vimrc $HOME/.vimrc
 
@@ -76,14 +76,14 @@ ln -s ${DOTFILES_DIR}/vim/vimrc $HOME/.vimrc
 sudo pacman -S --needed ranger
 
 RANGER_CONFIG_DIR=$HOME/.config/ranger
-mkdir -p $RANGER_CONFIG_DIR 
+mkdir -p ${RANGER_CONFIG_DIR}
 mkdir -p $HOME/.cache/ranger
 
-ln -s ${DOTFILES_DIR}/ranger/rc.conf $RANGER_CONFIG_DIR/
-ln -s ${DOTFILES_DIR}/ranger/scope.sh $RANGER_CONFIG_DIR/
+ln -s ${DOTFILES_DIR}/ranger/rc.conf ${RANGER_CONFIG_DIR}/
+ln -s ${DOTFILES_DIR}/ranger/scope.sh ${RANGER_CONFIG_DIR}/
 
 # misc
-sudo pacman -S --needed ripgrep bat
-yay -S --needed --nodiffmenu --nocleanmenu adobe-source-code-pro-fonts adobe-source-sans-pro-fonts adobe-source-serif-pro-fonts speedtest-cli-git
+sudo pacman -S --needed ripgrep bat httpie fd
+yay -S --needed --nodiffmenu --nocleanmenu adobe-source-code-pro-fonts speedtest-cli-git cht.sh
 git config --global core.excludesfile ${DOTFILES_DIR}/misc/gitignore_global
 
