@@ -31,3 +31,4 @@ user_pref("ui.key.menuAccessKey", 0);
 user_pref("browser.ctrlTab.recentlyUsedOrder", false);
 user_pref("dom.webnotifications.enabled", false);
 user_pref("privacy.resistFingerprinting.letterboxing", false);
+user_pref("browser.newtabpage.enabled", true);
