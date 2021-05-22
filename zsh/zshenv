@@ -6,9 +6,8 @@ export ZSH_CACHE="$XDG_CACHE_HOME/zsh"
 export ZFUNCTIONS="$ZDOTDIR/functions"
 export ZALIASES="$ZDOTDIR/aliases"
 
-export ADOTDIR="$ZDOTDIR/antigen"
-typeset -a ANTIGEN_CHECK_FILES
-ANTIGEN_CHECK_FILES=($ZDOTDIR/.zshrc $ADOTDIR/antigen.zsh)
+export ZPLUG_HOME="$ZDOTDIR/zplug"
+export ZPLUG_CACHE_DIR="$ZSH_CACHE/zplug"
 
 export VISUAL="vim"
 export EDITOR="$VISUAL"

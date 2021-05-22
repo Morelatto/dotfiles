@@ -1,5 +1,4 @@
 # History
-
 HISTFILE=$ZSH_CACHE/.zsh_history # The path to the history file.
 SAVEHIST=10000 # The maximum number of events to save in the history file.
 HISTSIZE=10000 # The maximum number of events to save in the internal history.
@@ -11,9 +10,8 @@ setopt HIST_REDUCE_BLANKS       # Remove extra blanks from each command line bei
 setopt HIST_EXPIRE_DUPS_FIRST   # Expire a duplicate event first when trimming history.
 
 # Completion
-
 setopt COMPLETE_IN_WORD # Complete from both ends of a word.
-setopt COMPLETE_ALIASES # Enable completion for aliases.
+unsetopt COMPLETE_ALIASES # Enable completion for aliases.
 setopt ALWAYS_TO_END    # Move cursor to the end of a completed word.
 setopt AUTO_MENU        # Show completion menu on a successive tab press.
 setopt AUTO_LIST        # Automatically list choices on ambiguous completion.
@@ -23,7 +21,6 @@ setopt LIST_AMBIGUOUS   # If there is an unambiguous prefix to insert on the com
 setopt NO_NOMATCH       # Passes bad match onto the command.
 
 # Directory
-
 setopt AUTO_CD              # Auto changes to a directory without typing cd.
 setopt AUTO_PUSHD           # Push the old directory onto the stack on cd.
 setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack.
