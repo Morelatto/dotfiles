@@ -1,8 +1,8 @@
-alias aee="$EDITOR $ZALIASES; source $ZALIASES/aliases.zsh"
-alias i3edit="$EDITOR $XDG_CONFIG_HOME/i3/config; i3-msg reload"
-alias ffedit="$EDITOR $MOZ_PATH;"
-alias rxvtedit="$EDITOR ~/.Xresources; xrdb -load ~/.Xresources"
-alias zshedit="$EDITOR $ZDOTDIR; source $ZDOTDIR/.zshrc"
+alias aee="subl $ZALIASES; source $ZALIASES/aliases.zsh"
+#alias i3edit="$EDITOR $XDG_CONFIG_HOME/i3/config; i3-msg reload"
+alias ffedit="subl $MOZ_PATH;"
+#alias rxvtedit="$EDITOR ~/.Xresources; xrdb -load ~/.Xresources"
+alias zshedit="subl $ZDOTDIR; source $ZDOTDIR/.zshrc"
 
 # a-z
 alias b="bluetoothctl"
@@ -89,6 +89,7 @@ alias path='echo $PATH | tr -s ":" "\n"'
 alias reboot="systemctl reboot"
 alias rmrf="rm -rf"
 alias tf="tail -F"
+alias syslog="sudo tail -f /var/log/syslog"
 
 # ls
 alias ls="ls --color=always --classify --human-readable"
@@ -123,13 +124,11 @@ alias pmem="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head"
 alias pcpu="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head"
 
 # python
-alias freeze="pip3 freeze > requirements.txt"
-alias pipi="pip install"
 alias py="python3"
 alias python="python3"
 alias pip="pip3"
-alias freeze="pip freeze"
-alias freezes="pip freeze > requirements.txt"
+alias pipi="pip install"
+alias freeze="pip3 freeze > requirements.txt"
 alias requires="pip install -r requirements.txt"
 alias pycache="find . -type f -name '*.pyc' -delete && find . -type d -name '__pycache__' -delete"
 alias sc="scrapy"
@@ -170,18 +169,14 @@ alias pvpnf="pvpn -f"
 
 # other
 alias bat="bat --theme=base16"
-alias cat="bat"
+#alias cat="bat"
 alias fox="firefox"
 alias noidea="find . -type d -name .idea -ls -exec rm -rf {} +"
-alias other="vim ~/todo"
 alias vr="veracrypt"
 alias zshdebug="zsh -xv &> >(tee ~/zsh-debug.log 2>/dev/null)"
 
 # Global aliases
-
 alias -g G="| grep "
-alias -g FG="| fgrep "
-alias -g EG="| egrep "
 alias -g L="| less"
 alias -g H="| head"
 alias -g T="| tail"

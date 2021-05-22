@@ -1,14 +1,14 @@
-typeset -U path
-path=($path[@] ~/.local/bin $HOME/.cargo/bin)
-
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export ZSH_CACHE="$XDG_CACHE_HOME/zsh" 
 export ZFUNCTIONS="$ZDOTDIR/functions"
 export ZALIASES="$ZDOTDIR/aliases"
-export ZSH_CACHE="$XDG_CACHE_HOME/zsh"
-mkdir -p $ZSH_CACHE
+
+export ADOTDIR="$ZDOTDIR/antigen"
+typeset -a ANTIGEN_CHECK_FILES
+ANTIGEN_CHECK_FILES=($ZDOTDIR/.zshrc $ADOTDIR/antigen.zsh)
 
 export VISUAL="vim"
 export EDITOR="$VISUAL"
@@ -16,5 +16,8 @@ export EDITOR="$VISUAL"
 export MOZ_PATH="$HOME/.mozilla/firefox/"
 export BROWSER="firefox"
 
-export ANTIGEN_PATH="/usr/share/zsh/share/"
-export ADOTDIR="$ZDOTDIR/antigen"
+export PIP_PATH="$HOME/.local/bin"
+export RUST_PATH="$HOME/.cargo/bin"
+
+typeset -U path
+path=($path[@] $PIP_PATH $RUST_PATH)
