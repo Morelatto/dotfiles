@@ -1,6 +1,6 @@
-fpath=( $ZFUNCTIONS $fpath )
+fpath=($fpath $ZFUNCTIONS)
 
-source "$ANTIGEN_PATH/antigen.zsh"
+source "$ADOTDIR/antigen.zsh"
 source "$ZDOTDIR/options.zsh"
 source "$ZDOTDIR/keybindings.zsh"
 source "$ZFUNCTIONS/functions.zsh"

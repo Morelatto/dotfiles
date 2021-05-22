@@ -4,7 +4,9 @@ antigen bundle git
 antigen bundle pip
 antigen bundle docker
 antigen bundle gradle
-antigen bundle thefuck
+antigen bundle mvn
+antigen bundle aws
+antigen bundle ssh-agent
 antigen bundle autojump
 antigen bundle colored-man-pages
 antigen bundle zdharma/history-search-multi-word
