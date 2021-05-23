@@ -24,11 +24,8 @@ alias duv='du -s ^.*(/N) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; 
 alias duh='du -s .*(/N) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; done'    # hidden directories sorted by size
 
 # find
-alias fdd='find . -maxdepth 1 -not -path "*./.*" -type d | sort'
-alias ff='find . -maxdepth 1 -not -path "*./.*"  -type f | sort'
-alias fdotd='find . -maxdepth 1 -path "*/.*" -type d | sort'
-alias fdotf='find . -maxdepth 1 -path "*./.*" -type f | sort'
-alias fmac="find . -name '.DS_Store' -type f -delete"
+alias fdd='find . -type d'
+alias ff='find . -type f'
 
 # gradle
 alias gr="./gradlew"
@@ -71,6 +68,7 @@ alias grep="grep --color=always --ignore-case"
 alias fgrep="grep --fixed-strings"
 alias egrep="grep --extended-regexp"
 alias lgrep="grep -rnw '.' -e"
+alias sgrep="grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}"
 
 # linux
 alias bye="systemctl poweroff"
@@ -171,6 +169,7 @@ alias bat="bat --theme=base16"
 #alias cat="bat"
 alias fox="firefox"
 alias noidea="find . -type d -name .idea -ls -exec rm -rf {} +"
+alias nomac="find . -name '.DS_Store' -type f -delete"
 alias vr="veracrypt"
 alias zshdebug="zsh -xv &> >(tee ~/zsh-debug.log 2>/dev/null)"
 
@@ -182,3 +181,8 @@ alias -g T="| tail"
 alias -g J="| python3 -m json.tool"
 # TODO replace by xclip
 alias -g X="| xsel -ib"
+alias -g LL="2>&1 | less"               # Writes stderr to stdout and passes it to less
+alias -g CA="2>&1 | cat -A"             # Writes stderr to stdout and passes it to cat
+alias -g NE="2> /dev/null"              # Silences stderr
+alias -g NUL="> /dev/null 2>&1"         # Silences both stdout and stderr
+alias -g P="2>&1| pygmentize -l pytb"   # Writes stderr to stdout and passes it to pygmentize
