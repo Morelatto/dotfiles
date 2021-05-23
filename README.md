@@ -14,15 +14,15 @@
 * [urxvt-resize-font](https://github.com/simmel/urxvt-resize-font)
 
 ### zsh
-* [antigen](https://github.com/zsh-users/antigen)
+* [zplug](https://github.com/zplug/zplug)
 * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 * [zsh-completions](https://github.com/zsh-users/zsh-completions)
-* [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
-* [zsh-history-substring-search](https://github.com/zsh-users/zsh-history-substring-search)
+* [fast-syntax-highlighting](https://github.com/zdharma/fast-syntax-highlighting)
 * [history-search-multi-word](https://github.com/zdharma/history-search-multi-word)
-* [alias-tips](https://github.com/djui/alias-tips)
-* [auto-ls](https://github.com/desyncr/auto-ls)
-* [zsh-command-time](https://github.com/popstas/zsh-command-time)
+* [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
+* [prezto](https://github.com/sorin-ionescu/prezto)
+* [powerlevel10k](https://github.com/romkatv/powerlevel10k)
+* [docker-alias](https://github.com/tcnksm/docker-alias)
 
 ### firefox
 * [ghacks-user.js](https://github.com/ghacksuserjs/ghacks-user.js)
@@ -47,7 +47,7 @@
 ### tools
 * [autojump](https://github.com/wting/autojump)
 * [bat](https://github.com/sharkdp/bat)
-* [cht.sh](https://github.com/chubin/cheat.sh)
+* [cheat](https://github.com/cheat/cheat)
 * [fd](https://github.com/sharkdp/fd)
 * [feh](https://github.com/derf/feh)
 * [httpie](https://github.com/jakubroztocil/httpie)
@@ -55,9 +55,7 @@
 * [ripgrep](https://github.com/BurntSushi/ripgrep)
 * [scrot](https://github.com/dreamer/scrot)
 * [speedtest-cli](https://github.com/sivel/speedtest-cli)
-* [thefuck](https://github.com/nvbn/thefuck)
 
 ### fonts
 * [Adobe Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
 * [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
-
