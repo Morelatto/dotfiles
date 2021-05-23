@@ -16,23 +16,6 @@ ln -s ${DOTFILES_DIR}/X11/fehbg $HOME/.fehbg
 sudo chattr +i $HOME/.fehbg
 sudo ln -s ${DOTFILES_DIR}/X11/10-monitor.conf /etc/X11/xorg.conf.d/
 
-# zsh
-sudo pacman -S --needed zsh autojump
-yay -S --needed --nodiffmenu --nocleanmenu antigen-git python-pip
-pip install --user thefuck
-
-ZSH_CONFIG_DIR=$HOME/.config/zsh
-mkdir -p ${ZSH_CONFIG_DIR}/aliases
-mkdir -p ${ZSH_CONFIG_DIR}/functions
-
-ln -s ${DOTFILES_DIR}/zsh/zshenv $HOME/.zshenv
-ln -s ${DOTFILES_DIR}/zsh/zshrc ${ZSH_CONFIG_DIR}/.zshrc
-ln -s ${DOTFILES_DIR}/zsh/zlogin ${ZSH_CONFIG_DIR}/.zlogin
-ln -s ${DOTFILES_DIR}/zsh/antigenrc ${ZSH_CONFIG_DIR}/.antigenrc
-ln -s ${DOTFILES_DIR}/zsh/*.zsh ${ZSH_CONFIG_DIR}/
-ln -s ${DOTFILES_DIR}/zsh/aliases/*.zsh ${ZSH_CONFIG_DIR}/aliases/
-ln -s ${DOTFILES_DIR}/zsh/functions/*.zsh ${ZSH_CONFIG_DIR}/functions/
-
 # i3
 sudo pacman -S --needed i3-gaps i3lock rofi bc lm_sensors scrot sysstat alsa-utils playerctl openvpn
 yay -S --needed --nodiffmenu --nocleanmenu i3blocks-gaps-git corrupter-git
