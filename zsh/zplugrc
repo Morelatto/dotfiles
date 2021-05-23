@@ -1,10 +1,12 @@
 source $ZPLUG_HOME/init.zsh
 
-zplug "zdharma/history-search-multi-word"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zdharma/fast-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-history-substring-search", defer:3
+zplug 'zdharma/history-search-multi-word'
+zstyle :plugin:history-search-multi-word reset-prompt-protect 1
+zplug 'plugins/globalias', from:oh-my-zsh, hook-load:'bindkey \"^ \" globalias && bindkey \" \" magic-space'
+zplug "modules/completion", from:prezto
 
 zplug 'dracula/zsh', as:theme
 
@@ -16,3 +18,7 @@ if ! zplug check --verbose; then
 fi
 
 zplug load --verbose
+
+if zplug check zsh-users/zsh-autosuggestions; then
+    export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40
+fi

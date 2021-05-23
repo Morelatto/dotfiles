@@ -1,7 +1,7 @@
 fpath=($fpath $ZFUNCTIONS)
 
+source "$ZFUNCTIONS/functions.zsh"
+source "$ZDOTDIR/keybindings.zsh"
 source "$ZDOTDIR/.zplugrc"
 source "$ZDOTDIR/options.zsh"
-source "$ZDOTDIR/keybindings.zsh"
-source "$ZFUNCTIONS/functions.zsh"
 source "$ZALIASES/aliases.zsh"
