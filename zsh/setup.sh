@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
 # install zsh
-# install antigen
+# install zplug
 # install autojump
 # install cheat
 # install command not found
+# install powerlevel10k fonts
 
 ZSH_DOTFILES_DIR=$(dirname $(realpath -s $0))
 ZSH_CONFIG_DIR=$HOME/.config/zsh
