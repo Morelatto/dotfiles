@@ -3,6 +3,8 @@
 # install zsh
 # install antigen
 # install autojump
+# install cheat
+# install command not found
 
 ZSH_DOTFILES_DIR=$(dirname $(realpath -s $0))
 ZSH_CONFIG_DIR=$HOME/.config/zsh
@@ -21,6 +23,4 @@ ln -sf $ZSH_DOTFILES_DIR/common/aliases.zsh $ZSH_CONFIG_DIR/aliases/
 ln -sf $ZSH_DOTFILES_DIR/common/functions.zsh $ZSH_CONFIG_DIR/functions/
 ln -sf $ZSH_DOTFILES_DIR/aliases/common.zsh $ZSH_CONFIG_DIR/aliases/
 ln -sf $ZSH_DOTFILES_DIR/aliases/debian.zsh $ZSH_CONFIG_DIR/aliases/
-ln -sf $ZSH_DOTFILES_DIR/functions/cheat-sh.zsh $ZSH_CONFIG_DIR/functions/
-ln -sf $ZSH_DOTFILES_DIR/functions/expand-aliases.zsh $ZSH_CONFIG_DIR/functions/
 ln -sf $ZSH_DOTFILES_DIR/functions/time-functions.zsh $ZSH_CONFIG_DIR/functions/

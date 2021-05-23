@@ -17,6 +17,7 @@ export BROWSER="firefox"
 
 export PIP_PATH="$HOME/.local/bin"
 export RUST_PATH="$HOME/.cargo/bin"
+export GOPATH="$HOME/.go"
 
 typeset -U path
-path=($path[@] $PIP_PATH $RUST_PATH)
+path=($path[@] $PIP_PATH $RUST_PATH $GOPATH/bin)
