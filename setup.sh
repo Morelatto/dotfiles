@@ -50,11 +50,6 @@ mkdir -p ${URXVT_CONFIG_DIR}
 ln -s ${DOTFILES_DIR}/urxvt/Xresources $HOME/.Xresources
 ln -s ${DOTFILES_DIR}/urxvt/base16-classic-dark-256.Xresources ${URXVT_CONFIG_DIR}/
 
-# vim
-yay -S --needed --nodiffmenu --nocleanmenu vundle-git vim-command-t vim-youcompleteme-git
-
-ln -s ${DOTFILES_DIR}/vim/vimrc $HOME/.vimrc
-
 # ranger
 sudo pacman -S --needed ranger
 
