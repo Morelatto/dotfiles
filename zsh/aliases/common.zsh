@@ -157,6 +157,7 @@ alias vi="vim"
 alias nano="vim"
 alias emacs="vim"
 alias sv="sudo vim"
+alias vimplug="vim +PluginInstall +qall"
 
 # vpn
 alias pvpnc="pvpn -c"
