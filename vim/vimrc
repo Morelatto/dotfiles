@@ -5,42 +5,111 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'wincent/command-t'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'mhinz/vim-startify'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scrooloose/nerdtree'
+Plugin 'joshdick/onedark.vim'
+Plugin 'sheerun/vim-polyglot'
+" Plugin 'wincent/command-t'
+" Plugin 'Valloric/YouCompleteMe'
+" Plugin 'airblade/vim-gitgutter'
+" Plugin 'tpope/vim-fugitive'
+" Plugin 'mhinz/vim-startify'
+" Plugin 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'scrooloose/nerdtree'
 call vundle#end()            
 
-filetype plugin indent on   
+" => General
 
-syntax on 
+" How many lines of history vim has to remember
+set history=500
 
+" Enable filetype plugins
+filetype plugin on   
+filetype indent on   
+
+" Auto read when file is changed from outside
 set autoread
+au FocusGained,BufEnter * checktime
 
-" ruler and line numbers
+" Extra key combinations
+let mapleader = ","
+
+" Fast saving
+nmap <leader>w :w!<cr>
+
+" :W sudo saves the file
+command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+
+" => User Interface
+
+" Set 10 lines to the cursor
+set so=7
+
+" Turn on Wild menu
+set wildmenu
+set wildmode=longest:full,full
+
+" Ignore compiled files
+set wildignore=*.o,*~,*.pyc
+if has("win16") || has("win32")
+    set wildignore+=.git\*,.hg\*,.svn\*
+else
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+endif
+
+" Show ruler and line numbers
 set ruler
 set number
 
-" search
+" Act like search in modern browsers
 set incsearch
+" Ignore case when searching
 set ignorecase
+" Smart case on search
 set smartcase
 
-" tabs
-set expandtab
-set smarttab
-
+" Show matching brackets
 set showmatch
-set history=1500
-set updatetime=100
-set scrolloff=5
+" How many tenths of a second to blink when matching brackets
+set mat=2
+
+" No sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+" Configure backspace so it acts as it should
 set backspace=indent,eol,start
-set mouse=a
+set whichwrap+=<,>,h,l
+
+" => Colors and Fonts
+
+" Enable syntax highlighting
+syntax enable
+
+" onedark.vim override: Don't set a background color when running in a terminal;
+" just use the terminal's background color
+" `gui` is the hex color code used in GUI mode/nvim true-color mode
+" `cterm` is the color code used in 256-color mode
+" `cterm16` is the color code used in 16-color mode
+if (has("autocmd") && !has("gui_running"))
+  augroup colorset
+    autocmd!
+    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
+    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+  augroup END
+endif
+
+try
+    colorscheme onedark
+catch
+endtry
+
 set background=dark
+
+set encoding=utf8
+
+" => Files, backups and undo
 
 " Protect changes between writes. Default values of
 " updatecount (200 keystrokes) and updatetime
@@ -71,10 +140,27 @@ autocmd BufReadPost *
        \ |   exe "normal! g`\""
        \ | endif
 
-let g:airline_powerline_fonts = 1
-let g:airline_theme='minimalist'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+" => Text, tab and indent
 
-autocmd vimenter * NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Use spaces instead of tabs
+set expandtab
+" Smart tab
+set smarttab
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+" Auto indent
+set ai 
+" Smart indent
+set si 
+" Wrap lines
+set wrap 
+
+" let g:airline_powerline_fonts = 1
+" let g:airline_theme='minimalist'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+" autocmd vimenter * NERDTree
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
