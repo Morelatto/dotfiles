@@ -25,3 +25,6 @@ ln -sf $ZSH_DOTFILES_DIR/common/functions.zsh $ZSH_CONFIG_DIR/functions/
 ln -sf $ZSH_DOTFILES_DIR/aliases/common.zsh $ZSH_CONFIG_DIR/aliases/
 ln -sf $ZSH_DOTFILES_DIR/aliases/debian.zsh $ZSH_CONFIG_DIR/aliases/
 ln -sf $ZSH_DOTFILES_DIR/functions/time-functions.zsh $ZSH_CONFIG_DIR/functions/
+
+git clone https://github.com/zplug/zplug $ZSH_CONFIG_DIR/zplug
+
