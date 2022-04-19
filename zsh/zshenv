@@ -5,17 +5,15 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export ZSH_CACHE="$XDG_CACHE_HOME/zsh" 
-
 export ZFUNCTIONS="$ZDOTDIR/functions"
 export ZALIASES="$ZDOTDIR/aliases"
 export ZCOMMON="$ZDOTDIR/common"
 
 export VISUAL="vim"
 export EDITOR="$VISUAL"
-
-export MOZ_PATH="$HOME/.mozilla/firefox/"
 export BROWSER="firefox"
 
+export MOZ_PATH="$HOME/.mozilla/firefox/"
 export PIP_PATH="$HOME/.local/bin"
 export RUST_PATH="$HOME/.cargo/bin"
 export GOPATH="$HOME/.go"
