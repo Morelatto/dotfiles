@@ -33,6 +33,6 @@ fi
 
 setxkbmap -layout br &
 xset b off &
+$XDG_CONFIG_HOME/.screenlayout.sh &
 ~/.fehbg &
-~/.screenlayout.sh &
-exec i3
+TERMINAL=xterm exec i3

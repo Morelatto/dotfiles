@@ -1,12 +1,12 @@
 set $mod Mod4
 
-font pango:Hack Nerd Font 12
+font pango:DejaVu Sans Mono 12
 
 floating_modifier $mod
 
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Shift+q kill
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show run
 
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -78,7 +78,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10; workspace number $ws10
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 mode "resize" {
         bindsym j resize grow height 10 px or 10 ppt
@@ -99,11 +99,10 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
-        position top
-	status_command i3blocks -c ~/.config/i3/i3blocks.conf
-        # status_command 2>/tmp/i3blocks.err i3blocks -vvv -c ~/.config/i3/i3blocks.conf | tee /tmp/i3blocks.out
-        tray_output DVI-D-0
-
+	position top
+	status_command SCRIPT_DIR=$XDG_CONFIG_HOME/i3blocks i3blocks -c $XDG_CONFIG_HOME/i3blocks/config 
+	tray_output primary
+        
 colors {
         background #242424
         statusline #BFBDBD
@@ -114,50 +113,47 @@ colors {
         inactive_workspace #242424 #282828 #CCCACA
         urgent_workspace   #2A1A1A #858774 #1B1B1B
         binding_mode       #2F343A #900000 #FFFFFF
-    }
+}
 }
 
-gaps inner 5 
-gaps outer 5
-
 for_window [class="^.*"] border pixel 0
-for_window [class="jetbrains-pycharm"] move to workspace $ws2
-for_window [class="jetbrains-idea"] move to workspace $ws3
-
-set $primary HDMI-0
-set $secondary DVI-I-1
-set $tertiary DVI-D-0
+#for_window [class="jetbrains-pycharm"] move to workspace $ws2
+#for_window [class="jetbrains-idea"] move to workspace $ws3
 
 # fixed workspaces
-workspace $ws1 output $primary
-workspace $ws2 output $primary
-workspace $ws3 output $primary
-workspace $ws4 output $secondary
-workspace $ws5 output $secondary
-workspace $ws6 output $secondary
-workspace $ws7 output $tertiary
-workspace $ws8 output $tertiary
-workspace $ws9 output $tertiary
+workspace $ws1 output primary
+workspace $ws2 output primary 
+workspace $ws3 output primary
+workspace $ws4 output primary
+workspace $ws5 output primary
+workspace $ws6 output HDMI-1
+workspace $ws7 output HDMI-1
+workspace $ws8 output HDMI-1
+workspace $ws9 output HDMI-1
+workspace $ws10 output HDMI-1
 
 bindsym $mod+Tab workspace back_and_forth 
 bindsym $mod+n workspace next
 bindsym $mod+p workspace prev
 
- # disable firefox quit
-bindsym Control+q exec ?
-
 # lock screen
-bindsym Control+$mod+l exec ~/.config/i3/lock.sh
+# bindsym Control+$mod+l exec --no-startup-id ~/.config/i3/lock.sh
 
 # screenshots
-bindsym --release Shift+Print exec "scrot -s ~/Pictures/%Y-%m-%d-%T-screenshot.png"
-bindsym --release Print exec "scrot -u ~/Pictures/%Y-%m-%d-%T-screenshot.png"
+bindsym --release Shift+Print exec --no-startup-id "scrot -s ~/Pictures/%Y-%m-%d-%T-screenshot.png"
+bindsym --release Print exec --no-startup-id "scrot -u ~/Pictures/%Y-%m-%d-%T-screenshot.png"
 
-# keyboard multimedia keys
-bindsym XF86AudioMute "exec amixer set Master toggle;  exec pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioRaiseVolume "exec amixer set Master 5%+; exec pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioLowerVolume "exec amixer set Master 5%-; exec pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioNext "exec playerctl next"
-bindsym XF86AudioPrev "exec playerctl previous"
-bindsym XF86AudioPlay "exec playerctl play-pause"
-bindsym XF86AudioStop "exec playerctl stop"
+# volume keys
+bindsym XF86AudioMute "exec --no-startup-id amixer set Master toggle;  exec --no-startup-id pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioRaiseVolume "exec --no-startup-id amixer set Master 5%+; exec --no-startup-id pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioLowerVolume "exec --no-startup-id amixer set Master 5%-; exec --no-startup-id pkill -RTMIN+10 i3blocks"
+
+# media control
+bindsym XF86AudioNext "exec --no-startup-id playerctl next"
+bindsym XF86AudioPrev "exec --no-startup-id playerctl previous"
+bindsym XF86AudioPlay "exec --no-startup-id playerctl play-pause"
+bindsym XF86AudioStop "exec --no-startup-id playerctl stop"
+
+gaps inner 10 
+gaps outer 10
+

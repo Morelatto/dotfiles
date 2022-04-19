@@ -1,7 +1,19 @@
-fpath=($fpath $ZFUNCTIONS)
+# Enable colors and change prompt:
+autoload -U colors && colors
+PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
-source "$ZFUNCTIONS/functions.zsh"
-source "$ZDOTDIR/keybindings.zsh"
-source "$ZDOTDIR/.zplugrc"
-source "$ZDOTDIR/options.zsh"
-source "$ZALIASES/aliases.zsh"
+# Load shell and completion options
+[ -e "$ZCOMMON/options.zsh" ] && source "$ZCOMMON/options.zsh"
+[ -e "$ZCOMMON/completions.zsh" ] && source "$ZCOMMON/completions.zsh"
+
+# Load aliases and shortcuts if existent.
+[ -e "$ZCOMMON/keybindings.zsh" ] && source "$ZCOMMON/keybindings.zsh"
+[ -e "$ZCOMMON/aliases.zsh" ] && source "$ZCOMMON/aliases.zsh"
+
+# Load custom functions and plugins
+[ -e "$ZCOMMON/functions.zsh" ] && source "$ZCOMMON/functions.zsh"
+
+# Rehash on package updates
+TRAPUSR1() { rehash }
+
+colorscript -r

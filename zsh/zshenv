@@ -1,13 +1,14 @@
+# https://specifications.freedesktop.org/basedir-spec/latest/ar01s03.html
+export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export ZSH_CACHE="$XDG_CACHE_HOME/zsh" 
+
 export ZFUNCTIONS="$ZDOTDIR/functions"
 export ZALIASES="$ZDOTDIR/aliases"
-
-export ZPLUG_HOME="$ZDOTDIR/zplug"
-export ZPLUG_CACHE_DIR="$ZSH_CACHE/zplug"
+export ZCOMMON="$ZDOTDIR/common"
 
 export VISUAL="vim"
 export EDITOR="$VISUAL"
@@ -21,3 +22,5 @@ export GOPATH="$HOME/.go"
 
 typeset -U path
 path=($path[@] $PIP_PATH $RUST_PATH $GOPATH/bin)
+
+export LESS='-R --use-color -Dd+r$Du+b'

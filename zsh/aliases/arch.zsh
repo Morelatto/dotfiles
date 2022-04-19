@@ -1,17 +1,29 @@
-# arch
-alias upg="pacman -Su && yay -Syua"
-alias upd="pacman -Syy"
-
 # pacman
-alias pacman="sudo pacman"
-alias pc="pacman"
-alias pci="pacman -S"
-alias pcs="pacman -Q"
-alias pcsl="pacman -Q -s"
-alias pcsu="pacman -Q -u"
+alias pacman='sudo pacman'
+alias pc='pacman'
+alias pci='pacman -S'
+alias pcq='=pacman -Q'
+alias pcqs='=pacman -Qs'
+alias pcqu='=pacman -Qu'
+alias pcr='pacman -R'
+alias pcrs='pacman -Rs'
+alias pcf='package_files'
+alias upt='pacman -Syu'
+alias upd='pacman -Sy'
+alias upg='pacman -Su'
 
 # aur
-alias yi="yay -S"
+alias yi='yay -S'
+alias yq='yay -Qs'
 
-# other
-alias mongod="sudo systemctl start mongodb.service"
+# systemctl
+alias systemctl='sudo systemctl'
+alias sctl='systemctl'
+alias services='systemctl --type=service'
+alias mongod='systemctl start mongodb.service'
+alias bye='systemctl poweroff'
+alias reboot='systemctl reboot'
+
+function package_files() { 
+	=pacman -Qlq $@ | grep -v '/$' | xargs -r du -h | sort -h
+}
