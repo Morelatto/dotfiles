@@ -2,36 +2,31 @@
 
 ### i3 
 * [i3-gaps](https://github.com/Airblader/i3)
-* [i3blocks-gaps](https://github.com/Airblader/i3blocks-gaps)
+* [i3blocks](https://github.com/vivien/i3blocks)
 * [i3blocks-contrib](https://github.com/vivien/i3blocks-contrib)
 * [rofi](https://github.com/DaveDavenport/rofi)
 * [corrupter](https://github.com/r00tman/corrupter)
 
-### urxvt
-* [rxvt-unicode-pixbuf](https://aur.archlinux.org/packages/rxvt-unicode-pixbuf/)
+### xterm
+* [xterm](https://invisible-island.net/xterm/)
+* [Xresources](https://github.com/gotbletu/shownotes/blob/master/xterm_xresources.md)
+* [Xresources-themes](https://github.com/janoamaral/Xresources-themes)
 * [base16-xresources](https://github.com/chriskempson/base16-xresources)
-* [urxvt-perls](https://github.com/muennich/urxvt-perls)
-* [urxvt-resize-font](https://github.com/simmel/urxvt-resize-font)
 
 ### zsh
-* [zplug](https://github.com/zplug/zplug)
+* [zsh](https://github.com/zsh-users/zsh)
 * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 * [zsh-completions](https://github.com/zsh-users/zsh-completions)
-* [fast-syntax-highlighting](https://github.com/zdharma/fast-syntax-highlighting)
-* [history-search-multi-word](https://github.com/zdharma/history-search-multi-word)
-* [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
-* [prezto](https://github.com/sorin-ionescu/prezto)
-* [powerlevel10k](https://github.com/romkatv/powerlevel10k)
-* [docker-alias](https://github.com/tcnksm/docker-alias)
+* [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting)
+* [fzf-tab](https://github.com/Aloxaf/fzf-tab)
+* [hstr](https://github.com/dvorka/hstr)
 
 ### firefox
-* [ghacks-user.js](https://github.com/ghacksuserjs/ghacks-user.js)
+* [user.js](https://github.com/arkenfox/user.js)
 * [uBlock Origin](https://github.com/gorhill/uBlock)
-* [uMatrix](https://github.com/gorhill/uMatrix)
-* [Cookie-AutoDelete](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete)
-* [Decentraleyes](https://git.synz.io/Synzvato/decentraleyes)
-* [HTTPS Everywhere](https://github.com/EFForg/https-everywhere)
+* [Cookie AutoDelete](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete)
 * [Vimium](https://github.com/philc/vimium)
+* [Dark Reader](https://github.com/darkreader/darkreader)
 
 ### vim
 * [Vundle](https://github.com/VundleVim/Vundle.vim)

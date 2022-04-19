@@ -1,6 +1,15 @@
-[submodule "firefox/ghacks-user.js"]
-	path = firefox/ghacks-user.js
-	url = https://github.com/ghacksuserjs/ghacks-user.js.git
-[submodule "i3/i3blocks-contrib"]
-	path = i3/i3blocks-contrib
-	url = https://github.com/vivien/i3blocks-contrib
+[submodule "zsh/functions/fast-syntax-highlighting"]
+	path = zsh/functions/fast-syntax-highlighting
+	url = https://github.com/zdharma-continuum/fast-syntax-highlighting
+[submodule "zsh/functions/fzf-tab"]
+	path = zsh/functions/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab
+[submodule "xterm/LS_COLORS"]
+	path = xterm/LS_COLORS
+	url = https://github.com/trapd00r/LS_COLORS
+[submodule "xterm/Xresources-themes"]
+	path = xterm/Xresources-themes
+	url = https://github.com/janoamaral/Xresources-themes
+[submodule "firefox/user.js"]
+	path = firefox/user.js
+	url = https://github.com/arkenfox/user.js

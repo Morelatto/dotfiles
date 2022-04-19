@@ -1,30 +1,49 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# install zsh
-# install zplug
-# install autojump
-# install cheat
-# install command not found
-# install powerlevel10k fonts
+DOTFILES_DIR=$(dirname $(realpath -s $0))
+CONFIG_DIR=$HOME/.config
 
-ZSH_DOTFILES_DIR=$(dirname $(realpath -s $0))
-ZSH_CONFIG_DIR=$HOME/.config/zsh
+ZSH_CONFIG_DIR=$CONFIG_DIR/zsh
 ZSH_CACHE_DIR=$HOME/.cache
+ZSH_ALIAS_DIR=$ZSH_CONFIG_DIR/aliases
+ZSH_FUNCTIONS_DIR=$ZSH_CONFIG_DIR/functions
+ZSH_COMMON_DIR=$ZSH_CONFIG_DIR/common
 
-mkdir -p $ZSH_CONFIG_DIR/aliases
-mkdir -p $ZSH_CONFIG_DIR/functions
+pacman -S zsh zsh-autosuggestions zsh-completions
+
+mkdir -p $ZSH_ALIAS_DIR
+mkdir -p $ZSH_FUNCTIONS_DIR
+mkdir -p $ZSH_COMMON_DIR
 mkdir -p $ZSH_CACHE_DIR
 
-ln -sf $ZSH_DOTFILES_DIR/zshenv $HOME/.zshenv
-ln -sf $ZSH_DOTFILES_DIR/zshrc $ZSH_CONFIG_DIR/.zshrc
-ln -sf $ZSH_DOTFILES_DIR/zplugrc $ZSH_CONFIG_DIR/.zplugrc
-ln -sf $ZSH_DOTFILES_DIR/common/options.zsh $ZSH_CONFIG_DIR/
-ln -sf $ZSH_DOTFILES_DIR/common/keybindings.zsh $ZSH_CONFIG_DIR/
-ln -sf $ZSH_DOTFILES_DIR/common/aliases.zsh $ZSH_CONFIG_DIR/aliases/
-ln -sf $ZSH_DOTFILES_DIR/common/functions.zsh $ZSH_CONFIG_DIR/functions/
-ln -sf $ZSH_DOTFILES_DIR/aliases/common.zsh $ZSH_CONFIG_DIR/aliases/
-ln -sf $ZSH_DOTFILES_DIR/aliases/debian.zsh $ZSH_CONFIG_DIR/aliases/
-ln -sf $ZSH_DOTFILES_DIR/functions/time-functions.zsh $ZSH_CONFIG_DIR/functions/
+ln -sf $DOTFILES_DIR/zshenv $ZSH_CONFIG_DIR/.zshenv
+ln -sf $DOTFILES_DIR/zshrc $ZSH_CONFIG_DIR/.zshrc
+ln -sf $DOTFILES_DIR/zprofile $ZSH_CONFIG_DIR/.zprofile
 
-git clone https://github.com/zplug/zplug $ZSH_CONFIG_DIR/zplug
+ln -sf $DOTFILES_DIR/common/options.zsh $ZSH_COMMON_DIR
+ln -sf $DOTFILES_DIR/common/keybindings.zsh $ZSH_COMMON_DIR
+ln -sf $DOTFILES_DIR/common/aliases.zsh $ZSH_COMMON_DIR
+ln -sf $DOTFILES_DIR/common/completions.zsh $ZSH_COMMON_DIR
+ln -sf $DOTFILES_DIR/common/functions.zsh $ZSH_COMMON_DIR
 
+ln -sf $DOTFILES_DIR/aliases/common.zsh $ZSH_ALIAS_DIR
+ln -sf $DOTFILES_DIR/aliases/arch.zsh $ZSH_ALIAS_DIR
+ln -sf $DOTFILES_DIR/aliases/linux.zsh $ZSH_ALIAS_DIR
+ln -sf $DOTFILES_DIR/aliases/global.zsh $ZSH_ALIAS_DIR
+
+ln -sf $DOTFILES_DIR/functions/time-functions.zsh $ZSH_FUNCTIONS_DIR
+ln -sf $DOTFILES_DIR/functions/ctrlz.zsh $ZSH_FUNCTIONS_DIR
+ln -sf $DOTFILES_DIR/functions/rangercd.zsh $ZSH_FUNCTIONS_DIR
+ln -sf $DOTFILES_DIR/functions/hstr.zsh $ZSH_FUNCTIONS_DIR
+
+
+yay -S zsh-fast-syntax-highlighting fzf-tab-bin-git hstr
+
+
+# install autojump
+
+# install cheat
+
+# install command not found
+
+# install powerlevel10k fonts

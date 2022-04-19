@@ -67,3 +67,5 @@ bindkey '^H' backward-kill-word
 bindkey '^[[1;5C' forward-word
 # [Ctrl-LeftArrow] - move backward one word
 bindkey '^[[1;5D' backward-word
+
+bindkey '\CI' expand-or-complete-prefix

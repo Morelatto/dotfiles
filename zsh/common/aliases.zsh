@@ -1,2 +1,10 @@
+source "$ZALIASES/linux.zsh"
+source "$ZALIASES/arch.zsh"
 source "$ZALIASES/common.zsh"
-source "$ZALIASES/debian.zsh"
+source "$ZALIASES/global.zsh"
+
+alias aee="$EDITOR $ZALIASES; source $ZCOMMON/aliases.zsh"
+alias i3edit="$EDITOR $XDG_CONFIG_HOME/i3/config; i3-msg reload"
+alias ffedit="$EDITOR $MOZ_PATH"
+alias xredit="$EDITOR ~/.Xresources"
+alias zshedit="$EDITOR $ZDOTDIR"
