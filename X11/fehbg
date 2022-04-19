@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --randomize --bg-fill ~/Pictures/Wallpapers/*
+feh --no-fehbg --bg-scale '/home/morel/Wallpapers/Earth - Angels of Darkness, Demons of Light I.jpeg'
