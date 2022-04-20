@@ -46,7 +46,7 @@
 * [httpie](https://github.com/jakubroztocil/httpie)
 * [ranger](https://github.com/ranger/ranger)
 * [ripgrep](https://github.com/BurntSushi/ripgrep)
-* [scrot](https://github.com/dreamer/scrot)
+* [maim](https://github.com/naelstrof/maim)
 * [speedtest-cli](https://github.com/sivel/speedtest-cli)
 
 ### fonts/icons
