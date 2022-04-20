@@ -59,4 +59,5 @@
 * [BracketHighlighter](https://github.com/facelessuser/BracketHighlighter)
 * [Dotfiles Syntax Highlighting](https://github.com/mattbanks/dotfiles-syntax-highlighting-st2)
 * [Pretty JSON](https://github.com/dzhibas/SublimePrettyJson)
+* [SideBarEnhancements](https://github.com/titoBouzout/SideBarEnhancements)
 * [SublimeCodeIntel](https://github.com/SublimeCodeIntel/SublimeCodeIntel)
