@@ -20,8 +20,8 @@ alias systemctl='sudo systemctl'
 alias sctl='systemctl'
 alias services='systemctl --type=service'
 alias mongod='systemctl start mongodb.service'
-alias bye='systemctl poweroff'
-alias reboot='systemctl reboot'
+alias bye='=systemctl poweroff'
+alias reboot='=systemctl reboot'
 
 function package_files() { 
 	=pacman -Qlq $@ | grep -v '/$' | xargs -r du -h | sort -h

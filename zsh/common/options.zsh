@@ -21,7 +21,6 @@ unsetopt LIST_AMBIGUOUS
 setopt AUTO_PARAM_SLASH         # If completed parameter is a directory, add a trailing slash
 setopt NO_NOMATCH               # Passes bad match onto the command
 unsetopt MENU_COMPLETE    		# Do not autoselect the first completion entry
-unsetopt FLOW_CONTROL      		# Disable start/stop characters in shell editor
 setopt   GLOB_COMPLETE     		# Show completions for glob instead of expanding
 
 
