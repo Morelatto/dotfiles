@@ -37,6 +37,7 @@ alias ka='killall'
 alias k9='kill -9'
 
 # linux
+alias chx='chmod +x'
 alias cp='cp -r'
 alias diff='diff --color=auto'
 alias df='df -h'
