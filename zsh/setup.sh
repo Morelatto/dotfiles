@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 DOTFILES_DIR=$(dirname $(realpath -s $0))
 CONFIG_DIR=$HOME/.config
@@ -36,14 +36,4 @@ ln -sf $DOTFILES_DIR/functions/ctrlz.zsh $ZSH_FUNCTIONS_DIR
 ln -sf $DOTFILES_DIR/functions/rangercd.zsh $ZSH_FUNCTIONS_DIR
 ln -sf $DOTFILES_DIR/functions/hstr.zsh $ZSH_FUNCTIONS_DIR
 
-
-yay -S zsh-fast-syntax-highlighting fzf-tab-bin-git hstr
-
-
-# install autojump
-
-# install cheat
-
-# install command not found
-
-# install powerlevel10k fonts
+yay -S zsh-fast-syntax-highlighting fzf-tab-bin-git hstr autojump cht.sh-git

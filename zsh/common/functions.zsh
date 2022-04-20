@@ -5,6 +5,9 @@ source $ZFUNCTIONS/rangercd.zsh
 source $ZFUNCTIONS/ctrlz.zsh
 source $ZFUNCTIONS/hstr.zsh
 
+# https://github.com/wting/autojump
+[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+
 # NOTE: fzf-tab needs to be loaded after compinit, but before plugins which will wrap widgets, such as zsh-autosuggestions or fast-syntax-highlighting!!
 source /home/morel/dotfiles/zsh/functions/fzf-tab/fzf-tab.plugin.zsh
 

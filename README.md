@@ -17,6 +17,7 @@
 * [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting)
 * [fzf-tab](https://github.com/Aloxaf/fzf-tab)
 * [hstr](https://github.com/dvorka/hstr)
+* [autojump](https://github.com/wting/autojump)
 
 ### firefox
 * [user.js](https://github.com/arkenfox/user.js)
@@ -37,7 +38,6 @@
 * [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe)
 
 ### tools
-* [autojump](https://github.com/wting/autojump)
 * [bat](https://github.com/sharkdp/bat)
 * [cheat](https://github.com/cheat/cheat)
 * [fd](https://github.com/sharkdp/fd)
