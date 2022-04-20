@@ -22,7 +22,7 @@ setopt AUTO_PARAM_SLASH         # If completed parameter is a directory, add a t
 setopt NO_NOMATCH               # Passes bad match onto the command
 unsetopt MENU_COMPLETE    		# Do not autoselect the first completion entry
 setopt   GLOB_COMPLETE     		# Show completions for glob instead of expanding
-
+unsetopt COMPLETE_ALIASES
 
 # Directory
 setopt AUTO_CD                  # Auto changes to a directory without typing cd
