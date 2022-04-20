@@ -67,7 +67,7 @@ alias lsmall='=ls -Sl -- *(.) | tail $@ 2&>/dev/null'                   # smalle
 alias lsbig='=ls -lSh -- *(.) | grep -v total | head $@ 2&>/dev/null'   # biggest files
 
 # ps
-alias pp='ps | grep '
+alias pp='psgrep'
 alias pmem='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
 alias pcpu='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head'
 

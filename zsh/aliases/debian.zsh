@@ -1,9 +1,9 @@
-alias a="apt"
+alias a='apt'
 
-alias apt="sudo apt"
-alias apt-get="sudo apt-get"
-alias apti="apt install"
-alias apts="=apt search"
+alias apt='sudo apt'
+alias apt-get='sudo apt-get'
+alias apti='apt install'
+alias apts='=apt search'
 
-alias upd="apt update"
-alias upg="apt upgrade"
+alias upd='apt update'
+alias upg='apt upgrade'
