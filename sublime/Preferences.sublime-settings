@@ -10,6 +10,12 @@
 	// in your User File Preferences.
 	"font_size": 13,
 
+	// Indicate modified lines in the gutter
+	// - true: Enables modified line indicators on all files
+	// - "auto": Enables modified line indicators on tracked files within Git
+	// - false: Disables modified line indicators
+	"mini_diff": false,
+
 	// Set to true to insert spaces when tab is pressed
 	"translate_tabs_to_spaces": true,
 

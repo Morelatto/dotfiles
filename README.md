@@ -48,6 +48,7 @@
 * [ripgrep](https://github.com/BurntSushi/ripgrep)
 * [maim](https://github.com/naelstrof/maim)
 * [speedtest-cli](https://github.com/sivel/speedtest-cli)
+* [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy)
 
 ### fonts/icons
 * [Adobe Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
@@ -60,6 +61,7 @@
 * [AutoFileName](https://github.com/liamcain/AutoFileName)
 * [BracketHighlighter](https://github.com/facelessuser/BracketHighlighter)
 * [Dotfiles Syntax Highlighting](https://github.com/mattbanks/dotfiles-syntax-highlighting-st2)
+* [GitGutter](https://github.com/jisaacks/GitGutter)
 * [Pretty JSON](https://github.com/dzhibas/SublimePrettyJson)
 * [SideBarEnhancements](https://github.com/titoBouzout/SideBarEnhancements)
 * [SublimeCodeIntel](https://github.com/SublimeCodeIntel/SublimeCodeIntel)
