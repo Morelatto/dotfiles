@@ -4,7 +4,7 @@ alias -g H='| head'
 alias -g L='| less'
 alias -g T='| tail'
 alias -g J='| python3 -m json.tool'
-alias -g X='| xsel -ib'
+alias -g X='| xclip -sel clip'
 
 alias -g LL='2>&1 | less'               # Writes stderr to stdout and passes it to less
 alias -g CA='2>&1 | cat -A'             # Writes stderr to stdout and passes it to cat
