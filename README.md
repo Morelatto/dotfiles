@@ -5,6 +5,7 @@
 * [i3blocks-contrib](https://github.com/vivien/i3blocks-contrib)
 * [rofi](https://github.com/DaveDavenport/rofi)
 * [corrupter](https://github.com/r00tman/corrupter)
+* [dunst](https://github.com/dunst-project/dunst)
 
 ### [xterm](https://invisible-island.net/xterm/)
 * [Xresources](https://github.com/gotbletu/shownotes/blob/master/xterm_xresources.md)
@@ -48,9 +49,10 @@
 * [scrot](https://github.com/dreamer/scrot)
 * [speedtest-cli](https://github.com/sivel/speedtest-cli)
 
-### fonts
+### fonts/icons
 * [Adobe Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
 * [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
+* [Paper Icon Theme](https://github.com/snwh/paper-icon-theme)
 
 ### Sublime Text
 * [Package Control](https://github.com/wbond/package_control)
