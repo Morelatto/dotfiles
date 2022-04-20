@@ -14,7 +14,6 @@ alias upg='pacman -Su'
 
 # aur
 alias yi='yay -S'
-alias yq='yay -Qs'
 
 # systemctl
 alias systemctl='sudo systemctl'
