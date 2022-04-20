@@ -59,7 +59,7 @@ XTerm*saveLines: 20000
 ! Do not scroll when there is new input e.g. tail -f /var/syslog
 XTerm*scrollTtyOutput: false
 ! If you want your terminal to scroll down anytime you press a key, use this setting:
-XTerm*ScrollKey: true
+XTerm*scrollKey: on
 
 !! Keybinding ========================================================
 ! http://blog.rot13.org/2010/03/change-font-size-in-xterm-using-keyboard.html
