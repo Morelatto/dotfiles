@@ -58,8 +58,8 @@ alias server="python3 -m http.server"
 alias venv="virtualenv venv && source ./venv/bin/activate"
 
 # other
-#alias bat="bat --theme=base16"
 alias fox="firefox"
+alias cht='cht.sh'
 
 # os/ide specific
 alias noidea="find . -type d -name .idea -ls -exec rm -rf {} +"
