@@ -6,6 +6,7 @@ alias m='man'
 alias p='ps -xe --forest'
 alias q='exit'
 alias s='sudo'
+alias t='tree'
 alias v='vim'
 
 # cd
