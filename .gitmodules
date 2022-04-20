@@ -13,3 +13,6 @@
 [submodule "firefox/user.js"]
 	path = firefox/user.js
 	url = https://github.com/arkenfox/user.js
+[submodule "i3/scripts/volume-notification-dunst"]
+	path = i3/scripts/volume-notification-dunst
+	url = https://github.com/dastorm/volume-notification-dunst
