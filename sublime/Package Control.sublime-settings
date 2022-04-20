@@ -1,0 +1,16 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"A File Icon",
+		"AutoFileName",
+		"BracketHighlighter",
+		"Dotfiles Syntax Highlighting",
+		"Package Control",
+		"Pretty JSON",
+		"SublimeCodeIntel",
+	],
+}
