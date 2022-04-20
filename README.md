@@ -1,20 +1,17 @@
 # .files
 
-### i3 
-* [i3-gaps](https://github.com/Airblader/i3)
+### [i3](https://github.com/Airblader/i3) 
 * [i3blocks](https://github.com/vivien/i3blocks)
 * [i3blocks-contrib](https://github.com/vivien/i3blocks-contrib)
 * [rofi](https://github.com/DaveDavenport/rofi)
 * [corrupter](https://github.com/r00tman/corrupter)
 
-### xterm
-* [xterm](https://invisible-island.net/xterm/)
+### [xterm](https://invisible-island.net/xterm/)
 * [Xresources](https://github.com/gotbletu/shownotes/blob/master/xterm_xresources.md)
 * [Xresources-themes](https://github.com/janoamaral/Xresources-themes)
 * [base16-xresources](https://github.com/chriskempson/base16-xresources)
 
-### zsh
-* [zsh](https://github.com/zsh-users/zsh)
+### [zsh](https://github.com/zsh-users/zsh)
 * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 * [zsh-completions](https://github.com/zsh-users/zsh-completions)
 * [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting)
@@ -54,3 +51,12 @@
 ### fonts
 * [Adobe Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
 * [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
+
+### Sublime Text
+* [Package Control](https://github.com/wbond/package_control)
+* [A File Icon](https://github.com/SublimeText/AFileIcon)
+* [AutoFileName](https://github.com/liamcain/AutoFileName)
+* [BracketHighlighter](https://github.com/facelessuser/BracketHighlighter)
+* [Dotfiles Syntax Highlighting](https://github.com/mattbanks/dotfiles-syntax-highlighting-st2)
+* [Pretty JSON](https://github.com/dzhibas/SublimePrettyJson)
+* [SublimeCodeIntel](https://github.com/SublimeCodeIntel/SublimeCodeIntel)
