@@ -190,8 +190,7 @@ bindsym XF86AudioStop "exec --no-startup-id playerctl stop"
 gaps inner 10 
 gaps outer 10
 
-# dunst
-exec_always --no-startup-id killall dunst; dunst -lf "$fg" -nf "$fg" -cf "$fg" -lb "$bg" -nb "$bg" -cb "$bg" -lfr "$lw" -nfr "$cl10" -cfr "$cl13" &
-
-# network-manager-applet
-exec --no-startup-id nm-applet --sm-disable &
+# auto start
+exec_always --no-startup-id killall dunst; dunst -lf "$fg" -nf "$fg" -cf "$fg" -lb "$bg" -nb "$bg" -cb "$bg" -lfr "$lw" -nfr "$cl10" -cfr "$cl13"
+exec --no-startup-id nm-applet --sm-disable
+exec --no-startup-id picom --experimental-backends -b
