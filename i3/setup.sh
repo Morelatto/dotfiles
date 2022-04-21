@@ -14,4 +14,4 @@ ln -sf $DOTFILES_DIR/config $I3_CONFIG_DIR/config
 git clone https://github.com/vivien/i3blocks-contrib $I3_BLOCKS_CONFIG_DIR
 ln -sf $DOTFILES_DIR/i3blocks.config $I3_BLOCKS_CONFIG_DIR/config
 
-yay -Si rofi-dmenu paper-icon-theme
+yay -Si rofi-dmenu paper-icon-theme nerd-fonts-dejavu-complete
