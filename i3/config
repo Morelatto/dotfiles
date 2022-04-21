@@ -1,6 +1,6 @@
 set $mod Mod4
 
-font pango:DejaVu Sans Mono 12
+font pango:DejaVu Sans Mono 14
 
 floating_modifier $mod
 
@@ -113,19 +113,20 @@ bindsym $mod+r mode "resize"
 bar {
 	position top
 	status_command SCRIPT_DIR=$XDG_CONFIG_HOME/i3blocks i3blocks -c $XDG_CONFIG_HOME/i3blocks/config 
-	tray_output primary
+        tray_output primary
+        tray_padding 4
         
 colors {
-        background #242424
-        statusline #BFBDBD
-        separator  #666666
-
-        focused_workspace  #242424 #D5D5D5 #242424
-        active_workspace   #333333 #5F676A #FFFFFF
-        inactive_workspace #242424 #282828 #CCCACA
-        urgent_workspace   #2A1A1A #858774 #1B1B1B
-        binding_mode       #2F343A #900000 #FFFFFF
-}
+        background  #212121
+        statusline  #dddddd
+        separator   #666666
+        # class             border  backgr. text
+        focused_workspace   #242424 #D5D5D5 #242424
+        active_workspace    #212121 #212121 #ffffff
+        inactive_workspace  #212121 #212121 #86888c
+        urgent_workspace    #d64e4e #d64e4e #ffffff
+        binding_mode        #229c56 #229c56 #ffffff
+    }
 }
 
 # removes title from windows
@@ -174,9 +175,9 @@ bindsym --release Print exec --no-startup-id "maim | tee ~/Pictures/$(date +%F_%
 bindsym --release Ctrl+Print exec --no-startup-id "maim -i $(xdotool getactivewindow) | tee ~/Pictures/$(date +%F_%H-%M-%S)-Screenshot.png | xclip -selection clipboard -t image/png"
 
 # volume keys
-bindsym XF86AudioMute "exec --no-startup-id volume.sh mute"
-bindsym XF86AudioRaiseVolume "exec --no-startup-id volume.sh up"
-bindsym XF86AudioLowerVolume "exec --no-startup-id volume.sh down"
+bindsym XF86AudioMute "exec --no-startup-id barify vol mute; exec pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioRaiseVolume "exec --no-startup-id barify vol up; exec pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioLowerVolume "exec --no-startup-id barify vol down; exec pkill -RTMIN+10 i3blocks"
 
 # media control
 bindsym XF86AudioNext "exec --no-startup-id playerctl next"
@@ -189,4 +190,7 @@ gaps inner 10
 gaps outer 10
 
 # dunst
-exec_always --no-startup-id killall dunst; dunst -lf "$fg" -nf "$fg" -cf "$fg" -lb "$bg" -nb "$bg" -cb "$bg" -lfr "$lw" -nfr "$cl10" -cfr "$cl13"
+exec_always --no-startup-id killall dunst; dunst -lf "$fg" -nf "$fg" -cf "$fg" -lb "$bg" -nb "$bg" -cb "$bg" -lfr "$lw" -nfr "$cl10" -cfr "$cl13" &
+
+# network-manager-applet
+exec --no-startup-id nm-applet --sm-disable &

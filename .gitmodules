@@ -13,6 +13,9 @@
 [submodule "firefox/user.js"]
 	path = firefox/user.js
 	url = https://github.com/arkenfox/user.js
-[submodule "i3/scripts/volume-notification-dunst"]
-	path = i3/scripts/volume-notification-dunst
-	url = https://github.com/dastorm/volume-notification-dunst
+[submodule "i3/scripts/calendar-notification"]
+	path = i3/scripts/calendar-notification
+	url = https://github.com/chebro/calendar-notification
+[submodule "i3/scripts/barify"]
+	path = i3/scripts/barify
+	url = https://github.com/Arctize/barify

@@ -51,7 +51,6 @@
 * [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy)
 
 ### fonts/icons
-* [Adobe Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
 * [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
 * [Paper Icon Theme](https://github.com/snwh/paper-icon-theme)
 
