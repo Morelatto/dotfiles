@@ -15,7 +15,7 @@ XTerm.termName: xterm-256color
 
 ! Fonts ====================================================
 ! set font and fontsize
-XTerm*faceName: DejaVuSansMono Nerd Font;DejaVu Sans Mono
+XTerm*faceName: SFMono Nerd Font Mono
 XTerm*faceSize: 16
 
 ! VT Font Menu: Unreadable
@@ -76,7 +76,7 @@ XTerm.vt100.translations: #override \n\
   Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
   Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY) \n\
   <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\
-  <Btn2Up>: insert-selection(PRIMARY)
+  <Btn2Up>: insert-selection(PRIMARY) \n\
 ! <BtnUp>:select-end(SELECT, CUT_BUFFER0) \n\
 ! Ctrl <Btn4Down>:scroll-back(1,halfpage,m) \n\
 ! <Btn4Down>:scroll-back(5,line,m) \n\
@@ -110,6 +110,7 @@ XTerm.vt100.translations: #override \n\
 ! Ctrl <Btn5Down>:scroll-forw(1,halfpage,m) \n\
 ! <BtnUp>:select-end(SELECT, CUT_BUFFER0) \n\
 ! <BtnDown>:ignore()
+
 
 ! enable copy/paste hotkey to work (shift+insert = paste ; mouse highlight = copy)
 XTerm*selectToClipboard: true
@@ -160,35 +161,35 @@ XTerm*borderWidth: 5
 ! *cursorColor: #93a1a1
 ! *pointerColorBackground: #586e75
 ! *pointerColorForeground: #93a1a1
-! 
+!
 ! !! black dark/light
 ! *color0: #073642
 ! *color8: #002b36
-! 
+!
 ! !! red dark/light
 ! *color1: #dc322f
 ! *color9: #cb4b16
-! 
+!
 ! !! green dark/light
 ! *color2: #859900
 ! *color10: #586e75
-! 
+!
 ! !! yellow dark/light
 ! *color3: #b58900
 ! *color11: #657b83
-! 
+!
 ! !! blue dark/light
 ! *color4: #268bd2
 ! *color12: #839496
-! 
+!
 ! !! magenta dark/light
 ! *color5: #d33682
 ! *color13: #6c71c4
-! 
+!
 ! !! cyan dark/light
 ! *color6: #2aa198
 ! *color14: #93a1a1
-! 
+!
 ! !! white dark/light
 ! *color7: #eee8d5
 ! *color15: #fdf6e3
