@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# https://specifications.freedesktop.org/basedir-spec/latest/ar01s03.html
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+setxkbmap -layout br &
+xset b off &
+$XDG_CONFIG_HOME/.screenlayout.sh &
+$XDG_CONFIG_HOME/.fehbg
