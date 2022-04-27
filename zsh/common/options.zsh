@@ -2,9 +2,9 @@
 
 # History
 HISTFILE=$ZSH_CACHE/.history    # The path to the history file
-SAVEHIST=20000                  # The maximum number of events to save in the history file
-HISTSIZE=20000                  # The maximum number of events to save in the internal history
-export HISTFILE					# Export for hstr
+SAVEHIST=200000                 # The maximum number of events to save in the history file
+HISTSIZE=200000                 # The maximum number of events to save in the internal history
+export HISTFILE					# hstr
 
 setopt SHARE_HISTORY            # Share history between all sessions
 setopt EXTENDED_HISTORY         # Write the history file in the ':start:elapsed;command' format
@@ -13,14 +13,14 @@ setopt HIST_EXPIRE_DUPS_FIRST   # Expire a duplicate event first when trimming h
 setopt HIST_IGNORE_SPACE 		# Remove command lines from the history list when the first character on the line is a space
 
 # Completion
-setopt COMPLETE_IN_WORD         # Complete from both ends of a word
-setopt ALWAYS_TO_END            # Move cursor to the end of a completed word
-setopt AUTO_MENU           		# Show completion menu on a succesive tab press
-setopt AUTO_LIST				# Automatically list choices on ambiguous completions
-unsetopt LIST_AMBIGUOUS
-setopt AUTO_PARAM_SLASH         # If completed parameter is a directory, add a trailing slash
-setopt NO_NOMATCH               # Passes bad match onto the command
-unsetopt MENU_COMPLETE    		# Do not autoselect the first completion entry
+#setopt COMPLETE_IN_WORD         # Complete from both ends of a word
+#setopt ALWAYS_TO_END            # Move cursor to the end of a completed word
+#setopt AUTO_MENU           		# Show completion menu on a succesive tab press
+#setopt AUTO_LIST				# Automatically list choices on ambiguous completions
+#unsetopt LIST_AMBIGUOUS
+#setopt AUTO_PARAM_SLASH         # If completed parameter is a directory, add a trailing slash
+#setopt NO_NOMATCH               # Passes bad match onto the command
+setopt MENU_COMPLETE    		# Autoselect the first completion entry
 setopt   GLOB_COMPLETE     		# Show completions for glob instead of expanding
 unsetopt COMPLETE_ALIASES
 

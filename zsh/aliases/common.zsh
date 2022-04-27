@@ -56,21 +56,3 @@ alias scc='scrapy crawl'
 alias scs='scrapy shell'
 alias server='python3 -m http.server'
 alias venv='virtualenv venv && source ./venv/bin/activate'
-
-# other
-alias fox='firefox'
-alias cht='cht.sh'
-
-# os/ide specific
-alias noidea='find . -type d -name .idea -ls -exec rm -rf {} +'
-alias noeclipse='rm -rf .settings .classpath .factorypath .project'
-alias nomac='find . -name '.DS_Store' -type f -delete'
-
-# vpn
-alias pvpnc='pvpn -c'
-alias pvpnd='pvpn -d'
-alias pvpnr='pvpn --reconnect'
-alias pvpnf='pvpn -f'
-
-# zsh
-alias zshdebug='zsh -xv &>> (tee ~/zsh-debug.log 2>/dev/null)'

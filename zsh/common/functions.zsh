@@ -1,21 +1,49 @@
+#!/usr/bin/zsh
+
 fpath=($fpath $ZFUNCTIONS/time-functions.zsh)
 
-source $ZFUNCTIONS/time-functions.zsh
-source $ZFUNCTIONS/rangercd.zsh
-source $ZFUNCTIONS/ctrlz.zsh
-source $ZFUNCTIONS/hstr.zsh
+#source $ZFUNCTIONS/time-functions.zsh
+#source $ZFUNCTIONS/rangercd.zsh
 
+# ====
+# HSTR
+# ====
+# https://github.com/dvorka/hstr
+
+export HSTR_CONFIG=hicolor,raw-history-view
+
+# ========
+# AUTOJUMP
+# ========
 # https://github.com/wting/autojump
-[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+source /etc/profile.d/autojump.sh
 
-# NOTE: fzf-tab needs to be loaded after compinit, but before plugins which will wrap widgets, such as zsh-autosuggestions or fast-syntax-highlighting!!
-source /home/morel/dotfiles/zsh/functions/fzf-tab/fzf-tab.plugin.zsh
+# ===
+# FZF
+# ===
+# NOTE: fzf-tab needs to be loaded after compinit,
+# but before plugins which will wrap widgets,
+# such as zsh-autosuggestions or fast-syntax-highlighting!!
+# source /home/morel/dotfiles/zsh/functions/fzf-tab/fzf-tab.plugin.zsh
 
+# ===================
+# ZSH AUTOSUGGESTIONS
+# ===================
 # https://github.com/zsh-users/zsh-autosuggestions
+# Disabling suggestion for large buffers
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=256
+# export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
+#     widget::key-right
+#     widget::key-ctrl-space
+# )
+# This plugin works by triggering custom behavior when certain zle widgets are invoked.
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Disabling suggestion for large buffers
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40
+# ===================
+# SYNTAX HIGHLIGHTING
+# ===================
 
 # Load zsh-syntax-highlighting; should be last.
-source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.zsh 2> /dev/null
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+
+#
