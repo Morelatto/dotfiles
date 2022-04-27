@@ -13,9 +13,6 @@
 [submodule "i3/scripts/barify"]
 	path = i3/scripts/barify
 	url = https://github.com/Arctize/barify
-[submodule "zsh/functions/zsh-syntax-highlighting-filetypes"]
-	path = zsh/functions/zsh-syntax-highlighting-filetypes
-	url = https://github.com/trapd00r/zsh-syntax-highlighting-filetypes
 [submodule "zsh/functions/zsh-syntax-highlighting"]
 	path = zsh/functions/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting

@@ -44,3 +44,11 @@ setopt TRANSIENT_RPROMPT        # Only show the rprompt on the current prompt
 
 # Sound
 setopt NO_BEEP                  # Silence all bells and beeps
+
+
+# Set/unset  shell options
+# setopt   notify globdots correct pushdtohome cdablevars autolist
+# setopt   correctall autocd recexact longlistjobs
+# setopt   autoresume histignoredups pushdsilent noclobber
+# setopt   autopushd pushdminus extendedglob rcquotes mailwarning
+# unsetopt bgnice autoparamslash

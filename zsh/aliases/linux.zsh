@@ -43,9 +43,12 @@ alias diff='diff --color=auto'
 alias df='df -h'
 alias mkdir='mkdir -p'
 alias md='mkdir'
+alias off='xset dpms force off'
 alias rf='readlink -f'
+alias rm='rm-p'
 alias rmrf='rm -rf'
 alias tf='tail -F'
+alias xrl='xrdb -load ~/.Xresources'
 
 # ls
 alias ls='ls -Fh --color=always'
@@ -57,7 +60,6 @@ alias llr='ll -R'
 alias lra='lr -A'
 alias l.='ls -d .*'
 
-# more ls
 alias lse='ls -d -- *(/^F)'                                             # empty directories
 alias lsen='ls -d *(/om[1])'                                            # newest directory
 alias lsx='ls -l -- *(*) | head $@ 2&>/dev/null'                        # executables
@@ -65,6 +67,13 @@ alias lsnew='=ls -rtlh -- *(.) | tail $@ 2&>/dev/null'                  # newest
 alias lsold='=ls -rtl -- *(.) | head $@ 2&>/dev/null'                   # oldest files
 alias lsmall='=ls -Sl -- *(.) | tail $@ 2&>/dev/null'                   # smallest files
 alias lsbig='=ls -lSh -- *(.) | grep -v total | head $@ 2&>/dev/null'   # biggest files
+
+# List only directories and symbolic
+# links that point to directories
+alias lsd='ls -ld *(-/DN)'
+
+# List only file beginning with "."
+alias lsa='ls -ld .*'
 
 # mount
 alias mount='sudo mount'
@@ -79,8 +88,11 @@ alias ip='ip -color=auto'
 alias ipe='curl ifconfig.me'
 alias openvpn='sudo openvpn'
 
+# path
+alias path='echo $PATH | tr -s ":" "\n"'
+alias fpath='echo $FPATH | tr -s ":" "\n"'
+
 # ps
-alias pp='psgrep'
 alias pmem='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
 alias pcpu='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head'
 
@@ -97,6 +109,11 @@ alias tarbz2='tar xjf'
 alias tarxz='tar xf'
 alias tarls='tar tvf'
 
+# tree
+alias t1='tree -L 1'
+alias t2='tree -L 2'
+alias t3='tree -L 3'
+
 # vim
 alias vi='vim'
 alias nano='vim'
@@ -104,21 +121,30 @@ alias emacs='vim'
 alias sv='sudo vim'
 alias vimplug='vim +PluginInstall +qall'
 
+
+# clipboard
+alias paste='xsel -o'
+alias xcopy='xclip -sel clip'
+
 # utils
 alias aee="$EDITOR $ZALIASES && source $ZCOMMON/aliases.zsh"
-alias cat='bat --paging=never'
-alias cht='cht.sh'
-alias fox='firefox'
 alias i3e="$EDITOR $XDG_CONFIG_HOME/i3/config && i3-msg reload"
+alias xre="$EDITOR ~/.Xresources && xrl"
+alias zshe="$EDITOR $ZDOTDIR"
+
+# delete multiple files
 alias noeclipse='rm -rf .settings .classpath .factorypath .project'
 alias nomac='find . -name '.DS_Store' -type f -delete'
 alias noidea='find . -type d -name .idea -ls -exec rm -rf {} +'
-alias off='xset dpms force off'
-alias paste='xsel -o'
-alias path='echo $PATH | tr -s ":" "\n"'
-alias fpath='echo $FPATH | tr -s ":" "\n"'
-alias xre="$EDITOR ~/.Xresources && xrl"
-alias xrl='xrdb -load ~/.Xresources'
-alias zshe="$EDITOR $ZDOTDIR"
-alias zshd='zsh -xv &>> (tee ~/zsh-debug.log 2>/dev/null)'
+alias pycache="find . -type f -name '*.pyc' -delete && find . -type d -name '__pycache__' -delete"
+
+# external
+alias cat='bat --paging=never'
+alias cht='cht.sh'
+alias fox='firefox'
+alias pp='psgrep'
 alias quote='shuf -n 1 ~/Quotables/author-quote.txt'
+
+
+
+alias zshd='zsh -xv &>> (tee ~/zsh-debug.log 2>/dev/null)'

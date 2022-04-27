@@ -45,14 +45,13 @@ alias mvci='mvc && mvi'
 
 # python
 alias py='python3'
-alias python='python3'
-alias pip='pip3'
-alias pipi='pip install'
-alias freeze='pip3 freeze > requirements.txt'
+alias pi='pip3'
+alias pii='pip install'
+alias freeze='pip freeze > requirements.txt'
 alias requires='pip install -r requirements.txt'
-alias pycache="find . -type f -name '*.pyc' -delete && find . -type d -name '__pycache__' -delete"
 alias sc='scrapy'
 alias scc='scrapy crawl'
 alias scs='scrapy shell'
 alias server='python3 -m http.server'
 alias venv='virtualenv venv && source ./venv/bin/activate'
+alias json='python3 -m json.tool'

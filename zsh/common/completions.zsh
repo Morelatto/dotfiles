@@ -1,36 +1,55 @@
+# Completion Styles
+
 # Initialize completion
-autoload -Uz compinit
+autoload -U compinit
 
 # Use cache
 compinit -d "$ZSH_CACHE/zcompdump"
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path $ZSH_CACHE
 
-# Enable approximate completions
-zstyle ':completion:*' completer _complete _ignored _approximate
-# Allow one error for every three characters typed in approximate completer
-zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3)) numeric)'
+# list of completers to use
+zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
 
-# Use menu completion
+# allow one error for every three characters typed in approximate completer
+zstyle -e ':completion:*:approximate:*' max-errors \
+    'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
+
+# insert all expansions for expand completer
+zstyle ':completion:*:expand:*' tag-order all-expansions
+
+# formatting and messages
+zstyle ':completion:*' verbose yes
 zstyle ':completion:*' menu select
+zstyle ':completion:*:descriptions' format '%B%d%b'
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' list-dirs-first true
+zstyle ':completion:*' accept-exact-dirs true
 
-# Verbose completion results
-zstyle ':completion:*' verbose true
-
-# Smart matching of dashed values, e.g. f-b matching foo-bar
-zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*'
-
-# 
+# match uppercase from lowercase
+#zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+#zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*'
 zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
 
-# Group results by category
-zstyle ':completion:*' group-name ''
+# offer indexes before parameters in subscripts
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
-# Keep directories and files separated
-zstyle ':completion:*' list-dirs-first true
+# command for process lists, the local web server details and host completion
+#zstyle ':completion:*:processes' command 'ps -o pid,s,nice,stime,args'
+#zstyle ':completion:*:urls' local 'www' '/var/www/htdocs' 'public_html'
+zstyle '*' hosts $hosts
 
-# Don't try parent path completion if the directories exist
-zstyle ':completion:*' accept-exact-dirs true
+# Filename suffixes to ignore during completion (except after rm command)
+zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
+    '*?.old' '*?.pro'
+# the same for old style completion
+#fignore=(.o .c~ .old .pro)
+
+# ignore completion functions (until the _ignored completer)
+zstyle ':completion:*:functions' ignored-patterns '_*'
 
 # Always use menu selection for `cd -`
 zstyle ':completion:*:*:cd:*:directory-stack' force-list always
@@ -62,10 +81,3 @@ function _set-list-colors() {
 }
 # Deferred since LC_COLORS might not be available yet
 sched 0 _set-list-colors
-
-
-# Include hidden files.
-_comp_options+=(globdots)
-
-# insert all expansions for expand completer
-zstyle ':completion:*:expand:*' tag-order all-expansions
