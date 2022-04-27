@@ -20,8 +20,8 @@ zstyle ':completion:*' verbose true
 # Smart matching of dashed values, e.g. f-b matching foo-bar
 zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*'
 
-# Case-insensitive (all), partial-word and then substring completion
-# zstyle ':completion:*' matcher-list 'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
+# 
+zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
 
 # Group results by category
 zstyle ':completion:*' group-name ''

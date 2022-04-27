@@ -6,9 +6,10 @@ bindkey '^ ' autosuggest-accept
 
 # [Tab] - https://zsh.sourceforge.io/FAQ/zshfaq04.html#l52
 bindkey '^I' expand-or-complete-prefix
+#bindkey '\CI' expand-or-complete
 
 # [Ctrl-R] - hstr
-# bindkey -s "\C-r" "\C-a hstr -- \C-j"
+bindkey -s "\C-r" "\C-a hstr -- \C-j"
 
 # ctrl l = clear
 # ctrl z
@@ -17,5 +18,5 @@ bindkey '^I' expand-or-complete-prefix
 # ctrl r = hstr
 # ctrl shift r
 # tab = completion
-zmodload zsh/complist
-bindkey -M menuselect '^M' .accept-line
+# ctrl space = accept autosuggest
+# ctrl backspace = kill word

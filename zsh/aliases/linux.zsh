@@ -121,3 +121,4 @@ alias xre="$EDITOR ~/.Xresources && xrl"
 alias xrl='xrdb -load ~/.Xresources'
 alias zshe="$EDITOR $ZDOTDIR"
 alias zshd='zsh -xv &>> (tee ~/zsh-debug.log 2>/dev/null)'
+alias quote='shuf -n 1 ~/Quotables/author-quote.txt'
