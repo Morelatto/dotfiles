@@ -10,18 +10,27 @@
 [submodule "firefox/user.js"]
 	path = firefox/user.js
 	url = https://github.com/arkenfox/user.js
-[submodule "i3/scripts/calendar-notification"]
-	path = i3/scripts/calendar-notification
-	url = https://github.com/chebro/calendar-notification
 [submodule "i3/scripts/barify"]
 	path = i3/scripts/barify
 	url = https://github.com/Arctize/barify
 [submodule "zsh/functions/zsh-syntax-highlighting-filetypes"]
 	path = zsh/functions/zsh-syntax-highlighting-filetypes
 	url = https://github.com/trapd00r/zsh-syntax-highlighting-filetypes
-[submodule "zsh/zsh-syntax-highlighting"]
-	path = zsh/zsh-syntax-highlighting
+[submodule "zsh/functions/zsh-syntax-highlighting"]
+	path = zsh/functions/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
 [submodule "scripts/termdown"]
 	path = scripts/termdown
 	url = https://github.com/trehn/termdown
+[submodule "i3blocks/i3blocks-contrib"]
+	path = i3blocks/i3blocks-contrib
+	url = https://github.com/vivien/i3blocks-contrib
+[submodule "dunst/calendar-notification"]
+	path = dunst/calendar-notification
+	url = https://github.com/chebro/calendar-notification
+[submodule "powerline/powerline-shell"]
+	path = powerline/powerline-shell
+	url = https://github.com/b-ryan/powerline-shell
+[submodule "powerline/sbp"]
+	path = powerline/sbp
+	url = https://github.com/brujoand/sbp
