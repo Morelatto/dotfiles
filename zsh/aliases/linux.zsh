@@ -66,6 +66,19 @@ alias lsold='=ls -rtl -- *(.) | head $@ 2&>/dev/null'                   # oldest
 alias lsmall='=ls -Sl -- *(.) | tail $@ 2&>/dev/null'                   # smallest files
 alias lsbig='=ls -lSh -- *(.) | grep -v total | head $@ 2&>/dev/null'   # biggest files
 
+# mount
+alias mount='sudo mount'
+alias umount='sudo umount'
+
+# network
+alias hosts='cat /etc/hosts'
+alias pingd='ping -c3 archlinux.org'
+alias resolv='cat /etc/resolv.conf'
+alias dhcpcd='sudo dhcpcd'
+alias ip='ip -color=auto'
+alias ipe='curl ifconfig.me'
+alias openvpn='sudo openvpn'
+
 # ps
 alias pp='psgrep'
 alias pmem='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
@@ -75,9 +88,6 @@ alias pcpu='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head'
 alias chown='sudo chown'
 alias fdisk='sudo fdisk'
 alias journal='sudo journalctl --since=today'
-alias mount='sudo mount'
-alias openvpn='sudo openvpn'
-alias umount='sudo umount'
 
 # tar
 alias targz='tar xzf'
@@ -95,15 +105,19 @@ alias sv='sudo vim'
 alias vimplug='vim +PluginInstall +qall'
 
 # utils
+alias aee="$EDITOR $ZALIASES && source $ZCOMMON/aliases.zsh"
+alias cat='bat --paging=never'
+alias cht='cht.sh'
+alias fox='firefox'
+alias i3e="$EDITOR $XDG_CONFIG_HOME/i3/config && i3-msg reload"
+alias noeclipse='rm -rf .settings .classpath .factorypath .project'
+alias nomac='find . -name '.DS_Store' -type f -delete'
+alias noidea='find . -type d -name .idea -ls -exec rm -rf {} +'
 alias off='xset dpms force off'
 alias paste='xsel -o'
 alias path='echo $PATH | tr -s ":" "\n"'
+alias fpath='echo $FPATH | tr -s ":" "\n"'
+alias xre="$EDITOR ~/.Xresources && xrl"
 alias xrl='xrdb -load ~/.Xresources'
-alias cat='bat --paging=never'
-
-# network
-alias hosts='cat /etc/hosts'
-alias pingd='ping -c3 duckduckgo.com'
-alias resolv='cat /etc/resolv.conf'
-alias dhcpcd='sudo dhcpcd'
-alias ip='ip -color=auto'
+alias zshe="$EDITOR $ZDOTDIR"
+alias zshd='zsh -xv &>> (tee ~/zsh-debug.log 2>/dev/null)'

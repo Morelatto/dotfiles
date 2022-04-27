@@ -4,9 +4,6 @@
 [submodule "zsh/functions/fzf-tab"]
 	path = zsh/functions/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab
-[submodule "xterm/LS_COLORS"]
-	path = xterm/LS_COLORS
-	url = https://github.com/trapd00r/LS_COLORS
 [submodule "xterm/Xresources-themes"]
 	path = xterm/Xresources-themes
 	url = https://github.com/janoamaral/Xresources-themes
@@ -19,3 +16,12 @@
 [submodule "i3/scripts/barify"]
 	path = i3/scripts/barify
 	url = https://github.com/Arctize/barify
+[submodule "zsh/functions/zsh-syntax-highlighting-filetypes"]
+	path = zsh/functions/zsh-syntax-highlighting-filetypes
+	url = https://github.com/trapd00r/zsh-syntax-highlighting-filetypes
+[submodule "zsh/zsh-syntax-highlighting"]
+	path = zsh/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "scripts/termdown"]
+	path = scripts/termdown
+	url = https://github.com/trehn/termdown

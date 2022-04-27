@@ -1,19 +1,22 @@
-# Enable colors and change prompt:
-autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
-# Load shell and completion options
-[ -e "$ZCOMMON/options.zsh" ] && source "$ZCOMMON/options.zsh"
-[ -e "$ZCOMMON/completions.zsh" ] && source "$ZCOMMON/completions.zsh"
+rec_find() {
+    local f
+    for f in "$1"/*; do
+        [[ -d $f ]] && rec_find "$f"
+        [[ -f $f ]] && [[ $f == *.zsh ]] && source $f
+    done
+}
 
-# Load aliases and shortcuts if existent.
-[ -e "$ZCOMMON/keybindings.zsh" ] && source "$ZCOMMON/keybindings.zsh"
-[ -e "$ZCOMMON/aliases.zsh" ] && source "$ZCOMMON/aliases.zsh"
 
-# Load custom functions and plugins
-[ -e "$ZCOMMON/functions.zsh" ] && source "$ZCOMMON/functions.zsh"
+color_prompt() {
+    autoload -U colors && colors
+    export PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+    colorscript -r
+}
 
-# Rehash on package updates
+
 TRAPUSR1() { rehash }
 
-colorscript -r
+color_prompt
+
+rec_find "$ZDOTDIR"
