@@ -1,16 +1,15 @@
+#
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export ZSH_CACHE=$XDG_CACHE_HOME/zsh
 export ZFUNCTIONS=$ZDOTDIR/functions
 export ZALIASES=$ZDOTDIR/aliases
 export ZCOMMON=$ZDOTDIR/common
 
-export TERMINAL=xterm
 export EDITOR=vim
 export VISUAL=$VISUAL
 export BROWSER=firefox
 export LESS='-R --use-color -Dd+r$Du+b'
+export DOTDIR=$HOME/dotfiles
 
 typeset -U path
 path=(~/.local/bin ~/.cargo/bin ~/go/bin $path)
-
-export DOTDIR=$HOME/dotfiles
