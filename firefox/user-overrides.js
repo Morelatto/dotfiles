@@ -65,3 +65,7 @@ user_pref("privacy.clearOnShutdown.history", false); // 2811
 user_pref("privacy.cpd.history", false); // 2812 to match when you use Ctrl-Shift-Del
   // user_pref("privacy.cpd.cookies", false); // 2812 optional: default false arkenfox v94
   // user_pref("privacy.cpd.formdata", false); // 2812 optional
+
+
+
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);

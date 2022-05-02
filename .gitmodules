@@ -31,3 +31,12 @@
 [submodule "powerline/sbp"]
 	path = powerline/sbp
 	url = https://github.com/brujoand/sbp
+[submodule "zsh/functions/zsh-histdb"]
+	path = zsh/functions/zsh-histdb
+	url = https://github.com/larkery/zsh-histdb.git
+[submodule "i3status/bumblebee-status"]
+	path = i3status/bumblebee-status
+	url = https://github.com/tobi-wan-kenobi/bumblebee-status
+[submodule "zsh/functions/zsh-completions"]
+	path = zsh/functions/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git
