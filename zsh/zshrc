@@ -25,8 +25,12 @@ color_prompt() {
     colorscript -r
 }
 
-
 TRAPUSR1() { rehash }
+
+color_prompt
+
+rec_find $ZDOTDIR
+
 
 # function powerline_precmd() {
 #     PS1="$(powerline-shell --shell zsh $?)"
@@ -45,8 +49,5 @@ TRAPUSR1() { rehash }
 #     install_powerline_precmd
 # fi
 
-color_prompt
-
-rec_find $ZDOTDIR
 
 return 0

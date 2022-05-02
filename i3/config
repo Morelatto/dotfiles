@@ -1,34 +1,53 @@
+# http://i3wm.org/docs/userguide.html
+
+font pango:DejaVu Sans Mono 12
+
 set $mod Mod4
 
-font pango:DejaVu Sans Mono 14
+set $left   j
+set $down   k
+set $up     l
+set $right  semicolon
+
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
+set $ws10 "0:"
 
 floating_modifier $mod
 
 bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+Tab exec --no-startup-id rofi -monitor -1 -show window
 
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-bindsym $mod+h focus left
+bindsym $mod+$up    focus up
+bindsym $mod+$down  focus down
+bindsym $mod+$right focus right
+bindsym $mod+$left  focus left
 
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-bindsym $mod+Shift+h move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+$left move left
 
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-bindsym $mod+b split h
+bindsym $mod+h split h
 bindsym $mod+v split v
 
 bindsym $mod+f fullscreen toggle
@@ -38,21 +57,31 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 bindsym $mod+Shift+space floating toggle
+
 bindsym $mod+space focus mode_toggle
 
 bindsym $mod+a focus parent
-#bindsym $mod+d focus child
+bindsym $mod+Shift+a focus child
 
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "0"
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# show the next scratchpad window or hide the focused scratchpad window
+bindsym $mod+minus scratchpad show
+
+# move focused floating window to the current position of the cursor
+bindsym $mod+Shift+m move position mouse
+
+# set a window to stick to the glass
+bindsym $mod+Shift+s sticky toggle
+
+# sticky preview for media
+bindsym $mod+Shift+p fullscreen disable; floating enable; resize set 350 px 197 px; sticky enable; move window to position 1006 px 537 px
+
+# shortcut to change window border
+bindsym $mod+t border normal    0
+bindsym $mod+y border pixel     1
+bindsym $mod+u border none
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -77,26 +106,26 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10; workspace number $ws10
 
 # fixed workspaces
-workspace $ws1 output primary
-workspace $ws2 output primary
-workspace $ws3 output primary
-workspace $ws4 output primary
-workspace $ws5 output primary
-workspace $ws6 output HDMI-1
-workspace $ws7 output HDMI-1
-workspace $ws8 output HDMI-1
-workspace $ws9 output HDMI-1
-workspace $ws10 output primary
+#workspace $ws1 output primary
+#workspace $ws2 output primary
+#workspace $ws3 output primary
+#workspace $ws4 output primary
+#workspace $ws5 output primary
+#workspace $ws6 output HDMI-1
+#workspace $ws7 output HDMI-1
+#workspace $ws8 output HDMI-1
+#workspace $ws9 output HDMI-1
+#workspace $ws10 output primary
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-mode "resize" {
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-        bindsym h resize shrink width 10 px or 10 ppt
+mode "  " {
+        bindsym $left   resize shrink width 10 px or 10 ppt
+        bindsym $down   resize grow height 10 px or 10 ppt
+        bindsym $up     resize shrink height 10 px or 10 ppt
+        bindsym $right  resize grow width 10 px or 10 ppt
 
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
@@ -108,34 +137,9 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym $mod+r mode "  "
 
-bar {
-	position top
-	status_command SCRIPT_DIR=$XDG_CONFIG_HOME/i3blocks/scripts i3blocks -c $XDG_CONFIG_HOME/i3blocks/config
-        tray_output primary
-        tray_padding 2
-        wheel_up_cmd nop
-        wheel_down_cmd nop
-colors {
-        background  #212121
-        statusline  #dddddd
-        separator   #666666
-        # class             border  backgr. text
-        focused_workspace   #242424 #D5D5D5 #242424
-        active_workspace    #212121 #212121 #ffffff
-        inactive_workspace  #212121 #212121 #86888c
-        urgent_workspace    #d64e4e #d64e4e #ffffff
-        binding_mode        #229c56 #229c56 #ffffff
-    }
-}
-
-#    bindsym $mod+s "exec --no-startup-id dmenu"
-
-# removes title from windows
-for_window [class="^.*"] border pixel 1
-
-# sets colors from Xresources
+# colors from Xresources
 set_from_resource $fg i3wm.foreground
 set_from_resource $bg i3wm.background
 set_from_resource $cl0 i3wm.color0
@@ -154,6 +158,12 @@ set_from_resource $cl12 i3wm.color12
 set_from_resource $cl13 i3wm.color13
 set_from_resource $cl14 i3wm.color14
 set_from_resource $cl15 i3wm.color15
+set_from_resource $cl16 i3wm.color16
+set_from_resource $cl17 i3wm.color17
+set_from_resource $cl18 i3wm.color18
+set_from_resource $cl19 i3wm.color19
+set_from_resource $cl20 i3wm.color20
+set_from_resource $cl21 i3wm.color21
 
 # class                 border  backgr. text   indicator child_border
 client.focused          $cl7    $bg     $fg    $fg       $cl7
@@ -161,13 +171,39 @@ client.focused_inactive $cl0    $bg     $fg    $bg       $bg
 client.unfocused        $cl0    $bg     $fg    $bg       $bg
 client.urgent           $cl13   $bg     $cl13  $bg       $cl13
 client.placeholder      $bg     $bg     $fg    $bg       $fg
-
 client.background       $bg
 
+bar {
+        font                    pango:Inconsolata 11
+        position                top
+        tray_output             primary
+        tray_padding            2
+        bindsym button4         nop
+        bindsym button5         nop
+        status_command          bumblebee-status
+        colors {
+                background  $bg
+                statusline  $fg
+                # class             border  backgr. text
+                focused_workspace   $cl19 $cl7 $cl19
+                active_workspace    $cl18 $cl18 $cl15
+                inactive_workspace  $cl18 $cl18 $cl20
+                urgent_workspace    $cl19 $cl5 $cl15
+                binding_mode        $cl18 $cl3 $cl2
+            }
+}
+
+# i3-gaps
+gaps inner 10
+gaps outer 10
+
+# removes title from windows
+for_window [class="^.*"] border pixel 1
+
 # back and forth
-bindsym $mod+Tab workspace back_and_forth
-bindsym $mod+n workspace next
-bindsym $mod+p workspace prev
+#bindsym $mod+Tab workspace back_and_forth
+#bindsym $mod+n workspace next
+#bindsym $mod+p workspace prev
 
 # lock screen
 # bindsym Control+$mod+l exec --no-startup-id ~/.config/i3/lock.sh
@@ -178,9 +214,9 @@ bindsym --release Print exec --no-startup-id "maim | tee ~/Pictures/$(date +%F_%
 bindsym --release Ctrl+Print exec --no-startup-id "maim -i $(xdotool getactivewindow) | tee ~/Pictures/$(date +%F_%H-%M-%S)-Screenshot.png | xclip -selection clipboard -t image/png"
 
 # volume keys
-bindsym XF86AudioMute "exec --no-startup-id barify vol mute; exec pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioRaiseVolume "exec --no-startup-id barify vol up; exec pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioLowerVolume "exec --no-startup-id barify vol down; exec pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioMute "exec --no-startup-id barify vol mute"
+bindsym XF86AudioRaiseVolume "exec --no-startup-id barify vol up"
+bindsym XF86AudioLowerVolume "exec --no-startup-id barify vol down"
 
 # media control
 bindsym XF86AudioNext "exec --no-startup-id playerctl next"
@@ -188,11 +224,8 @@ bindsym XF86AudioPrev "exec --no-startup-id playerctl previous"
 bindsym XF86AudioPlay "exec --no-startup-id playerctl play-pause"
 bindsym XF86AudioStop "exec --no-startup-id playerctl stop"
 
-# gaps
-gaps inner 10
-gaps outer 10
-
 # auto start
 exec_always --no-startup-id killall dunst; dunst -lf "$fg" -nf "$fg" -cf "$fg" -lb "$bg" -nb "$bg" -cb "$bg" -lfr "$lw" -nfr "$cl10" -cfr "$cl13"
+
 exec --no-startup-id nm-applet --sm-disable
 exec --no-startup-id picom --experimental-backends -b

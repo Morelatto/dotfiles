@@ -1,6 +1,8 @@
 #
+
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export ZSH_CACHE=$XDG_CACHE_HOME/zsh
+export HISTFILE=$ZSH_CACHE/zhistfile && export 
 export ZFUNCTIONS=$ZDOTDIR/functions
 export ZALIASES=$ZDOTDIR/aliases
 export ZCOMMON=$ZDOTDIR/common
@@ -13,3 +15,4 @@ export DOTDIR=$HOME/dotfiles
 
 typeset -U path
 path=(~/.local/bin ~/.cargo/bin ~/go/bin $path)
+

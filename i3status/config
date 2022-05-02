@@ -1,0 +1,14 @@
+[core]
+modules = pasink,pasource,nic,arch-update,cpu,memory,disk,date,time,dunst
+autohide = pasource,arch-update
+theme = onedark-powerline
+
+[module-parameters]
+pasink.left-click=pavucontrol
+nic.states=^down
+cpu.format={:.2f}%
+disk.path=/
+date.format=%a, %b %d %Y
+#date.left-click=pavucontrol
+time.format=%H:%M
+engine.workspacewrap=false
