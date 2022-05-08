@@ -1,8 +1,5 @@
 # Completion Styles
 
-autoload -U compinit
-compinit -d "$ZSH_CACHE/zcompdump" # Use cache
-
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path $ZSH_CACHE
 zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
@@ -18,3 +15,4 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*' list-dirs-first true
 #zstyle ':completion:*' accept-exact-dirs true
 zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' # 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' list-colors ''

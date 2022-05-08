@@ -1,12 +1,13 @@
 # Global aliases -- These do not have to be
 # at the beginning of the command line.
-alias -g A='&>>' # Redirect and append both stdout and stderr to file
+# Redirect and append both stdout and stderr to file
+alias -g A='&>>'
 alias -g C='|cat -A'
-alias -g F='|fzf '
-alias -g G='|grep '
-alias -g H='|head'
+alias -g F='|fzf'
+alias -g G='|grep'
+alias -g H='|head -n'
 alias -g L='|less'
-alias -g M='|more'
+alias -g M='|most'
 alias -g N='2>/dev/null'
 alias -g R='2>&1'
 alias -g RC='R|color'

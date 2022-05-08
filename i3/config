@@ -1,131 +1,99 @@
+# i3 config file [V1]
 # http://i3wm.org/docs/userguide.html
 
 font pango:DejaVu Sans Mono 12
 
 set $mod Mod4
 
-set $left   j
-set $down   k
-set $up     l
-set $right  semicolon
+set $vl h
+set $vd j
+set $vu k
+set $vr l
 
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6:"
-set $ws7 "7:"
-set $ws8 "8:"
-set $ws9 "9:"
-set $ws10 "0:"
+set $ws1 "1: "
+set $ws2 "2: "
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5: "
+set $ws6 "6: "
+set $ws7 "7: "
+set $ws8 "8: "
+set $ws9 "9: "
+set $ws10 "10: "
+
+set $secondary "HDMI-1"
 
 floating_modifier $mod
 
-bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
-bindsym $mod+Shift+q kill
-bindsym $mod+d exec --no-startup-id rofi -show run
-bindsym $mod+Tab exec --no-startup-id rofi -monitor -1 -show window
+# Focus
+bindsym         $mod+$vu                        focus up
+bindsym         $mod+Up                         focus up
+bindsym         $mod+$vd                        focus down
+bindsym         $mod+Down                       focus down
+bindsym         $mod+$vr                        focus right
+bindsym         $mod+Right                      focus right
+bindsym         $mod+$vl                        focus left
+bindsym         $mod+Left                       focus left
+bindsym         $mod+space                      focus mode_toggle
+bindsym         $mod+a                          focus parent
+bindsym         $mod+Shift+a                    focus child
 
-bindsym $mod+$up    focus up
-bindsym $mod+$down  focus down
-bindsym $mod+$right focus right
-bindsym $mod+$left  focus left
+# Movement
+bindsym         $mod+Shift+$vd                  move down
+bindsym         $mod+Shift+$vu                  move up
+bindsym         $mod+Shift+$vr                  move right
+bindsym         $mod+Shift+$vl                  move left
+bindsym         $mod+Shift+Left                 move left
+bindsym         $mod+Shift+Down                 move down
+bindsym         $mod+Shift+Up                   move up
+bindsym         $mod+Shift+Right                move right
 
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+# Layout
+bindsym         $mod+b                          split horizontal
+bindsym         $mod+v                          split vertical
+bindsym         $mod+f                          fullscreen toggle
+bindsym         $mod+s                          layout stacking
+bindsym         $mod+w                          layout tabbed
+bindsym         $mod+e                          layout toggle split
+bindsym         $mod+Shift+space                floating toggle
 
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
-bindsym $mod+Shift+$left move left
+# Workspaces
+bindsym         $mod+1                          workspace $ws1
+bindsym         $mod+2                          workspace $ws2
+bindsym         $mod+3                          workspace $ws3
+bindsym         $mod+4                          workspace $ws4
+bindsym         $mod+5                          workspace $ws5
+bindsym         $mod+6                          workspace $ws6
+bindsym         $mod+7                          workspace $ws7
+bindsym         $mod+8                          workspace $ws8
+bindsym         $mod+9                          workspace $ws9
+bindsym         $mod+0                          workspace $ws10
+bindsym         $mod+Shift+1  move container to workspace $ws1; workspace number $ws1
+bindsym         $mod+Shift+2  move container to workspace $ws2; workspace number $ws2
+bindsym         $mod+Shift+3  move container to workspace $ws3; workspace number $ws3
+bindsym         $mod+Shift+4  move container to workspace $ws4; workspace number $ws4
+bindsym         $mod+Shift+5  move container to workspace $ws5; workspace number $ws5
+bindsym         $mod+Shift+6  move container to workspace $ws6; workspace number $ws6
+bindsym         $mod+Shift+7  move container to workspace $ws7; workspace number $ws7
+bindsym         $mod+Shift+8  move container to workspace $ws8; workspace number $ws8
+bindsym         $mod+Shift+9  move container to workspace $ws9; workspace number $ws9
+bindsym         $mod+Shift+0  move container to workspace $ws10; workspace number $ws10
+bindsym         $mod+n                          workspace next
+bindsym         $mod+p                          workspace prev
 
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+# Reload/Exit
+bindsym         $mod+Shift+c                    reload
+bindsym         $mod+Shift+r                    restart
+bindsym         $mod+Shift+e                    i3-msg exit
+bindsym         $mod+Shift+q                    kill
 
-bindsym $mod+h split h
-bindsym $mod+v split v
-
-bindsym $mod+f fullscreen toggle
-
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
-bindsym $mod+Shift+space floating toggle
-
-bindsym $mod+space focus mode_toggle
-
-bindsym $mod+a focus parent
-bindsym $mod+Shift+a focus child
-
-# move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# show the next scratchpad window or hide the focused scratchpad window
-bindsym $mod+minus scratchpad show
-
-# move focused floating window to the current position of the cursor
-bindsym $mod+Shift+m move position mouse
-
-# set a window to stick to the glass
-bindsym $mod+Shift+s sticky toggle
-
-# sticky preview for media
-bindsym $mod+Shift+p fullscreen disable; floating enable; resize set 350 px 197 px; sticky enable; move window to position 1006 px 537 px
-
-# shortcut to change window border
-bindsym $mod+t border normal    0
-bindsym $mod+y border pixel     1
-bindsym $mod+u border none
-
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
-
-bindsym $mod+Shift+1 move container to workspace $ws1; workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2; workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3; workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4; workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5; workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6; workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7; workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8; workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9; workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10; workspace number $ws10
-
-# fixed workspaces
-#workspace $ws1 output primary
-#workspace $ws2 output primary
-#workspace $ws3 output primary
-#workspace $ws4 output primary
-#workspace $ws5 output primary
-#workspace $ws6 output HDMI-1
-#workspace $ws7 output HDMI-1
-#workspace $ws8 output HDMI-1
-#workspace $ws9 output HDMI-1
-#workspace $ws10 output primary
-
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
+# Resize mode
+bindsym         $mod+r                          mode "  "
 mode "  " {
-        bindsym $left   resize shrink width 10 px or 10 ppt
-        bindsym $down   resize grow height 10 px or 10 ppt
-        bindsym $up     resize shrink height 10 px or 10 ppt
-        bindsym $right  resize grow width 10 px or 10 ppt
+        bindsym $vl resize shrink width 10 px or 10 ppt
+        bindsym $vd resize grow height 10 px or 10 ppt
+        bindsym $vu resize shrink height 10 px or 10 ppt
+        bindsym $vr resize grow width 10 px or 10 ppt
 
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
@@ -137,42 +105,41 @@ mode "  " {
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "  "
+# Colors
+set_from_resource               $fg             i3wm.foreground
+set_from_resource               $bg             i3wm.background
+set_from_resource               $cl0            i3wm.color0
+set_from_resource               $cl1            i3wm.color1
+set_from_resource               $cl2            i3wm.color2
+set_from_resource               $cl3            i3wm.color3
+set_from_resource               $cl4            i3wm.color4
+set_from_resource               $cl5            i3wm.color5
+set_from_resource               $cl6            i3wm.color6
+set_from_resource               $cl7            i3wm.color7
+set_from_resource               $cl8            i3wm.color8
+set_from_resource               $cl9            i3wm.color9
+set_from_resource               $cl10           i3wm.color10
+set_from_resource               $cl11           i3wm.color11
+set_from_resource               $cl12           i3wm.color12
+set_from_resource               $cl13           i3wm.color13
+set_from_resource               $cl14           i3wm.color14
+set_from_resource               $cl15           i3wm.color15
+set_from_resource               $cl16           i3wm.color16
+set_from_resource               $cl17           i3wm.color17
+set_from_resource               $cl18           i3wm.color18
+set_from_resource               $cl19           i3wm.color19
+set_from_resource               $cl20           i3wm.color20
+set_from_resource               $cl21           i3wm.color21
 
-# colors from Xresources
-set_from_resource $fg i3wm.foreground
-set_from_resource $bg i3wm.background
-set_from_resource $cl0 i3wm.color0
-set_from_resource $cl1 i3wm.color1
-set_from_resource $cl2 i3wm.color2
-set_from_resource $cl3 i3wm.color3
-set_from_resource $cl4 i3wm.color4
-set_from_resource $cl5 i3wm.color5
-set_from_resource $cl6 i3wm.color6
-set_from_resource $cl7 i3wm.color7
-set_from_resource $cl8 i3wm.color8
-set_from_resource $cl9 i3wm.color9
-set_from_resource $cl10 i3wm.color10
-set_from_resource $cl11 i3wm.color11
-set_from_resource $cl12 i3wm.color12
-set_from_resource $cl13 i3wm.color13
-set_from_resource $cl14 i3wm.color14
-set_from_resource $cl15 i3wm.color15
-set_from_resource $cl16 i3wm.color16
-set_from_resource $cl17 i3wm.color17
-set_from_resource $cl18 i3wm.color18
-set_from_resource $cl19 i3wm.color19
-set_from_resource $cl20 i3wm.color20
-set_from_resource $cl21 i3wm.color21
+client.focused                  $cl7            $bg             $fg             $fg             $cl7
+client.focused_inactive         $cl0            $bg             $fg             $bg             $bg
+client.unfocused                $cl0            $bg             $fg             $bg             $bg
+client.urgent                   $cl13           $bg             $cl13           $bg             $cl13
+client.placeholder              $bg             $bg             $fg             $bg             $fg
+client.background               $bg
 
-# class                 border  backgr. text   indicator child_border
-client.focused          $cl7    $bg     $fg    $fg       $cl7
-client.focused_inactive $cl0    $bg     $fg    $bg       $bg
-client.unfocused        $cl0    $bg     $fg    $bg       $bg
-client.urgent           $cl13   $bg     $cl13  $bg       $cl13
-client.placeholder      $bg     $bg     $fg    $bg       $fg
-client.background       $bg
 
+# Status bar
 bar {
         font                    pango:Inconsolata 11
         position                top
@@ -181,51 +148,79 @@ bar {
         bindsym button4         nop
         bindsym button5         nop
         status_command          bumblebee-status
+        strip_workspace_numbers yes
+
         colors {
                 background  $bg
                 statusline  $fg
                 # class             border  backgr. text
-                focused_workspace   $cl19 $cl7 $cl19
-                active_workspace    $cl18 $cl18 $cl15
-                inactive_workspace  $cl18 $cl18 $cl20
-                urgent_workspace    $cl19 $cl5 $cl15
-                binding_mode        $cl18 $cl3 $cl2
+                focused_workspace   $cl19   $cl7    $cl19
+                active_workspace    $cl18   $cl18   $cl15
+                inactive_workspace  $cl18   $cl18   $cl20
+                urgent_workspace    $cl19   $cl5    $cl15
             }
+
 }
+
+# Fixed workspaces
+workspace $ws1 output primary
+workspace $ws2 output primary
+workspace $ws3 output primary
+workspace $ws4 output primary
+workspace $ws5 output $secondary
+workspace $ws6 output $secondary
+workspace $ws7 output $secondary
+workspace $ws8 output $secondary
+workspace $ws9 output $secondary
+workspace $ws10 output $secondary
+
+# Windows
+assign [class="Spotify"] $ws6
+assign [class="firefox"] $ws3
+assign [class="subl"] $ws4
+
+for_window [class="^.*"] border pixel 1
+for_window [class="(?i)feh"] floating enable
+for_window [class="(?i)pavucontrol"] floating enable
+for_window [class="(?i)ncpamixer"] floating enable
+
+
+# Shortcuts
+bindsym                 $mod+Return                     exec --no-startup-id i3-sensible-terminal
+bindsym                 Control+$mod+l                  exec --no-startup-id lock
+bindsym --release       Shift+Print                     exec --no-startup-id sct partial
+bindsym --release       Print                           exec --no-startup-id sct full
+bindsym --release       Ctrl+Print                      exec --no-startup-id sct window
+bindsym                 XF86AudioMute                   exec --no-startup-id barify vol mute
+bindsym                 XF86AudioRaiseVolume            exec --no-startup-id barify vol up
+bindsym                 XF86AudioLowerVolume            exec --no-startup-id barify vol down
+bindsym                 XF86AudioNext                   exec --no-startup-id playerctl next
+bindsym                 XF86AudioPrev                   exec --no-startup-id playerctl previous
+bindsym                 XF86AudioPlay                   exec --no-startup-id playerctl play-pause
+bindsym                 XF86AudioStop                   exec --no-startup-id playerctl stop
+bindsym                 Ctrl+$mod+space                 exec --no-startup-id dunstctl close
+bindsym                 Ctrl+Shift+space                exec --no-startup-id dunstctl close-all
+bindsym                 Ctrl+grave                      exec --no-startup-id dunstctl history-pop
+bindsym                 Ctrl+Shift+period               exec --no-startup-id dunstctl context
+bindsym                 $mod+d                          exec --no-startup-id rofi -show run
+bindsym                 $mod+Tab                        exec --no-startup-id rofi -monitor -1 -show window
+bindsym                 $mod+Shift+minus                move scratchpad
+bindsym                 $mod+minus                      scratchpad show
+bindsym                 $mod+Shift+m                    move position mouse
+bindsym                 $mod+Shift+s                    sticky toggle
+bindsym                 $mod+Shift+p                    fullscreen disable; floating enable; resize set 350 px 197 px; sticky enable; move window to position 1006 px 537 px
+bindsym                 $mod+t                          border normal 0
+bindsym                 $mod+y                          border pixel 1
+bindsym                 $mod+u                          border none
+bindsym                 $mod+Escape                     kill
 
 # i3-gaps
 gaps inner 10
 gaps outer 10
 
-# removes title from windows
-for_window [class="^.*"] border pixel 1
+# Autostart
+exec_always --no-startup-id xautolock -time 10 -locker "lock"
+exec        --no-startup-id dunst -lf "$fg" -nf "$fg" -cf "$fg" -lb "$bg" -nb "$bg" -cb "$bg" -lfr "$lw" -nfr "$cl10" -cfr "$cl13"
+exec        --no-startup-id nm-applet --sm-disable
+exec        --no-startup-id picom --experimental-backends -b
 
-# back and forth
-#bindsym $mod+Tab workspace back_and_forth
-#bindsym $mod+n workspace next
-#bindsym $mod+p workspace prev
-
-# lock screen
-# bindsym Control+$mod+l exec --no-startup-id ~/.config/i3/lock.sh
-
-# screenshots
-bindsym --release Shift+Print exec --no-startup-id "maim -s | tee ~/Pictures/$(date +%F_%H-%M-%S)-Screenshot.png | xclip -selection clipboard -t image/png"
-bindsym --release Print exec --no-startup-id "maim | tee ~/Pictures/$(date +%F_%H-%M-%S)-Screenshot.png | xclip -selection clipboard -t image/png"
-bindsym --release Ctrl+Print exec --no-startup-id "maim -i $(xdotool getactivewindow) | tee ~/Pictures/$(date +%F_%H-%M-%S)-Screenshot.png | xclip -selection clipboard -t image/png"
-
-# volume keys
-bindsym XF86AudioMute "exec --no-startup-id barify vol mute"
-bindsym XF86AudioRaiseVolume "exec --no-startup-id barify vol up"
-bindsym XF86AudioLowerVolume "exec --no-startup-id barify vol down"
-
-# media control
-bindsym XF86AudioNext "exec --no-startup-id playerctl next"
-bindsym XF86AudioPrev "exec --no-startup-id playerctl previous"
-bindsym XF86AudioPlay "exec --no-startup-id playerctl play-pause"
-bindsym XF86AudioStop "exec --no-startup-id playerctl stop"
-
-# auto start
-exec_always --no-startup-id killall dunst; dunst -lf "$fg" -nf "$fg" -cf "$fg" -lb "$bg" -nb "$bg" -cb "$bg" -lfr "$lw" -nfr "$cl10" -cfr "$cl13"
-
-exec --no-startup-id nm-applet --sm-disable
-exec --no-startup-id picom --experimental-backends -b

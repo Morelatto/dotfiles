@@ -7,7 +7,8 @@ alias zee="$EDITOR $ZDOTDIR"
 alias a='alias'
 alias b='bat'
 alias c='cat'
-alias f='find'
+alias f='fd'
+alias h='histdb'
 alias l='ls'
 alias m='man'
 alias p='ps'
@@ -15,6 +16,7 @@ alias q='exit'
 alias s='sudo'
 alias t='tree'
 alias v='vim'
+alias y='yay'
 alias z='zsh'
 
 # cd
@@ -43,11 +45,9 @@ alias duh='du -s .*(/N) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; d
 alias cat='bat --paging=never'
 alias cht='cht.sh'
 alias fox='firefox'
+alias hstr='HSTR_CONFIG=hicolor,raw-history-view hstr --'
+alias pom='potato'
 alias psg='psgrep'
-
-# find
-alias fd='find . -type d -name'
-alias ff='find . -type f -name'
 
 # delete multiple files
 alias noeclipse='rm -rf .settings .classpath .factorypath .project'
@@ -80,6 +80,7 @@ alias gpf='git push --force'
 alias gpl='git pull'
 alias gs='git status'
 alias gsb='git submodule'
+alias gsba='git submodule add'
 alias gsoft='git reset'
 alias gst='git stash'
 alias gut='git stash pop'
@@ -107,6 +108,7 @@ alias ka='killall'
 alias k9='kill -9'
 
 # linux
+alias all='alias'
 alias chx='chmod +x'
 alias cp='cp -r'
 alias df='df -h'
@@ -135,7 +137,7 @@ alias lsbig='=ls -lSh -- *(.) | grep -v total | head $@ 2&>/dev/null'   # bigges
 
 # List only directories and symbolic
 # links that point to directories
-alias lsd='ls -ld *(-/DN)'
+alias lsd='ls -ld *(-/DN) R|lsd'
 
 # List only file beginning with "."
 alias lsa='ls -ld .*'
@@ -146,7 +148,7 @@ alias mpdf='man -Tpdf man >man.pdf'
 alias mps='man -t man > man.ps'
 alias mtxt='man -Ttxt man > man.txt'
 
-function man_exp() { 
+function man_exp() {
     =man -Ttxt $@ > man.txt
 }
 
@@ -231,3 +233,4 @@ alias quote='shuf -n 1 ~/Quotables/author-quote.txt'
 
 
 alias zshd='zsh -xv &>> (tee ~/zsh-debug.log 2>/dev/null)'
+
