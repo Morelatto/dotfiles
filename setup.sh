@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DOTFILES_DIR=$(dirname $(realpath -s $0))
+DOTDIR=$(dirname $(realpath -s $0))
 CONFIG_DIR=$HOME/.config
 RANGER_CONFIG_DIR=$CONFIG_DIR/ranger
 
@@ -15,13 +15,13 @@ sudo pacman -S --needed ripgrep bat httpie fd
 yay -S --needed --nodiffmenu --nocleanmenu i3blocks-gaps-git corrupter-git
 yay -S --needed --nodiffmenu --nocleanmenu adobe-source-code-pro-fonts speedtest-cli-git cht.sh
 
-sudo ln -sf ${DOTFILES_DIR}/misc/pacman.conf /etc/pacman.conf
-ln -s ${DOTFILES_DIR}/X11/xinitrc $HOME/.xinitrc
-ln -s ${DOTFILES_DIR}/X11/fehbg $HOME/.fehbg
-sudo ln -s ${DOTFILES_DIR}/X11/10-monitor.conf /etc/X11/xorg.conf.d/
-ln -s ${DOTFILES_DIR}/ranger/rc.conf ${RANGER_CONFIG_DIR}/
-ln -s ${DOTFILES_DIR}/ranger/scope.sh ${RANGER_CONFIG_DIR}/
-git config --global core.excludesfile ${DOTFILES_DIR}/misc/gitignore_global
+sudo ln -sf ${DOTDIR}/misc/pacman.conf /etc/pacman.conf
+ln -s ${DOTDIR}/X11/xinitrc $HOME/.xinitrc
+ln -s ${DOTDIR}/X11/fehbg $HOME/.fehbg
+sudo ln -s ${DOTDIR}/X11/10-monitor.conf /etc/X11/xorg.conf.d/
+ln -s ${DOTDIR}/ranger/rc.conf ${RANGER_CONFIG_DIR}/
+ln -s ${DOTDIR}/ranger/scope.sh ${RANGER_CONFIG_DIR}/
+git config --global core.excludesfile ${DOTDIR}/misc/gitignore_global
 
 ZSH_CONFIG_DIR=$CONFIG_DIR/zsh
 ZSH_CACHE_DIR=$HOME/.cache
@@ -38,9 +38,9 @@ yay -S autojump cht.sh-git
 I3_CONFIG_DIR=$CONFIG_DIR/i3
 I3_BLOCKS_CONFIG_DIR=$CONFIG_DIR/i3blocks
 mkdir -p $I3_CONFIG_DIR
-ln -sf $DOTFILES_DIR/config $I3_CONFIG_DIR/config
+ln -sf $DOTDIR/config $I3_CONFIG_DIR/config
 git clone https://github.com/vivien/i3blocks-contrib $I3_BLOCKS_CONFIG_DIR
-ln -sf $DOTFILES_DIR/i3blocks.config $I3_BLOCKS_CONFIG_DIR/config
+ln -sf $DOTDIR/i3blocks.config $I3_BLOCKS_CONFIG_DIR/config
 yay -Si rofi-dmenu paper-icon-theme nerd-fonts-dejavu-complete
 
 # install maim, xclip, xdotool
@@ -51,3 +51,12 @@ yay -Si rofi-dmenu paper-icon-theme nerd-fonts-dejavu-complete
 # nsxiv
 
 pacman -S firefox firefox-ublock-origin
+
+RANGER_CONFIG_DIR=$XDG_CONFIG_HOME/ranger
+
+pacman -S ranger python-pygments
+pip uninstall -y pillow
+pip install ueberzug pillow-simd 
+
+cp /usr/share/doc/ranger/config/scope.sh $RANGER_CONFIG_DIR/scope.sh
+ln -sf $DOTDIR/rc.conf $RANGER_CONFIG_DIR/rc.conf

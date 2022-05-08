@@ -7,47 +7,69 @@
 #
 
 
+# Use hard limits, except for a smaller stack and no core dumps
+unlimit
+limit stack 8192
+limit core 0
+limit -s
+
 umask 022
 
 
-rec_find() {
+rec_source() {
     local f
     for f in "$1"/*; do
-        [[ -d $f ]] && rec_find "$f"
+        [[ -d $f ]] && rec_source "$f"
         [[ -L $f ]] && [[ $f == *.zsh ]] && source $f # && printf '%s\n' $f
     done
 }
 
 
-color_prompt() {
-    autoload -U colors && colors
-    export PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-    colorscript -r
-}
 
 TRAPUSR1() { rehash }
 
-color_prompt
 
-rec_find $ZDOTDIR
-
-
-# function powerline_precmd() {
-#     PS1="$(powerline-shell --shell zsh $?)"
-# }
-
-# function install_powerline_precmd() {
-#   for s in "${precmd_functions[@]}"; do
-#     if [ "$s" = "powerline_precmd" ]; then
-#       return
-#     fi
-#   done
-#   precmd_functions+=(powerline_precmd)
-# }
-
-# if [ "$TERM" != "linux" ]; then
-#     install_powerline_precmd
-# fi
+# Set/unset  shell options
+source $ZCOMMON/options.zsh
 
 
-return 0
+# Set color prompt
+autoload -U colors && colors
+PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}%{$fg[green]%} $%b "
+
+
+# Some nice key bindings
+source $ZCOMMON/keybindings.zsh
+
+
+# Setup completion system
+autoload -U compinit; compinit -d $ZSH_CACHE/.zcompinit
+
+source $ZCOMMON/completions.zsh
+
+
+# Where to look for autoloaded function definitions
+# fpath=($fpath $ZFUNCTIONS)
+
+# Autoload all shell functions from all directories in $fpath (following
+# symlinks) that have the executable bit on (the executable bit is not
+# necessary, but gives you an easy way to stop the autoloading of a
+# particular shell function). $fpath should not be empty for this to work.
+# for func in $^fpath/*(N-.x:t); autoload $func
+rec_source $ZFUNCTIONS
+
+
+# Resets the terminal with escape sequences
+function reset_broken_terminal () {
+    printf '%b' '\e[0m\e(B\e)0\017\e[?5l\e7\e[0;0r\e8'
+}
+
+add-zsh-hook -Uz precmd reset_broken_terminal
+
+
+colorscript -r
+
+
+# Set up aliases
+rec_source $ZALIASES
+

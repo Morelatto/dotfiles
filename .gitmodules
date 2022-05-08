@@ -1,9 +1,3 @@
-[submodule "zsh/functions/fast-syntax-highlighting"]
-	path = zsh/functions/fast-syntax-highlighting
-	url = https://github.com/zdharma-continuum/fast-syntax-highlighting
-[submodule "zsh/functions/fzf-tab"]
-	path = zsh/functions/fzf-tab
-	url = https://github.com/Aloxaf/fzf-tab
 [submodule "xterm/Xresources-themes"]
 	path = xterm/Xresources-themes
 	url = https://github.com/janoamaral/Xresources-themes
@@ -11,11 +5,8 @@
 	path = firefox/user.js
 	url = https://github.com/arkenfox/user.js
 [submodule "i3/scripts/barify"]
-	path = i3/scripts/barify
+	path = scripts/barify
 	url = https://github.com/Arctize/barify
-[submodule "zsh/functions/zsh-syntax-highlighting"]
-	path = zsh/functions/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting
 [submodule "scripts/termdown"]
 	path = scripts/termdown
 	url = https://github.com/trehn/termdown
@@ -31,12 +22,21 @@
 [submodule "powerline/sbp"]
 	path = powerline/sbp
 	url = https://github.com/brujoand/sbp
-[submodule "zsh/functions/zsh-histdb"]
-	path = zsh/functions/zsh-histdb
-	url = https://github.com/larkery/zsh-histdb.git
 [submodule "i3status/bumblebee-status"]
 	path = i3status/bumblebee-status
 	url = https://github.com/tobi-wan-kenobi/bumblebee-status
-[submodule "zsh/functions/zsh-completions"]
-	path = zsh/functions/zsh-completions
+[submodule "zsh/ext/zsh-completions"]
+	path = zsh/ext/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions.git
+[submodule "zsh/ext/zsh-histdb-fzf"]
+	path = zsh/ext/zsh-histdb-fzf
+	url = https://github.com/m42e/zsh-histdb-fzf
+[submodule "zsh/ext/zsh-histdb"]
+	path = zsh/ext/zsh-histdb
+	url = https://github.com/larkery/zsh-histdb
+[submodule "zsh/ext/zsh-syntax-highlighting"]
+	path = zsh/ext/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "zsh/ext/fzf-tab"]
+	path = zsh/ext/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab

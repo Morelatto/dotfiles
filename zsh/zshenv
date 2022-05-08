@@ -2,8 +2,7 @@
 
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export ZSH_CACHE=$XDG_CACHE_HOME/zsh
-export HISTFILE=$ZSH_CACHE/zhistfile && export 
-export ZFUNCTIONS=$ZDOTDIR/functions
+export ZFUNCTIONS=$ZDOTDIR/ext
 export ZALIASES=$ZDOTDIR/aliases
 export ZCOMMON=$ZDOTDIR/common
 
@@ -11,6 +10,7 @@ export EDITOR=vim
 export VISUAL=$VISUAL
 export BROWSER=firefox
 export LESS='-R --use-color -Dd+r$Du+b'
+export PAGER='less'
 export DOTDIR=$HOME/dotfiles
 
 typeset -U path
