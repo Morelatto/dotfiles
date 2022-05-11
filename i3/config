@@ -25,6 +25,7 @@ set $secondary "HDMI-1"
 
 floating_modifier $mod
 
+
 # Focus
 bindsym         $mod+$vu                        focus up
 bindsym         $mod+Up                         focus up
@@ -38,6 +39,7 @@ bindsym         $mod+space                      focus mode_toggle
 bindsym         $mod+a                          focus parent
 bindsym         $mod+Shift+a                    focus child
 
+
 # Movement
 bindsym         $mod+Shift+$vd                  move down
 bindsym         $mod+Shift+$vu                  move up
@@ -48,6 +50,7 @@ bindsym         $mod+Shift+Down                 move down
 bindsym         $mod+Shift+Up                   move up
 bindsym         $mod+Shift+Right                move right
 
+
 # Layout
 bindsym         $mod+b                          split horizontal
 bindsym         $mod+v                          split vertical
@@ -56,6 +59,7 @@ bindsym         $mod+s                          layout stacking
 bindsym         $mod+w                          layout tabbed
 bindsym         $mod+e                          layout toggle split
 bindsym         $mod+Shift+space                floating toggle
+
 
 # Workspaces
 bindsym         $mod+1                          workspace $ws1
@@ -81,29 +85,33 @@ bindsym         $mod+Shift+0  move container to workspace $ws10; workspace numbe
 bindsym         $mod+n                          workspace next
 bindsym         $mod+p                          workspace prev
 
+
 # Reload/Exit
 bindsym         $mod+Shift+c                    reload
 bindsym         $mod+Shift+r                    restart
 bindsym         $mod+Shift+e                    i3-msg exit
 bindsym         $mod+Shift+q                    kill
 
+
 # Resize mode
 bindsym         $mod+r                          mode "  "
+
 mode "  " {
-        bindsym $vl resize shrink width 10 px or 10 ppt
-        bindsym $vd resize grow height 10 px or 10 ppt
-        bindsym $vu resize shrink height 10 px or 10 ppt
-        bindsym $vr resize grow width 10 px or 10 ppt
+        bindsym                 $vl             resize shrink width 10 px or 10 ppt
+        bindsym                 $vd             resize grow height 10 px or 10 ppt
+        bindsym                 $vu             resize shrink height 10 px or 10 ppt
+        bindsym                 $vr             resize grow width 10 px or 10 ppt
 
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym                 Left            resize shrink width 10 px or 10 ppt
+        bindsym                 Down            resize grow height 10 px or 10 ppt
+        bindsym                 Up              resize shrink height 10 px or 10 ppt
+        bindsym                 Right           resize grow width 10 px or 10 ppt
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+        bindsym                 Return          mode "default"
+        bindsym                 Escape          mode "default"
+        bindsym                 $mod+r          mode "default"
 }
+
 
 # Colors
 set_from_resource               $fg             i3wm.foreground
@@ -159,8 +167,8 @@ bar {
                 inactive_workspace  $cl18   $cl18   $cl20
                 urgent_workspace    $cl19   $cl5    $cl15
             }
-
 }
+
 
 # Fixed workspaces
 workspace $ws1 output primary
@@ -173,6 +181,7 @@ workspace $ws7 output $secondary
 workspace $ws8 output $secondary
 workspace $ws9 output $secondary
 workspace $ws10 output $secondary
+
 
 # Windows
 for_window [class="Subl"] move to workspace $ws4
