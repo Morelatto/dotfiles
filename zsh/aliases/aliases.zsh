@@ -101,7 +101,7 @@ alias grci='grc && gri'
 alias grep='grep --color=auto --ignore-case'
 alias fgrep='grep --fixed-strings'
 alias egrep='grep --extended-regexp'
-alias lgrep='grep -rnw '.' -e'
+alias lgrep="grep -rnw '.' -e"
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
 
 # kill
