@@ -49,11 +49,11 @@ alias hstr='HSTR_CONFIG=hicolor,raw-history-view hstr --'
 alias pom='potato'
 alias psg='psgrep'
 
-# delete multiple files
-alias noeclipse='rm -rf .settings .classpath .factorypath .project'
-alias nomac='ff .DS_Store -delete'
-alias noidea='fd .idea -ls -exec rm -rf {} +'
-alias pycache="ff '*.pyc' -delete && fd '__pycache__' -delete"
+# fd
+alias noeclipse="fd '\.(settings|classpath|factorypath|project)' -tf -X rm"
+alias noidea="fd -H '^\.idea$' -td -X rm -r"
+alias nomac="fd -H '^\.DS_Store$' -tf -X rm"
+alias nopyc="fd -H 'pyc(ache)?' -X rm -r"
 
 # git
 alias g='git'
@@ -198,7 +198,7 @@ alias color='pygmentize -l pytb'
 # sudo
 alias chown='sudo chown'
 alias fdisk='sudo fdisk'
-alias journal='sudo journalctl --since=today'
+alias journal='sudo journalctl --since=today -f'
 
 # tar
 alias targz='tar xzf'

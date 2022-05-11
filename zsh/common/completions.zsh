@@ -14,5 +14,5 @@ zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' list-dirs-first true
 #zstyle ':completion:*' accept-exact-dirs true
-zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' # 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors ''

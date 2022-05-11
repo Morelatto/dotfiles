@@ -60,3 +60,4 @@ pip install ueberzug pillow-simd
 
 cp /usr/share/doc/ranger/config/scope.sh $RANGER_CONFIG_DIR/scope.sh
 ln -sf $DOTDIR/rc.conf $RANGER_CONFIG_DIR/rc.conf
+

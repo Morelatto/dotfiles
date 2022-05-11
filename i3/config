@@ -1,7 +1,7 @@
 # i3 config file [V1]
 # http://i3wm.org/docs/userguide.html
 
-font pango:DejaVu Sans Mono 12
+font pango:Inconsolata 12
 
 set $mod Mod4
 
@@ -175,9 +175,9 @@ workspace $ws9 output $secondary
 workspace $ws10 output $secondary
 
 # Windows
-assign [class="Spotify"] $ws6
-assign [class="firefox"] $ws3
-assign [class="subl"] $ws4
+for_window [class="Subl"] move to workspace $ws4
+for_window [class="Spotify"] move to workspace $ws6
+for_window [class="firefox"] move to workspace $ws3
 
 for_window [class="^.*"] border pixel 1
 for_window [class="(?i)feh"] floating enable
