@@ -45,47 +45,45 @@ export FZF_ALT_C_OPTS="
 export FZF_DEFAULT_COMMAND="fd ${FZF_DEFAULT_COMMAND_OPTS}"
 
 # https://github.com/Aloxaf/fzf-tab
-source $DOTDIR/zsh/ext/fzf-tab/fzf-tab.plugin.zsh
+# source $DOTDIR/zsh/ext/fzf-tab/fzf-tab.plugin.zsh
 
-# disable sort when completing `git checkout`
-zstyle ':completion:*:git-checkout:*' sort false
-# set descriptions format to enable group support
-zstyle ':completion:*:descriptions' format '[%d]'
-# set list-colors to enable filename colorizing
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-zstyle ':fzf-tab:complete:ls:*' fzf-preview 'exa -1 --color=always $realpath'
-zstyle ':fzf-tab:complete:*' popup-pad 30 0 # set a bigger width to the popup win
-# switch group using `,` and `.`
-zstyle ':fzf-tab:*' switch-group ',' '.'
-
-#
-zstyle ':fzf-tab:*' fzf-command fzf
+# # disable sort when completing `git checkout`
+# zstyle ':completion:*:git-checkout:*' sort false
+# # set descriptions format to enable group support
+# zstyle ':completion:*:descriptions' format '[%d]'
+# # set list-colors to enable filename colorizing
+# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# # preview directory's content with exa when completing cd
+# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# zstyle ':fzf-tab:complete:ls:*' fzf-preview 'exa -1 --color=always $realpath'
+# zstyle ':fzf-tab:complete:*' popup-pad 30 0 # set a bigger width to the popup win
+# # switch group using `,` and `.`
+# zstyle ':fzf-tab:*' switch-group ',' '.'
+# zstyle ':fzf-tab:*' fzf-command fzf
 
 # give a preview of commandline arguments when completing `kill`
-zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
-zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview \
-  '[[ $group == "[process ID]" ]] && ps --pid=$word -o cmd --no-headers -w -w'
-zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=down:3:wrap
+# zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
+# zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview \
+#   '[[ $group == "[process ID]" ]] && ps --pid=$word -o cmd --no-headers -w -w'
+# zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=down:3:wrap
 
-zstyle ':fzf-tab:complete:git-(add|diff|restore):*' fzf-preview \
-    'git diff $word | delta'|
-zstyle ':fzf-tab:complete:git-log:*' fzf-preview \
-    'git log --color=always $word'
-zstyle ':fzf-tab:complete:git-help:*' fzf-preview \
-    'git help $word | bat -plman --color=always'
-zstyle ':fzf-tab:complete:git-show:*' fzf-preview \
-    'case "$group" in
-    "commit tag") git show --color=always $word ;;
-    *) git show --color=always $word | delta ;;
-    esac'
-zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview \
-    'case "$group" in
-    "modified file") git diff $word | delta ;;
-    "recent commit object name") git show --color=always $word | delta ;;
-    *) git log --color=always $word ;;
-    esac'
+# zstyle ':fzf-tab:complete:git-(add|diff|restore):*' fzf-preview \
+#     'git diff $word | delta'|
+# zstyle ':fzf-tab:complete:git-log:*' fzf-preview \
+#     'git log --color=always $word'
+# zstyle ':fzf-tab:complete:git-help:*' fzf-preview \
+#     'git help $word | bat -plman --color=always'
+# zstyle ':fzf-tab:complete:git-show:*' fzf-preview \
+#     'case "$group" in
+#     "commit tag") git show --color=always $word ;;
+#     *) git show --color=always $word | delta ;;
+#     esac'
+# zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview \
+#     'case "$group" in
+#     "modified file") git diff $word | delta ;;
+#     "recent commit object name") git show --color=always $word | delta ;;
+#     *) git log --color=always $word ;;
+#     esac'
 
 # ==========
 # zsh-histdb
@@ -147,4 +145,4 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.pl
 
 setenv() { typeset -x "${1}${1:+=}${(@)argv[2,$#]}" }  # csh compatibility
 freload() { while (( $# )); do; unfunction $1; autoload -U $1; shift; done }
-dot() { sudo ln -sf $DOTDIR/$@ $(pwd) }
+dot() { ln -sf $DOTDIR/$@ $(pwd) }

@@ -47,6 +47,7 @@ export KEY_CTRL_L='^L'
 # export KEY_CTRL_O='^O'
 export KEY_CTRL_R='^R'
 export KEY_CTRL_T='^T'
+export KEY_CTRL_Y='^Y'
 export KEY_CTRL_SPACE='^@'
 export KEY_CTRL_DEL='^[[3;5~'
 export KEY_CTRL_BACKSPACE='^H'
@@ -91,18 +92,14 @@ bindkey                     $KEY_CTRL_A                      _expand_alias
 bindkey                     $KEY_CTRL_R                      histdb-fzf-widget
 # bindkey                     $KEY_CTRL_T                      fzf-completion
 # bindkey                     $KEY_TAB                         $fzf_default_completion
-# bindkey                     $KEY_TAB                         expand-or-complete-prefix
 bindkey                     $KEY_CTRL_SPACE                  autosuggest-accept
 bindkey                     $KEY_CTRL_ENTER                  autosuggest-execute
 bindkey                     $KEY_CTRL_BACKSPACE              backward-kill-word
 bindkey                     $KEY_CTRL_DEL                    kill-word
-#bindkey                     $KEY_CTRL_RIGHT                  forward-word
-#bindkey                     $KEY_CTRL_LEFT                   backward-word
+bindkey                     $KEY_CTRL_RIGHT                  forward-word
+bindkey                     $KEY_CTRL_LEFT                   backward-word
+# bindkey                     $KEY_CTRL_Y                      yank
 
-
-#bindkey '\CI' expand-or-complete-prefix
-
-# #bindkey '^Y' yank
 
 # # bindkey -M menuselect 'h' vi-backward-char
 # # bindkey -M menuselect 'k' vi-up-line-or-history
