@@ -16,6 +16,9 @@ limit -s
 umask 022
 
 
+TRAPUSR1() { rehash }
+
+
 rec_source() {
     local f
     for f in "$1"/*; do
@@ -25,17 +28,12 @@ rec_source() {
 }
 
 
-
-TRAPUSR1() { rehash }
-
-
 # Set/unset  shell options
 source $ZCOMMON/options.zsh
 
 
 # Set color prompt
-autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}%{$fg[green]%} $%b "
+source $ZCOMMON/prompt.zsh
 
 
 # Some nice key bindings
@@ -44,7 +42,6 @@ source $ZCOMMON/keybindings.zsh
 
 # Setup completion system
 autoload -U compinit; compinit -d $ZSH_CACHE/.zcompinit
-
 source $ZCOMMON/completions.zsh
 
 
