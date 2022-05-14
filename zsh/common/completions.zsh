@@ -16,3 +16,5 @@ zstyle ':completion:*' list-dirs-first true
 #zstyle ':completion:*' accept-exact-dirs true
 zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors ''
+
+zmodload zsh/complist
