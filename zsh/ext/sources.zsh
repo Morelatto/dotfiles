@@ -7,11 +7,11 @@
 # https://github.com/junegunn/fzf
 
 # source /usr/share/fzf/completion.zsh
-# source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/key-bindings.zsh
 
-# export FZF_COMPLETION_TRIGGER=''
+export FZF_COMPLETION_TRIGGER=''
 # export FZF_COMPLETION_OPTS='--border --info=inline'
-# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export FZF_DEFAULT_OPTS="\
   --ansi \
@@ -23,7 +23,7 @@ export FZF_DEFAULT_OPTS="\
   --bind='?:toggle-preview' \
   --bind='tab:down' \
 "
-export FZF_DEFAULT_COMMAND_OPTS="fd
+export FZF_DEFAULT_COMMAND_OPTS="
   --hidden \
   --follow \
   --type='f' \
@@ -119,17 +119,20 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=256
 
-_zsh_autosuggest_strategy_histdb_top_here() {
-    local query="select commands.argv from
-history left join commands on history.command_id = commands.rowid
-left join places on history.place_id = places.rowid
-where places.dir LIKE '$(sql_escape $PWD)%'
-and commands.argv LIKE '$(sql_escape $1)%'
-group by commands.argv order by count(*) desc limit 1"
+_zsh_autosuggest_strategy_histdb_top() {
+    local query="
+        select commands.argv from history
+        left join commands on history.command_id = commands.rowid
+        left join places on history.place_id = places.rowid
+        where commands.argv LIKE '$(sql_escape $1)%'
+        group by commands.argv, places.dir
+        order by places.dir != '$(sql_escape $PWD)', count(*) desc
+        limit 1
+    "
     suggestion=$(_histdb_query "$query")
 }
 
-ZSH_AUTOSUGGEST_STRATEGY=histdb_top_here
+ZSH_AUTOSUGGEST_STRATEGY=(histdb_top history completion)
 
 # =======================
 # zsh-syntax-highlighting

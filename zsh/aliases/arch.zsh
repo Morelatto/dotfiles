@@ -17,19 +17,20 @@ alias yi='yay -S'
 alias yu='yay -Sua'
 alias yy='yay -S --needed --nodiffmenu --nocleanmenu'
 
-# systemctl
+# systemd
 alias systemctl='sudo systemctl'
 alias sctl='systemctl'
-alias sctle='systemctl enable'
 alias sctld='systemctl disable'
-alias sctls='systemctl start'
-alias sctlst='systemctl stop'
-alias sctlss='systemctl status'
-alias services='systemctl --type=service'
+alias sctle='systemctl enable'
+alias sctlr='systemctl restart'
+alias sctls='=systemctl status'
+alias sctlsp='systemctl stop'
+alias sctlst='systemctl start'
+alias services='=systemctl --type=service'
 alias mongod='systemctl start mongodb.service'
 alias bye='=systemctl poweroff'
 alias reboot='=systemctl reboot'
 
-function package_files() { 
+function package_files() {
 	=pacman -Qlq $@ | grep -v '/$' | xargs -r du -h | sort -h
 }

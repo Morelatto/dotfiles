@@ -35,14 +35,13 @@ source $ZCOMMON/options.zsh
 # Set color prompt
 source $ZCOMMON/prompt.zsh
 
-
-# Some nice key bindings
-source $ZCOMMON/keybindings.zsh
-
-
 # Setup completion system
 autoload -U compinit; compinit -d $ZSH_CACHE/.zcompinit
 source $ZCOMMON/completions.zsh
+
+
+# Some nice key bindings
+source $ZCOMMON/keybindings.zsh
 
 
 # Where to look for autoloaded function definitions
