@@ -40,3 +40,6 @@
 [submodule "zsh/ext/fzf-tab"]
 	path = zsh/ext/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab
+[submodule "polybar/polybar"]
+	path = polybar/polybar
+	url = https://github.com/polybar/polybar

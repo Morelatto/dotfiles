@@ -148,26 +148,26 @@ client.background               $bg
 
 
 # Status bar
-bar {
-        font                    pango:Inconsolata 11
-        position                top
-        tray_output             primary
-        tray_padding            2
-        bindsym button4         nop
-        bindsym button5         nop
-        status_command          bumblebee-status
-        strip_workspace_numbers yes
+#bar {
+#        font                    pango:Inconsolata 11
+#        position                top
+#        tray_output             primary
+#        tray_padding            2
+#        bindsym button4         nop
+#        bindsym button5         nop
+#        status_command          bumblebee-status
+#        strip_workspace_numbers yes
 
-        colors {
-                background  $bg
-                statusline  $fg
-                # class             border  backgr. text
-                focused_workspace   $cl19   $cl7    $cl19
-                active_workspace    $cl18   $cl18   $cl15
-                inactive_workspace  $cl18   $cl18   $cl20
-                urgent_workspace    $cl19   $cl5    $cl15
-            }
-}
+#        colors {
+#                background  $bg
+#                statusline  $fg
+#                # class             border  backgr. text
+#                focused_workspace   $cl19   $cl7    $cl19
+#                active_workspace    $cl18   $cl18   $cl15
+#                inactive_workspace  $cl18   $cl18   $cl20
+#                urgent_workspace    $cl19   $cl5    $cl15
+#            }
+#}
 
 
 # Fixed workspaces
@@ -187,7 +187,7 @@ workspace $ws10 output $secondary
 assign [class="Subl"] $ws4
 
 for_window [class="Spotify"] move to workspace $ws6
-for_window [class="Firefox"] move to workspace $ws3
+for_window [class="firefox"] move to workspace $ws3
 
 for_window [class="^.*"] border pixel 1
 for_window [class="(?i)feh"] floating enable
@@ -230,8 +230,8 @@ gaps outer 10
 
 # Autostart
 exec_always --no-startup-id xautolock -time 20 -locker "lock"
+exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
 exec        --no-startup-id dunst -lf "$fg" -nf "$fg" -cf "$fg" -lb "$bg" -nb "$bg" -cb "$bg" -lfr "$lw" -nfr "$cl10" -cfr "$cl13"
 exec        --no-startup-id nm-applet
 exec        --no-startup-id picom --experimental-backends -b
 exec        --no-startup-id udiskie --no-automount --tray
-
