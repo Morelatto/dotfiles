@@ -184,11 +184,10 @@ workspace $ws10 output $secondary
 
 
 # Windows
-for_window [class="Subl"] move to workspace $ws4
-for_window [class="Spotify"] move to workspace $ws6
-for_window [class="firefox"] move to workspace $ws3
+assign [class="Subl"] $ws4
 
-assign [class="firefox"] $ws3
+for_window [class="Spotify"] move to workspace $ws6
+for_window [class="Firefox"] move to workspace $ws3
 
 for_window [class="^.*"] border pixel 1
 for_window [class="(?i)feh"] floating enable
@@ -234,4 +233,5 @@ exec_always --no-startup-id xautolock -time 20 -locker "lock"
 exec        --no-startup-id dunst -lf "$fg" -nf "$fg" -cf "$fg" -lb "$bg" -nb "$bg" -cb "$bg" -lfr "$lw" -nfr "$cl10" -cfr "$cl13"
 exec        --no-startup-id nm-applet
 exec        --no-startup-id picom --experimental-backends -b
+exec        --no-startup-id udiskie --no-automount --tray
 

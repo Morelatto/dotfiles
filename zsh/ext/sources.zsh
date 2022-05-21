@@ -132,7 +132,7 @@ _zsh_autosuggest_strategy_histdb_top() {
     suggestion=$(_histdb_query "$query")
 }
 
-ZSH_AUTOSUGGEST_STRATEGY=(histdb_top history completion)
+ZSH_AUTOSUGGEST_STRATEGY=(histdb_top)
 
 # =======================
 # zsh-syntax-highlighting
