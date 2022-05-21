@@ -36,14 +36,12 @@ alias copy='xsel -ib'
 alias paste='xsel -o'
 alias xcopy='xclip -sel clip'
 
-# du
-alias dua='du -s *(/DN) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; done'
-alias duv='du -s ^.*(/N) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; done'
-alias duh='du -s .*(/N) | sort -nr | cut -f 2- | while read a; do du -sh "$a"; done'
-
 # ext
 alias cat='bat --paging=never'
 alias cht='cht.sh'
+alias du='dust'
+alias du1='dust -d 1'
+alias dud='dust -d'
 alias fox='firefox'
 alias hstr='HSTR_CONFIG=hicolor,raw-history-view hstr --'
 alias pom='potato'
@@ -170,6 +168,7 @@ alias dhcpcd='sudo dhcpcd'
 alias ip='ip -color=auto'
 alias ipe='curl ifconfig.me'
 alias openvpn='sudo openvpn'
+alias dnss='resolvectl status'
 
 # path
 alias path='echo $PATH | tr -s ":" "\n"'
