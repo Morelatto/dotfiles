@@ -9,7 +9,7 @@
     width = (0, 360)
     height = 250
     origin = top-right
-    offset = 15x35
+    offset = 15x55
     scale = 0
     notification_limit = 0
 
