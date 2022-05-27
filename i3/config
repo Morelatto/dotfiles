@@ -89,7 +89,7 @@ bindsym         $mod+p                          workspace prev
 # Reload/Exit
 bindsym         $mod+Shift+c                    reload
 bindsym         $mod+Shift+r                    restart
-bindsym         $mod+Shift+e                    i3-msg exit
+bindsym         $mod+Shift+e                    exec --no-startup-id i3-msg exit
 bindsym         $mod+Shift+q                    kill
 
 
@@ -184,10 +184,11 @@ workspace $ws10 output $secondary
 
 
 # Windows
+assign [class="Firefox"] $ws3
 assign [class="Subl"] $ws4
 
 for_window [class="Spotify"] move to workspace $ws6
-for_window [class="firefox"] move to workspace $ws3
+for_window [class="^.*PyCharm"] move to workspace $ws0
 
 for_window [class="^.*"] border pixel 1
 for_window [class="(?i)feh"] floating enable
