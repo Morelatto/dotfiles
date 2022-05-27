@@ -43,3 +43,6 @@
 [submodule "polybar/polybar"]
 	path = polybar/polybar
 	url = https://github.com/polybar/polybar
+[submodule "polybar/polybar-spotify"]
+	path = polybar/polybar-spotify
+	url = https://github.com/PrayagS/polybar-spotify
