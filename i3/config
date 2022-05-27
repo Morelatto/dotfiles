@@ -225,9 +225,12 @@ bindsym                 $mod+y                          border pixel 1
 bindsym                 $mod+u                          border none
 bindsym                 $mod+Escape                     kill
 
+
 # i3-gaps
 gaps inner 10
 gaps outer 10
+smart_borders on
+
 
 # Autostart
 exec_always --no-startup-id xautolock -time 20 -locker "lock"
