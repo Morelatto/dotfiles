@@ -184,7 +184,7 @@ workspace $ws10 output $secondary
 
 
 # Windows
-assign [class="Firefox"] $ws3
+assign [instance="Navigator"] $ws3
 assign [class="Subl"] $ws4
 
 for_window [class="Spotify"] move to workspace $ws6
