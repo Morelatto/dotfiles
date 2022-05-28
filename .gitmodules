@@ -46,3 +46,6 @@
 [submodule "polybar/polybar-spotify"]
 	path = polybar/polybar-spotify
 	url = https://github.com/PrayagS/polybar-spotify
+[submodule "X11/Vimix-cursors"]
+	path = X11/Vimix-cursors
+	url = https://github.com/vinceliuice/Vimix-cursors

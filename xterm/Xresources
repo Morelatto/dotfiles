@@ -179,3 +179,5 @@ XTerm*borderWidth: 5
 ! http://web.archive.org/web/20090130061234/http://phraktured.net/terminal-colors/
 
 #include "/home/morel/dotfiles/xterm/Xresources-themes/base16-onedark-256.Xresources"
+
+Xcursor.size: 32
