@@ -10,16 +10,16 @@ set $vd j
 set $vu k
 set $vr l
 
-set $ws1 "1: "
-set $ws2 "2: "
-set $ws3 "3: "
-set $ws4 "4: "
-set $ws5 "5: "
-set $ws6 "6: "
-set $ws7 "7: "
-set $ws8 "8: "
-set $ws9 "9: "
-set $ws10 "10: "
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
+set $ws10 "10:"
 
 set $secondary "HDMI-1"
 
@@ -234,7 +234,7 @@ smart_borders on
 
 # Autostart
 exec_always --no-startup-id xautolock -time 20 -locker "lock"
-exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
+exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh --grayblocks
 exec        --no-startup-id dunst -lf "$fg" -nf "$fg" -cf "$fg" -lb "$bg" -nb "$bg" -cb "$bg" -lfr "$lw" -nfr "$cl10" -cfr "$cl13"
 exec        --no-startup-id nm-applet
 exec        --no-startup-id picom --experimental-backends -b
