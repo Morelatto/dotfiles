@@ -180,15 +180,14 @@ workspace $ws6 output $secondary
 workspace $ws7 output $secondary
 workspace $ws8 output $secondary
 workspace $ws9 output $secondary
-workspace $ws10 output $secondary
 
 
 # Windows
 assign [instance="Navigator"] $ws3
-assign [class="Subl"] $ws4
+assign [instance="subl"] $ws4
 
 for_window [class="Spotify"] move to workspace $ws6
-for_window [class="^.*PyCharm"] move to workspace $ws0
+for_window [class="^.*pycharm"] move to workspace $ws10
 
 for_window [class="^.*"] border pixel 1
 for_window [class="(?i)feh"] floating enable
