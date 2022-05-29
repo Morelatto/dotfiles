@@ -1,22 +1,15 @@
-#!/bin/bash
-(
-  flock 200
+#!/usr/bin/env bash
 
-  killall -q polybar
+# Add this script to your wm startup file.
 
-  while pgrep -u $UID -x polybar > /dev/null; do sleep 0.5; done
+DIR="$HOME/.config/polybar/material"
 
-  outputs=$(polybar --list-monitors | cut -d":" -f1)
-  tray_output=$(polybar --list-monitors | cut -d":" -f1 | head -n1)
+# Terminate already running bar instances
+killall -q polybar
 
-  for m in $outputs; do
-    export MONITOR=$m
-    export TRAY_POSITION=none
-    if [[ $m == $tray_output ]]; then
-      TRAY_POSITION=right
-    fi
+# Wait until the processes have been shut down
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-    polybar --reload main </dev/null >/var/tmp/polybar-$m.log 2>&1 200>&- &
-    disown
-  done
-) 200>/var/tmp/polybar-launch.lock
+# Launch the bar
+polybar -q main -c "$DIR"/config.ini &
+polybar -q main2 -c "$DIR"/config.ini &
