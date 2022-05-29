@@ -40,12 +40,12 @@
 [submodule "zsh/ext/fzf-tab"]
 	path = zsh/ext/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab
-[submodule "polybar/polybar"]
-	path = polybar/polybar
-	url = https://github.com/polybar/polybar
 [submodule "polybar/polybar-spotify"]
 	path = polybar/polybar-spotify
 	url = https://github.com/PrayagS/polybar-spotify
 [submodule "X11/Vimix-cursors"]
 	path = X11/Vimix-cursors
 	url = https://github.com/vinceliuice/Vimix-cursors
+[submodule "polybar/polybar-themes"]
+	path = polybar/polybar-themes
+	url = https://github.com/adi1090x/polybar-themes
