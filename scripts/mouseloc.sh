@@ -1,3 +1,5 @@
+#!/bin/sh
+
 while true; do
     clear
     xdotool getmouselocation
