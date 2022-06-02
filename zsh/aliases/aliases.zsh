@@ -57,12 +57,14 @@ alias nopyc="fd -H 'pyc(ache)?' -X rm -r"
 alias g='git'
 alias ga='git add'
 alias gaa='git add --all'
+alias gap='git add -p'
 alias gua='git restore --staged'
 alias gb='git branch'
 alias gbl='git branch --list'
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gca='git commit --amend'
+alias gcam='git commit --amend -m'
 alias gcl='git clone'
 alias gco='git checkout'
 alias gd='git diff'
@@ -83,7 +85,7 @@ alias gsba='git submodule add'
 alias gsoft='git reset'
 alias gst='git stash'
 alias gut='git stash pop'
-alias authors="git ls-files | while read f; do git blame -w -M -C -C --line-porcelain \$f | grep -I '^author '; done | sort -f | uniq -ic | sort -n"
+alias authors="git ls-files | while read f; do git blame -w -M -C -C --line-porcelain \$f | grep -I '^author '; done 2>/dev/null | sort -f | uniq -ic | sort -n"
 
 # gradle
 alias gr='./gradlew'
