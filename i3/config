@@ -5,10 +5,10 @@ font pango:Inconsolata 12
 
 set $mod Mod4
 
-set $vl h
-set $vd j
-set $vu k
-set $vr l
+set $left  h
+set $down  j
+set $up    k
+set $right l
 
 set $ws1 "1:"
 set $ws2 "2:"
@@ -27,27 +27,27 @@ floating_modifier $mod
 
 
 # Focus
-bindsym         $mod+$vu                        focus up
-bindsym         $mod+Up                         focus up
-bindsym         $mod+$vd                        focus down
-bindsym         $mod+Down                       focus down
-bindsym         $mod+$vr                        focus right
-bindsym         $mod+Right                      focus right
-bindsym         $mod+$vl                        focus left
+bindsym         $mod+$left                      focus left
 bindsym         $mod+Left                       focus left
+bindsym         $mod+$down                      focus down
+bindsym         $mod+Down                       focus down
+bindsym         $mod+$up                        focus up
+bindsym         $mod+Up                         focus up
+bindsym         $mod+$right                     focus right
+bindsym         $mod+Right                      focus right
 bindsym         $mod+space                      focus mode_toggle
 bindsym         $mod+a                          focus parent
 bindsym         $mod+Shift+a                    focus child
 
 
 # Movement
-bindsym         $mod+Shift+$vd                  move down
-bindsym         $mod+Shift+$vu                  move up
-bindsym         $mod+Shift+$vr                  move right
-bindsym         $mod+Shift+$vl                  move left
+bindsym         $mod+Shift+$left                move left
 bindsym         $mod+Shift+Left                 move left
+bindsym         $mod+Shift+$down                move down
 bindsym         $mod+Shift+Down                 move down
+bindsym         $mod+Shift+$up                  move up
 bindsym         $mod+Shift+Up                   move up
+bindsym         $mod+Shift+$right               move right
 bindsym         $mod+Shift+Right                move right
 
 
@@ -97,10 +97,10 @@ bindsym         $mod+Shift+q                    kill
 bindsym         $mod+r                          mode "  "
 
 mode "  " {
-        bindsym                 $vl             resize shrink width 10 px or 10 ppt
-        bindsym                 $vd             resize grow height 10 px or 10 ppt
-        bindsym                 $vu             resize shrink height 10 px or 10 ppt
-        bindsym                 $vr             resize grow width 10 px or 10 ppt
+        bindsym                 $left             resize shrink width 10 px or 10 ppt
+        bindsym                 $down             resize grow height 10 px or 10 ppt
+        bindsym                 $up             resize shrink height 10 px or 10 ppt
+        bindsym                 $right             resize grow width 10 px or 10 ppt
 
         bindsym                 Left            resize shrink width 10 px or 10 ppt
         bindsym                 Down            resize grow height 10 px or 10 ppt
