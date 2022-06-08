@@ -149,10 +149,6 @@ alias mpdf='man -Tpdf man >man.pdf'
 alias mps='man -t man > man.ps'
 alias mtxt='man -Ttxt man > man.txt'
 
-function man_exp() {
-    =man -Ttxt $@ > man.txt
-}
-
 # maven
 alias mvc='mvn clean'
 alias mvi='mvn install'

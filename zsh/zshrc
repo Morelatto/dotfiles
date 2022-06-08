@@ -35,6 +35,7 @@ source $ZCOMMON/options.zsh
 # Set color prompt
 source $ZCOMMON/prompt.zsh
 
+
 # Setup completion system
 autoload -U compinit; compinit -d $ZSH_CACHE/.zcompinit
 source $ZCOMMON/completions.zsh

@@ -49,6 +49,7 @@ yay -Si rofi-dmenu paper-icon-theme nerd-fonts-dejavu-complete
 # https://github.com/ruanyf/simple-bash-scripts/blob/master/scripts/pomodoro.sh
 # diff-so-fancy
 # nsxiv
+# vivid
 
 pacman -S firefox firefox-ublock-origin
 
