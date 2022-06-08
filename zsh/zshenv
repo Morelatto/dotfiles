@@ -13,6 +13,8 @@ export LESS='-R --use-color -Dd+r$Du+b'
 export PAGER='less'
 export DOTDIR=$HOME/dotfiles
 
+export LS_COLORS="$(vivid generate iceberg-dark)"
+
 typeset -U path
 path=(~/.local/bin ~/.cargo/bin ~/go/bin $path)
 

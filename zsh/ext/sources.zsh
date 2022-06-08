@@ -101,6 +101,8 @@ source $DOTDIR/zsh/ext/zsh-histdb/zsh-histdb.plugin.zsh
 
 source $DOTDIR/zsh/ext/zsh-histdb-fzf/fzf-histdb.zsh
 
+export HISTDB_FZF_DEFAULT_MODE=everywhere
+
 # ========
 # autojump
 # ========
@@ -119,20 +121,22 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=256
 
-_zsh_autosuggest_strategy_histdb_top() {
+_zsh_autosuggest_strategy_histdb_top_here() {
     local query="
-        select commands.argv from history
-        left join commands on history.command_id = commands.rowid
-        left join places on history.place_id = places.rowid
-        where commands.argv LIKE '$(sql_escape $1)%'
-        group by commands.argv, places.dir
-        order by places.dir != '$(sql_escape $PWD)', count(*) desc
-        limit 1
+        SELECT commands.argv
+        FROM history
+        LEFT JOIN commands ON history.command_id = commands.rowid
+        LEFT JOIN places ON history.place_id = places.rowid
+        WHERE commands.argv LIKE '$(sql_escape $1)%'
+        AND places.dir = '$(sql_escape $PWD)'
+        GROUP BY commands.argv, places.dir
+        ORDER BY history.start_time DESC
+        LIMIT 1
     "
     suggestion=$(_histdb_query "$query")
 }
 
-ZSH_AUTOSUGGEST_STRATEGY=(histdb_top)
+ZSH_AUTOSUGGEST_STRATEGY=(histdb_top_here)
 
 # =======================
 # zsh-syntax-highlighting
@@ -149,3 +153,4 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.pl
 setenv() { typeset -x "${1}${1:+=}${(@)argv[2,$#]}" }  # csh compatibility
 freload() { while (( $# )); do; unfunction $1; autoload -U $1; shift; done }
 dot() { ln -sf $DOTDIR/$@ $(pwd) }
+man_exp() { =man -T$2 $1 > $1.$2 }
