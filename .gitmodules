@@ -49,3 +49,6 @@
 [submodule "dunst/barify"]
 	path = dunst/barify
 	url = https://github.com/Arctize/barify
+[submodule "zsh/ext/zsh-histdb-skim"]
+	path = zsh/ext/zsh-histdb-skim
+	url = https://github.com/m42e/zsh-histdb-skim

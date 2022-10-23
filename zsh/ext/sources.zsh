@@ -97,11 +97,11 @@ source $DOTDIR/zsh/ext/zsh-histdb/zsh-histdb.plugin.zsh
 # fzf-histdb
 # ==========
 
-# https://github.com/m42e/zsh-histdb-fzf
+# https://github.com/m42e/zsh-histdb-skim
 
-source $DOTDIR/zsh/ext/zsh-histdb-fzf/fzf-histdb.zsh
+source $DOTDIR/zsh/ext/zsh-histdb-skim/zsh-histdb-skim.zsh
 
-export HISTDB_FZF_DEFAULT_MODE=everywhere
+export HISTDB_SKIM_PATH=${HOME}/.local/share/zsh-histdb-skim
 
 # ========
 # autojump
@@ -129,14 +129,14 @@ _zsh_autosuggest_strategy_histdb_top_here() {
         LEFT JOIN places ON history.place_id = places.rowid
         WHERE commands.argv LIKE '$(sql_escape $1)%'
         AND places.dir = '$(sql_escape $PWD)'
-        GROUP BY commands.argv, places.dir
-        ORDER BY history.start_time DESC
+        GROUP BY commands.argv
+        ORDER BY count(*) DESC
         LIMIT 1
     "
     suggestion=$(_histdb_query "$query")
 }
 
-ZSH_AUTOSUGGEST_STRATEGY=(histdb_top_here)
+ZSH_AUTOSUGGEST_STRATEGY=(histdb_top_here history)
 
 # =======================
 # zsh-syntax-highlighting
