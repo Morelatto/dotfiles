@@ -36,6 +36,10 @@ source $ZCOMMON/options.zsh
 source $ZCOMMON/prompt.zsh
 
 
+# Where to look for autoloaded function definitions
+fpath+=($ZFUNCTIONS)
+
+
 # Setup completion system
 autoload -U compinit; compinit -d $ZSH_CACHE/.zcompinit
 source $ZCOMMON/completions.zsh
@@ -44,9 +48,6 @@ source $ZCOMMON/completions.zsh
 # Some nice key bindings
 source $ZCOMMON/keybindings.zsh
 
-
-# Where to look for autoloaded function definitions
-# fpath=($fpath $ZFUNCTIONS)
 
 # Autoload all shell functions from all directories in $fpath (following
 # symlinks) that have the executable bit on (the executable bit is not

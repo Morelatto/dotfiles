@@ -95,7 +95,7 @@ function widget::scroll-and-clear-screen() {
 bindkey                     $KEY_CTRL_L                      widget::scroll-and-clear-screen
 bindkey                     $KEY_CTRL_A                      _expand_alias
 # bindkey                     $KEY_CTRL_O                      widget::rangercd
-bindkey                     $KEY_CTRL_R                      histdb-fzf-widget
+bindkey                     $KEY_CTRL_R                      histdb-skim-widget
 bindkey                     $KEY_CTRL_T                      fzf-completion
 bindkey                     $KEY_TAB                         expand-or-complete
 bindkey                     $KEY_CTRL_SPACE                  autosuggest-accept
