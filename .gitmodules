@@ -52,3 +52,9 @@
 [submodule "zsh/ext/zsh-histdb-skim"]
 	path = zsh/ext/zsh-histdb-skim
 	url = https://github.com/m42e/zsh-histdb-skim
+[submodule "zsh/ext/zsh-command-time"]
+	path = zsh/ext/zsh-command-time
+	url = https://github.com/popstas/zsh-command-time
+[submodule "zsh/ext/alias-tips"]
+	path = zsh/ext/alias-tips
+	url = https://github.com/djui/alias-tips
