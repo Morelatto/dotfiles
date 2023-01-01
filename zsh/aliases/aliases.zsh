@@ -182,7 +182,7 @@ alias dhcpcd='sudo dhcpcd'
 alias ip='ip -color=auto'
 alias ipe='curl ifconfig.me'
 alias openvpn='sudo openvpn'
-alias dnsst='resolvectl status'
+alias dns='resolvectl status'
 
 # path
 alias path='echo $PATH | tr -s ":" "\n"'
