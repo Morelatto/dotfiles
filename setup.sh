@@ -50,14 +50,16 @@ yay -Si rofi-dmenu paper-icon-theme nerd-fonts-dejavu-complete
 # diff-so-fancy
 # nsxiv
 # vivid
-
+# docker completion
+# https://github.com/alanzchen/rm-protection
+https://gitlab.com/wavexx/networkd-notify
 pacman -S firefox firefox-ublock-origin
 
 RANGER_CONFIG_DIR=$XDG_CONFIG_HOME/ranger
 
 pacman -S ranger python-pygments
 pip uninstall -y pillow
-pip install ueberzug pillow-simd 
+pip install ueberzug pillow-simd
 
 cp /usr/share/doc/ranger/config/scope.sh $RANGER_CONFIG_DIR/scope.sh
 ln -sf $DOTDIR/rc.conf $RANGER_CONFIG_DIR/rc.conf
