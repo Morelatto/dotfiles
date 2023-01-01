@@ -7,10 +7,12 @@ alias pcqs='=pacman -Qs'
 alias pcqu='=pacman -Qu'
 alias pcr='pacman -R'
 alias pcrs='pacman -Rs'
+alias pcrd='pacman -Rcd'
 alias pcf='package_files'
 alias upt='pacman -Syu'
 alias upd='pacman -Sy'
 alias upg='pacman -Su'
+alias upall='upd && upg && yu'
 
 # aur
 alias yi='yay -S'
