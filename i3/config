@@ -234,6 +234,6 @@ smart_borders on
 exec_always --no-startup-id xautolock -time 30 -locker "lock"
 exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
 exec        --no-startup-id dunst -lf "$fg" -nf "$fg" -cf "$fg" -lb "$bg" -nb "$bg" -cb "$bg" -lfr "$lw" -nfr "$cl10" -cfr "$cl13"
-exec        --no-startup-id nm-applet
+exec        --no-startup-id networkd-notify
 exec        --no-startup-id picom --experimental-backends -b
 exec        --no-startup-id udiskie --no-automount --tray
