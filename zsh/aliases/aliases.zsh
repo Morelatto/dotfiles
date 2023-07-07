@@ -8,6 +8,7 @@ alias a='alias'
 alias b='bat'
 alias c='cat'
 alias f='fd'
+alias g='sgpt'
 alias h='histdb'
 alias l='ls'
 alias m='man'
@@ -39,10 +40,11 @@ alias xcopy='xclip -sel clip'
 # docker
 alias dc='docker-compose'
 alias dcu='docker-compose up -d'
+alias dcuf='docker-compose up -d --force-recreate'
 alias dcd='docker-compose down'
 alias dcs='docker-compose stop'
 alias dcc="docker-compose config"
-alias dcp='docker container prune -f'
+alias dcp='docker-compose pull'
 alias deit='docker exec -it'
 alias dci='docker inspect'
 alias dim='docker images'
@@ -58,7 +60,7 @@ alias dsp='docker system prune --all'
 alias lzd='lazydocker'
 
 # ext
-alias cat='bat --paging=never'
+alias bat='batcat --paging=never'
 alias cht='cht.sh'
 alias du='dust'
 alias du1='dust -d 1'
@@ -75,7 +77,6 @@ alias nomac="fd -H '^\.DS_Store$' -tf -X rm"
 alias nopyc="fd -H 'pyc(ache)?' -X rm -r"
 
 # git
-alias g='git'
 alias ga='git add'
 alias gaa='git add --all'
 alias gap='git add -p'
@@ -139,13 +140,12 @@ alias md='mkdir'
 alias mkdir='mkdir -p'
 alias off='xset dpms force off'
 alias rf='readlink -f'
-alias rm='rm-p'
 alias rmrf='rm -rf'
 alias tf='tail -F'
 alias xrl='xrdb -load ~/.Xresources'
 
 # ls
-alias ls="ls --color=auto -hlF"
+alias ls="ls --color=auto"
 alias la='ls -lA'
 alias lr='ls -R'
 alias lra='lr -A'

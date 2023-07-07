@@ -1,9 +1,15 @@
-alias a='apt'
+# Debian-specific aliases
 
+alias a='apt'
 alias apt='sudo apt'
 alias apt-get='sudo apt-get'
 alias apti='apt install'
 alias apts='=apt search'
-
 alias upd='apt update'
 alias upg='apt upgrade'
+alias autoremove='apt autoremove'
+alias full-upgrade='apt full-upgrade'
+alias aptl='apt list'
+alias aptsh='apt show'
+alias aptrem='apt remove'
+alias appurge='apt purge'

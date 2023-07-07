@@ -1,65 +1,24 @@
-#
-# ZSH VERSION: zsh 5.8.1 (x86_64-pc-linux-gnu)
-#
-# .zshrc is sourced in interactive shells.  It
-# should contain commands to set up aliases, functions,
-# options, key bindings, etc.
-#
+#!/usr/bin/zsh
 
-
-# Use hard limits, except for a smaller stack and no core dumps
-unlimit
-limit stack 8192
-limit core 0
-limit -s
-
-umask 022
-
-
+# A signal trap for USR1 signal, which triggers the rehash command to rebuild the command hash table.
 TRAPUSR1() { rehash }
 
-
+# Recursive function to source all .zsh files in the given directory and its subdirectories.
 rec_source() {
     local f
-    for f in "$1"/*; do
+    for f in $(ls -v "$1"/*); do
         [[ -d $f ]] && rec_source "$f"
         [[ -L $f ]] && [[ $f == *.zsh ]] && source $f # && printf '%s\n' $f
     done
 }
 
+# Autoload all .zsh files in all directories in $fpath.
+rec_source $ZDOTDIR/
 
-# Set/unset  shell options
-source $ZCOMMON/options.zsh
+# Run colorscript with the -r option, which generates a random color script.
+# For more about colorscript, see https://gitlab.com/dwt1/shell-color-scripts
+if [ -v COLOR ]; then
+    colorscript -r
+fi
 
-
-# Set color prompt
-source $ZCOMMON/prompt.zsh
-
-
-# Where to look for autoloaded function definitions
-fpath+=($ZFUNCTIONS)
-
-
-# Setup completion system
-autoload -U compinit; compinit -d $ZSH_CACHE/.zcompinit
-source $ZCOMMON/completions.zsh
-
-
-# Some nice key bindings
-source $ZCOMMON/keybindings.zsh
-
-
-# Autoload all shell functions from all directories in $fpath (following
-# symlinks) that have the executable bit on (the executable bit is not
-# necessary, but gives you an easy way to stop the autoloading of a
-# particular shell function). $fpath should not be empty for this to work.
-# for func in $^fpath/*(N-.x:t); autoload $func
-rec_source $ZFUNCTIONS
-
-
-colorscript -r
-
-
-# Set up aliases
-rec_source $ZALIASES
-
+# End of `.zshrc`

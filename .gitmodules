@@ -22,21 +22,6 @@
 [submodule "i3status/bumblebee-status"]
 	path = i3status/bumblebee-status
 	url = https://github.com/tobi-wan-kenobi/bumblebee-status
-[submodule "zsh/ext/zsh-completions"]
-	path = zsh/ext/zsh-completions
-	url = https://github.com/zsh-users/zsh-completions.git
-[submodule "zsh/ext/zsh-histdb-fzf"]
-	path = zsh/ext/zsh-histdb-fzf
-	url = https://github.com/m42e/zsh-histdb-fzf
-[submodule "zsh/ext/zsh-histdb"]
-	path = zsh/ext/zsh-histdb
-	url = https://github.com/larkery/zsh-histdb
-[submodule "zsh/ext/zsh-syntax-highlighting"]
-	path = zsh/ext/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting
-[submodule "zsh/ext/fzf-tab"]
-	path = zsh/ext/fzf-tab
-	url = https://github.com/Aloxaf/fzf-tab
 [submodule "polybar/polybar-spotify"]
 	path = polybar/polybar-spotify
 	url = https://github.com/PrayagS/polybar-spotify
@@ -49,12 +34,3 @@
 [submodule "dunst/barify"]
 	path = dunst/barify
 	url = https://github.com/Arctize/barify
-[submodule "zsh/ext/zsh-histdb-skim"]
-	path = zsh/ext/zsh-histdb-skim
-	url = https://github.com/m42e/zsh-histdb-skim
-[submodule "zsh/ext/zsh-command-time"]
-	path = zsh/ext/zsh-command-time
-	url = https://github.com/popstas/zsh-command-time
-[submodule "zsh/ext/alias-tips"]
-	path = zsh/ext/alias-tips
-	url = https://github.com/djui/alias-tips
