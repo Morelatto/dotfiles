@@ -1,20 +1,14 @@
-#
+# Environment configuration
 
-export ZDOTDIR=$XDG_CONFIG_HOME/zsh
-export ZSH_CACHE=$XDG_CACHE_HOME/zsh
-export ZFUNCTIONS=$ZDOTDIR/ext
-export ZALIASES=$ZDOTDIR/aliases
-export ZCOMMON=$ZDOTDIR/common
-
-export EDITOR=vim
-export VISUAL=$VISUAL
-export BROWSER=firefox
-export LESS='-R --use-color -Dd+r$Du+b'
-export PAGER='less'
-export DOTDIR=$HOME/dotfiles
-
-export LS_COLORS="$(vivid generate iceberg-dark)"
+export DOTDIR=$HOME/git/dotfiles                        # Dotfiles location
+export ZDOTDIR=~/.config/zsh                            # zsh configs
+export ZSH_CACHE_DIR=~/.cache/zsh                       # caching zsh data
+export EDITOR=vim                                       # Vim.
+export VISUAL=$EDITOR                                   # Default visual editor
+export BROWSER=firefox                                  # Firefox web browser
+export LESS='-R --colors=always'                        # Preserve colorization but display it using default colors
+export PAGER=less                                       # Default pager to less.
+export LS_COLORS="$(vivid generate iceberg-dark)"       # https://github.com/sharkdp/vivid
 
 typeset -U path
 path=(~/.local/bin ~/.cargo/bin ~/go/bin $path)
-

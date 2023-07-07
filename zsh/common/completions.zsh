@@ -1,22 +1,57 @@
-# Completion Styles
+#!/usr/bin/zsh
 
-zstyle ':completion::complete:*' use-cache 1
-zstyle ':completion::complete:*' cache-path $ZSH_CACHE
-zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
+# Z-shell completion configuration
+
+# Enable caching of all completion operations.  The results of completion
+# functions are cached, so that subsequent completions of the same text can
+# be done more quickly.
+zstyle ':completion::complete:*' use-cache yes
+
+# Set the directory for storing completion cache files.
+# $ZSH_CACHE_DIR should be set to a directory with write access.
+zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
+
+# List of completers to be used for completion.
+# This includes expansion of variables, command completion and approximate completions.
+zstyle ':completion:*' completer _approximate _expand _complete
+
+# Approximate matching
+# Maximum number of errors allowed for approximate completion.
+# The number is calculated as one third of the sum of lengths of the prefix and suffix of the word being completed.
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
-#zstyle ':completion:*:expand:*' tag-order all-expansions
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*' menu select=2 eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*:descriptions' format '%B%d%b'
-zstyle ':completion:*:messages' format '%d'
-zstyle ':completion:*:warnings' format 'No matches for: %d'
-zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' list-dirs-first true
-#zstyle ':completion:*' accept-exact-dirs true
-zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-zmodload zsh/complist
+# Define the style of the completion menu with color support.
+# The 'select=2' option enables menu selection, allowing you to navigate the completion list with the arrow keys.
+# The 'eval "$(dircolors -b)"' sets up LS_COLORS environment variable, providing color settings for file types.
+zstyle ':completion:*' menu select=2 eval "$(dircolors -b)"
+
+# Configure the format of descriptions during completion. Bold format for descriptions.
+zstyle ':completion:*:descriptions' format '%B%d%b'
+# Configure the format of messages during completion. Plain format for messages.
+zstyle ':completion:*:messages' format '%d'
+# Configure the format of warnings during completion. Custom warning format.
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+# Configure the format of corrections during completion. Bold format for corrections and show number of errors.
+zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+
+# Do not prefix group names to matches.
+zstyle ':completion:*' group-name ''
+
+# Show directories before files in completion listings.
+zstyle ':completion:*' list-dirs-first true
+
+# Specify a list of matcher-list to allow completion to consider alternate matches if the default matcher fails.
+# '' allows exact matches
+# 'm:{a-z}={A-Z}' makes the match case-insensitive.
+# 'r:|[._-]=* r:|=*' allows you to type the last character of a word, or anything after a . _ -, and have it match the rest of the word in the completion.
+# 'l:|[._-]=* l:|=*' does the same but for the first character of the word or anything before a . _ -.
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]-_}={[:upper:][:lower:]_-}' 'r:|=*' 'l:|=* r:|=*'
+
+# Complete . and .. special directories
+zstyle ':completion:*' special-dirs true
+
+# Configure color listings for completions based on LS_COLORS.
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+# Configure colors for process listings in 'kill' completion.
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd --no-headers'
