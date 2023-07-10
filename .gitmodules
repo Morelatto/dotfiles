@@ -34,3 +34,24 @@
 [submodule "dunst/barify"]
 	path = dunst/barify
 	url = https://github.com/Arctize/barify
+[submodule "zsh/mods/fast-syntax-highlighting"]
+	path = zsh/mods/fast-syntax-highlighting
+	url = https://github.com/zdharma-continuum/fast-syntax-highlighting
+[submodule "zsh/mods/powerlevel10k"]
+	path = zsh/mods/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k
+[submodule "zsh/mods/you-should-use"]
+	path = zsh/mods/you-should-use
+	url = https://github.com/MichaelAquilina/zsh-you-should-use
+[submodule "zsh/mods/zsh-autosuggestions"]
+	path = zsh/mods/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh/mods/zsh-z"]
+	path = zsh/mods/zsh-z
+	url = https://github.com/agkozak/zsh-z
+[submodule "zsh/mods/zsh-history-substring-search"]
+	path = zsh/mods/zsh-history-substring-search
+	url = https://github.com/zsh-users/zsh-history-substring-search
+[submodule "zsh/mods/zsh-completions"]
+	path = zsh/mods/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions

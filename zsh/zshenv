@@ -8,7 +8,10 @@ export VISUAL=$EDITOR                                   # Default visual editor
 export BROWSER=firefox                                  # Firefox web browser
 export LESS='-R --colors=always'                        # Preserve colorization but display it using default colors
 export PAGER=less                                       # Default pager to less.
-export LS_COLORS="$(vivid generate iceberg-dark)"       # https://github.com/sharkdp/vivid
+#export LS_COLORS="$(vivid generate iceberg-dark)"       # https://github.com/sharkdp/vivid
+export EXA_COLORS="sn=32;4:sb=32;4:da=1"                               # Turn the date column green
+
+eval "$(dircolors -b)"
 
 typeset -U path
-path=(~/.local/bin ~/.cargo/bin ~/go/bin $path)
+path=(~/.local/bin ~/.cargo/bin /opt/go/bin /usr/local/bin $path)

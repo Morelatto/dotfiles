@@ -78,12 +78,13 @@ function widget::rangercd () {
  fi
 }
 
-bindkey '^R'        _atuin_search_widget  
-#bindkey '^[r'       _atuin_fzf  # Using fzf interactively
-#bindkey '^[^R'    histdb-fzf-widget
-bindkey '^@'        autosuggest-execute
-bindkey '^H'        backward-kill-word
-bindkey '^[[3;5~'   kill-word
+#bindkey '^R'         _atuin_search_widget
+#bindkey '^[r'        _atuin_fzf  # Using fzf interactively
+#bindkey '^[^R'       histdb-fzf-widget
+#bindkey '^@'          _expand_alias
+bindkey ';5D'         backward-word
+bindkey ';5C'         forward-word
+bindkey '^H'         backward-kill-word
 # bindkey                     ${KEY[CTRL_L]}           widget::scroll-and-clear-screen
 # bindkey                     ${KEY[CTRL_A]}           _expand_alias
 # bindkey                     ${KEY[CTRL_O]}           widget::rangercd
@@ -91,6 +92,9 @@ bindkey '^[[3;5~'   kill-word
 # bindkey                     ${KEY[TAB]}              expand-or-complete
 # bindkey                     ${KEY[CTRL_SPACE]}       autosuggest-accept
 # bindkey                     ${KEY[CTRL_Y]}           yank
+
+# Load zsh complist module to enable advanced menu completion features.
+zmodload -i zsh/complist
 
 # Use the vi navigation keys in menu completion
 bindkey -M menuselect 'h' vi-backward-char

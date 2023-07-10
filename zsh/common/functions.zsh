@@ -1,16 +1,7 @@
 #!/usr/bin/zsh
 
-# Initialize Zsh's completion system. This command prepares the use of the
-# built-in completion system by loading all the necessary functions and
-# setting up various options and key bindings.
-autoload -Uz compinit
-compinit
-
-# Load zsh complist module to enable advanced menu completion features.
-zmodload -i zsh/complist
-
 # Append the directory of external function definitions to the function search path.
-fpath+=(path/to/zsh-completions/src $ZFUNCTIONS)
+fpath+=($ZDOTDIR/zsh/mods/zsh-completions/src $ZFUNCTIONS)
 
 # ---------------
 # Shell functions
