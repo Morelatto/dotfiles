@@ -1,19 +1,29 @@
 #!/usr/bin/zsh
 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
 # A signal trap for USR1 signal, which triggers the rehash command to rebuild the command hash table.
 TRAPUSR1() { rehash }
 
 # Recursive function to source all .zsh files in the given directory and its subdirectories.
 rec_source() {
     local f
-    for f in $(ls -v "$1"/*); do
-        [[ -d $f ]] && rec_source "$f"
-        [[ -L $f ]] && [[ $f == *.zsh ]] && source $f # && printf '%s\n' $f
+    for dir in "$@"; do
+        for f in $(ls -v "$dir"/*); do
+            [[ -d $f ]] && rec_source "$f"
+            [[ -L $f ]] && [[ $f == *.zsh ]] && source $f
+        done
     done
 }
 
 # Autoload all .zsh files in all directories in $fpath.
-rec_source $ZDOTDIR/
+rec_source $ZDOTDIR/common $ZDOTDIR/aliases
 
 # Run colorscript with the -r option, which generates a random color script.
 # For more about colorscript, see https://gitlab.com/dwt1/shell-color-scripts

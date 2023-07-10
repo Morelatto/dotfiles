@@ -13,17 +13,12 @@ zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 
 # List of completers to be used for completion.
 # This includes expansion of variables, command completion and approximate completions.
-zstyle ':completion:*' completer _approximate _expand _complete
+zstyle ':completion:*' completer _expand _complete _approximate
 
 # Approximate matching
 # Maximum number of errors allowed for approximate completion.
 # The number is calculated as one third of the sum of lengths of the prefix and suffix of the word being completed.
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
-
-# Define the style of the completion menu with color support.
-# The 'select=2' option enables menu selection, allowing you to navigate the completion list with the arrow keys.
-# The 'eval "$(dircolors -b)"' sets up LS_COLORS environment variable, providing color settings for file types.
-zstyle ':completion:*' menu select=2 eval "$(dircolors -b)"
 
 # Configure the format of descriptions during completion. Bold format for descriptions.
 zstyle ':completion:*:descriptions' format '%B%d%b'
@@ -49,6 +44,10 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]-_}={[:upper:][:lower:
 
 # Complete . and .. special directories
 zstyle ':completion:*' special-dirs true
+
+# Define the style of the completion menu with color support.
+# The 'select=2' option enables menu selection, allowing you to navigate the completion list with the arrow keys.
+zstyle ':completion:*' menu select=2
 
 # Configure color listings for completions based on LS_COLORS.
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
