@@ -4,7 +4,7 @@
 # Plugin sources
 # --------------
 
-export ZMOD_DIR=$DOTDIR/zsh/mods/
+export ZMOD_DIR=$DOTDIR/zsh/mods
 
 # https://github.com/zdharma-continuum/fast-syntax-highlighting
 source $ZMOD_DIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh

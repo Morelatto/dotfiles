@@ -49,7 +49,7 @@ create_symlinks() {
 
 install_additional_packages() {
     echo "Installing additional packages"
-    sudo apt update -qq && sudo apt install -qq -y zsh git curl fzf fd-find highlight bat tree autojump exa sqlite3 rlwrap
+    sudo apt update -qq && sudo apt install -qq -y zsh git curl fd-find bat tree exa
     install_cht_sh
     install_vivid
 }
@@ -62,13 +62,15 @@ install_cht_sh() {
 }
 
 install_vivid() {
-    if [ ! command -v vivid &>/dev/null ]; then
+    local version=0.9.0
+    local ark=arm64
+
+    if ! command -v vivid &>/dev/null; then
         echo "Installing vivid"
-        wget "https://github.com/sharkdp/vivid/releases/download/v0.8.0/vivid_0.8.0_amd64.deb"
-        sudo dpkg -i vivid_0.8.0_amd64.deb
+        wget "https://github.com/sharkdp/vivid/releases/download/v${version}/vivid_${version}_${ark}.deb"
+        sudo dpkg -i "vivid_${version}_${ark}.deb"
     fi
 }
-
 set_default_shell() {
     read -p "Do you want to set Zsh as your default shell? (y/n): " answer
     if [[ $answer =~ ^[Yy]$ ]]; then
@@ -91,19 +93,23 @@ confirm_and_remove_files() {
 }
 
 
-read -p "Perform $1 setup? (y/n) " confirm
-case "$confirm" in
-    y|Y )
-        if [ "$1" == "zsh" ]; then
+main() {
+    case "$1" in
+        ''|-h|--help)
+            usage
+            exit 0
+            ;;
+        -z)
             zsh_setup
-        elif [ "$1" == "git" ]; then
+            ;;
+        -g)
             git_setup
-        else
-            echo "Invalid argument. Usage: ./install.sh [zsh|git]"
-        fi
-        ;;
-    * )
-        echo "Setup cancelled."
-        ;;
-esac
+            ;;
+        *)
+            echo "Command not found" >&2
+            exit 1
+    esac
+}
+
+main "$@"
 

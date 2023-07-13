@@ -1,7 +1,7 @@
 #!/usr/bin/zsh
 
 # Append the directory of external function definitions to the function search path.
-fpath+=($ZDOTDIR/zsh/mods/zsh-completions/src $ZFUNCTIONS)
+fpath+=($DOTDIR/zsh/mods/zsh-completions/src $ZFUNCTIONS)
 
 # ---------------
 # Shell functions

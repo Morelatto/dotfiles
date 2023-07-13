@@ -45,6 +45,7 @@ alias dcd='docker-compose down'
 alias dcs='docker-compose stop'
 alias dcc="docker-compose config"
 alias dcp='docker-compose pull'
+alias dcl='docker-compose logs --tail=100 -f'
 alias deit='docker exec -it'
 alias dci='docker inspect'
 alias dim='docker images'
@@ -145,18 +146,16 @@ alias tf='tail -F'
 alias xrl='xrdb -load ~/.Xresources'
 
 # ls
-alias ls="ls --color=auto"
-alias la='ls -lA'
-alias lr='ls -R'
-alias lra='lr -A'
-alias l.='ls -d .*'
-alias lse='ls -d -- *(/^F)'                                             # empty directories
-alias lsen='ls -d *(/om[1])'                                            # newest directory
-alias lsx='ls -l -- *(*) | head $@ 2&>/dev/null'                        # asd executables
-alias lsnew='=ls -rtlh -- *(.) | tail $@ 2&>/dev/null'                  # newest files
-alias lsold='=ls -rtl -- *(.) | head $@ 2&>/dev/null'                   # oldest files
-alias lsmall='=ls -Sl -- *(.) | tail $@ 2&>/dev/null'                   # smallest files
-alias lsbig='=ls -lSh -- *(.) | grep -v total | head $@ 2&>/dev/null'   # biggest files
+alias ls='exa --colour=always'
+alias la='exa -la'
+alias lr='exa -R'
+alias lra='exa -Ra'
+alias l.='exa -d .*'
+alias lse='exa --empty'
+alias lsnew='exa --sort=modified --reverse'
+alias lsold='exa --sort=modified'
+alias lsmall='exa --sort=size'
+alias lsbig='exa --sort=size --reverse'
 
 # List only directories and symbolic
 # links that point to directories
