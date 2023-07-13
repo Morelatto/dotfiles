@@ -50,3 +50,9 @@ POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=1
 # Aloxaf/fzf-tab
 # mdumitru/fancy-ctrl-z
 # zpm-zsh/history-search-multi-word
+
+# pyenv setup
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+

@@ -84,7 +84,7 @@ confirm_and_remove_files() {
     for file_path in "$@"; do
         read -p "Are you sure you want to remove the file '$file_path'? (y/n): " response
         if [[ $response =~ ^[Yy]$ ]]; then
-            rm "$file_path"
+            rm -rf "$file_path"
             echo "File '$file_path' removed."
         else
             echo "Skipping file '$file_path'."

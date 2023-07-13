@@ -76,3 +76,5 @@ setopt interactive_comments
 # This allows the use of dynamic prompts that can include various kinds of information,
 # such as the current time, the status of the last command, or the current directory.
 setopt prompt_subst
+
+ZLE_REMOVE_SUFFIX_CHARS=""

@@ -32,3 +32,4 @@ if [ -v COLOR ]; then
 fi
 
 # End of `.zshrc`
+
