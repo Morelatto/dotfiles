@@ -208,6 +208,7 @@ alias server='python3 -m http.server'
 alias venv='virtualenv venv && source ./venv/bin/activate'
 alias json='python3 -m json.tool'
 alias color='pygmentize -l pytb'
+alias note='jupyter notebook'
 
 # sudo
 alias chown='sudo chown'
