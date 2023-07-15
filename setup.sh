@@ -23,17 +23,8 @@ ln -s ${DOTDIR}/ranger/rc.conf ${RANGER_CONFIG_DIR}/
 ln -s ${DOTDIR}/ranger/scope.sh ${RANGER_CONFIG_DIR}/
 git config --global core.excludesfile ${DOTDIR}/misc/gitignore_global
 
-ZSH_CONFIG_DIR=$CONFIG_DIR/zsh
-ZSH_CACHE_DIR=$HOME/.cache
-ZSH_ALIAS_DIR=$ZSH_CONFIG_DIR/aliases
-ZSH_FUNCTIONS_DIR=$ZSH_CONFIG_DIR/functions
-ZSH_COMMON_DIR=$ZSH_CONFIG_DIR/common
-
-pacman -S zsh zsh-autosuggestions zsh-completions
 sudo pacman -S xorg-server xorg-apps xorg-xinit
 sudo pacman -S i3-gaps i3blocks i3lock rofi dunst
-yay -S zsh-syntax-highlighting fzf-tab-bin-git hstr
-yay -S autojump cht.sh-git
 
 I3_CONFIG_DIR=$CONFIG_DIR/i3
 I3_BLOCKS_CONFIG_DIR=$CONFIG_DIR/i3blocks
@@ -52,7 +43,7 @@ yay -Si rofi-dmenu paper-icon-theme nerd-fonts-dejavu-complete
 # vivid
 # docker completion
 # https://github.com/alanzchen/rm-protection
-https://gitlab.com/wavexx/networkd-notify
+# https://gitlab.com/wavexx/networkd-notify
 pacman -S firefox firefox-ublock-origin
 
 RANGER_CONFIG_DIR=$XDG_CONFIG_HOME/ranger
@@ -64,3 +55,4 @@ pip install ueberzug pillow-simd
 cp /usr/share/doc/ranger/config/scope.sh $RANGER_CONFIG_DIR/scope.sh
 ln -sf $DOTDIR/rc.conf $RANGER_CONFIG_DIR/rc.conf
 
+# Install Hack NerdFont
