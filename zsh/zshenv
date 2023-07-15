@@ -6,14 +6,14 @@ export ZSH_CACHE_DIR=~/.cache/zsh                       # caching zsh data
 export EDITOR=vim                                       # Vim.
 export VISUAL=$EDITOR                                   # Default visual editor
 export BROWSER=firefox                                  # Firefox web browser
-#export LESS='-R'                                        # Preserve colorization but display it using default colors
 export PAGER=less                                       # Default pager to less.
-#export LS_COLORS="$(vivid generate iceberg-dark)"       # https://github.com/sharkdp/vivid
 export EXA_COLORS="sn=32;4:sb=32;4:da=1"                # Turn the date column green
 export PYENV_ROOT="$HOME/.config/pyenv"
 export POETRY_PATH="$HOME/.local"
+export PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto' PYTHON_CFLAGS='-march=native -mtune=native'
+export GOROOT=/opt/go
 
 eval "$(dircolors -b)"
 
 typeset -U path
-path=($PYENV_ROOT/bin $POETRY_PATH/bin ~/.local/bin ~/.cargo/bin /opt/go/bin /usr/local/bin $path)
+path=($PYENV_ROOT/bin $POETRY_PATH/bin ~/.local/bin ~/.cargo/bin $GOROOT/bin /usr/local/bin $path)

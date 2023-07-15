@@ -18,10 +18,9 @@ git_setup() {
 
 clone_dotfiles_repository() {
     if [ ! -d "$INSTALL_DIR" ]; then
-        git clone https://github.com/Morelatto/dotfiles $INSTALL_DIR
+        git clone --recurse-submodules https://github.com/Morelatto/dotfiles $INSTALL_DIR
     fi
 }
-
 
 create_directories() {
     confirm_and_remove_files $ZDOTDIR $ZCACHE
@@ -36,7 +35,6 @@ create_symlinks() {
     declare -A dirs=(
         ["$INSTALL_DIR/zsh/aliases/"]="$ZDOTDIR/aliases/"
         ["$INSTALL_DIR/zsh/common/"]="$ZDOTDIR/common/"
-    #    ["$INSTALL_DIR/zsh/ext/"]="$ZDOTDIR/ext/"
     )
 
     for dir in "${!dirs[@]}"; do
@@ -45,7 +43,6 @@ create_symlinks() {
         done
     done
 }
-
 
 install_additional_packages() {
     echo "Installing additional packages"
@@ -61,22 +58,16 @@ install_cht_sh() {
     fi
 }
 
-install_vivid() {
-    local version=0.9.0
-    local ark=arm64
-
-    if ! command -v vivid &>/dev/null; then
-        echo "Installing vivid"
-        wget "https://github.com/sharkdp/vivid/releases/download/v${version}/vivid_${version}_${ark}.deb"
-        sudo dpkg -i "vivid_${version}_${ark}.deb"
-    fi
-}
 set_default_shell() {
-    read -p "Do you want to set Zsh as your default shell? (y/n): " answer
-    if [[ $answer =~ ^[Yy]$ ]]; then
-        chsh -s $(which zsh)
-        echo "Zsh has been set as your default shell."
-        echo "Please log out and log back in for the changes to take effect."
+    if [[ $(echo $SHELL) != "/usr/bin/zsh" ]]; then
+        read -p "Do you want to set Zsh as your default shell? (y/n): " answer
+        if [[ $answer =~ ^[Yy]$ ]]; then
+            chsh -s $(which zsh)
+            echo "Zsh has been set as your default shell."
+            echo "Please log out and log back in for the changes to take effect."
+        fi
+    else
+        echo "Zsh is already your default shell."
     fi
 }
 
@@ -91,7 +82,6 @@ confirm_and_remove_files() {
         fi
     done
 }
-
 
 main() {
     case "$1" in
@@ -112,4 +102,3 @@ main() {
 }
 
 main "$@"
-
