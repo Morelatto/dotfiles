@@ -54,5 +54,8 @@ POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=1
 # pyenv setup
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
 source $(pyenv root)/completions/pyenv.zsh
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
