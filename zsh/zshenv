@@ -12,8 +12,12 @@ export PYENV_ROOT="$HOME/.config/pyenv"
 export POETRY_PATH="$HOME/.local"
 export PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto' PYTHON_CFLAGS='-march=native -mtune=native'
 export GOROOT=/opt/go
+export NVM_DIR="$HOME/.config/nvm"
+export IPYTHONDIR="$HOME/.config/ipython"
+export JUPYTER_CONFIG_DIR="$HOME/.config/jupyter"
 
 eval "$(dircolors -b)"
 
 typeset -U path
 path=($PYENV_ROOT/bin $POETRY_PATH/bin ~/.local/bin ~/.cargo/bin $GOROOT/bin /usr/local/bin $path)
+
