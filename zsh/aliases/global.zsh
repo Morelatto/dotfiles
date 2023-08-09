@@ -53,6 +53,8 @@ alias -g S='A /dev/null'
 # Usage: cat large_file.txt T
 alias -g T='|tail'
 
+alias -g U='| uniq'
+
 # Pipe to json for formatting JSON output (Requires json command).
 # Usage: echo '{"hello":"world"}' J
 alias -g J='|json'
@@ -60,3 +62,5 @@ alias -g J='|json'
 # Copy output to clipboard (Requires copy command).
 # Usage: echo "Hello, World!" X
 alias -g X='|copy'
+
+alias -g W='| wc -l'
