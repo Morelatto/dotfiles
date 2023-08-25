@@ -21,10 +21,8 @@ set $ws8 "8:"
 set $ws9 "9:"
 set $ws10 "10:"
 
-set $secondary "HDMI-1"
-
 floating_modifier $mod
-
+tiling_drag modifier titlebar
 
 # Focus
 bindsym         $mod+$left                      focus left
@@ -148,7 +146,7 @@ client.background               $bg
 
 
 # Status bar
-#bar {
+# bar {
 #        font                    pango:Inconsolata 11
 #        position                top
 #        tray_output             primary
@@ -167,7 +165,7 @@ client.background               $bg
 #                inactive_workspace  $cl18   $cl18   $cl20
 #                urgent_workspace    $cl19   $cl5    $cl15
 #            }
-#}
+# }
 
 
 # Fixed workspaces
@@ -175,11 +173,11 @@ workspace $ws1 output primary
 workspace $ws2 output primary
 workspace $ws3 output primary
 workspace $ws4 output primary
-workspace $ws5 output $secondary
-workspace $ws6 output $secondary
-workspace $ws7 output $secondary
-workspace $ws8 output $secondary
-workspace $ws9 output $secondary
+workspace $ws5 output $MON_2
+workspace $ws6 output $MON_2
+workspace $ws7 output $MON_2
+workspace $ws8 output $MON_2
+workspace $ws9 output $MON_2
 
 
 # Windows
@@ -204,6 +202,7 @@ bindsym --release       Ctrl+Print                      exec --no-startup-id sct
 bindsym                 XF86AudioMute                   exec --no-startup-id barify vol mute
 bindsym                 XF86AudioRaiseVolume            exec --no-startup-id barify vol up
 bindsym                 XF86AudioLowerVolume            exec --no-startup-id barify vol down
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym                 XF86AudioNext                   exec --no-startup-id playerctl next
 bindsym                 XF86AudioPrev                   exec --no-startup-id playerctl previous
 bindsym                 XF86AudioPlay                   exec --no-startup-id playerctl play-pause
@@ -231,9 +230,11 @@ smart_borders on
 
 
 # Autostart
-exec_always --no-startup-id xautolock -time 30 -locker "lock"
+
+exec_always --no-startup-id xautolock -time 10 -locker "lock"
 exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
-exec        --no-startup-id dunst -lf "$fg" -nf "$fg" -cf "$fg" -lb "$bg" -nb "$bg" -cb "$bg" -lfr "$lw" -nfr "$cl10" -cfr "$cl13"
-exec        --no-startup-id networkd-notify
-exec        --no-startup-id picom --experimental-backends -b
+# -lf "$fg" -nf "$fg" -cf "$fg" -lb "$bg" -nb "$bg" -cb "$bg" -lfr "$lw" -nfr "$cl10" -cfr "$cl13"
+exec        --no-startup-id dunst
+exec        --no-startup-id nm-applet
+exec        --no-startup-id picom -b
 exec        --no-startup-id udiskie --no-automount --tray
