@@ -55,3 +55,9 @@
 [submodule "zsh/mods/zsh-completions"]
 	path = zsh/mods/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
+[submodule "i3/lockscreen/betterlockscreen"]
+	path = i3/lockscreen/betterlockscreen
+	url = git@github.com:betterlockscreen/betterlockscreen
+[submodule "i3/lockscreen/i3lock-color"]
+	path = i3/lockscreen/i3lock-color
+	url = git@github.com:Raymo111/i3lock-color
