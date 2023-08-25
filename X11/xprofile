@@ -9,6 +9,8 @@ export TERMINAL=alacritty
 export MON_1=HDMI-1
 export MON_2=eDP-1
 
+userresources=$HOME/.Xresources
+[ -f $userresources ] && xrdb -merge "$userresources" &
 setxkbmap -layout br &
 xset b off &
 $XDG_CONFIG_HOME/.screenlayout.sh &
