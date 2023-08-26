@@ -140,6 +140,7 @@ mode "  " {
 # Windows
 assign [instance="Navigator"] $ws3
 assign [instance="subl"] $ws4
+assign [instance="code"] $ws4
 
 for_window [class="Spotify"] move to workspace $ws6
 for_window [class="^.*pycharm"] move to workspace $ws10
