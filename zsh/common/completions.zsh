@@ -13,7 +13,7 @@ zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 
 # List of completers to be used for completion.
 # This includes expansion of variables, command completion and approximate completions.
-zstyle ':completion:*' completer _expand _complete _approximate
+zstyle ':completion:*'  _expand _complete _approximate
 
 # Approximate matching
 # Maximum number of errors allowed for approximate completion.
@@ -29,7 +29,7 @@ zstyle ':completion:*:warnings' format 'No matches for: %d'
 # Configure the format of corrections during completion. Bold format for corrections and show number of errors.
 zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 
-# Do not prefix group names to matches.
+# Enables the grouping of completion options
 zstyle ':completion:*' group-name ''
 
 # Show directories before files in completion listings.
@@ -45,8 +45,7 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]-_}={[:upper:][:lower:
 # Complete . and .. special directories
 zstyle ':completion:*' special-dirs true
 
-# Define the style of the completion menu with color support.
-# The 'select=2' option enables menu selection, allowing you to navigate the completion list with the arrow keys.
+# Enable the single-undo selection style
 zstyle ':completion:*' menu select=2
 
 # Configure color listings for completions based on LS_COLORS.

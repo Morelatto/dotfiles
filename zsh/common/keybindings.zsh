@@ -96,12 +96,6 @@ bindkey '^H'         backward-kill-word
 # Load zsh complist module to enable advanced menu completion features.
 zmodload -i zsh/complist
 
-# Use the vi navigation keys in menu completion
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
 if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
