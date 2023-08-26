@@ -9,7 +9,7 @@ dim_level=45
 blur_level=1
 pixel_scale=10,1000
 #solid_color=333333
-wallpaper_cmd="feh --no-fehbg --bg-fill ~/Pictures/LockScreen"
+wallpaper_cmd="feh --no-fehbg --bg-fill ~/Pictures/Lockscreen"
 # i3lockcolor_bin="i3lock-color" # Manually set command for i3lock-color
 
 # default theme
