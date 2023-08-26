@@ -1,9 +1,4 @@
-alias aee="$EDITOR $ZALIASES && source $ZCOMMON/aliases.zsh"
-alias iee="$EDITOR $XDG_CONFIG_HOME/i3/config && i3-msg reload"
-alias xee="$EDITOR ~/.Xresources && xrl"
-alias zee="$EDITOR $ZDOTDIR"
-
-# a-z
+# a-$
 alias a='alias'
 alias b='bat'
 alias c='oco'
@@ -19,6 +14,7 @@ alias s='sudo'
 alias t='tree'
 alias v='vim'
 alias y='yay'
+alias \$=''
 
 # cd
 alias .='cd ./'
@@ -68,9 +64,8 @@ alias du1='dust -d 1'
 alias dud='dust -d'
 alias fox='firefox'
 alias gpt='sgpt'
-alias gpts='sgpt --shell'
-alias gptc='sgpt --code'
-alias hstr='HSTR_CONFIG=hicolor,raw-history-view hstr --'
+alias gsh='sgpt --shell'
+alias gpc='sgpt --code'
 alias pom='potato'
 alias psg='psgrep'
 
@@ -117,14 +112,14 @@ alias gut='git stash pop'
 alias authors="git ls-files | while read f; do git blame -w -M -C -C --line-porcelain \$f | grep -I '^author '; done 2>/dev/null | sort -f | uniq -ic | sort -n"
 
 # gradle
-alias gr='./gradlew'
-#alias grc='gr clean'
-alias grb='gr build'
-alias grbr='gr bootRun'
-alias grbrd='gr build --refresh-dependencies'
-alias gri='gr install'
-alias grcb='grc && grb'
-alias grci='grc && gri'
+alias grd='./gradlew'
+alias grdc='./gradlew clean'
+alias grdb='./gradlew build'
+alias grdr='./gradlew bootRun'
+alias grdbr='./gradlew build --refresh-dependencies'
+alias grdi='./gradlew install'
+alias grdcb='grc && grb'
+alias grdci='grc && gri'
 
 # grep
 alias grep='grep --color=auto --ignore-case'
@@ -150,6 +145,7 @@ alias rf='readlink -f'
 alias rmrf='rm -rf'
 alias tf='tail -F'
 alias xrl='xrdb -load ~/.Xresources'
+alias zshd='zsh -xv &>> (tee ~/zsh-debug.log 2>/dev/null)'
 
 # ls
 alias ls='exa --colour=always'
@@ -257,18 +253,8 @@ alias emacs='vim'
 alias sv='sudo vim'
 alias vimplug='vim +PluginInstall +qall'
 
-alias \$=''
-
-
-alias quote='shuf -n 1 ~/Quotables/author-quote.txt'
-
-
-
-
-
-
-
-
-
-alias zshd='zsh -xv &>> (tee ~/zsh-debug.log 2>/dev/null)'
-
+# Editors
+alias ae="$EDITOR $ZDOTDIR/aliases && rec_source $ZDOTDIR/aliases"
+alias ie="$EDITOR $XDG_CONFIG_HOME/i3/config && i3-msg reload"
+alias xe="$EDITOR ~/.Xresources && xrl"
+alias ze="$EDITOR $ZDOTDIR"
