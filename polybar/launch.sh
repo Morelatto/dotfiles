@@ -2,7 +2,7 @@
 
 # Add this script to your wm startup file.
 
-DIR="$HOME/.config/polybar/grayblocks"
+DIR="$HOME/.config/polybar"
 
 # Terminate already running bar instances
 killall -q polybar
@@ -19,6 +19,6 @@ for i in /sys/class/hwmon/hwmon*/temp*_input; do
 done
 
 # Launch the bar
-polybar -q main1 -c "$DIR"/config.ini &
-polybar -q main2 -c "$DIR"/config.ini &
-
+echo "---" | tee -a /tmp/polybar1.log /tmp/polybar2.log
+polybar b1 2>&1 | tee -a /tmp/polybar1.log & disown
+polybar b2 2>&1 | tee -a /tmp/polybar2.log & disown
