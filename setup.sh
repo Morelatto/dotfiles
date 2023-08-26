@@ -2,38 +2,41 @@
 
 DOTDIR=$(dirname $(realpath -s $0))
 CONFIG_DIR=$HOME/.config
-RANGER_CONFIG_DIR=$CONFIG_DIR/ranger
 
+# X setup
 sudo mkdir -p /etc/X11/xorg.conf.d/
+sudo pacman -S --needed xorg xorg-xinit
+sudo pacman -S xorg-server xorg-apps xorg-xinit
+ln -s ${DOTDIR}/X11/xinitrc $HOME/.xinitrc
+sudo ln -s ${DOTDIR}/X11/10-monitor.conf /etc/X11/xorg.conf.d/
+
+# Wallpaper setup
+sudo pacman -S --needed feh
 mkdir -p $HOME/Pictures/Wallpapers/
-mkdir -p ${I3_CONFIG_DIR}
+ln -s ${DOTDIR}/X11/fehbg $HOME/.fehbg
+
+# Ranger setup
+RANGER_CONFIG_DIR=$CONFIG_DIR/ranger
 mkdir -p ${RANGER_CONFIG_DIR}
 mkdir -p $HOME/.cache/ranger
-sudo pacman -S --needed xorg xorg-xinit feh
-sudo pacman -S --needed ranger
-sudo pacman -S --needed ripgrep bat httpie fd
-yay -S --needed --nodiffmenu --nocleanmenu i3blocks-gaps-git corrupter-git
-yay -S --needed --nodiffmenu --nocleanmenu adobe-source-code-pro-fonts speedtest-cli-git cht.sh
-
-sudo ln -sf ${DOTDIR}/misc/pacman.conf /etc/pacman.conf
-ln -s ${DOTDIR}/X11/xinitrc $HOME/.xinitrc
-ln -s ${DOTDIR}/X11/fehbg $HOME/.fehbg
-sudo ln -s ${DOTDIR}/X11/10-monitor.conf /etc/X11/xorg.conf.d/
-ln -s ${DOTDIR}/ranger/rc.conf ${RANGER_CONFIG_DIR}/
+pacman -S ranger python-pygments
+pip uninstall -y pillow
+pip install ueberzug pillow-simd
+cp /usr/share/doc/ranger/config/scope.sh $RANGER_CONFIG_DIR/scope.sh
+ln -sf $DOTDIR/rc.conf $RANGER_CONFIG_DIR/rc.conf
 ln -s ${DOTDIR}/ranger/scope.sh ${RANGER_CONFIG_DIR}/
+
+pacman -S firefox firefox-ublock-origin
+# Pacman
+sudo ln -sf ${DOTDIR}/misc/pacman.conf /etc/pacman.conf
+
+# Git
 git config --global core.excludesfile ${DOTDIR}/misc/gitignore_global
 
-sudo pacman -S xorg-server xorg-apps xorg-xinit
-sudo pacman -S i3-gaps i3blocks i3lock rofi dunst
-
-I3_CONFIG_DIR=$CONFIG_DIR/i3
-I3_BLOCKS_CONFIG_DIR=$CONFIG_DIR/i3blocks
-mkdir -p $I3_CONFIG_DIR
-ln -sf $DOTDIR/config $I3_CONFIG_DIR/config
-git clone https://github.com/vivien/i3blocks-contrib $I3_BLOCKS_CONFIG_DIR
-ln -sf $DOTDIR/i3blocks.config $I3_BLOCKS_CONFIG_DIR/config
-yay -Si rofi-dmenu paper-icon-theme nerd-fonts-dejavu-complete
-
+# External tools
+sudo pacman -S --needed ripgrep bat httpie fd
+yay -S --needed --nodiffmenu --nocleanmenu corrupter-git
+yay -S --needed --nodiffmenu --nocleanmenu adobe-source-code-pro-fonts speedtest-cli-git cht.sh
 # install maim, xclip, xdotool
 # https://github.com/jvz/psgrep
 # https://github.com/dastorm/volume-notification-dunst
@@ -44,15 +47,4 @@ yay -Si rofi-dmenu paper-icon-theme nerd-fonts-dejavu-complete
 # docker completion
 # https://github.com/alanzchen/rm-protection
 # https://gitlab.com/wavexx/networkd-notify
-pacman -S firefox firefox-ublock-origin
-
-RANGER_CONFIG_DIR=$XDG_CONFIG_HOME/ranger
-
-pacman -S ranger python-pygments
-pip uninstall -y pillow
-pip install ueberzug pillow-simd
-
-cp /usr/share/doc/ranger/config/scope.sh $RANGER_CONFIG_DIR/scope.sh
-ln -sf $DOTDIR/rc.conf $RANGER_CONFIG_DIR/rc.conf
-
 # Install Hack NerdFont
