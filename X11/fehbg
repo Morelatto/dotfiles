@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-scale '/home/morel/Wallpapers/Earth - Angels of Darkness, Demons of Light I.jpeg'
+feh --no-fehbg --bg-scale $HOME/Pictures/Wallpaper
