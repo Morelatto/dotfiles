@@ -83,6 +83,10 @@ bindsym         $mod+Shift+0  move container to workspace $ws10; workspace numbe
 bindsym         $mod+n                          workspace next
 bindsym         $mod+p                          workspace prev
 
+## Fixed
+workspace $ws1 output primary
+workspace $ws2 output $MON_2
+
 
 # Reload/Exit
 bindsym         $mod+Shift+c                    reload
@@ -110,41 +114,6 @@ mode "  " {
         bindsym                 $mod+r          mode "default"
 }
 
-
-# Colors
-set_from_resource               $fg             i3wm.foreground
-set_from_resource               $bg             i3wm.background
-set_from_resource               $cl0            i3wm.color0
-set_from_resource               $cl1            i3wm.color1
-set_from_resource               $cl2            i3wm.color2
-set_from_resource               $cl3            i3wm.color3
-set_from_resource               $cl4            i3wm.color4
-set_from_resource               $cl5            i3wm.color5
-set_from_resource               $cl6            i3wm.color6
-set_from_resource               $cl7            i3wm.color7
-set_from_resource               $cl8            i3wm.color8
-set_from_resource               $cl9            i3wm.color9
-set_from_resource               $cl10           i3wm.color10
-set_from_resource               $cl11           i3wm.color11
-set_from_resource               $cl12           i3wm.color12
-set_from_resource               $cl13           i3wm.color13
-set_from_resource               $cl14           i3wm.color14
-set_from_resource               $cl15           i3wm.color15
-set_from_resource               $cl16           i3wm.color16
-set_from_resource               $cl17           i3wm.color17
-set_from_resource               $cl18           i3wm.color18
-set_from_resource               $cl19           i3wm.color19
-set_from_resource               $cl20           i3wm.color20
-set_from_resource               $cl21           i3wm.color21
-
-client.focused                  $cl7            $bg             $fg             $fg             $cl7
-client.focused_inactive         $cl0            $bg             $fg             $bg             $bg
-client.unfocused                $cl0            $bg             $fg             $bg             $bg
-client.urgent                   $cl13           $bg             $cl13           $bg             $cl13
-client.placeholder              $bg             $bg             $fg             $bg             $fg
-client.background               $bg
-
-
 # Status bar
 # bar {
 #        font                    pango:Inconsolata 11
@@ -166,18 +135,6 @@ client.background               $bg
 #                urgent_workspace    $cl19   $cl5    $cl15
 #            }
 # }
-
-
-# Fixed workspaces
-workspace $ws1 output primary
-workspace $ws2 output primary
-workspace $ws3 output primary
-workspace $ws4 output primary
-workspace $ws5 output $MON_2
-workspace $ws6 output $MON_2
-workspace $ws7 output $MON_2
-workspace $ws8 output $MON_2
-workspace $ws9 output $MON_2
 
 
 # Windows
@@ -222,7 +179,6 @@ bindsym                 $mod+y                          border pixel 1
 bindsym                 $mod+u                          border none
 bindsym                 $mod+Escape                     kill
 
-
 # i3-gaps
 gaps inner 10
 gaps outer 10
@@ -230,10 +186,8 @@ smart_borders on
 
 
 # Autostart
-
 exec_always --no-startup-id xautolock -time 10 -locker "lock"
 exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
-# -lf "$fg" -nf "$fg" -cf "$fg" -lb "$bg" -nb "$bg" -cb "$bg" -lfr "$lw" -nfr "$cl10" -cfr "$cl13"
 exec        --no-startup-id dunst
 exec        --no-startup-id nm-applet
 exec        --no-startup-id picom -b
