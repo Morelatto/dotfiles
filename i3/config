@@ -99,10 +99,10 @@ bindsym         $mod+Shift+q                    kill
 bindsym         $mod+r                          mode "  "
 
 mode "  " {
-        bindsym                 $left             resize shrink width 10 px or 10 ppt
-        bindsym                 $down             resize grow height 10 px or 10 ppt
+        bindsym                 $left           resize shrink width 10 px or 10 ppt
+        bindsym                 $down           resize grow height 10 px or 10 ppt
         bindsym                 $up             resize shrink height 10 px or 10 ppt
-        bindsym                 $right             resize grow width 10 px or 10 ppt
+        bindsym                 $right          resize grow width 10 px or 10 ppt
 
         bindsym                 Left            resize shrink width 10 px or 10 ppt
         bindsym                 Down            resize grow height 10 px or 10 ppt
@@ -143,11 +143,9 @@ assign [instance="subl"] $ws4
 assign [instance="code"] $ws4
 
 for_window [class="Spotify"] move to workspace $ws6
-for_window [class="^.*pycharm"] move to workspace $ws10
 
 for_window [class="^.*"] border pixel 1
 for_window [class="(?i)feh"] floating enable
-for_window [class="(?i)pavucontrol"] floating enable
 for_window [class="(?i)ncpamixer"] floating enable
 
 
@@ -187,7 +185,7 @@ smart_borders on
 
 
 # Autostart
-exec_always --no-startup-id xautolock -time 10 -locker "lock"
+exec_always --no-startup-id xautolock -time 20 -locker "lock"
 exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
 exec        --no-startup-id dunst
 exec        --no-startup-id nm-applet
