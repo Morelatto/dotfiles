@@ -1,6 +1,6 @@
 [user]
     email = morelatto@pm.me
-    name = Pedro Morelatto
+    name = Morelatto
 
 [core]
     pager = delta
@@ -32,3 +32,9 @@
 
 [diff]
     colorMoved = default
+
+[push]
+    default = current
+
+[pull]
+    rebase = true
