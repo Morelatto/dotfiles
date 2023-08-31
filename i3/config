@@ -85,7 +85,7 @@ bindsym         $mod+p                          workspace prev
 
 ## Fixed
 workspace $ws1 output primary
-workspace $ws2 output $MON_2
+workspace $ws2 output HDMI-1
 
 
 # Reload/Exit
@@ -158,11 +158,13 @@ bindsym --release       Ctrl+Print                      exec --no-startup-id sct
 bindsym                 XF86AudioMute                   exec --no-startup-id barify vol mute
 bindsym                 XF86AudioRaiseVolume            exec --no-startup-id barify vol up
 bindsym                 XF86AudioLowerVolume            exec --no-startup-id barify vol down
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym                 XF86AudioMicMute                exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym                 XF86AudioNext                   exec --no-startup-id playerctl next
 bindsym                 XF86AudioPrev                   exec --no-startup-id playerctl previous
 bindsym                 XF86AudioPlay                   exec --no-startup-id playerctl play-pause
 bindsym                 XF86AudioStop                   exec --no-startup-id playerctl stop
+bindsym                 XF86MonBrightnessUp             exec --no-startup-id barify bright up
+bindsym                 XF86MonBrightnessDown           exec --no-startup-id barify bright down
 bindsym                 Ctrl+$mod+space                 exec --no-startup-id dunstctl close
 bindsym                 Ctrl+Shift+space                exec --no-startup-id dunstctl close-all
 bindsym                 Ctrl+grave                      exec --no-startup-id dunstctl history-pop
@@ -191,3 +193,4 @@ exec        --no-startup-id dunst
 exec        --no-startup-id nm-applet
 exec        --no-startup-id picom -b
 exec        --no-startup-id udiskie --no-automount --tray
+exec        --no-startup-id dex --autostart --environment i3
