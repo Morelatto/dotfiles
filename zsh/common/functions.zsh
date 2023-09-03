@@ -11,6 +11,7 @@ setenv() { typeset -x "${1}${1:+=}${(@)argv[2,$#]}" }  # csh compatibility
 freload() { while (( $# )); do; unfunction $1; autoload -U $1; shift; done }
 dot() { ln -sf $DOTDIR/$@ $(pwd) }
 man_exp() { =man -T$2 $1 > $1.$2 }
+cp_docker() { docker run --rm -v "$1":/from -v "$2":/to alpine ash -c "cd /from ; cp -av . /to"; }
 
 # Use diff --color if available
 if command diff --color /dev/null{,} &>/dev/null; then
