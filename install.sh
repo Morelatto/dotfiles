@@ -50,6 +50,12 @@ polybar_setup() {
     ln -sf $INSTALL_DIR/polybar/launch.sh $POLYBAR_CONFIG_DIR/launch.sh
 }
 
+dunst_setup() {
+    # link barify
+    # link calendar
+    # link config file
+}
+
 clone_dotfiles_repository() {
     if [ ! -d "$INSTALL_DIR" ]; then
         git clone --recurse-submodules https://github.com/Morelatto/dotfiles $INSTALL_DIR
