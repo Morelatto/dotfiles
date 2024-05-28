@@ -139,8 +139,6 @@ mode "  " {
 
 # Windows
 assign [instance="Navigator"] $ws3
-assign [instance="subl"] $ws4
-assign [instance="code"] $ws4
 
 for_window [class="Spotify"] move to workspace $ws6
 
@@ -169,6 +167,7 @@ bindsym                 Ctrl+$mod+space                 exec --no-startup-id dun
 bindsym                 Ctrl+Shift+space                exec --no-startup-id dunstctl close-all
 bindsym                 Ctrl+grave                      exec --no-startup-id dunstctl history-pop
 bindsym                 Ctrl+Shift+period               exec --no-startup-id dunstctl context
+bindsym                 Ctrl+$mod+c               	exec --no-startup-id dunst_calendar curr 
 bindsym                 $mod+d                          exec --no-startup-id rofi -show run
 bindsym                 $mod+Tab                        exec --no-startup-id rofi -monitor -1 -show window
 bindsym                 $mod+Shift+minus                move scratchpad
@@ -187,8 +186,8 @@ smart_borders on
 
 
 # Autostart
-exec_always --no-startup-id xautolock -time 20 -locker "lock"
 exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
+exec        --no-startup-id xss-lock --ignore-sleep -- betterlockscreen -l dim --off 5
 exec        --no-startup-id dunst
 exec        --no-startup-id nm-applet
 exec        --no-startup-id picom -b

@@ -1,2 +1,2 @@
 #!/bin/sh
-betterlockscreen -l dim
+betterlockscreen -l dim --off 5
