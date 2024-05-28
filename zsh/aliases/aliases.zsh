@@ -64,6 +64,8 @@ alias du1='dust -d 1'
 alias dud='dust -d'
 alias fox='firefox'
 alias gpt='sgpt'
+alias gpt3='sgpt --model gpt-3.5-turbo-0125'
+alias gpt4='sgpt --model gpt-4o'
 alias gsh='sgpt --shell'
 alias gpc='sgpt --code'
 alias pom='potato'
@@ -71,7 +73,7 @@ alias psg='psgrep'
 
 # fd
 alias noeclipse="fd '\.(settings|classpath|factorypath|project)' -tf -X rm"
-alias noidea="fd -H '^\.idea$' -td -X rm -r"
+alias noidea="find . -type d -name '.idea' -exec rm -rf {} +"
 alias nomac="fd -H '^\.DS_Store$' -tf -X rm"
 alias nopyc="fd -H 'pyc(ache)?' -X rm -r"
 
@@ -104,6 +106,7 @@ alias gp='git push'
 alias gpf='git push --force'
 alias gpl='git pull'
 alias grm='git rm'
+alias gra='git rebase --abort'
 alias grc='git rebase --continue'
 alias gs='git status'
 alias gs.='git status .'
