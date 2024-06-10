@@ -1,7 +1,7 @@
 # i3 config file [V1]
 # http://i3wm.org/docs/userguide.html
 
-font pango:Inconsolata 12
+font pango:NotoSansNerdFont 12
 
 set $mod Mod4
 
@@ -114,34 +114,9 @@ mode "  " {
         bindsym                 $mod+r          mode "default"
 }
 
-# Status bar
-# bar {
-#        font                    pango:Inconsolata 11
-#        position                top
-#        tray_output             primary
-#        tray_padding            2
-#        bindsym button4         nop
-#        bindsym button5         nop
-#        status_command          bumblebee-status
-#        strip_workspace_numbers yes
-
-#        colors {
-#                background  $bg
-#                statusline  $fg
-#                # class             border  backgr. text
-#                focused_workspace   $cl19   $cl7    $cl19
-#                active_workspace    $cl18   $cl18   $cl15
-#                inactive_workspace  $cl18   $cl18   $cl20
-#                urgent_workspace    $cl19   $cl5    $cl15
-#            }
-# }
-
-
 # Windows
 assign [instance="Navigator"] $ws3
-
 for_window [class="Spotify"] move to workspace $ws6
-
 for_window [class="^.*"] border pixel 1
 for_window [class="(?i)feh"] floating enable
 for_window [class="(?i)ncpamixer"] floating enable
@@ -167,7 +142,7 @@ bindsym                 Ctrl+$mod+space                 exec --no-startup-id dun
 bindsym                 Ctrl+Shift+space                exec --no-startup-id dunstctl close-all
 bindsym                 Ctrl+grave                      exec --no-startup-id dunstctl history-pop
 bindsym                 Ctrl+Shift+period               exec --no-startup-id dunstctl context
-bindsym                 Ctrl+$mod+c               	exec --no-startup-id dunst_calendar curr 
+bindsym                 Ctrl+$mod+c               	    exec --no-startup-id dunst_calendar curr
 bindsym                 $mod+d                          exec --no-startup-id rofi -show run
 bindsym                 $mod+Tab                        exec --no-startup-id rofi -monitor -1 -show window
 bindsym                 $mod+Shift+minus                move scratchpad
@@ -186,10 +161,10 @@ smart_borders on
 
 
 # Autostart
-exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
-exec        --no-startup-id xss-lock --ignore-sleep -- betterlockscreen -l dim --off 5
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec        --no-startup-id xss-lock --ignore-sleep -- lock
 exec        --no-startup-id dunst
 exec        --no-startup-id nm-applet
-exec        --no-startup-id picom -b
+exec        --no-startup-id picom
 exec        --no-startup-id udiskie --no-automount --tray
 exec        --no-startup-id dex --autostart --environment i3
