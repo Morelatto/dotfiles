@@ -1,17 +1,13 @@
 #!/usr/bin/zsh
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-#fi
+export ZSH="$ZDOTDIR/oh-my-zsh"
 
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting alias-tips z)
 
-# A signal trap for USR1 signal, which triggers the rehash command to rebuild the command hash table.
-TRAPUSR1() { rehash }
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
-# Recursive function to source all .zsh files in the given directory and its subdirectories.
+source $ZSH/oh-my-zsh.sh
+
 rec_source() {
     local f
     for dir in "$@"; do
@@ -22,16 +18,14 @@ rec_source() {
     done
 }
 
-# Autoload all .zsh files in all directories in $fpath.
-rec_source $ZDOTDIR/common $ZDOTDIR/aliases
+rec_source $ZDOTDIR/aliases
 
-# Run colorscript with the -r option, which generates a random color script.
-# For more about colorscript, see https://gitlab.com/dwt1/shell-color-scripts
-if [ -v COLOR ]; then
-    colorscript -r
-fi
+eval "$(starship init zsh)"
 
-# End of `.zshrc`
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+source $(pyenv root)/completions/pyenv.zsh
 
+eval "$(atuin init zsh)"
 
 
