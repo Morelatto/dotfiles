@@ -126,7 +126,7 @@ configure_wm() {
     ln -sf $INSTALL_DIR/X11/screenlayout.sh $X_CONFIG_DIR/.screenlayout.sh
     ln -sf $INSTALL_DIR/X11/fehbg $X_CONFIG_DIR/.fehbg
     ln -sf $INSTALL_DIR/X11/xinitrc $HOME/.xinitrc
-    sudo ln -sf $INSTALL_DIR/X11/10-monitor.conf $X_CONFIG_DIR/
+    sudo ln -sf $INSTALL_DIR/X11/10-monitor.conf /etc/X11/xorg.conf.d/10-monitor.conf
 
     # i3 setup
     mkdir -p $I3_CONFIG_DIR
