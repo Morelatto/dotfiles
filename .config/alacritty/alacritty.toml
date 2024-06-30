@@ -1,0 +1,26 @@
+[cursor.style]
+blinking = "Never"
+shape = "Underline"
+
+[font]
+size = 12
+
+[font.bold]
+family = "FiraCode Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Hack Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "Hack Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "FiraCode Nerd Font Mono"
+style = "Regular"
+
+[window.padding]
+x = 7
+y = 0
