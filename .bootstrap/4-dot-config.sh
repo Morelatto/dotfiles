@@ -30,17 +30,21 @@ exclusions=(
     ".config/i3status"
     ".config/ranger"
     ".config/sublime-text-3"
+    ".config/zsh/config"
 )
 
 # Function to check if a file should be excluded
 is_excluded() {
     local file="$1"
+    if [[ "$(basename "$file")" == .* ]]; then
+        return 0
+    fi
     for exclusion in "${exclusions[@]}"; do
         if [[ "$file" == "$exclusion"* ]]; then
-            return 0  # True, should be excluded
+            return 0
         fi
     done
-    return 1  # False, should not be excluded
+    return 1
 }
 
 # Function to apply custom rules
