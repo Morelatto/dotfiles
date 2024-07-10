@@ -10,5 +10,4 @@ export TERMINAL=alacritty
 export MON_1=HDMI-0
 export MON_2=DP-2
 
-setxkbmap -layout br &
 xset b off

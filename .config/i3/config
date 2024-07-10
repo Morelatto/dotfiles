@@ -160,8 +160,8 @@ smart_borders on
 
 
 # Autostart
-exec_always --no-startup-id $HOME/.local/polybar.sh
-exec        --no-startup-id xss-lock --ignore-sleep -- lock
+exec_always --no-startup-id $HOME/.local/bin/polybar.sh
+exec        --no-startup-id xss-lock --ignore-sleep -- betterlockscreen -w dim
 exec        --no-startup-id dunst
 exec        --no-startup-id nm-applet
 exec        --no-startup-id picom
