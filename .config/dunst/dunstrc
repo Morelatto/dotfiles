@@ -1,11 +1,10 @@
 [global]
-monitor = 1
-follow = none
+monitor = 0
+follow = mouse
 width = (196, 300)
 height = 300
 origin = top-right
 offset = 10x55
-geometry = "300x5-10+55"
 scale = 0
 notification_limit = 0
 progress_bar = true
@@ -22,7 +21,7 @@ text_icon_padding = 0
 frame_width = 0
 frame_color = "#282a36"
 gap_size = 2
-separator_color = frame 
+separator_color = frame
 sort = yes
 idle_threshold = 120
 font = DejaVu Sans Mono 10
@@ -72,11 +71,3 @@ foreground = "#ffffff"
 frame_color = "#ff0000"
 timeout = 0
 default_icon = /usr/share/icons/Paper/16x16/status/dialog-warning.png
-
-[calendar]
-stack_tag = "calendar"
-icon_position = "off"
-
-[barify]
-stack_tag = "barify"
-history_ignore = yes
