@@ -2,6 +2,7 @@
 alias a='alias'
 alias b='bat'
 alias c='oco'
+alias d='dust'
 alias f='fd'
 alias g='gpt'
 alias h='histdb'
@@ -156,6 +157,9 @@ alias k9='kill -9'
 
 # linux
 alias all='alias'
+alias cdd='cd ~/Downloads'
+alias cdc='cd ~/Documents'
+alias cdp='cd ~/Pictures'
 alias chx='chmod +x'
 alias cp='cp -R'
 alias df='df -h'
