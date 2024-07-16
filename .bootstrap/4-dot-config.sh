@@ -6,6 +6,7 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
+# Define directories
 DOTFILES_DIR="$HOME/git/dotfiles"
 TARGET_DIR="$HOME"
 
@@ -20,92 +21,85 @@ declare -A custom_rules=(
     [".config/zsh/zprofile"]="$HOME/.config/zsh/.zprofile"
     [".config/zsh/zshrc"]="$HOME/.config/zsh/.zshrc"
     [".config"]="$HOME/.config"
+    [".local/bin/screenshot"]="$HOME/.local/bin/sct"
+    [".bootstrap/4-dot-config.sh"]="$HOME/.local/bin/dotcon"
 )
 
 # Define exclusions
 exclusions=(
+    ".bootstrap/"
     "README.md"
     ".config/firefox"
     ".config/i3blocks"
     ".config/i3status"
     ".config/ranger"
     ".config/sublime-text-3"
+    ".config/urxvt"
     ".config/zsh/config"
+    ".config/zsh/aliases/debian.zsh"
+    "etc/lightdm"
 )
 
 # Function to check if a file should be excluded
 is_excluded() {
     local file="$1"
-    if [[ "$(basename "$file")" == .* ]]; then
-        return 0
-    fi
+    [[ "$(basename "$file")" == .* ]] && return 0
     for exclusion in "${exclusions[@]}"; do
-        if [[ "$file" == "$exclusion"* ]]; then
-            return 0
-        fi
+        [[ "$file" == "$exclusion"* ]] && return 0
     done
     return 1
 }
 
-# Function to apply custom rules
+# Apply custom rules to determine the correct target path
 apply_custom_rule() {
     local path="$1"
-    local matched=false
-
-    for rule in $(echo "${!custom_rules[@]}" | tr ' ' '\n' | awk '{ print length, $0 }' | sort -rn | cut -d' ' -f2-); do
-        if [[ "$path" == "$rule"* ]]; then
-            echo "${path/$rule/${custom_rules[$rule]}}"
-            matched=true
-            break
-        fi
+    local rule
+    for rule in "${!custom_rules[@]}"; do
+        [[ "$path" == "$rule"* ]] && echo "${path/$rule/${custom_rules[$rule]}}" && return
     done
-
-    if [ "$matched" = false ]; then
-        echo "$TARGET_DIR/$path"
-    fi
+    echo "$TARGET_DIR/$path"
 }
 
-# Function to create parent directory if it doesn't exist
+# Create parent directories if they do not exist
 create_parent_directory() {
-    local target="$1"
-    local parent_dir=$(dirname "$target")
-    if [ ! -d "$parent_dir" ]; then
-        sudo mkdir -p "$parent_dir"
-        echo -e "${YELLOW}Created parent directory: $parent_dir${NC}"
-    fi
+    local parent_dir
+    parent_dir=$(dirname "$1")
+    [[ ! -d "$parent_dir" ]] && {
+        mkdir -p "$parent_dir"
+        echo -e "📂 ${YELLOW}Created parent directory: $parent_dir${NC}"
+    }
 }
 
-# Function to remove old symlinks
+# Remove old symlinks
 remove_old_symlinks() {
-    echo "Removing old symlinks..."
+    echo "🗑️ Removing old symlinks..."
 
-    # Find all symlinks in $HOME and /etc that point to the dotfiles directory
     find "$HOME" /etc -type l -lname "$DOTFILES_DIR/*" 2>/dev/null | while read -r symlink; do
-        # Get the target of the symlink
         target=$(readlink -f "$symlink")
 
-        # Check if the target file still exists in the dotfiles directory
         if [ ! -e "$target" ]; then
             if [[ "$symlink" == /etc/* ]]; then
                 sudo rm "$symlink"
-                echo -e "${GREEN}Removed old symlink (with sudo): $symlink${NC}"
+                echo -e "❌ ${GREEN}Removed old symlink (with sudo): $symlink${NC}"
             else
                 rm "$symlink"
-                echo -e "${GREEN}Removed old symlink: $symlink${NC}"
+                echo -e "❌ ${GREEN}Removed old symlink: $symlink${NC}"
             fi
         fi
     done
 }
 
-# Function to manage symlinks
+# Manage symlinks based on the specified action (create or remove)
 manage_symlinks() {
     local action=$1
-    echo "${action^}ing symlinks..."
+    local dry_run=$2
+    local show_excluded=$3
+    local action_display="Executing ${action} symlinks operation..."
+    echo "${action_display}${dry_run:+ (dry run)}"
 
-    # Use git ls-files to list tracked files, respecting .gitignore
     git -C "$DOTFILES_DIR" ls-files | while read -r file; do
         if is_excluded "$file"; then
-            echo -e "${YELLOW}Skipping excluded file: $file${NC}"
+            [[ "$show_excluded" == true ]] && echo -e "⏭️ ${YELLOW}Skipping excluded file: $file${NC}"
             continue
         fi
 
@@ -115,63 +109,83 @@ manage_symlinks() {
 
             if [ "$action" = "create" ]; then
                 if [ -L "$target" ] && [ "$(readlink -f "$target")" = "$full_path" ]; then
-                    echo -e "${GREEN}Skipping (already linked): $target${NC}"
+                    echo -e "✅ ${GREEN}Skipping (already linked): $target${NC}"
                 elif [ -e "$target" ]; then
-                    echo -e "${YELLOW}Warning: $target already exists. Skipping...${NC}"
+                    echo -e "⚠️ ${YELLOW}Warning: $target already exists. Skipping...${NC}"
                 else
                     create_parent_directory "$target"
-                    if [[ "$target" == /etc/* ]]; then
-                        sudo ln -s "$full_path" "$target"
-                        echo -e "${GREEN}Created symlink (with sudo): $target -> $full_path${NC}"
+                    if [[ "$dry_run" == true ]]; then
+                        echo -e "🔗 ${GREEN}Would create symlink: $target -> $full_path${NC}"
                     else
-                        ln -s "$full_path" "$target"
-                        echo -e "${GREEN}Created symlink: $target -> $full_path${NC}"
+                        if [[ "$target" == /etc/* ]]; then
+                            sudo ln -s "$full_path" "$target"
+                            echo -e "🔗 ${GREEN}Created symlink (with sudo): $target -> $full_path${NC}"
+                        else
+                            ln -s "$full_path" "$target"
+                            echo -e "🔗 ${GREEN}Created symlink: $target -> $full_path${NC}"
+                        fi
                     fi
                 fi
             elif [ "$action" = "remove" ]; then
                 if [ -L "$target" ] && [ "$(readlink -f "$target")" = "$full_path" ]; then
-                    if [[ "$target" == /etc/* ]]; then
-                        sudo rm "$target"
-                        echo -e "${GREEN}Removed symlink (with sudo): $target${NC}"
+                    if [[ "$dry_run" == true ]]; then
+                        echo -e "❌ ${GREEN}Would remove symlink: $target${NC}"
                     else
-                        rm "$target"
-                        echo -e "${GREEN}Removed symlink: $target${NC}"
+                        if [[ "$target" == /etc/* ]]; then
+                            sudo rm "$target"
+                            echo -e "❌ ${GREEN}Removed symlink (with sudo): $target${NC}"
+                        else
+                            rm "$target"
+                            echo -e "❌ ${GREEN}Removed symlink: $target${NC}"
+                        fi
                     fi
                 else
-                    echo -e "${YELLOW}Skipping: $target (not a symlink or points elsewhere)${NC}"
+                    echo -e "⏭️ ${YELLOW}Skipping: $target (not a symlink or points elsewhere)${NC}"
                 fi
             fi
         fi
     done
 
-    if [ "$action" = "remove" ]; then
+    if [ "$action" = "remove" ] && [ "$dry_run" != true ]; then
         remove_old_symlinks
     fi
 }
 
-# Main function
+# Show the usage help message
+show_help() {
+    echo "Usage: $(basename "$0") [options]"
+    echo
+    echo "Options:"
+    echo "  --create          Create symlinks"
+    echo "  --remove          Remove symlinks"
+    echo "  --dry-run         Show what would be done without making any changes"
+    echo "  --show-excluded   Display logs for excluded files"
+    echo "  -h, --help        Show this help message"
+}
+
+# Main function to process arguments and invoke appropriate actions
 main() {
     local action=""
-
-    # Parse command line arguments
+    local dry_run=false
+    local show_excluded=false
     while [[ "$#" -gt 0 ]]; do
         case $1 in
             --create) action="create" ;;
             --remove) action="remove" ;;
-            *) echo "Unknown parameter: $1"; exit 1 ;;
+            --dry-run) dry_run=true ;;
+            --show-excluded) show_excluded=true ;;
+            -h|--help) show_help; exit 0 ;;
+            *) echo "Unknown parameter: $1"; show_help; exit 1 ;;
         esac
         shift
     done
-
-    if [ -z "$action" ]; then
+    if [[ -z "$action" ]]; then
         echo "Please specify an action: --create or --remove"
+        show_help
         exit 1
     fi
-
-    manage_symlinks "$action"
-
-    echo -e "${GREEN}Dotfiles ${action} complete!${NC}"
+    manage_symlinks "$action" "$dry_run" "$show_excluded"
+    echo -e "🏁 ${GREEN}Dotfiles ${action} complete!${NC}"
 }
 
-# Run the main function with all arguments
 main "$@"
