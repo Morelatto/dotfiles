@@ -1,0 +1,93 @@
+# Custom EndeavourOS package profile
+# This can be installed with: eos-packagelist --install custom
+
+# Base Development
+base-devel
+git
+neovim
+stow
+
+# Terminal & Shell
+xfce4-terminal
+zsh
+zsh-completions
+zsh-autosuggestions
+zsh-syntax-highlighting
+
+# X11 & Display
+xorg-server
+xorg-xinit
+xorg-xrandr
+xorg-xsetroot
+xorg-xrdb
+
+# Window Manager
+i3-wm
+i3blocks
+i3status
+polybar
+picom
+dunst
+rofi
+betterlockscreen
+
+# System Tools
+htop
+btop
+neofetch
+eza
+bat
+ripgrep
+fd
+fzf
+maim
+xclip
+xsel
+feh
+
+# Network
+networkmanager
+network-manager-applet
+nm-connection-editor
+
+# Audio
+pipewire
+pipewire-alsa
+pipewire-pulse
+pipewire-jack
+pavucontrol
+
+# Fonts
+ttf-dejavu
+ttf-liberation
+noto-fonts
+noto-fonts-emoji
+ttf-font-awesome
+
+# EndeavourOS Tools
+eos-packagelist
+eos-update-notifier
+eos-rankmirrors
+welcome
+eos-log-tool
+eos-apps-info
+
+# File Management
+ranger
+thunar
+thunar-archive-plugin
+thunar-media-tags-plugin
+
+# Archive Tools
+unzip
+unrar
+p7zip
+
+# Multimedia
+mpv
+firefox
+
+# Appearance
+arc-gtk-theme
+papirus-icon-theme
+lxappearance-gtk3

@@ -1,0 +1,32 @@
+# Base system packages
+base-devel
+git
+wget
+curl
+openssh
+man-db
+man-pages
+neofetch
+htop
+btop
+eza
+bat
+ripgrep
+fd
+fzf
+stow
+neovim
+xfce4-terminal
+
+# Shell and terminal tools
+zsh
+zsh-autosuggestions
+zsh-syntax-highlighting
+zsh-completions
+tree
+httpie
+xclip
+xdotool
+unzip
+jq
+bottom
