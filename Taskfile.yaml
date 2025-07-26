@@ -1,0 +1,162 @@
+version: '3'
+
+vars:
+  PACKAGES: x11 shell wm terminal editors apps scripts system
+
+tasks:
+  default:
+    desc: Show available tasks
+    cmds:
+      - task --list
+
+  install:
+    desc: Build and install all stow packages
+    deps: [build]
+    cmds:
+      - echo "Installing dotfiles with stow..."
+      - |
+        for pkg in {{.PACKAGES}}; do
+          echo "Installing $pkg..."
+          stow -t ~ $pkg
+        done
+      - echo "✅ All packages installed!"
+
+  uninstall:
+    desc: Remove all stow packages
+    cmds:
+      - echo "Uninstalling dotfiles..."
+      - |
+        for pkg in {{.PACKAGES}}; do
+          echo "Uninstalling $pkg..."
+          stow -t ~ -D $pkg
+        done
+      - echo "✅ All packages uninstalled!"
+
+  build:
+    desc: Build all generated configs
+    deps: [wm-build]
+
+  clean:
+    desc: Clean all generated files
+    deps: [wm-clean]
+
+  wm-build:
+    desc: Build window manager configs from EndeavourOS base + customizations
+    cmds:
+      - echo "Building i3 configuration..."
+      - cd wm/.config/i3
+      - rm -f config i3blocks.conf
+      - curl -s "https://raw.githubusercontent.com/endeavouros-team/endeavouros-i3wm-setup/main/etc/skel/.config/i3/config" > base-config.tmp
+      - curl -s "https://raw.githubusercontent.com/endeavouros-team/endeavouros-i3wm-setup/main/etc/skel/.config/i3/i3blocks.conf" > base-i3blocks.tmp
+      - cp base-config.tmp config
+      - sed -i -f my-overrides.sed config
+      - sed -i '/^bindsym \$mod+Shift+n exec --no-startup-id ~\/\.config\/i3\/scripts\/empty_workspace$/r my-customizations.conf' config
+      - cp base-i3blocks.tmp i3blocks.conf
+      - sed -i -f my-i3blocks-overrides.sed i3blocks.conf
+      - rm base-*.tmp
+      - echo "✅ i3 configuration built successfully!"
+
+  wm-clean:
+    desc: Clean window manager generated files
+    cmds:
+      - echo "Cleaning generated i3 files..."
+      - rm -f wm/.config/i3/config wm/.config/i3/i3blocks.conf
+      - rm -f wm/.config/i3/base-*.tmp
+      - echo "✅ Generated files cleaned!"
+
+  setup-shell:
+    desc: Install zsh + packages + configs
+    cmds:
+      - echo "Setting up shell environment..."
+      - sudo pacman -S --needed zsh zsh-autosuggestions zsh-syntax-highlighting zsh-completions git
+      - echo "Installing Oh My Zsh..."
+      - sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || true
+      - echo "Changing shell to zsh..."
+      - chsh -s $(which zsh) || echo "Run 'chsh -s $(which zsh)' manually"
+      - stow shell
+      - echo "✅ Shell setup complete!"
+
+  setup-wm:
+    desc: Install i3 + packages + configs
+    deps: [wm-build]
+    cmds:
+      - echo "Setting up window manager..."
+      - sudo pacman -S --needed i3-wm i3blocks polybar dunst picom rofi feh maim
+      - yay -S --needed autotiling || echo "Install autotiling manually with yay"
+      - stow wm
+      - echo "✅ Window manager setup complete!"
+
+  setup-x11:
+    desc: Install X11 + packages + configs
+    cmds:
+      - echo "Setting up X11..."
+      - sudo pacman -S --needed xorg-server xorg-xinit xorg-xrandr
+      - sudo stow -t / system
+      - stow x11
+      - echo "✅ X11 setup complete!"
+
+  setup-terminal:
+    desc: Install terminal + packages + configs
+    cmds:
+      - echo "Setting up terminal..."
+      - sudo pacman -S --needed xfce4-terminal
+      - stow terminal
+      - echo "✅ Terminal setup complete!"
+
+  setup-editors:
+    desc: Install editors + packages + configs
+    cmds:
+      - echo "Setting up editors..."
+      - sudo pacman -S --needed neovim
+      - stow editors
+      - echo "✅ Editors setup complete!"
+
+  setup-apps:
+    desc: Install applications + packages + configs
+    cmds:
+      - echo "Setting up applications..."
+      - sudo pacman -S --needed firefox ranger
+      - stow apps
+      - echo "✅ Applications setup complete!"
+
+  setup-scripts:
+    desc: Install user scripts + packages + configs
+    cmds:
+      - echo "Setting up user scripts..."
+      - sudo pacman -S --needed xclip xdotool
+      - stow scripts
+      - echo "✅ Scripts setup complete!"
+
+  setup-minimal-zsh:
+    desc: Install minimal zsh configuration (no Oh My Zsh)
+    cmds:
+      - echo "Setting up minimal zsh environment..."
+      - sudo pacman -S --needed zsh
+      - echo "Creating zsh config directory..."
+      - mkdir -p ~/.config/zsh
+      - echo "Backing up existing zsh config if present..."
+      - |
+        if [[ -d ~/.config/zsh ]]; then
+          backup_dir=~/.config/backups/zsh-$(date +%Y%m%d-%H%M%S)
+          mkdir -p "$backup_dir"
+          cp -r ~/.config/zsh/* "$backup_dir" 2>/dev/null || true
+        fi
+      - echo "Installing minimal zsh configuration..."
+      - cp -r shell/.config/zsh-minimal/* ~/.config/zsh/
+      - echo "Setting ZDOTDIR in ~/.zshenv..."
+      - |
+        if [[ ! -f ~/.zshenv ]] || ! grep -q "ZDOTDIR" ~/.zshenv; then
+          echo 'export ZDOTDIR="$HOME/.config/zsh"' >> ~/.zshenv
+        fi
+      - echo "Creating cache directory..."
+      - mkdir -p ~/.cache/zsh
+      - echo "✅ Minimal zsh setup complete!"
+      - echo "ℹ️  Run 'chsh -s $(which zsh)' to change your default shell"
+
+  clean-minimal-zsh:
+    desc: Remove minimal zsh configuration
+    cmds:
+      - echo "Removing minimal zsh configuration..."
+      - rm -rf ~/.config/zsh
+      - sed -i '/export ZDOTDIR/d' ~/.zshenv 2>/dev/null || true
+      - echo "✅ Minimal zsh configuration removed!"
