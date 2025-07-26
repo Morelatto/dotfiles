@@ -17,6 +17,13 @@ fi
 
 # Install dotfiles with stow
 cd "$USER_HOME/Public/dotfiles"
+
+# Build i3 configs from customizations
+echo "Building i3 configs from customizations..."
+cd wm/.config/i3
+sudo -u "$USERNAME" ./build-config.sh
+cd -
+
 echo "Installing dotfiles with GNU Stow..."
 sudo -u "$USERNAME" stow -v -t "$USER_HOME" x11 shell wm terminal editors apps scripts
 

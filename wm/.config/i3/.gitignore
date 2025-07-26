@@ -1,0 +1,4 @@
+# Generated config files - only track the customizations
+config
+i3blocks.conf
+base-*.tmp
