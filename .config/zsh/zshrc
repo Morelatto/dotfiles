@@ -1,0 +1,73 @@
+#!/usr/bin/env zsh
+# Enhanced Minimal Zsh Configuration - Modular and Scalable
+
+# Set ZDOTDIR if not already set
+export ZDOTDIR="${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}"
+
+# Load configurations in order
+# 1. Environment variables first
+[[ -f "$ZDOTDIR/config/environment.zsh" ]] && source "$ZDOTDIR/config/environment.zsh"
+
+# 2. Zsh options
+[[ -f "$ZDOTDIR/config/options.zsh" ]] && source "$ZDOTDIR/config/options.zsh"
+
+# 3. Functions
+[[ -f "$ZDOTDIR/config/functions.zsh" ]] && source "$ZDOTDIR/config/functions.zsh"
+
+# Create necessary directories
+[[ ! -d "${HISTFILE:h}" ]] && mkdir -p "${HISTFILE:h}"
+[[ ! -d "$ZSH_CACHE_DIR" ]] && mkdir -p "$ZSH_CACHE_DIR"
+
+# Completion System
+autoload -Uz compinit
+zcompdump="$ZSH_CACHE_DIR/zcompdump"
+
+if [[ $zcompdump -nt /usr/share/zsh ]] && [[ ! $zcompdump.zwc -nt $zcompdump ]]; then
+    compinit -C -d "$zcompdump"
+else
+    compinit -i -d "$zcompdump"
+    [[ -f "$zcompdump" && ! -f "$zcompdump.zwc" ]] && zcompile "$zcompdump"
+fi
+
+# Load additional configurations from config directory
+for config_file in "$ZDOTDIR"/config/*.zsh(N); do
+    # Skip files we've already loaded
+    case "${config_file:t}" in
+        environment.zsh|options.zsh|functions.zsh) continue ;;
+    esac
+    source "$config_file"
+done
+
+# Load all alias files
+for alias_file in "$ZDOTDIR"/config/aliases/*.zsh(N); do
+    source "$alias_file"
+done
+
+# Load user functions from functions directory
+fpath=("$ZDOTDIR/functions" $fpath)
+autoload -Uz $ZDOTDIR/functions/*(.:t)
+
+# Initialize tools if they exist
+# Starship prompt
+if command -v starship >/dev/null 2>&1; then
+    eval "$(starship init zsh)"
+fi
+
+# Pyenv
+if command -v pyenv >/dev/null 2>&1; then
+    export PYENV_ROOT="${PYENV_ROOT:-$HOME/.pyenv}"
+    eval "$(pyenv init -)"
+    [[ -d "$PYENV_ROOT/completions" ]] && source "$PYENV_ROOT/completions/pyenv.zsh"
+fi
+
+# Atuin for better history
+if command -v atuin >/dev/null 2>&1; then
+    eval "$(atuin init zsh --disable-up-arrow)"
+fi
+
+# FZF integration
+if command -v fzf >/dev/null 2>&1; then
+    # Source fzf keybindings and completion if available
+    [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+    [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
+fi

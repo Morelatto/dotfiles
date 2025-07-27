@@ -1,0 +1,38 @@
+#!/bin/bash
+# Arch Linux system configuration deployment (yadm native)
+
+set -e
+
+echo "=== Deploying Arch system configurations ==="
+
+# Base directory for dotfiles (yadm way)
+USER_HOME="$(eval echo ~$USER)"
+CONFIG_DIR="$USER_HOME/.config"
+
+# System configs are now managed directly by yadm in /etc/
+# yadm will deploy etc/X11/xorg.conf.d/* to /etc/X11/xorg.conf.d/
+# yadm will deploy etc/pacman.conf to /etc/pacman.conf
+echo "System configs managed by yadm - no manual deployment needed"
+
+# Just ensure services are enabled if needed
+
+# Enable and configure display manager if installed
+if command -v lightdm >/dev/null 2>&1; then
+    echo "Enabling lightdm display manager..."
+    sudo systemctl enable lightdm
+elif command -v gdm >/dev/null 2>&1; then
+    echo "Enabling gdm display manager..."
+    sudo systemctl enable gdm
+elif command -v sddm >/dev/null 2>&1; then
+    echo "Enabling sddm display manager..."
+    sudo systemctl enable sddm
+fi
+
+# Configure audio system
+if command -v pipewire >/dev/null 2>&1; then
+    echo "Enabling pipewire audio system..."
+    systemctl --user enable pipewire pipewire-pulse
+fi
+
+echo "=== Arch system configuration complete ==="
+echo "Note: Restart to apply all system changes"

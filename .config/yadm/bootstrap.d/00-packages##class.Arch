@@ -1,0 +1,94 @@
+#!/bin/bash
+# Arch/EndeavourOS package installation bootstrap script
+
+set -e
+
+echo "=== Installing Arch packages ==="
+
+# Update system first
+echo "Updating system packages..."
+sudo pacman -Syu --noconfirm
+
+# Base packages (consolidated from EOS package list)
+BASE_PACKAGES=(
+    base-devel git wget curl openssh man-db man-pages
+    neofetch htop btop eza bat ripgrep fd fzf
+    neovim xfce4-terminal
+    zsh zsh-autosuggestions zsh-syntax-highlighting zsh-completions
+    tree httpie xclip xdotool unzip jq bottom
+    # File management
+    ranger thunar thunar-archive-plugin thunar-media-tags-plugin
+    # Archive tools  
+    unrar p7zip
+    # Network
+    networkmanager network-manager-applet nm-connection-editor
+)
+
+# Display and window manager packages (consolidated from EOS package list)
+DISPLAY_PACKAGES=(
+    xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xorg-xrdb
+    i3-wm i3blocks i3status polybar picom dunst rofi betterlockscreen
+    feh maim xclip xsel arandr udiskie xautolock xss-lock
+    # Fonts (comprehensive)
+    noto-fonts noto-fonts-emoji ttf-dejavu ttf-liberation ttf-font-awesome
+    # Audio system
+    pipewire pipewire-alsa pipewire-pulse pipewire-jack pavucontrol
+    # Themes
+    arc-gtk-theme papirus-icon-theme lxappearance-gtk3
+)
+
+# Development packages
+DEV_PACKAGES=(
+    python python-pip nodejs npm yarn
+    docker docker-compose
+    firefox alacritty mpv
+    # EndeavourOS tools (optional)
+    eos-packagelist eos-update-notifier eos-rankmirrors
+    welcome eos-log-tool eos-apps-info
+)
+
+# Install base packages
+echo "Installing base packages..."
+sudo pacman -S --needed --noconfirm "${BASE_PACKAGES[@]}"
+
+# Install display packages if running X
+if [[ -n "$DISPLAY" ]] || [[ "$1" == "all" ]]; then
+    echo "Installing display and window manager packages..."
+    sudo pacman -S --needed --noconfirm "${DISPLAY_PACKAGES[@]}"
+fi
+
+# Install development packages
+echo "Installing development packages..."
+sudo pacman -S --needed --noconfirm "${DEV_PACKAGES[@]}"
+
+# Install yay if not present
+if ! command -v yay &> /dev/null; then
+    echo "Installing yay AUR helper..."
+    git clone https://aur.archlinux.org/yay.git /tmp/yay
+    cd /tmp/yay
+    makepkg -si --noconfirm
+    cd -
+    rm -rf /tmp/yay
+fi
+
+# AUR packages
+AUR_PACKAGES=(
+    betterlockscreen
+    picom-animations-git
+    polybar-themes-git
+    getnf
+    git-delta
+)
+
+echo "Installing AUR packages..."
+yay -S --needed --noconfirm "${AUR_PACKAGES[@]}"
+
+# Enable services if needed
+if command -v docker &> /dev/null; then
+    echo "Enabling Docker service..."
+    sudo systemctl enable docker.service
+    sudo usermod -aG docker $USER
+fi
+
+echo "=== Package installation complete ==="
+echo "Note: You may need to log out and back in for some changes to take effect."

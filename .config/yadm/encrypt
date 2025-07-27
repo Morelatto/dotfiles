@@ -1,0 +1,11 @@
+# yadm encryption patterns
+# Files matching these patterns will be encrypted in the repository
+
+.ssh/id_*
+.ssh/*_rsa
+.ssh/*_ed25519
+.gnupg/*
+.config/git/config.local
+.netrc
+.aws/credentials
+.config/rclone/rclone.conf

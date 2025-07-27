@@ -1,0 +1,61 @@
+#!/usr/bin/env zsh
+# Linux system management aliases
+# Only loaded on Linux systems
+
+# ==============================================================================
+# LINUX SYSTEM MANAGEMENT
+# ==============================================================================
+
+# SystemD shortcuts
+alias systemctl='sudo systemctl'
+alias sctl='systemctl'
+alias sctld='systemctl disable'
+alias sctle='systemctl enable'
+alias sctlr='systemctl restart'
+alias sctls='=systemctl status'
+alias sctlsp='systemctl stop'
+alias sctlst='systemctl start'
+alias services='=systemctl --type=service'
+
+# Journalctl shortcuts
+alias jctl='journalctl'
+alias jctlf='journalctl -f'
+alias jctlu='journalctl -u'
+alias jctlb='journalctl -b'
+
+# Power management
+alias bye='=systemctl poweroff'
+alias reboot='=systemctl reboot'
+alias suspend='systemctl suspend'
+alias hibernate='systemctl hibernate'
+
+# Process management
+alias psg='ps aux | grep -v grep | grep -i'
+alias killall='killall -v'
+
+# Hardware info
+alias sensors='sensors -f'
+alias cpuinfo='lscpu'
+alias meminfo='free -h'
+alias diskinfo='df -h'
+alias diskusage='du -sh * | sort -rh'
+
+# File operations with safety
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Permissions
+alias cx='chmod +x'
+alias 755='chmod 755'
+alias 644='chmod 644'
+
+# Network
+alias ports='ss -tulanp'
+alias listening='ss -tlnp'
+alias connections='ss -tp'
+
+# Common services shortcuts
+alias mongod='systemctl start mongodb.service'
+alias nginx-reload='systemctl reload nginx'
+alias apache-reload='systemctl reload apache2'

@@ -1,0 +1,60 @@
+#!/usr/bin/env zsh
+# Work environment specific aliases
+# Only loaded when yadm.class == "Work"
+
+# ==============================================================================
+# CORPORATE / WORK ALIASES
+# ==============================================================================
+
+# VPN and network
+alias vpn-connect='sudo openvpn /etc/openvpn/work.conf'
+alias vpn-disconnect='sudo killall openvpn'
+alias vpn-status='ps aux | grep openvpn'
+
+# Kubernetes shortcuts
+if command -v kubectl >/dev/null 2>&1; then
+    alias k='kubectl'
+    alias kget='kubectl get'
+    alias kdesc='kubectl describe'
+    alias klogs='kubectl logs'
+    alias kexec='kubectl exec -it'
+    alias kctx='kubectl config use-context'
+    alias kns='kubectl config set-context --current --namespace'
+fi
+
+# Docker work shortcuts
+alias dwork='docker run --rm -it --network=corporate'
+alias dlogs-work='docker logs --follow'
+
+# Cloud tools
+if command -v aws >/dev/null 2>&1; then
+    alias awsp='aws configure list-profiles'
+    alias awsprofile='export AWS_PROFILE='
+fi
+
+if command -v az >/dev/null 2>&1; then
+    alias azl='az login'
+    alias azacct='az account show'
+fi
+
+# Company tools
+alias teams='teams-for-linux'
+alias slack='slack'
+alias zoom='zoom'
+
+# Development workflow
+alias work-start='cd ~/work && code .'
+alias work-sync='git pull --all && git fetch --all'
+
+# Meeting shortcuts
+alias camera-test='cheese'  # Test camera before meetings
+alias mic-test='pavucontrol'  # Audio settings
+
+# Productivity
+alias focus='echo "🎯 Focus mode: blocking distractions..." && sudo ufw deny out 443'
+alias unfocus='sudo ufw allow out 443 && echo "✅ Focus mode disabled"'
+
+# Company-specific shortcuts (customize these)
+# alias deploy-staging='kubectl apply -f k8s/staging/'
+# alias check-logs='kubectl logs -f deployment/app-staging'
+# alias connect-db='psql -h staging-db.company.com -U readonly'
