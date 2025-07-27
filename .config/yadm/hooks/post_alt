@@ -1,0 +1,31 @@
+#!/bin/bash
+# yadm hook: post_alt
+# Runs after yadm alt (template processing)
+
+echo "🔧 Running post-alt hook..."
+
+# Reload shell configuration
+if [ -n "$ZSH_VERSION" ]; then
+    echo "Reloading zsh configuration..."
+    source ~/.zshenv 2>/dev/null || true
+fi
+
+# Reload X resources if available and X is running
+if [ -n "$DISPLAY" ] && [ -f ~/.config/X11/Xresources ]; then
+    echo "Reloading X resources..."
+    xrdb -merge ~/.config/X11/Xresources
+fi
+
+# Restart polybar if running
+if pgrep -x polybar >/dev/null; then
+    echo "Restarting polybar..."
+    ~/.config/polybar/launch.sh &
+fi
+
+# Update font cache if fonts were changed
+if [ -d ~/.local/share/fonts ]; then
+    echo "Updating font cache..."
+    fc-cache -fv ~/.local/share/fonts
+fi
+
+echo "✅ Post-alt hook completed"

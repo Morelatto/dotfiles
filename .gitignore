@@ -1,0 +1,11 @@
+# yadm internals
+.local/share/yadm
+
+# Generated files
+*.tmp
+*.cache
+*.log
+
+# IDE
+.idea/
+.vscode/

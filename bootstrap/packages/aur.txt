@@ -1,6 +1,0 @@
-# AUR packages (install with yay)
-betterlockscreen
-picom-animations-git
-polybar-themes-git
-getnf
-git-delta

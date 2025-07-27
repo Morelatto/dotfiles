@@ -1,0 +1,154 @@
+#!/usr/bin/env zsh
+# Distribution-specific package manager aliases
+# Uses yadm templating to handle different distros
+
+{% if yadm.distro == "Arch" or yadm.distro == "EndeavourOS" %}
+# ==============================================================================
+# ARCH LINUX / PACMAN ALIASES
+# ==============================================================================
+
+# Pacman aliases
+alias pacman='sudo pacman'
+alias pc='pacman'
+alias pci='pacman -S'
+alias pcis='pacman -S --needed'
+alias pcq='pacman -Q'
+alias pcqi='pacman -Qi'
+alias pcql='pacman -Ql'
+alias pcqs='pacman -Qs'
+alias pcqu='pacman -Qu'
+alias pcr='pacman -R'
+alias pcrs='pacman -Rs'
+alias pcrd='pacman -Rdd'
+alias pcc='pacman -Scc'
+alias pcf='pacman -Ql'
+alias pcfo='pacman -Qo'
+alias pcs='pacman -Ss'
+alias pcsi='pacman -Si'
+
+# System update aliases
+alias upd='pacman -Sy'
+alias upg='pacman -Su'
+alias upt='pacman -Syu'
+
+# AUR helpers (detect which one is installed)
+if command -v yay >/dev/null 2>&1; then
+    alias aur='yay'
+    alias auri='yay -S'
+    alias aurs='yay -Ss'
+    alias auru='yay -Sua'
+    alias aurua='yay -Syu'
+    
+    # Additional yay shortcuts
+    alias yi='yay -S'
+    alias yu='yay -Sua'
+    alias yy='yay -S --needed --nodiffmenu --nocleanmenu'
+elif command -v paru >/dev/null 2>&1; then
+    alias aur='paru'
+    alias auri='paru -S'
+    alias aurs='paru -Ss'
+    alias auru='paru -Sua'
+    alias aurua='paru -Syu'
+fi
+
+# Combined update alias (Arch-specific)
+alias upall='upd && upg && yu'
+
+# Package cleanup
+alias orphans='pacman -Qtdq'
+alias rmorphans='pacman -Qtdq | sudo pacman -Rns -'
+alias pacclean='sudo pacman -Scc && yay -Scc'
+
+# Mirror management
+alias mirrors='sudo reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
+alias mirrorlist='sudo vim /etc/pacman.d/mirrorlist'
+
+# Package file operations
+function pkgfiles() {
+    pacman -Qlq "$@" | grep -v '/$' | xargs -r du -h | sort -h
+}
+
+function pkgsize() {
+    pacman -Qi "$@" | awk '/^Installed Size/ {print $4 $5}'
+}
+
+# Search package by file
+function pkgby() {
+    pacman -Qo "$@"
+}
+
+# List explicitly installed packages
+alias pkglist='pacman -Qe'
+alias pkglist-aur='pacman -Qm'
+alias pkglist-native='pacman -Qn'
+
+{% elif yadm.distro == "Ubuntu" or yadm.distro == "Debian" %}
+# ==============================================================================
+# DEBIAN / UBUNTU / APT ALIASES
+# ==============================================================================
+
+# APT aliases
+alias apt='sudo apt'
+alias apti='apt install'
+alias aptr='apt remove'
+alias aptp='apt purge'
+alias apts='apt search'
+alias aptsh='apt show'
+alias aptl='apt list'
+alias aptla='apt list --installed'
+alias aptar='apt autoremove'
+alias aptac='apt autoclean'
+alias aptfu='apt full-upgrade'
+
+# System updates
+alias upd='apt update'
+alias upg='apt upgrade'
+alias upt='apt update && apt upgrade'
+
+# Package information
+alias pkginfo='dpkg -l'
+alias pkgfiles='dpkg -L'
+alias pkgfind='dpkg -S'
+alias pkgstat='dpkg -s'
+
+# Package cleanup
+alias autoremove='sudo apt autoremove --purge'
+alias autoclean='sudo apt autoclean'
+alias cleanall='sudo apt autoremove --purge && sudo apt autoclean'
+
+# Snap support (if installed)
+if command -v snap >/dev/null 2>&1; then
+    alias snapl='snap list'
+    alias snapi='sudo snap install'
+    alias snapr='sudo snap remove'
+    alias snaps='snap search'
+    alias snapu='sudo snap refresh'
+fi
+
+# Flatpak support (if installed)
+if command -v flatpak >/dev/null 2>&1; then
+    alias flatl='flatpak list'
+    alias flati='flatpak install'
+    alias flatr='flatpak uninstall'
+    alias flats='flatpak search'
+    alias flatu='flatpak update'
+fi
+
+# Repository management
+alias addrepo='sudo add-apt-repository'
+alias listrepos='grep -r --include="*.list" "^deb " /etc/apt/'
+
+# Helper functions
+function apthold() {
+    sudo apt-mark hold "$@"
+}
+
+function aptunhold() {
+    sudo apt-mark unhold "$@"
+}
+
+function aptpolicy() {
+    apt-cache policy "$@"
+}
+
+{% endif %}

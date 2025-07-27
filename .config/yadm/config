@@ -1,0 +1,17 @@
+# yadm configuration file
+# Classes allow conditional file inclusion based on system properties
+
+# Define classes for different machine types
+yadm.class = "Personal"  # Default class
+
+# Override class based on hostname or other conditions
+# You can set this during yadm clone:
+# yadm clone <repo> --class Work
+# or later: yadm config yadm.class "Work"
+
+# Class examples:
+# - Personal: Home machines, personal configs
+# - Work: Work machines, company-specific settings  
+# - Server: Headless servers, minimal configs
+# - Desktop: Full desktop environment
+# - Laptop: Mobile-specific optimizations

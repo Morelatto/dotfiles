@@ -1,0 +1,29 @@
+#!/bin/bash
+# Work machine package installation
+
+echo "=== Installing Work-specific packages ==="
+
+# Work development tools
+WORK_PACKAGES=(
+    code  # VS Code
+    teams-for-linux
+    zoom
+    slack-desktop
+    docker
+    kubectl
+    terraform
+    aws-cli
+)
+
+# Install work packages
+if command -v pacman >/dev/null; then
+    sudo pacman -S --needed --noconfirm "${WORK_PACKAGES[@]}"
+elif command -v apt >/dev/null; then
+    sudo apt install -y "${WORK_PACKAGES[@]}"
+fi
+
+# Configure work-specific git settings
+git config --global user.email "${USER}@company.com"
+git config --global core.editor "code --wait"
+
+echo "=== Work packages installation complete ==="

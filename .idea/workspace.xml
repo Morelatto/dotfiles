@@ -5,9 +5,105 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="008f3cb3-7d8f-4f49-bc59-6ddeb3f28deb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/endeavouros-automation/user_commands.bash" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/endeavouros-automation/user_commands.bash" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wm/.config/i3/config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Taskfile.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Taskfile.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/.config/firefox/addons/CAD_CoreSettings_2022-04-06_01.17.36.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/.config/firefox/addons/Tree Style Tab/userChrome.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/.config/firefox/addons/Tree Style Tab/userContent.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/.config/firefox/addons/my-ublock-backup_2022-04-18_22.56.12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/.config/firefox/user-overrides.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/.config/i3blocks/config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/.config/i3status/config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/.config/ranger/rc.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/endeavouros-automation/user_commands.bash" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/endeavouros-automation/user_pkglist.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/packages/aur.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/packages/base.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/packages/display.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/editors/.config/nvim/init.vim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/editors/.config/sublime-text-3/Packages/User/Color Highlight.sublime-settings" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/editors/.config/sublime-text-3/Packages/User/Package Control.sublime-settings" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/editors/.config/sublime-text-3/Packages/User/Preferences.sublime-settings" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/editors/.config/sublime-text-3/Packages/User/SublimeCodeIntel.sublime-settings" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/editors/.config/vim/setup.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/editors/.config/vim/vimrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/.local/bin/calendar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/.local/bin/i3-window" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/.local/bin/media" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/.local/bin/mouse" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/.local/bin/polybars" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/.local/bin/screenshot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/.local/bin/timer" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/.local/bin/timesub" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/.local/bin/typer" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/.local/bin/wallpaper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/.local/bin/weather" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/.local/bin/wg_status" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh-minimal/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh-minimal/config/aliases/arch.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh-minimal/config/aliases/core.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh-minimal/config/aliases/development.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh-minimal/config/aliases/git.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh-minimal/config/aliases/global.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh-minimal/config/aliases/network.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh-minimal/config/completion.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh-minimal/config/environment.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh-minimal/config/functions.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh-minimal/config/keybindings.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh-minimal/config/options.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh-minimal/config/prompt.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh-minimal/zshenv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh-minimal/zshrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh/aliases/aliases.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh/aliases/arch.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh/aliases/debian.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh/aliases/global.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh/config/completions.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh/config/functions.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh/config/fzf.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh/config/keybindings.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh/config/options.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh/config/plugins.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh/config/prompt.zsh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh/zprofile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh/zsh-minimal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh/zshenv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.config/zsh/zshrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.gitconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/.zshenv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/etc/X11/xorg.conf.d/05-security.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/etc/X11/xorg.conf.d/10-monitor.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/etc/X11/xorg.conf.d/20-keyboard.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/etc/X11/xorg.conf.d/30-mouse.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/etc/X11/xorg.conf.d/40-fonts.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/etc/eos-packagelist-custom.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/etc/eos-script-lib-yad.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/etc/lightdm/lightdm-gtk-greeter.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/etc/lightdm/lightdm-mini-greeter.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/etc/lightdm/lightdm-webkit2-greeter.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/etc/lightdm/lightdm.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/etc/pacman.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/terminal/.config/alacritty/alacritty.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/terminal/.config/urxvt/Xresources" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/terminal/.config/urxvt/base16-classic-dark-256.Xresources" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/terminal/.config/urxvt/base16-classic-dark-256.Xresources.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/terminal/.config/xfce4/terminal/terminalrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wm/.config/betterlockscreen/betterlockscreenrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wm/.config/dunst/dunstrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wm/.config/i3/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wm/.config/i3/CUSTOMIZATIONS" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wm/.config/i3/my-customizations.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wm/.config/i3/my-i3blocks-overrides.sed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wm/.config/i3/my-overrides.sed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wm/.config/picom/picom.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wm/.config/polybar/config.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wm/.config/polybar/my_modules.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/x11/.Xresources" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/x11/.config/X11/xinitrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/x11/.config/X11/xprofile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/x11/.local/bin/display-switch.sh" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,16 +121,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/storm/dotfiles&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/storm",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
-}</component>
+}]]></component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="008f3cb3-7d8f-4f49-bc59-6ddeb3f28deb" name="Changes" comment="" />

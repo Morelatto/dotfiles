@@ -1,0 +1,315 @@
+#!/bin/bash
+# YADM Bootstrap Script
+# Installs packages and configures the system for optimal terminal usage
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Logging functions
+info() { echo -e "${BLUE}[INFO]${NC} $1"; }
+success() { echo -e "${GREEN}[SUCCESS]${NC} $1"; }
+warning() { echo -e "${YELLOW}[WARNING]${NC} $1"; }
+error() { echo -e "${RED}[ERROR]${NC} $1"; }
+
+# Detect OS and distribution
+detect_os() {
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        if [ -f /etc/os-release ]; then
+            . /etc/os-release
+            OS=$ID
+            OS_FAMILY=$ID_LIKE
+            info "Detected OS: $OS (Family: $OS_FAMILY)"
+        else
+            error "Cannot detect Linux distribution"
+            exit 1
+        fi
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        OS="macos"
+        info "Detected OS: macOS"
+    else
+        error "Unsupported OS: $OSTYPE"
+        exit 1
+    fi
+}
+
+# Install packages based on OS
+install_packages() {
+    info "Installing packages..."
+    
+    # Core terminal tools
+    local core_packages=(
+        git curl wget tree
+        zsh zsh-autosuggestions zsh-syntax-highlighting zsh-completions
+        neovim htop btop jq unzip
+        eza bat ripgrep fd fzf
+        httpie xclip
+    )
+    
+    # Terminal emulator packages
+    local terminal_packages=(
+        alacritty
+        xfce4-terminal
+        rxvt-unicode
+    )
+    
+    # Display/X11 packages (Linux only)
+    local display_packages=(
+        xorg-server xorg-xinit xorg-xrandr xorg-xsetroot
+        xsel xdotool arandr
+        noto-fonts
+    )
+    
+    case "$OS" in
+        arch|endeavouros|manjaro)
+            # Update system
+            info "Updating Arch-based system..."
+            sudo pacman -Syu --noconfirm
+            
+            # Install packages
+            info "Installing packages with pacman..."
+            sudo pacman -S --needed --noconfirm "${core_packages[@]}" "${terminal_packages[@]}" "${display_packages[@]}"
+            
+            # Install AUR helper if not present
+            if ! command -v yay &> /dev/null; then
+                info "Installing yay AUR helper..."
+                git clone https://aur.archlinux.org/yay.git /tmp/yay
+                cd /tmp/yay
+                makepkg -si --noconfirm
+                cd -
+                rm -rf /tmp/yay
+            fi
+            
+            # Install AUR packages
+            info "Installing AUR packages..."
+            yay -S --needed --noconfirm getnf starship-bin
+            ;;
+            
+        ubuntu|debian)
+            # Update system
+            info "Updating Debian-based system..."
+            sudo apt update && sudo apt upgrade -y
+            
+            # Add repositories for newer versions
+            if [ "$OS" = "ubuntu" ]; then
+                sudo add-apt-repository ppa:neovim-ppa/stable -y
+                sudo apt update
+            fi
+            
+            # Install packages
+            info "Installing packages with apt..."
+            # Map package names
+            local debian_packages=()
+            for pkg in "${core_packages[@]}"; do
+                case "$pkg" in
+                    eza) debian_packages+=("exa") ;;  # eza might be exa in older repos
+                    fd) debian_packages+=("fd-find") ;;
+                    bat) debian_packages+=("bat" "batcat") ;;
+                    *) debian_packages+=("$pkg") ;;
+                esac
+            done
+            
+            sudo apt install -y "${debian_packages[@]}" "${terminal_packages[@]}" "${display_packages[@]}"
+            
+            # Install starship
+            info "Installing starship..."
+            curl -sS https://starship.rs/install.sh | sh -s -- -y
+            ;;
+            
+        fedora)
+            # Update system
+            info "Updating Fedora system..."
+            sudo dnf update -y
+            
+            # Install packages
+            info "Installing packages with dnf..."
+            sudo dnf install -y "${core_packages[@]}" "${terminal_packages[@]}" "${display_packages[@]}"
+            
+            # Install starship
+            info "Installing starship..."
+            curl -sS https://starship.rs/install.sh | sh -s -- -y
+            ;;
+            
+        macos)
+            # Install Homebrew if not present
+            if ! command -v brew &> /dev/null; then
+                info "Installing Homebrew..."
+                /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            fi
+            
+            # Install packages
+            info "Installing packages with Homebrew..."
+            brew install "${core_packages[@]}" alacritty starship
+            
+            # Install fonts
+            brew tap homebrew/cask-fonts
+            brew install --cask font-fira-code-nerd-font font-hack-nerd-font
+            ;;
+            
+        *)
+            error "Unsupported distribution: $OS"
+            exit 1
+            ;;
+    esac
+    
+    success "Package installation completed"
+}
+
+# Install Nerd Fonts
+install_nerd_fonts() {
+    info "Installing Nerd Fonts..."
+    
+    if command -v getnf &> /dev/null; then
+        # Use getnf if available (Arch)
+        getnf -i FiraCode Hack SauceCodePro
+    else
+        # Manual installation
+        local font_dir
+        if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+            font_dir="$HOME/.local/share/fonts"
+        elif [[ "$OSTYPE" == "darwin"* ]]; then
+            font_dir="$HOME/Library/Fonts"
+        fi
+        
+        mkdir -p "$font_dir"
+        
+        # Download and install fonts
+        for font in FiraCode Hack SourceCodePro; do
+            info "Downloading $font Nerd Font..."
+            wget -q --show-progress "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${font}.zip" -O "/tmp/${font}.zip"
+            unzip -q "/tmp/${font}.zip" -d "$font_dir"
+            rm "/tmp/${font}.zip"
+        done
+        
+        # Update font cache on Linux
+        if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+            fc-cache -fv
+        fi
+    fi
+    
+    success "Nerd Fonts installed"
+}
+
+# Configure terminals
+configure_terminals() {
+    info "Configuring terminal emulators..."
+    
+    # Process yadm templates
+    yadm alt
+    
+    # Load X resources if on Linux and X is running
+    if [[ "$OSTYPE" == "linux-gnu"* ]] && [ -n "$DISPLAY" ] && [ -f "$HOME/.config/X11/Xresources" ]; then
+        xrdb -merge "$HOME/.config/X11/Xresources"
+        success "X resources loaded"
+    fi
+    
+    # Set up color schemes directory
+    mkdir -p "$HOME/.config/X11/Xresources.d/colors"
+    
+    success "Terminal configuration completed"
+}
+
+# Configure shell
+configure_shell() {
+    info "Configuring shell..."
+    
+    # Change default shell to zsh if not already
+    if [ "$SHELL" != "$(which zsh)" ]; then
+        info "Changing default shell to zsh..."
+        chsh -s "$(which zsh)"
+        success "Default shell changed to zsh"
+    fi
+    
+    # Install minimal zsh framework (no Oh My Zsh)
+    # The zsh config from the shell/ directory handles everything
+    
+    success "Shell configuration completed"
+}
+
+# Install additional tools
+install_additional_tools() {
+    info "Installing additional tools..."
+    
+    # Install cht.sh
+    if [ ! -f /usr/local/bin/cht.sh ]; then
+        info "Installing cht.sh..."
+        sudo curl -s https://cht.sh/:cht.sh -o /usr/local/bin/cht.sh
+        sudo chmod +x /usr/local/bin/cht.sh
+        success "cht.sh installed"
+    fi
+    
+    # Install tldr
+    if ! command -v tldr &> /dev/null; then
+        info "Installing tldr..."
+        if [ "$OS" = "arch" ] || [ "$OS" = "endeavouros" ]; then
+            sudo pacman -S --needed --noconfirm tldr
+        else
+            npm install -g tldr || pip install --user tldr
+        fi
+        success "tldr installed"
+    fi
+}
+
+# Run bootstrap.d scripts
+run_bootstrap_d() {
+    local bootstrap_dir="$HOME/.config/yadm/bootstrap.d"
+    if [ -d "$bootstrap_dir" ]; then
+        info "Running bootstrap.d scripts..."
+        for script in "$bootstrap_dir"/*; do
+            if [ -x "$script" ]; then
+                info "Running $(basename "$script")..."
+                "$script"
+            fi
+        done
+    fi
+}
+
+# Main execution
+main() {
+    echo "======================================"
+    echo "       YADM Bootstrap Script          "
+    echo "======================================"
+    echo
+    
+    # Check if running interactively
+    if [ -t 0 ]; then
+        read -p "This will install packages and configure your system. Continue? [y/N] " -n 1 -r
+        echo
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            warning "Bootstrap cancelled"
+            exit 0
+        fi
+    fi
+    
+    # Detect OS
+    detect_os
+    
+    # Run bootstrap.d scripts first (handles package installation)
+    run_bootstrap_d
+    
+    # Run additional configuration steps
+    install_nerd_fonts
+    configure_terminals
+    configure_shell
+    install_additional_tools
+    
+    echo
+    success "Bootstrap completed successfully!"
+    info "Please restart your terminal or log out and back in to apply all changes."
+    
+    # Show next steps
+    echo
+    echo "Next steps:"
+    echo "1. Restart your terminal"
+    echo "2. Run 'yadm alt' to ensure all templates are processed"
+    echo "3. Test your terminal emulators (alacritty, xfce4-terminal, urxvt)"
+    echo "4. Customize font sizes in templates if needed"
+}
+
+# Run main function
+main "$@"

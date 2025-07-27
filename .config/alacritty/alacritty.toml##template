@@ -1,0 +1,60 @@
+[cursor.style]
+blinking = "Never"
+shape = "Underline"
+
+[font]
+{% if yadm.hostname == "storm-laptop" %}
+size = 10
+{% else %}
+size = 12
+{% endif %}
+
+[font.bold]
+family = "FiraCode Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Hack Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "Hack Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "FiraCode Nerd Font Mono"
+style = "Regular"
+
+[window.padding]
+x = 7
+y = 0
+
+# Color scheme can be included here or in a separate file
+# Example: Base16 Classic Dark
+[colors.primary]
+background = '#151515'
+foreground = '#d0d0d0'
+
+[colors.cursor]
+text = '#151515'
+cursor = '#d0d0d0'
+
+[colors.normal]
+black   = '#151515'
+red     = '#ac4142'
+green   = '#90a959'
+yellow  = '#f4bf75'
+blue    = '#6a9fb5'
+magenta = '#aa759f'
+cyan    = '#75b5aa'
+white   = '#d0d0d0'
+
+[colors.bright]
+black   = '#505050'
+red     = '#ac4142'
+green   = '#90a959'
+yellow  = '#f4bf75'
+blue    = '#6a9fb5'
+magenta = '#aa759f'
+cyan    = '#75b5aa'
+white   = '#f5f5f5'
