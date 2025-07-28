@@ -1,0 +1,8 @@
+# Personal git configuration - encrypted by yadm
+[user]
+    email = morelatto@pm.me
+    name = Morelatto
+
+# Personal GitHub/GitLab tokens (if any)
+# [credential "https://github.com"]
+#     helper = store
