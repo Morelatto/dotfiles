@@ -1,11 +1,12 @@
-# Monitor Setup with proper DPI configuration
+# Monitor Setup Template - configured per hostname
+{% if yadm.hostname == "stable" %}
+# Desktop dual monitor setup (DP-2 + HDMI-0)
 Section "Monitor"
     Identifier  "DP-2"
     Option      "DPMS" "false"
     Option      "PreferredMode" "1920x1080"
     Option      "Position" "0 0"
     Option      "Primary" "true"
-    # Physical dimensions for proper DPI calculation
     DisplaySize 531 298
 EndSection
 
@@ -14,19 +15,15 @@ Section "Monitor"
     Option      "DPMS" "false"
     Option      "PreferredMode" "1920x1080"
     Option      "Position" "1920 0"
-    # Physical dimensions for proper DPI calculation
     DisplaySize 510 290
 EndSection
 
-# Device Setup
 Section "Device"
     Identifier  "Card0"
-    Driver      "nvidia"
     Option      "Monitor-DP-2" "DP-2"
     Option      "Monitor-HDMI-0" "HDMI-0"
 EndSection
 
-# Screen Setup
 Section "Screen"
     Identifier "Screen0"
     Device     "Card0"
@@ -37,7 +34,6 @@ Section "Screen"
     EndSubSection
 EndSection
 
-# Server Layout
 Section "ServerLayout"
     Identifier     "ServerLayout0"
     Screen         "Screen0"
@@ -47,3 +43,11 @@ Section "ServerLayout"
     Option         "OffTime"     "0"
     Option         "Screen Saver" "off"
 EndSection
+{% else %}
+# Default/laptop single monitor setup
+Section "Monitor"
+    Identifier  "eDP-1"
+    Option      "DPMS" "true"
+    Option      "PreferredMode" "1920x1080"
+EndSection
+{% endif %}

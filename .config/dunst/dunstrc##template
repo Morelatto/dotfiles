@@ -26,13 +26,7 @@ sort = yes
 idle_threshold = 120
 
 # Font - adjust size for DPI
-{% if yadm.class == "Desktop" %}
 font = DejaVu Sans Mono 10
-{% elif yadm.class == "Laptop" %}
-font = DejaVu Sans Mono 9
-{% else %}
-font = DejaVu Sans Mono 10
-{% endif %}
 
 line_height = 0
 markup = full

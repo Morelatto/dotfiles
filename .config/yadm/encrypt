@@ -1,11 +1,25 @@
 # yadm encryption patterns
 # Files matching these patterns will be encrypted in the repository
 
+# SSH keys and certificates
 .ssh/id_*
 .ssh/*_rsa
 .ssh/*_ed25519
+.ssh/config
+
+# GPG keys
 .gnupg/*
+
+# Personal git configuration with email/name
 .config/git/config.local
+
+# Network credentials
 .netrc
+
+# Cloud provider credentials
 .aws/credentials
 .config/rclone/rclone.conf
+
+# Personal data files
+Documents/personal/*
+.config/*/personal.conf
