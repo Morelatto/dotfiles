@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="008f3cb3-7d8f-4f49-bc59-6ddeb3f28deb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.claude/agents/dotfiles-installer.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.config/dunst/dunstrc##template" beforeDir="false" afterPath="$PROJECT_DIR$/.config/dunst/dunstrc##template" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.config/git/config##template" beforeDir="false" afterPath="$PROJECT_DIR$/.config/git/config##template" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.config/i3/my-overrides.sed" beforeDir="false" afterPath="$PROJECT_DIR$/.config/i3/my-overrides.sed" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.config/picom/picom.conf" beforeDir="false" afterPath="$PROJECT_DIR$/.config/picom/picom.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.config/polybar/config.ini##template" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.config/polybar/launch.sh##template" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.config/polybar/my_modules.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.config/urxvt/Xresources" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.config/urxvt/base16-classic-dark-256.Xresources" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.config/yadm/encrypt" beforeDir="false" afterPath="$PROJECT_DIR$/.config/yadm/encrypt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.local/bin/polybars" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/etc/X11/xorg.conf.d/10-monitor.conf" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
