@@ -1,18 +1,14 @@
 [user]
-{% if yadm.hostname == "work-laptop" %}
-    email = {{ yadm.user }}@company.com
+{% if yadm.class == "Work" %}
+    email = {{ yadm.user }}@company.com  
     name = {{ yadm.user | title }}
 {% else %}
-    email = morelatto@pm.me
-    name = Morelatto
+    # Personal config loaded from encrypted file
+    # No default values - requires config.local
 {% endif %}
 
 [core]
-{% if yadm.class == "Work" %}
-    editor = code --wait
-{% else %}
     editor = vim
-{% endif %}
     pager = delta
     excludesfile = ~/.config/git/ignore
     attributesfile = ~/.config/git/attributes
