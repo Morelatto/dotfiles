@@ -28,4 +28,8 @@ if [ -d ~/.local/share/fonts ]; then
     fc-cache -fv ~/.local/share/fonts
 fi
 
+# Clean up repository files from home directory
+echo "Cleaning up repository files..."
+rm -f ~/README.md ~/Taskfile.yaml ~/ROADMAP.md ~/bootstrap.sh 2>/dev/null || true
+
 echo "✅ Post-alt hook completed"
