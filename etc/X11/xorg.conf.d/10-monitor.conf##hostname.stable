@@ -1,0 +1,49 @@
+# Monitor Setup with proper DPI configuration
+Section "Monitor"
+    Identifier  "DP-2"
+    Option      "DPMS" "false"
+    Option      "PreferredMode" "1920x1080"
+    Option      "Position" "0 0"
+    Option      "Primary" "true"
+    # Physical dimensions for proper DPI calculation
+    DisplaySize 531 298
+EndSection
+
+Section "Monitor"
+    Identifier  "HDMI-0"
+    Option      "DPMS" "false"
+    Option      "PreferredMode" "1920x1080"
+    Option      "Position" "1920 0"
+    # Physical dimensions for proper DPI calculation
+    DisplaySize 510 290
+EndSection
+
+# Device Setup
+Section "Device"
+    Identifier  "Card0"
+    # Driver auto-detected or specified per machine
+    Option      "Monitor-DP-2" "DP-2"
+    Option      "Monitor-HDMI-0" "HDMI-0"
+EndSection
+
+# Screen Setup
+Section "Screen"
+    Identifier "Screen0"
+    Device     "Card0"
+    DefaultDepth 24
+    SubSection "Display"
+        Depth   24
+        Virtual 3840 1080
+    EndSubSection
+EndSection
+
+# Server Layout
+Section "ServerLayout"
+    Identifier     "ServerLayout0"
+    Screen         "Screen0"
+    Option         "BlankTime"   "0"
+    Option         "StandbyTime" "0"
+    Option         "SuspendTime" "0"
+    Option         "OffTime"     "0"
+    Option         "Screen Saver" "off"
+EndSection
