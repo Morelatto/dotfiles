@@ -1,75 +1,50 @@
-# Compiled source
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
+# Dotter specific
+.dotter/cache.toml
+.dotter/cache/
+# Note: .dotter/local.toml SHOULD be version controlled according to dotter docs
+# It contains package selections, not sensitive data
 
-# Packages
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
-*.war
-*.nar
-*.ear
-*.tar.gz
-
-# Logs and databases
+# Generated files
+*.tmp
+*.cache
 *.log
-*.sql
-*.sqlite
+*.swp
+*~
 
-# OS generated files
+# IDE
+.idea/
+.vscode/
+*.sublime-workspace
+
+# Personal/sensitive configurations
+config/git/config.local
+config/ssh/known_hosts
+config/ssh/id_*
+config/ssh/authorized_keys
+*.private
+*.secret
+
+# System specific
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
 
-# IDE/Editor folders
-.vscode/
-.idea/
-*.swp
-*.swo
+# Backup files
+*.backup
+.backup/
 
-# Java
-out/
+# Local overrides
+*.local
+!.dotter/local.toml  # Exception: this should be tracked
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-*.manifest
-*.spec
-pip-log.txt
-pip-delete-this-directory.txt
-venv/
+# Personal documentation
+CLAUDE.md
+TODO.md
+NOTES.md
 
-# Node
-node_modules/
+# Large binary files (consider excluding wallpapers)
+# Uncomment if you don't want wallpapers in the repo:
+# assets/wallpapers/*.png
+# assets/wallpapers/*.jpg
+# assets/wallpapers/*.jpeg
+# !assets/wallpapers/.gitkeep
+# !assets/wallpapers/README.md

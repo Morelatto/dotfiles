@@ -1,0 +1,7 @@
+GOPROXY=https://proxy.golang.org,direct
+GOSUMDB=sum.golang.org
+GOPATH=/home/storm/go
+GOBIN=/home/storm/go/bin
+CGO_ENABLED=1
+GO111MODULE=on
+GOCACHE=/home/storm/.cache/go-build

@@ -1,0 +1,22 @@
+packages = [
+    "terminal",
+    "desktop",
+    "development",
+    "applications"
+]
+
+# Machine-specific variables
+[variables]
+hostname = "stable"
+distro = "Arch"
+is_desktop = true
+is_laptop = false
+monitors = "dual"
+
+# File overrides for this machine
+[files]
+# Example: If you want to disable a file on this machine:
+# ".config/some/file" = ""
+
+# Example: If you want to change target location:
+# ".config/git/config" = "~/.gitconfig"

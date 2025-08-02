@@ -1,0 +1,28 @@
+{
+  "editor": {
+    "fontSize": 14,
+    "font": "JetBrains Mono"
+  },
+  "keymap": {
+    "ctrl shift F": "ReformatCode",
+    "ctrl shift O": "OptimizeImports",
+    "ctrl D": "EditorDuplicate",
+    "ctrl Y": "EditorDeleteLine",
+    "ctrl /": "CommentByLineComment",
+    "alt enter": "ShowIntentionActions",
+    "shift shift": "SearchEverywhere",
+    "ctrl shift A": "GotoAction",
+    "ctrl B": "GotoDeclaration",
+    "ctrl N": "GotoClass",
+    "ctrl shift N": "GotoFile",
+    "ctrl E": "RecentFiles",
+    "ctrl shift E": "RecentLocations",
+    "ctrl shift F": "FindInPath",
+    "ctrl alt left": "Back",
+    "ctrl alt right": "Forward",
+    "alt F7": "FindUsages",
+    "shift F6": "RenameElement",
+    "ctrl alt M": "ExtractMethod",
+    "ctrl alt V": "IntroduceVariable"
+  }
+}
