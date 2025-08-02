@@ -1,0 +1,9 @@
+# SSH Configuration
+# Default settings
+
+Host *
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+    ControlMaster auto
+    ControlPersist 300
+    ControlPath ~/.ssh/sockets/%r@%h-%p

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=PyCharm
+Comment=Python IDE - autostart on login
+Exec=sh -c 'sleep 5 && i3-msg "workspace 1:" && /usr/bin/pycharm'
+Hidden=false
+X-GNOME-Autostart-Delay=5

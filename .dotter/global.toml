@@ -1,0 +1,65 @@
+# Dotter Global Configuration - Optimized Structure
+
+# Terminal/Shell - All CLI configurations
+[terminal.files]
+"cli/atuin" = "~/.config/atuin"
+"cli/zsh/.zshenv" = "~/.zshenv"
+"cli/zsh" = "~/.config/zsh"
+"cli/ranger" = "~/.config/ranger"
+"cli/ssh" = "~/.ssh"
+"cli/scripts" = "~/.local/bin"
+"cli/bash/.bashrc" = "~/.bashrc"
+"cli/bash/.bash_profile" = "~/.bash_profile"
+
+# Desktop - Window manager, terminal emulator, and compositor
+[desktop.files]
+"gui/i3" = "~/.config/i3"
+"gui/dunst" = "~/.config/dunst"
+"gui/rofi" = "~/.config/rofi"
+"gui/picom" = "~/.config/picom"
+"gui/xfce4" = "~/.config/xfce4"
+"gui/autostart" = "~/.config/autostart"
+"gui/gtk-3.0" = "~/.config/gtk-3.0"
+"gui/gtk-4.0" = "~/.config/gtk-4.0"
+"gui/assets/wallpapers" = { target = "~/.config/wallpapers", type = "symbolic" }
+"system/x11/Xresources" = "~/.Xresources"
+"system/x11/xprofile" = "~/.xprofile"
+
+# Development - All programming tools and editors
+[development.files]
+"dev/git" = "~/.config/git"
+"dev/bun" = "~/.config/bun"
+"dev/bun/config.toml" = "~/.bunfig.toml"
+"dev/docker" = "~/.docker"
+"dev/ansible/ansible.cfg" = "~/.ansible.cfg"
+"dev/cargo" = "~/.cargo"
+"dev/go" = "~/.config/go"
+"dev/pip" = "~/.config/pip"
+"dev/uv" = "~/.config/uv"
+"dev/claude/CLAUDE.md" = "~/.claude/CLAUDE.md"
+"dev/claude/settings.json" = "~/.claude/settings.json"
+"editors/nvim" = "~/.config/nvim"
+"editors/vim" = "~/.config/vim"
+"editors/sublime-text-3" = "~/.config/sublime-text-3"
+
+# Applications - User applications (browsers, note-taking, etc.)
+[applications.files]
+"gui/firefox" = "~/.config/firefox"
+"editors/obsidian/obsidian.json" = "~/.config/obsidian/obsidian.json"
+"editors/obsidian/app.json" = "~/.config/obsidian/app.json"
+"editors/obsidian/appearance.json" = "~/.config/obsidian/appearance.json"
+"editors/obsidian/community-plugins.json" = "~/.config/obsidian/community-plugins.json"
+"system/kalu" = "~/.config/kalu"
+
+# === REFERENCE ONLY - Not deployed ===
+# These are kept for version control but commented out
+
+[system-reference.files]
+# System configs that require root - manual installation required
+# To install: sudo cp system/lightdm/slick-greeter.conf /etc/lightdm/
+# "system/lightdm/slick-greeter.conf" = "/etc/lightdm/slick-greeter.conf"
+# "system/pacman/pacman.conf" = "/etc/pacman.conf"
+# "system/x11/xorg.conf.d/10-monitor.conf" = "/etc/X11/xorg.conf.d/10-monitor.conf"
+
+[jetbrains-reference.files]
+# JetBrains IDEs - Manual setup only when needed

@@ -1,0 +1,130 @@
+[user]
+    # Personal config loaded from encrypted file
+    # No default values - requires config.local
+
+[core]
+    editor = vim
+    pager = delta
+    excludesfile = ~/.config/git/ignore
+    attributesfile = ~/.config/git/attributes
+
+[init]
+    defaultBranch = main
+    
+[include]
+    path = ~/.config/git/config.local
+
+[interactive]
+    diffFilter = delta --color-only --features=interactive
+
+[delta]
+    features = decorations
+    navigate = true
+    light = false
+    line-numbers = true
+    side-by-side = true
+    syntax-theme = Dracula
+
+[delta "interactive"]
+    keep-plus-minus-markers = false
+
+[delta "decorations"]
+    commit-decoration-style = yellow ol
+    commit-style = raw
+    file-style = omit
+    hunk-header-decoration-style = yellow box
+    hunk-header-file-style = red
+    hunk-header-line-number-style = "#067a00"
+    hunk-header-style = file line-number syntax
+
+[merge]
+    conflictstyle = diff3
+    tool = vimdiff
+
+[diff]
+    colorMoved = default
+    algorithm = histogram
+
+[push]
+    default = current
+    autoSetupRemote = true
+
+[pull]
+    rebase = true
+    ff = only
+
+[fetch]
+    prune = true
+    prunetags = true
+
+[rebase]
+    autoStash = true
+    autoSquash = true
+
+[commit]
+    verbose = true
+
+[help]
+    autocorrect = prompt
+
+[rerere]
+    enabled = true
+
+[alias]
+    # Status and info
+    s = status -sb
+    st = status
+    
+    # Commit shortcuts
+    c = commit
+    cm = commit -m
+    ca = commit --amend
+    can = commit --amend --no-edit
+    
+    # Branch operations
+    b = branch
+    ba = branch -a
+    bd = branch -d
+    bD = branch -D
+    co = checkout
+    cob = checkout -b
+    
+    # Diff shortcuts
+    d = diff
+    dc = diff --cached
+    ds = diff --staged
+    
+    # Log shortcuts
+    l = log --oneline --graph --decorate
+    lg = log --graph --pretty=format:'%C(yellow)%h%C(reset) %C(blue)%an%C(reset) %C(cyan)%cr%C(reset) %s %C(green)%d%C(reset)' --abbrev-commit
+    ll = log --oneline
+    
+    # Push/Pull
+    p = push
+    pf = push --force-with-lease
+    pl = pull
+    
+    # Stash
+    ss = stash save
+    sp = stash pop
+    sl = stash list
+    
+    # Reset
+    unstage = reset HEAD --
+    undo = reset --soft HEAD~1
+    
+    # Useful commands
+    last = log -1 HEAD
+    contributors = shortlog --summary --numbered
+    aliases = config --get-regexp alias
+    
+    # Find files
+    find = !git ls-files | grep -i
+
+[url "git@github.com:"]
+    insteadOf = gh:
+    pushInsteadOf = https://github.com/
+
+[url "git@gitlab.com:"]
+    insteadOf = gl:
+    pushInsteadOf = https://gitlab.com/

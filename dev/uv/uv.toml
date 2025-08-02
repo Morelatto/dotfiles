@@ -1,0 +1,23 @@
+# UV Configuration
+# https://docs.astral.sh/uv/reference/settings/
+
+# Python installation preferences
+python-preference = "system"  # Default is "managed" - prefer system Python over uv-managed
+
+# Performance settings
+compile-bytecode = false  # Default is true - disable for faster installs
+
+# Dependency resolution strategy
+index-strategy = "unsafe-first-match"  # Default is "first-index" - try all indexes for a package
+
+# Development workflow preferences
+# default-groups = ["dev"]  # Only applicable in pyproject.toml, not global config
+
+# Default settings (documented for reference but not needed in config):
+# python-downloads = "automatic"  # Already default
+# cache-dir = "/home/storm/.cache/uv"  # Already default on Linux
+# [[index]] with PyPI  # Already default
+# resolution = "highest"  # Already default
+# prerelease = "if-necessary"  # Close to default "if-necessary-or-explicit"
+# link-mode = "clone"  # Already default on your system
+# [pip] settings  # Not needed unless using pip interface specifically
