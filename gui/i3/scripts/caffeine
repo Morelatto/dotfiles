@@ -36,13 +36,13 @@ CAFFEINE_PID=$(pgrep -x caffeine)
 
 # Output: single icon that changes appearance
 if [ -z "$CAFFEINE_PID" ]; then
-    # Inactive - mug icon (empty cup)
-    echo ""     # FontAwesome mug icon
-    echo ""     # Short text
-    echo "#555555"  # Dark gray
+    # Inactive - empty circle or moon
+    echo "○"        # Empty circle (discrete)
+    echo "○"
+    echo "#666666"  # Dark gray
 else
-    # Active - coffee icon (full cup)  
-    echo ""     # FontAwesome coffee icon
-    echo ""     # Short text
+    # Active - filled circle or sun
+    echo "●"        # Filled circle (active)  
+    echo "●"
     echo "#FFEB3B"  # Bright yellow
 fi
