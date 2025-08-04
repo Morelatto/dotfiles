@@ -23,6 +23,7 @@
 "gui/gtk-4.0" = "~/.config/gtk-4.0"
 "gui/assets/wallpapers" = { target = "~/.config/wallpapers", type = "symbolic" }
 "gui/gsimplecal" = "~/.config/gsimplecal"
+"gui/betterlockscreen/betterlockscreenrc" = "~/.config/betterlockscreenrc"
 "system/x11/Xresources" = "~/.Xresources"
 "system/x11/xprofile" = "~/.xprofile"
 

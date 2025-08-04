@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Caffeine toggle for i3blocks
+# Click to toggle x11-caffeine
+
+CAFFEINE_PID=$(pgrep -x caffeine)
+
+case $BLOCK_BUTTON in
+    1) # Left click - toggle caffeine
+        if [ -z "$CAFFEINE_PID" ]; then
+            caffeine &
+            notify-send "Caffeine" "Screen timeout disabled" -i caffeine
+        else
+            pkill -x caffeine
+            notify-send "Caffeine" "Screen timeout enabled" -i caffeine
+        fi
+        ;;
+    3) # Right click - show status
+        if [ -z "$CAFFEINE_PID" ]; then
+            notify-send "Caffeine Status" "Inactive - Screen will lock normally" -i caffeine
+        else
+            notify-send "Caffeine Status" "Active - Screen lock disabled" -i caffeine
+        fi
+        ;;
+esac
+
+# Display icon with color based on status
+if [ -z "$CAFFEINE_PID" ]; then
+    echo " "  # Coffee icon inactive
+    echo " "
+    echo "#717171"  # Gray when inactive
+else
+    echo " "  # Coffee icon active
+    echo " "
+    echo "#F4BC87"  # Yellow/orange when active
+fi

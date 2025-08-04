@@ -5,10 +5,10 @@
 xset -b
 
 # Screen timeout managed by xss-lock
-# Screen saver: 30 minutes (1800s) before lock
-# DPMS: 40 minutes (2400s) standby/suspend/off
-xset s 1800
-xset dpms 2400 2400 2400
+# Screen saver: 20 minutes (1200s) before lock
+# DPMS: 30 minutes (1800s) standby/suspend/off
+xset s 1200
+xset dpms 1800 1800 1800
 
 # Set GTK theme
 export GTK_THEME=Arc-Dark
