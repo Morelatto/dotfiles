@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Caffeine toggle for i3blocks - controls DPMS directly
-# No external dependencies needed
+# Uses FontAwesome icons
 
 # State file to track caffeine status
 STATE_FILE="/tmp/.caffeine_active_${USER}"
@@ -14,36 +14,36 @@ case $BLOCK_BUTTON in
             xset +dpms
             xset s 1200
             xset dpms 1800 1800 1800
-            notify-send "Caffeine OFF" "Screen lock enabled (20 min)" -t 2000
+            notify-send -i dialog-information "Caffeine OFF" "Screen lock enabled (20 min)" -t 2000
         else
             # Caffeine is OFF, turn it ON (disable screen timeout)
             touch "$STATE_FILE"
             xset -dpms
             xset s off
-            notify-send "Caffeine ON" "Screen lock disabled" -t 2000
+            notify-send -i dialog-warning "Caffeine ON" "Screen lock disabled" -t 2000
         fi
         # Force i3blocks refresh
         pkill -RTMIN+10 i3blocks
         ;;
     3) # Right click - show current status
         if [ -f "$STATE_FILE" ]; then
-            notify-send "Caffeine Status" "Active - Screen lock disabled" -t 2000
+            notify-send -i dialog-information "Caffeine Status" "Active - Screen lock disabled" -t 2000
         else
             TIMEOUT=$(xset q | grep "timeout:" | awk '{print $2}')
-            notify-send "Caffeine Status" "Inactive - Lock in ${TIMEOUT}s" -t 2000
+            notify-send -i dialog-information "Caffeine Status" "Inactive - Lock in ${TIMEOUT}s" -t 2000
         fi
         ;;
 esac
 
-# Output: single icon that changes appearance based on state file
+# Output: FontAwesome icon based on state
 if [ -f "$STATE_FILE" ]; then
-    # Active - filled circle (caffeine ON)
-    echo "●"        
-    echo "●"
-    echo "#FFEB3B"  # Bright yellow
+    # Active - Coffee icon (caffeine ON)
+    echo -e "\uf0f4"   # FontAwesome coffee icon (U+F0F4)
+    echo -e "\uf0f4"
+    echo "#FFEB3B"     # Bright yellow
 else
-    # Inactive - empty circle (caffeine OFF)
-    echo "○"        
-    echo "○"
-    echo "#666666"  # Dark gray
+    # Inactive - Moon icon (caffeine OFF)
+    echo -e "\uf186"   # FontAwesome moon icon (U+F186)
+    echo -e "\uf186"
+    echo "#666666"     # Dark gray
 fi

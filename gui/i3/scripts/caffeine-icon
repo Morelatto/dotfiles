@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Static caffeine icon for i3blocks - just shows the icon state
+# Click handling is done by i3blocks command
+
+STATE_FILE="/tmp/.caffeine_active_${USER}"
+
+# Handle clicks to toggle
+if [ -n "$BLOCK_BUTTON" ]; then
+    if [ -f "$STATE_FILE" ]; then
+        # Turn OFF
+        rm -f "$STATE_FILE"
+        xset +dpms
+        xset s 1200
+        xset dpms 1800 1800 1800
+    else
+        # Turn ON
+        touch "$STATE_FILE"
+        xset -dpms
+        xset s off
+    fi
+fi
+
+# Output icon with proper color
+if [ -f "$STATE_FILE" ]; then
+    # ON - Coffee/brown color
+    echo "  "
+    echo "  "
+    echo "#8B4513"  # Saddle brown (coffee color)
+else
+    # OFF - Light gray/off-white
+    echo "  "
+    echo "  "
+    echo "#D3D3D3"  # Light gray
+fi
