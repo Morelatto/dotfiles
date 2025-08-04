@@ -25,7 +25,6 @@
 "gui/gsimplecal" = "~/.config/gsimplecal"
 "system/x11/Xresources" = "~/.Xresources"
 "system/x11/xprofile" = "~/.xprofile"
-"system/x11/xinitrc.d" = "~/.config/X11/xinitrc.d"
 
 # Development - All programming tools and editors
 [development.files]

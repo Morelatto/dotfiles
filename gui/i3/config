@@ -385,8 +385,8 @@ exec_always --no-startup-id autotiling
 # One-time setup
 exec --no-startup-id ~/.screenlayout/monitor.sh
 exec --no-startup-id sleep 1 && feh --bg-fill ~/.config/wallpapers/default.png
-# Screen timeout configured in ~/.config/X11/xinitrc.d/50-screen-timeout.sh
-exec --no-startup-id ~/.config/X11/xinitrc.d/50-screen-timeout.sh
+# Screen timeout: 30min lock, 40/50/60min DPMS
+exec --no-startup-id xset s 1800 dpms 2400 3000 3600
 
 # Delayed starts now handled via XDG autostart (see config/autostart/)
 #exec --no-startup-id sleep 3 && thunar
