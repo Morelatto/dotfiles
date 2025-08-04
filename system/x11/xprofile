@@ -4,9 +4,11 @@
 # Disable system beep
 xset -b
 
-# Screen saver timeout for lock screen (30 minutes)
-# DPMS is configured in xorg.conf.d/50-dpms.conf
+# Screen timeout managed by xss-lock
+# Screen saver: 30 minutes (1800s) before lock
+# DPMS: 40 minutes (2400s) standby/suspend/off
 xset s 1800
+xset dpms 2400 2400 2400
 
 # Set GTK theme
 export GTK_THEME=Arc-Dark
