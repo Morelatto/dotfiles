@@ -1,35 +1,48 @@
 #!/usr/bin/env bash
-# Caffeine toggle for i3blocks
-# Click to toggle x11-caffeine
+# Minimal caffeine toggle for i3blocks
+# Single icon that changes color when active
 
+# Check if caffeine is running
 CAFFEINE_PID=$(pgrep -x caffeine)
 
+# Handle mouse clicks
 case $BLOCK_BUTTON in
-    1) # Left click - toggle caffeine
+    1) # Left click - toggle
         if [ -z "$CAFFEINE_PID" ]; then
             caffeine &
-            notify-send "Caffeine" "Screen timeout disabled" -i caffeine
+            # Also disable DPMS to be sure
+            xset -dpms
+            xset s off
         else
             pkill -x caffeine
-            notify-send "Caffeine" "Screen timeout enabled" -i caffeine
+            # Re-enable DPMS with our configured timeouts
+            xset +dpms
+            xset s 1200
+            xset dpms 1800 1800 1800
         fi
         ;;
-    3) # Right click - show status
+    3) # Right click - show time remaining
         if [ -z "$CAFFEINE_PID" ]; then
-            notify-send "Caffeine Status" "Inactive - Screen will lock normally" -i caffeine
+            IDLE_TIME=$(xset q | grep "Standby:" | awk '{print $2}')
+            notify-send "Screen Lock" "Active (${IDLE_TIME}s timeout)" -t 2000
         else
-            notify-send "Caffeine Status" "Active - Screen lock disabled" -i caffeine
+            notify-send "Screen Lock" "Disabled (Caffeine ON)" -t 2000
         fi
         ;;
 esac
 
-# Display icon with color based on status
+# Refresh PID after potential toggle
+CAFFEINE_PID=$(pgrep -x caffeine)
+
+# Output: single icon that changes appearance
 if [ -z "$CAFFEINE_PID" ]; then
-    echo " "  # Coffee icon inactive
-    echo " "
-    echo "#717171"  # Gray when inactive
+    # Inactive - mug icon (empty cup)
+    echo ""     # FontAwesome mug icon
+    echo ""     # Short text
+    echo "#555555"  # Dark gray
 else
-    echo " "  # Coffee icon active
-    echo " "
-    echo "#F4BC87"  # Yellow/orange when active
+    # Active - coffee icon (full cup)  
+    echo ""     # FontAwesome coffee icon
+    echo ""     # Short text
+    echo "#FFEB3B"  # Bright yellow
 fi
