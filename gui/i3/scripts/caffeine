@@ -1,48 +1,49 @@
 #!/usr/bin/env bash
-# Minimal caffeine toggle for i3blocks
-# Single icon that changes color when active
+# Caffeine toggle for i3blocks - controls DPMS directly
+# No external dependencies needed
 
-# Check if caffeine is running
-CAFFEINE_PID=$(pgrep -x caffeine)
+# State file to track caffeine status
+STATE_FILE="/tmp/.caffeine_active_${USER}"
 
 # Handle mouse clicks
 case $BLOCK_BUTTON in
-    1) # Left click - toggle
-        if [ -z "$CAFFEINE_PID" ]; then
-            caffeine &
-            # Also disable DPMS to be sure
-            xset -dpms
-            xset s off
-        else
-            pkill -x caffeine
-            # Re-enable DPMS with our configured timeouts
+    1) # Left click - toggle DPMS
+        if [ -f "$STATE_FILE" ]; then
+            # Caffeine is ON, turn it OFF (re-enable screen timeout)
+            rm -f "$STATE_FILE"
             xset +dpms
             xset s 1200
             xset dpms 1800 1800 1800
-        fi
-        ;;
-    3) # Right click - show time remaining
-        if [ -z "$CAFFEINE_PID" ]; then
-            IDLE_TIME=$(xset q | grep "Standby:" | awk '{print $2}')
-            notify-send "Screen Lock" "Active (${IDLE_TIME}s timeout)" -t 2000
+            notify-send "Caffeine OFF" "Screen lock enabled (20 min)" -t 2000
         else
-            notify-send "Screen Lock" "Disabled (Caffeine ON)" -t 2000
+            # Caffeine is OFF, turn it ON (disable screen timeout)
+            touch "$STATE_FILE"
+            xset -dpms
+            xset s off
+            notify-send "Caffeine ON" "Screen lock disabled" -t 2000
+        fi
+        # Force i3blocks refresh
+        pkill -RTMIN+10 i3blocks
+        ;;
+    3) # Right click - show current status
+        if [ -f "$STATE_FILE" ]; then
+            notify-send "Caffeine Status" "Active - Screen lock disabled" -t 2000
+        else
+            TIMEOUT=$(xset q | grep "timeout:" | awk '{print $2}')
+            notify-send "Caffeine Status" "Inactive - Lock in ${TIMEOUT}s" -t 2000
         fi
         ;;
 esac
 
-# Refresh PID after potential toggle
-CAFFEINE_PID=$(pgrep -x caffeine)
-
-# Output: single icon that changes appearance
-if [ -z "$CAFFEINE_PID" ]; then
-    # Inactive - empty circle or moon
-    echo "○"        # Empty circle (discrete)
-    echo "○"
-    echo "#666666"  # Dark gray
-else
-    # Active - filled circle or sun
-    echo "●"        # Filled circle (active)  
+# Output: single icon that changes appearance based on state file
+if [ -f "$STATE_FILE" ]; then
+    # Active - filled circle (caffeine ON)
+    echo "●"        
     echo "●"
     echo "#FFEB3B"  # Bright yellow
+else
+    # Inactive - empty circle (caffeine OFF)
+    echo "○"        
+    echo "○"
+    echo "#666666"  # Dark gray
 fi
