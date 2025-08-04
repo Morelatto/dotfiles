@@ -1,0 +1,109 @@
+---
+# EndeavourOS i3 - Dotfiles Setup
+# For EndeavourOS with i3 edition (already has i3, yay, git, etc)
+# Usage: ansible-playbook ansible.yml -K
+
+- name: EndeavourOS Dotfiles Setup
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+  
+  vars:
+    dotfiles_dir: "{{ playbook_dir | dirname }}"  # Parent dir since we're in .setup/
+    
+    # Only what's missing in EndeavourOS i3
+    pacman_packages:
+      # Docker
+      - docker
+      - docker-compose
+      
+      # Screenshot & clipboard
+      - maim
+      - xclip
+      - xdotool
+      
+      # i3 utilities
+      - playerctl
+      - xss-lock
+      - thunar
+      - xfce4-terminal
+      
+      # Archive tools
+      - unrar
+      - p7zip
+      - unzip
+      
+      # System tools
+      - tree
+      - pv
+      - autojump
+      
+      # Fonts & UI
+      - ttf-jetbrains-mono-nerd
+      - gsimplecal
+    
+    # Tools for our setup
+    aur_packages:
+      - mise-bin      # Dev tools manager
+      - dotter-rs-bin # Dotfiles manager
+    
+  tasks:
+    # 1. PACMAN PACKAGES
+    - name: Install pacman packages
+      become: yes
+      pacman:
+        name: "{{ pacman_packages }}"
+        state: present
+        update_cache: yes
+    
+    # 2. AUR PACKAGES (EndeavourOS already has yay)
+    - name: Install AUR packages
+      shell: yay -S --needed --noconfirm {{ aur_packages | join(' ') }}
+      register: aur_result
+      changed_when: "'installing' in aur_result.stdout"
+    
+    # 3. MISE SETUP
+    - name: Configure mise
+      block:
+        - name: Trust mise config
+          shell: mise trust {{ dotfiles_dir }}/mise.toml
+          args:
+            chdir: "{{ dotfiles_dir }}"
+        
+        - name: Install all mise tools
+          shell: mise install -y
+          args:
+            chdir: "{{ dotfiles_dir }}"
+          register: mise_install
+          changed_when: mise_install.rc == 0
+    
+    # 4. DOTTER DEPLOYMENT
+    - name: Deploy dotfiles
+      shell: dotter deploy --force
+      args:
+        chdir: "{{ dotfiles_dir }}"
+      register: dotter_deploy
+      changed_when: dotter_deploy.rc == 0
+    
+    # 5. DOCKER SETUP (only thing that needs sudo)
+    - name: Docker configuration
+      become: yes
+      block:
+        - name: Add user to docker group
+          user:
+            name: "{{ ansible_user_id }}"
+            groups: docker
+            append: yes
+        
+        - name: Enable docker service
+          systemd:
+            name: docker
+            enabled: yes
+            state: started
+    
+    # 6. DONE
+    - name: Setup complete
+      debug:
+        msg:
+          - "✅ Done! Please logout and login again."
+          - "Run: exec zsh"

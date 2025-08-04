@@ -1,0 +1,4 @@
+# Default packages to install with every Python version
+pip
+wheel
+setuptools

@@ -24,3 +24,6 @@ bindkey '^[[1;5D' backward-word  # Ctrl+Left
 bindkey '^[[H' beginning-of-line  # Home
 bindkey '^[[F' end-of-line        # End
 bindkey '^[[3~' delete-char       # Delete
+
+# Alias expansion with Ctrl+Space
+bindkey '^@' _expand_alias        # Ctrl+Space (^@) expands aliases

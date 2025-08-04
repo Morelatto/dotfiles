@@ -1,0 +1,82 @@
+# mise configuration for development tools
+# https://mise.jdx.dev/
+
+[tools]
+# Core development tools
+node = "lts"
+python = "3.12"
+go = "latest"
+rust = "stable"
+bun = "latest"
+
+# Modern CLI tools (already used in zsh configs)
+bat = "latest"        # Used as cat replacement
+eza = "latest"        # Used as ls replacement
+fd = "latest"         # Used as find replacement
+ripgrep = "latest"    # Used as grep replacement (rg)
+fzf = "latest"        # Used for fuzzy finding and kill completion
+starship = "latest"   # Used for prompt
+delta = "latest"      # Used for git diffs
+dust = "latest"       # Used as du replacement
+btop = "latest"       # Used as top/htop replacement
+tldr = "latest"       # Better man pages
+yq = "latest"         # YAML processor
+jq = "latest"         # JSON processor
+httpie = "latest"     # Better curl
+
+# Missing from current setup but useful
+zoxide = "latest"     # Better cd (not currently configured)
+atuin = "latest"      # Shell history (in dotter but not actively used)
+lazygit = "latest"    # Terminal UI for git
+lazydocker = "latest" # Terminal UI for docker
+glow = "latest"       # Markdown renderer
+bottom = "latest"     # Alternative system monitor
+procs = "latest"      # Better ps
+sd = "latest"         # Better sed
+hyperfine = "latest"  # Benchmarking tool
+tokei = "latest"      # Code statistics
+
+# Development utilities
+gh = "latest"         # GitHub CLI (would be useful)
+glab = "latest"       # GitLab CLI
+direnv = "latest"     # Directory-specific environments
+watchexec = "latest"  # File watcher
+just = "latest"       # Command runner
+
+# Container tools
+docker-compose = "latest"
+kubectl = "latest"
+k9s = "latest"
+helm = "latest"
+
+# Security tools
+age = "latest"
+sops = "latest"
+
+# Currently using system packages but could be managed by mise:
+# neovim = "latest"   # Currently using system nvim
+# tmux = "latest"     # Could be managed by mise
+# git = "latest"      # Could be managed by mise
+
+[env]
+# Environment variables for development
+EDITOR = "nvim"
+VISUAL = "nvim"
+PAGER = "less"
+LANG = "en_US.UTF-8"
+
+[tasks.setup]
+description = "Install all tools and dependencies"
+run = """
+echo "Installing mise tools..."
+mise install
+echo "Tools installed successfully!"
+"""
+
+[tasks.update]
+description = "Update all tools to latest versions"
+run = "mise upgrade"
+
+[tasks.doctor]
+description = "Check system configuration"
+run = "mise doctor"

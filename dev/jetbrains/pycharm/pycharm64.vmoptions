@@ -1,0 +1,51 @@
+# PyCharm JVM Options - Performance Optimizations
+# Only includes non-default values for cleaner configuration
+# Place in ~/.config/JetBrains/PyCharmCE2025.1/
+
+# ============================================================================
+# MEMORY (defaults: ~256m initial, ~1500m max)
+# ============================================================================
+-Xms2048m
+-Xmx4096m
+
+# ============================================================================
+# CODE CACHE (default: 240m)
+# ============================================================================
+-XX:ReservedCodeCacheSize=512m
+
+# ============================================================================
+# GARBAGE COLLECTION TUNING
+# ============================================================================
+# Enable string deduplication to save memory with many duplicate strings
+-XX:+UseStringDeduplication
+
+# More aggressive soft reference cleanup (default: 1000)
+-XX:SoftRefLRUPolicyMSPerMB=50
+
+# ============================================================================
+# ERROR HANDLING & DEBUGGING
+# ============================================================================
+# Create heap dump on OutOfMemoryError
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:HeapDumpPath=$HOME/pycharm_error.hprof
+
+# Keep full stack traces for debugging
+-XX:-OmitStackTraceInFastThrow
+
+# ============================================================================
+# PERFORMANCE OPTIMIZATIONS
+# ============================================================================
+# Disable canonical path caching for better file system performance
+-Dsun.io.useCanonCaches=false
+
+# Limit NIO buffer cache to prevent memory leaks (2MB)
+-Djdk.nio.maxCachedBufferSize=2097152
+
+# ============================================================================
+# UI RENDERING (optional - comment out if having graphics issues)
+# ============================================================================
+# Enable font anti-aliasing
+-Dawt.useSystemAAFontSettings=lcd
+
+# Use OpenGL acceleration (may cause issues on some systems)
+-Dawt.java2d.opengl=true

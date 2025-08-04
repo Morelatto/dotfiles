@@ -7,13 +7,13 @@
 # Create lazy-loading function stubs that load the real aliases on first use
 _load_python_aliases() {
     # Remove the stub functions
-    unfunction py pyi p pi pu pupg pfr pre venv vact pyv pylab pynote pyclean pycache pytree pytest 2>/dev/null
+    unfunction py python p pi pu pupg pfr pre venv vact pylab pynote pyclean pycache pytree pytest 2>/dev/null
     
     # Python basics
-    alias py='python3'
-    alias pyi='pyenv install'
+    alias py='python'
+    alias python='python'
     
-    # Pip package management  
+    # Package management
     alias p='pip'
     alias pi='pip install'
     alias pu='pip uninstall'
@@ -21,10 +21,9 @@ _load_python_aliases() {
     alias pfr='pip freeze > requirements.txt'
     alias pre='pip install -r requirements.txt'
     
-    # Virtual environments
-    alias venv='virtualenv venv && source ./venv/bin/activate'
-    alias vact='source ./venv/bin/activate'
-    alias pyv='python3 -m venv'
+    # Virtual environments with pyenv
+    alias venv='python -m venv .venv && source .venv/bin/activate'
+    alias vact='source .venv/bin/activate'
     
     # Interactive Python
     alias pylab='ipython --pylab'
@@ -38,10 +37,15 @@ _load_python_aliases() {
     alias pytree='tree -I "__pycache__|*.pyc|*.pyo"'
     alias pytest='python -m pytest'
     
-    # Load pyenv if available
+    # Pyenv build optimizations
+    export PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto'
+    export PYTHON_CFLAGS='-march=native -mtune=native'
+    export MAKE_OPTS="-j$(nproc)"
+    
+    # Pyenv initialization
     if (( $+commands[pyenv] )); then
         eval "$(pyenv init -)"
-        (( $+commands[pyenv-virtualenv] )) && eval "$(pyenv virtualenv-init -)"
+        eval "$(pyenv virtualenv-init -)"
     fi
 }
 
