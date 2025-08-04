@@ -20,15 +20,15 @@ if [ -n "$BLOCK_BUTTON" ]; then
     fi
 fi
 
-# Output icon with proper color
+# Output simple emoji icon that always works
 if [ -f "$STATE_FILE" ]; then
-    # ON - Coffee/brown color
-    echo "  "
-    echo "  "
-    echo "#8B4513"  # Saddle brown (coffee color)
+    # ON - Coffee emoji with brown color
+    echo " ☕ "        # Coffee emoji
+    echo " ☕ "        # Short text
+    echo "#8B4513"     # Saddle brown (coffee color)
 else
-    # OFF - Light gray/off-white
-    echo "  "
-    echo "  "
-    echo "#D3D3D3"  # Light gray
+    # OFF - Moon/sleep emoji with light gray
+    echo " 🌙 "        # Moon emoji
+    echo " 🌙 "        # Short text  
+    echo "#D3D3D3"     # Light gray
 fi
