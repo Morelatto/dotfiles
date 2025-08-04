@@ -22,13 +22,13 @@ fi
 
 # Output simple emoji icon that always works
 if [ -f "$STATE_FILE" ]; then
-    # ON - Coffee emoji with brown color
-    echo " ☕ "        # Coffee emoji
-    echo " ☕ "        # Short text
-    echo "#8B4513"     # Saddle brown (coffee color)
+    # ON - Sun emoji (screen stays awake)
+    echo " ☀️ "        # Sun emoji - bright/awake
+    echo " ☀️ "        # Short text
+    echo "#FFA500"     # Orange/yellow sun color
 else
-    # OFF - Moon/sleep emoji with light gray
-    echo " 🌙 "        # Moon emoji
+    # OFF - Moon emoji (screen will sleep)
+    echo " 🌙 "        # Moon emoji - sleep mode
     echo " 🌙 "        # Short text  
     echo "#D3D3D3"     # Light gray
 fi
