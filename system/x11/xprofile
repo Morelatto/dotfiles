@@ -4,6 +4,11 @@
 # Disable system beep
 xset -b
 
+# Screen timeout and power management
+# Lock after 30 minutes, DPMS at 40/50/60 minutes
+xset s 1800 
+xset dpms 2400 3000 3600
+
 # Set GTK theme
 export GTK_THEME=Arc-Dark
 
