@@ -32,7 +32,8 @@
 "dev/git" = "~/.config/git"
 "dev/bun" = "~/.config/bun"
 "dev/bun/config.toml" = "~/.bunfig.toml"
-"dev/docker" = "~/.docker"
+"dev/docker/config" = { target = "~/.docker/config.json", type = "symbolic" }
+"dev/docker/daemon.json" = { target = "~/.docker/daemon.json", type = "symbolic" }
 "dev/ansible/ansible.cfg" = "~/.ansible.cfg"
 "dev/cargo" = "~/.cargo"
 "dev/go" = "~/.config/go"
