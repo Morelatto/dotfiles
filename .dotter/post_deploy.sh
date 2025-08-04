@@ -23,10 +23,13 @@ if [[ -d ~/.ssh ]]; then
     chmod 700 ~/.ssh/sockets 2>/dev/null || true
 fi
 
-# Reload i3 if it's running
-if pgrep -x i3 >/dev/null; then
-    echo "🪟 Reloading i3 configuration..."
-    i3-msg reload >/dev/null 2>&1 || true
+# Reload i3 if it's running and i3 config was deployed
+if pgrep -x i3 >/dev/null && [[ -f ~/.config/i3/config ]]; then
+    # Check if i3 config was recently deployed (modified in last 10 seconds)
+    if [[ $(find ~/.config/i3/config -mtime -10s 2>/dev/null) ]]; then
+        echo "🪟 Reloading i3 configuration..."
+        i3-msg reload >/dev/null 2>&1 || true
+    fi
 fi
 
 # Restart picom if it's running

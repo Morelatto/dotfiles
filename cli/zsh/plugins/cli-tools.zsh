@@ -271,9 +271,6 @@ noeclipse() {
     find . -name '*.settings' -o -name '*.classpath' -o -name '*.factorypath' -o -name '*.project' | xargs rm -rf
 }
 
-noidea() {
-    find . -type d -name '.idea' -exec rm -rf {} +
-}
 
 nomac() {
     find . -name '.DS_Store' -delete

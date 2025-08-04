@@ -35,10 +35,15 @@ notify() {
 copy_to_clipboard() {
     local file="$1"
     if [[ -f "$file" ]]; then
-        xclip -selection clipboard -t image/png -i "$file"
+        # Copy the full file path as text to clipboard
+        echo -n "$file" | xclip -selection clipboard
+        return $?
     elif [[ "$file" == "-" ]]; then
+        # For clipboard-only mode, still copy the image
         xclip -selection clipboard -t image/png
+        return $?
     fi
+    return 1
 }
 
 # Main screenshot function
@@ -57,7 +62,7 @@ take_screenshot() {
             
             if maim $maim_args "$file"; then
                 copy_to_clipboard "$file"
-                notify "Screenshot" "Full screen captured"
+                notify "Screenshot" "Saved to clipboard"
             else
                 notify "Screenshot Error" "Failed to capture screen"
             fi
@@ -71,7 +76,7 @@ take_screenshot() {
             file=$(get_filename)
             if maim $maim_args -s -b "$BORDER_WIDTH" -c "$BORDER_COLOR" "$file"; then
                 copy_to_clipboard "$file"
-                notify "Screenshot" "Selection captured"
+                notify "Screenshot" "Saved to clipboard"
             else
                 notify "Screenshot" "Cancelled"
             fi
@@ -84,7 +89,7 @@ take_screenshot() {
             
             if maim $maim_args -i "$window_id" -b "$BORDER_WIDTH" "$file"; then
                 copy_to_clipboard "$file"
-                notify "Screenshot" "Window captured"
+                notify "Screenshot" "Saved to clipboard"
             else
                 notify "Screenshot Error" "Failed to capture window"
             fi

@@ -1,0 +1,204 @@
+# System Package Requirements
+# This file documents all system packages needed for the dotfiles setup
+
+[arch]
+# Core system utilities
+core = [
+    "base-devel",
+    "git",
+    "openssh",
+    "curl",
+    "wget",
+    "zip",
+    "unzip",
+    "tar",
+    "gzip",
+    "xz",
+]
+
+# Terminal and shell
+terminal = [
+    "zsh",
+    "tmux",
+    "alacritty",
+    "xfce4-terminal",
+    "rxvt-unicode",
+]
+
+# Desktop environment
+desktop = [
+    "i3-gaps",
+    "i3blocks",
+    "i3lock",
+    "i3status",
+    "picom",
+    "rofi",
+    "dunst",
+    "feh",
+    "maim",
+    "xclip",
+    "xdotool",
+    "xorg-xrandr",
+    "arandr",
+    "pavucontrol",
+    "gsimplecal",
+]
+
+# Development tools
+development = [
+    "neovim",
+    "vim",
+    "docker",
+    "docker-compose",
+    "git-crypt",
+    "gnupg",
+    "make",
+    "cmake",
+    "gcc",
+    "clang",
+    "gdb",
+    "valgrind",
+    "strace",
+    "ltrace",
+]
+
+# Language runtimes (managed by mise, but documenting system packages)
+languages = [
+    "python-pip",
+    "python-virtualenv",
+    "nodejs",
+    "npm",
+    "rustup",
+    "go",
+]
+
+# System utilities
+utilities = [
+    "htop",
+    "iotop",
+    "ncdu",
+    "tree",
+    "rsync",
+    "rclone",
+    "cronie",
+    "at",
+    "ntp",
+    "ufw",
+]
+
+# Fonts
+fonts = [
+    "ttf-jetbrains-mono",
+    "ttf-jetbrains-mono-nerd",
+    "ttf-fira-code",
+    "ttf-firacode-nerd",
+    "ttf-font-awesome",
+    "noto-fonts",
+    "noto-fonts-emoji",
+]
+
+# Media and graphics
+media = [
+    "mpv",
+    "ffmpeg",
+    "imagemagick",
+    "gimp",
+    "inkscape",
+    "obs-studio",
+]
+
+# Network tools
+network = [
+    "net-tools",
+    "inetutils",
+    "bind-tools",
+    "traceroute",
+    "nmap",
+    "wireshark-qt",
+    "tcpdump",
+    "iftop",
+    "nethogs",
+]
+
+[aur]
+# AUR packages (need yay or paru)
+aur_packages = [
+    "visual-studio-code-bin",
+    "sublime-text-4",
+    "obsidian-appimage",
+    "firefox-developer-edition",
+    "postman-bin",
+    "insomnia-bin",
+    "dbeaver",
+    "mise-bin",          # Tool version manager
+    "fnm-bin",           # Fast Node Manager
+    "uv-bin",            # Fast Python package manager
+    "dotter-rs-bin",     # Dotfiles manager
+    "starship-bin",      # Modern prompt
+    "atuin",             # Shell history
+    "autojump",          # Directory jumper
+    "direnv",            # Directory environments
+]
+
+[pip]
+# Python packages installed globally via pip/uv
+python_packages = [
+    "ipython",
+    "jupyter",
+    "black",
+    "ruff",
+    "mypy",
+    "pytest",
+    "poetry",
+    "pipenv",
+    "virtualenv",
+    "httpie",
+    "tldr",
+    "yt-dlp",
+    "speedtest-cli",
+    "repomix",
+]
+
+[npm]
+# Node packages installed globally
+node_packages = [
+    "typescript",
+    "prettier",
+    "eslint",
+    "nodemon",
+    "pm2",
+    "serve",
+    "vercel",
+    "netlify-cli",
+    "yarn",
+    "pnpm",
+]
+
+[cargo]
+# Rust packages installed via cargo
+rust_packages = [
+    "bat",
+    "eza",
+    "fd-find",
+    "ripgrep",
+    "dust",
+    "zoxide",
+    "bottom",
+    "procs",
+    "sd",
+    "hyperfine",
+    "tokei",
+    "git-delta",
+    "dotter",
+]
+
+[go]
+# Go packages installed via go install
+go_packages = [
+    "github.com/junegunn/fzf@latest",
+    "github.com/jesseduffield/lazygit@latest",
+    "github.com/jesseduffield/lazydocker@latest",
+    "github.com/cli/cli/v2/cmd/gh@latest",
+    "github.com/charmbracelet/glow@latest",
+    "github.com/charmbracelet/gum@latest",
+]

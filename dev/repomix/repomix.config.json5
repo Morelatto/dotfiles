@@ -1,0 +1,124 @@
+{
+  "$schema": "https://repomix.com/schemas/latest/schema.json",
+  "include": [
+    "src/**/*",
+    "lib/**/*",
+    "config/**/*",
+    "cli/**/*",
+    "dev/**/*",
+    "editors/**/*",
+    "gui/**/*",
+    "system/**/*",
+    "pyproject.toml",
+    "requirements*.txt",
+    "package.json",
+    "Cargo.toml",
+    "go.mod",
+    "README*",
+    "CHANGELOG*",
+    "LICENSE*",
+    "Taskfile.yml",
+    "Makefile",
+    "tests/**/*",
+    "spec/**/*",
+    ".dotter/**/*"
+  ],
+  "ignore": {
+    "useGitignore": true,
+    "useDefaultPatterns": true,
+    "customPatterns": [
+      // Data files - high token count, low signal
+      "**/*.csv",
+      "**/*.json",
+      "**/*.xlsx",
+      "**/*.parquet",
+      "**/*.pkl",
+      "**/*.bin",
+      "**/*.pt",
+      "**/*.h5",
+      "**/*.hdf5",
+      
+      // Jupyter notebooks - heavy JSON with outputs
+      "**/*.ipynb",
+      "**/.ipynb_checkpoints/**",
+      
+      // Media files
+      "**/*.png",
+      "**/*.jpg",
+      "**/*.jpeg",
+      "**/*.gif",
+      "**/*.svg",
+      "**/*.ico",
+      "**/*.pdf",
+      "**/*.mp4",
+      "**/*.mp3",
+      "**/*.wav",
+      
+      // Build/cache directories
+      "**/node_modules/**",
+      "**/target/**",
+      "**/build/**",
+      "**/dist/**",
+      "**/.cache/**",
+      "**/__pycache__/**",
+      "**/.pytest_cache/**",
+      "**/.mypy_cache/**",
+      "**/.ruff_cache/**",
+      "**/venv/**",
+      "**/.venv/**",
+      "**/env/**",
+      "**/.env/**",
+      
+      // IDE/Editor files
+      "**/.vscode/**",
+      "**/.idea/**",
+      "**/*.swp",
+      "**/*.swo",
+      "**/*~",
+      
+      // OS files
+      "**/.DS_Store",
+      "**/Thumbs.db",
+      
+      // Git/VCS
+      "**/.git/**",
+      "**/.gitignore",
+      "**/.gitattributes",
+      
+      // Documentation that's usually verbose
+      "**/docs/**/*.md",
+      "**/documentation/**",
+      
+      // Logs
+      "**/*.log",
+      "**/logs/**",
+      
+      // Backups
+      "**/*.bak",
+      "**/*.backup",
+      "**/*.old"
+    ]
+  },
+  "input": {
+    // Skip very large files even if accidentally included
+    "maxFileSize": 1000000
+  },
+  "output": {
+    // Structured output for better readability
+    "style": "markdown",
+    // Tree-sitter based structural compression (keeps signatures, removes bodies)
+    "compress": true,
+    // Strip low-signal tokens
+    "removeComments": true,
+    "removeEmptyLines": true,
+    "truncateBase64": true,
+    // Keep directory structure for context
+    "directoryStructure": true,
+    // Keep file contents (set to false for structure-only packs)
+    "files": true
+  },
+  "tokenCount": {
+    // Use o200k_base for GPT-4o, cl100k_base for GPT-4/3.5
+    "encoding": "o200k_base"
+  }
+}
