@@ -46,6 +46,7 @@
     aur_packages:
       - mise-bin      # Dev tools manager
       - dotter-rs-bin # Dotfiles manager
+      - betterlockscreen # Better lock screen
     
   tasks:
     # 1. PACMAN PACKAGES
