@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+# Minimal Temperature - Clean output
+# Source utility functions from dotfiles
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$script_dir/polybar-utils.sh"
+
+get_cpu_temp() {
+    if command -v sensors >/dev/null 2>&1; then
+        # Try different temperature sources in order of preference
+        local temp_sources=(
+            "Package id 0"
+            "Tctl"
+            "CPU Temperature"
+            "Core 0"
+        )
+        
+        for source in "${temp_sources[@]}"; do
+            local temp=$(sensors 2>/dev/null | grep "$source" | grep -oE '\+[0-9]+\.[0-9]+' | head -1)
+            if [ -n "$temp" ]; then
+                echo "${temp#+}"
+                return
+            fi
+        done
+        
+        # Fallback: get any temperature reading
+        local temp=$(sensors 2>/dev/null | grep -oE '\+[0-9]+\.[0-9]+°C' | head -1 | grep -oE '[0-9]+\.[0-9]+')
+        echo "${temp:-0}"
+    else
+        echo "0"
+    fi
+}
+
+# Handle mouse clicks (simplified)
+case $BLOCK_BUTTON in
+    1) # Left click - show all temperature sensors
+        show_notification "$(get_all_temps)" "" "normal" "5000"
+        ;;
+    3) # Right click - temperature monitoring tools
+        if command -v sensors >/dev/null 2>&1; then
+            i3-msg -q exec "xfce4-terminal -e 'watch -n 1 sensors'"
+        fi
+        ;;
+esac
+
+# Get temperature
+temp=$(get_cpu_temp)
+temp_int=${temp%.*}
+
+# Handle edge cases
+if [ "$temp" = "0" ] || [ -z "$temp" ] || [ "$temp_int" -lt 20 ]; then
+    echo " N/A"
+    exit 0
+fi
+
+# Minimal output - just temperature
+echo " ${temp_int}°C"
