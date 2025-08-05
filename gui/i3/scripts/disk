@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+
+# Disk usage monitoring script for i3blocks
+# Displays disk usage with color coding and detailed info on click
+
+# Get the directory to check (default to $HOME if not specified)
+DIR="${BLOCK_INSTANCE:-$HOME}"
+ALERT_LOW="${1:-10}"  # Low space alert threshold (default 10%)
+
+get_disk_usage() {
+    local path="$1"
+    df -h "$path" 2>/dev/null | awk 'NR==2 {
+        gsub(/%/, "", $5)
+        print $3, $2, $5, $4
+    }'
+}
+
+get_disk_details() {
+    local path="$1"
+    echo "Disk Usage for $path:"
+    echo "$(df -h "$path" 2>/dev/null)"
+    echo ""
+    echo "Largest directories:"
+    # Show top 5 largest directories (limited depth to avoid long scan)
+    if [ -d "$path" ]; then
+        du -sh "$path"/* 2>/dev/null | sort -hr | head -5 2>/dev/null || echo "Unable to scan directories"
+    fi
+}
+
+get_io_stats() {
+    if command -v iostat >/dev/null 2>&1; then
+        echo ""
+        echo "I/O Statistics:"
+        iostat -d 1 1 | tail -n +4 | head -5
+    fi
+}
+
+# Handle mouse clicks
+case $BLOCK_BUTTON in
+    1) # Left click - show detailed disk info
+        notify-send "Disk Usage Details" \
+            "$(get_disk_details "$DIR")$(get_io_stats)" \
+            -t 10000
+        ;;
+    3) # Right click - open file manager
+        if command -v thunar >/dev/null 2>&1; then
+            i3-msg -q exec "thunar '$DIR'"
+        elif command -v nautilus >/dev/null 2>&1; then
+            i3-msg -q exec "nautilus '$DIR'"
+        else
+            i3-msg -q exec "xfce4-terminal -e 'bash -c \"cd '$DIR' && ls -la && read\"'"
+        fi
+        ;;
+esac
+
+# Get disk usage information
+if ! read -r used total percentage available <<< "$(get_disk_usage "$DIR")"; then
+    echo "Error"
+    echo "Error"
+    echo "#ff5555"
+    exit 1
+fi
+
+# Color coding based on usage percentage
+if [ "$percentage" -ge 95 ]; then
+    color="#ff5555"  # Red for critical usage
+elif [ "$percentage" -ge 90 ]; then
+    color="#ffb86c"  # Orange for very high usage
+elif [ "$percentage" -ge 80 ]; then
+    color="#f1fa8c"  # Yellow for high usage
+elif [ "$percentage" -le "$ALERT_LOW" ]; then
+    color="#50fa7b"  # Green for low usage (good)
+else
+    color="#bd93f9"  # Purple for normal usage
+fi
+
+# Create display text
+if [ "$DIR" = "/" ]; then
+    label="Root"
+elif [ "$DIR" = "$HOME" ]; then
+    label="Home"
+else
+    label="$(basename "$DIR")"
+fi
+
+display_text="${used}/${total}"
+
+# Output for i3blocks (original simple format)
+echo "$display_text"

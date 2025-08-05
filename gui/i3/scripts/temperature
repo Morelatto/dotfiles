@@ -1,0 +1,134 @@
+#!/usr/bin/env bash
+
+# Enhanced Temperature widget with polybar-style formatting
+# Source utility functions
+# Source utility functions from dotfiles
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$script_dir/polybar-utils.sh"
+
+get_cpu_temp() {
+    if command -v sensors >/dev/null 2>&1; then
+        # Try different temperature sources in order of preference
+        local temp_sources=(
+            "Package id 0"
+            "Tctl"
+            "CPU Temperature"
+            "Core 0"
+        )
+        
+        for source in "${temp_sources[@]}"; do
+            local temp=$(sensors 2>/dev/null | grep "$source" | grep -oE '\+[0-9]+\.[0-9]+' | head -1)
+            if [ -n "$temp" ]; then
+                echo "${temp#+}"
+                return
+            fi
+        done
+        
+        # Fallback: get any temperature reading
+        local temp=$(sensors 2>/dev/null | grep -oE '\+[0-9]+\.[0-9]+°C' | head -1 | grep -oE '[0-9]+\.[0-9]+')
+        echo "${temp:-0}"
+    else
+        echo "0"
+    fi
+}
+
+get_all_temps() {
+    if command -v sensors >/dev/null 2>&1; then
+        echo "All Temperature Sensors"
+        echo "━━━━━━━━━━━━━━━━━━━━━━━"
+        sensors 2>/dev/null | grep -E "(Core [0-9]+|Package id [0-9]+|Tctl|CPU|temp)" | head -10
+        
+        # Fan information if available
+        local fan_info=$(sensors 2>/dev/null | grep -i "fan")
+        if [ -n "$fan_info" ]; then
+            echo ""
+            echo "Fan Speeds:"
+            echo "$fan_info"
+        fi
+    else
+        echo "sensors command not available"
+        echo "Install lm-sensors package"
+    fi
+}
+
+get_thermal_zones() {
+    echo "Thermal Zones"
+    echo "━━━━━━━━━━━━━"
+    find /sys/class/thermal -name 'thermal_zone*' -exec sh -c '
+        zone=$(basename {})
+        temp_raw=$(cat {}/temp 2>/dev/null)
+        temp_c=$((temp_raw / 1000)) 2>/dev/null
+        type=$(cat {}/type 2>/dev/null)
+        echo "  $zone: ${temp_c}°C ($type)"
+    ' \; 2>/dev/null | head -5
+}
+
+get_temp_status() {
+    local temp=$1
+    
+    if (( $(echo "$temp >= 85" | bc -l) )); then
+        echo "🔥 Critical"
+    elif (( $(echo "$temp >= 75" | bc -l) )); then
+        echo "🌡️ Hot"
+    elif (( $(echo "$temp >= 65" | bc -l) )); then
+        echo "⚠️ Warm"
+    elif (( $(echo "$temp >= 45" | bc -l) )); then
+        echo "🌤️ Normal"
+    else
+        echo "❄️ Cool"
+    fi
+}
+
+# Handle mouse clicks
+case $BLOCK_BUTTON in
+    1) # Left click - show all temperature sensors
+        show_notification "$(get_all_temps)" "" "normal" "10000"
+        ;;
+    2) # Middle click - show thermal zones
+        show_notification "$(get_thermal_zones)" "" "normal" "8000"
+        ;;
+    3) # Right click - temperature monitoring tools
+        if command -v sensors >/dev/null 2>&1; then
+            i3-msg -q exec "xfce4-terminal -e 'watch -n 1 sensors'"
+        else
+            show_notification "Temperature Monitoring" "Install lm-sensors:\nsudo pacman -S lm-sensors\nsudo sensors-detect" "normal" "5000"
+        fi
+        ;;
+    4) # Scroll up - show temperature history (if available)
+        local temp=$(get_cpu_temp)
+        local status=$(get_temp_status "$temp")
+        show_notification "Temperature Status" "Current: ${temp}°C\nStatus: $status" "normal" "5000"
+        ;;
+    5) # Scroll down - show thermal throttling info
+        if [ -f /sys/devices/system/cpu/cpu0/thermal_throttle/package_throttle_count ]; then
+            local throttle_count=$(cat /sys/devices/system/cpu/cpu0/thermal_throttle/package_throttle_count 2>/dev/null)
+            show_notification "Thermal Throttling" "Package throttle events: ${throttle_count:-0}" "normal" "5000"
+        else
+            local freq_info=$(cat /proc/cpuinfo | grep "cpu MHz" | head -4)
+            show_notification "CPU Frequencies" "$freq_info" "normal" "5000"
+        fi
+        ;;
+esac
+
+# Get temperature
+temp=$(get_cpu_temp)
+temp_int=${temp%.*}
+
+# Handle edge cases
+if [ "$temp" = "0" ] || [ -z "$temp" ] || [ "$temp_int" -lt 20 ]; then
+    echo " N/A"
+    exit 0
+fi
+
+# Calculate temperature percentage (0-100°C scale)
+temp_percentage=$temp_int
+if [ $temp_percentage -gt 100 ]; then temp_percentage=100; fi
+
+# Create heat indicator bar using circles for temperature
+heat_bar=$(create_progress_bar "$temp_percentage" 6 "circles")
+
+# Get appropriate color (reverse threshold - high temp is bad)
+color=$(get_threshold_color "$temp_percentage" true)
+
+# Enhanced output format with Font Awesome icon using pango markup
+echo "${FA_TEMP} ${temp}°C $heat_bar"
