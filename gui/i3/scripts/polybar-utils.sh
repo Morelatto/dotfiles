@@ -31,11 +31,11 @@ export THIN_EMPTY="▱"     # U+25B1 - White rectangle
 export ASCII_FULL="#"
 export ASCII_EMPTY="-"
 
-# Font Awesome icons with proper pango markup
-export FA_CPU="<span font='FontAwesome'></span>"      # U+F0E7 - CPU icon
-export FA_MEMORY="<span font='FontAwesome'></span>"   # U+F2DB - Memory icon  
-export FA_TEMP="<span font='FontAwesome'></span>"     # U+F2C9 - Temperature icon
-export FA_DISK="<span font='FontAwesome'></span>"     # U+F0A0 - Disk icon
+# ASCII icons for compatibility (no Font Awesome to avoid UTF-8 issues)
+export FA_CPU="CPU"         # Simple ASCII
+export FA_MEMORY="MEM"       # Simple ASCII
+export FA_TEMP="TEMP"        # Simple ASCII
+export FA_DISK="DISK"        # Simple ASCII
 
 # Legacy create_progress_bar function (replaced by modern version below)
 
@@ -101,69 +101,50 @@ create_fa_output() {
     echo "<span font='FontAwesome' color='$color'>$icon</span> $text"
 }
 
-# Create modern progress bar (multiple styles)
+# Create modern progress bar (ASCII-only for JSON compatibility)
 create_progress_bar() {
     local percentage=$1
-    local width=${2:-8}
-    local style=${3:-"blocks"}  # "blocks", "thin", "circles", "shaded", "ascii"
+    local width=${2:-3}  # Default to 3 chars for compactness
+    local style=${3:-"ascii"}  # Force ASCII for i3blocks JSON compatibility
     
     local filled=$((percentage * width / 100))
     local empty=$((width - filled))
     
-    case $style in
-        "blocks")
-            local fill_char="$BLOCK_FULL"
-            local empty_char="$BLOCK_EMPTY"
-            ;;
-        "thin")
-            local fill_char="$THIN_FULL"
-            local empty_char="$THIN_EMPTY"
-            ;;
-        "circles") 
-            local fill_char="$CIRCLE_FULL"
-            local empty_char="$CIRCLE_EMPTY"
-            ;;
-        "shaded")
-            local fill_char="$BLOCK_DARK"
-            local empty_char="$BLOCK_EMPTY"
-            ;;
-        "ascii")
-            local fill_char="$ASCII_FULL"
-            local empty_char="$ASCII_EMPTY"
-            ;;
-    esac
+    # Always use ASCII characters to avoid JSON UTF-8 parsing errors
+    local fill_char="#"
+    local empty_char="-"
     
-    # Create seamless progress bar with proper UTF-8 encoding
+    # Create compact progress bar (max 3 chars for clean display)
     local bar=""
     for ((i=0; i<filled; i++)); do bar+="$fill_char"; done
     for ((i=0; i<empty; i++)); do bar+="$empty_char"; done
     
-    # Output with proper UTF-8 locale
-    LC_ALL=C.UTF-8 echo "$bar"
+    # Output ASCII-only (no special locale needed)
+    echo "$bar"
 }
 
-# Create gradient progress bar with multiple shades
+# Create gradient progress bar (ASCII-only for JSON compatibility)
 create_gradient_bar() {
     local percentage=$1
-    local width=${2:-8}
+    local width=${2:-3}  # Default to 3 chars for compactness
     
     local filled=$((percentage * width / 100))
     local empty=$((width - filled))
     
-    # Use gradient: full -> dark -> medium -> light -> empty
+    # Use ASCII gradient: # -> = -> -
     local bar=""
     if [ $filled -gt 0 ]; then
-        local full_blocks=$((filled * 3 / 4))
-        local dark_blocks=$((filled - full_blocks))
+        local full_blocks=$((filled * 2 / 3))
+        local med_blocks=$((filled - full_blocks))
         
-        for ((i=0; i<full_blocks; i++)); do bar+="$BLOCK_FULL"; done
-        for ((i=0; i<dark_blocks; i++)); do bar+="$BLOCK_MED"; done
+        for ((i=0; i<full_blocks; i++)); do bar+="#"; done
+        for ((i=0; i<med_blocks; i++)); do bar+="="; done
     fi
     
-    for ((i=0; i<empty; i++)); do bar+="$BLOCK_EMPTY"; done
+    for ((i=0; i<empty; i++)); do bar+="-"; done
     
-    # Output with proper UTF-8 locale
-    LC_ALL=C.UTF-8 echo "$bar"
+    # Output ASCII-only (no special locale needed)
+    echo "$bar"
 }
 
 # Create notification with consistent styling
