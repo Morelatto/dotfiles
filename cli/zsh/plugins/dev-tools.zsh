@@ -994,9 +994,9 @@ if (( $+commands[repomix] )); then
         config="$(_repomix_config)"
         
         if [[ -n "$config" ]]; then
-            repomix --config "$config" --output "$output" --style xml
+            repomix --config "$config" --output "$output"
         else
-            repomix --output "$output" --style xml --compress --remove-comments --remove-empty-lines
+            repomix --output "$output" --compress --remove-comments --remove-empty-lines
         fi
         
         [[ -f "$output" ]] && echo "📊 Tokens: ~$(($(wc -c < "$output") / 4))"

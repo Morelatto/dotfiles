@@ -1,119 +1,37 @@
 #!/usr/bin/env bash
 
-# Enhanced Memory Usage widget with polybar-style formatting
-# Source utility functions
+# Minimal Memory Usage - Clean output
 # Source utility functions from dotfiles
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$script_dir/polybar-utils.sh"
 
-get_memory_info() {
-    local mem_total=$(grep MemTotal /proc/meminfo | awk '{print $2}')
-    local mem_available=$(grep MemAvailable /proc/meminfo | awk '{print $2}')
-    local mem_used=$((mem_total - mem_available))
-    local mem_percentage=$((mem_used * 100 / mem_total))
-    
-    echo "$mem_used $mem_total $mem_percentage $mem_available"
-}
-
-get_swap_info() {
-    local swap_total=$(grep SwapTotal /proc/meminfo | awk '{print $2}')
-    local swap_free=$(grep SwapFree /proc/meminfo | awk '{print $2}')
-    local swap_used=$((swap_total - swap_free))
-    
-    if [ "$swap_total" -gt 0 ]; then
-        local swap_percentage=$((swap_used * 100 / swap_total))
-        echo "Swap: $(format_bytes $((swap_used * 1024)))/$(format_bytes $((swap_total * 1024))) (${swap_percentage}%)"
-    else
-        echo "Swap: Not configured"
-    fi
-}
-
-get_detailed_memory_info() {
-    echo "Memory Usage Details"
-    echo "━━━━━━━━━━━━━━━━━━━━━"
-    
-    # Memory breakdown
-    local mem_total=$(grep MemTotal /proc/meminfo | awk '{print $2}')
-    local mem_free=$(grep MemFree /proc/meminfo | awk '{print $2}')
-    local mem_available=$(grep MemAvailable /proc/meminfo | awk '{print $2}')
-    local mem_cached=$(grep "^Cached:" /proc/meminfo | awk '{print $2}')
-    local mem_buffers=$(grep Buffers /proc/meminfo | awk '{print $2}')
-    
-    echo "Total: $(format_bytes $((mem_total * 1024)))"
-    echo "Available: $(format_bytes $((mem_available * 1024)))"
-    echo "Free: $(format_bytes $((mem_free * 1024)))"
-    echo "Cached: $(format_bytes $((mem_cached * 1024)))"
-    echo "Buffers: $(format_bytes $((mem_buffers * 1024)))"
-    echo ""
-    echo "$(get_swap_info)"
-    echo ""
-    echo "Top Memory Processes:"
-    ps -eo pid,pmem,rss,comm --sort=-pmem | head -6 | tail -5 | while read -r pid pmem rss comm; do
-        echo "  $comm: ${pmem}% ($(format_bytes $((rss * 1024))))"
-    done
-}
-
-memory_cleanup() {
-    # Safe memory cleanup operations
-    show_notification "Memory Cleanup" "Clearing caches..." "normal" "3000"
-    
-    # Clear page cache, dentries and inodes
-    echo 3 | sudo tee /proc/sys/vm/drop_caches >/dev/null 2>&1
-    
-    # Compact memory
-    echo 1 | sudo tee /proc/sys/vm/compact_memory >/dev/null 2>&1
-    
-    show_notification "Memory Cleanup" "Cache cleared successfully" "normal" "3000"
-}
-
-# Handle mouse clicks
+# Handle mouse clicks (simplified)
 case $BLOCK_BUTTON in
     1) # Left click - show detailed memory info
-        show_notification "$(get_detailed_memory_info)" "" "normal" "10000"
+        show_notification "$(get_detailed_memory_info)" "" "normal" "5000"
         ;;
-    2) # Middle click - show swap usage
-        local swap_info=$(get_swap_info)
-        show_notification "Swap Usage" "$swap_info" "normal" "5000"
-        ;;
-    3) # Right click - memory cleanup or system monitor
+    3) # Right click - open htop
         if command -v htop >/dev/null 2>&1; then
             i3-msg -q exec "xfce4-terminal -e htop"
-        else
-            memory_cleanup
         fi
-        ;;
-    4) # Scroll up - show memory breakdown
-        local mem_total=$(grep MemTotal /proc/meminfo | awk '{print $2}')
-        local mem_cached=$(grep "^Cached:" /proc/meminfo | awk '{print $2}')
-        local mem_buffers=$(grep Buffers /proc/meminfo | awk '{print $2}')
-        local cached_pct=$((mem_cached * 100 / mem_total))
-        local buffers_pct=$((mem_buffers * 100 / mem_total))
-        
-        show_notification "Memory Breakdown" "Cached: $(format_bytes $((mem_cached * 1024))) (${cached_pct}%)\nBuffers: $(format_bytes $((mem_buffers * 1024))) (${buffers_pct}%)" "normal" "5000"
-        ;;
-    5) # Scroll down - kill memory-heavy process
-        local top_process=$(ps -eo pid,pmem,comm --sort=-pmem | sed -n '2p')
-        show_notification "Top Memory Process" "$top_process" "normal" "5000"
         ;;
 esac
 
 # Get memory information
-read -r mem_used_kb mem_total_kb mem_percentage mem_available_kb <<< "$(get_memory_info)"
+mem_total=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+mem_available=$(grep MemAvailable /proc/meminfo | awk '{print $2}')
+mem_used=$((mem_total - mem_available))
+mem_percentage=$((mem_used * 100 / mem_total))
 
 # Convert to appropriate units
-mem_used_bytes=$((mem_used_kb * 1024))
-mem_total_bytes=$((mem_total_kb * 1024))
-mem_available_bytes=$((mem_available_kb * 1024))
+mem_used_bytes=$((mem_used * 1024))
+mem_total_bytes=$((mem_total * 1024))
 
 used_formatted=$(format_bytes "$mem_used_bytes")
 total_formatted=$(format_bytes "$mem_total_bytes")
-available_formatted=$(format_bytes "$mem_available_bytes")
 
-# Create gradient progress bar for memory
-progress_bar=$(create_gradient_bar "$mem_percentage" 8)
+# Simple progress bar (3 characters only)
+progress_bar=$(create_progress_bar "$mem_percentage" 3 "thin")
 
-# Get appropriate color
-color=$(get_threshold_color "$mem_percentage" false)
-
-# Enhanced output format with Font Awesome icon using pango markup
-echo "${FA_MEMORY} ${used_formatted}/${total_formatted} $progress_bar ${mem_percentage}%"
+# Minimal output - just essential info
+echo " ${mem_percentage}% ${progress_bar}"
