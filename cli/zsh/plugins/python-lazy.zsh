@@ -4,6 +4,12 @@
 # Only load if python3 is installed
 (( $+commands[python3] )) || return 0
 
+# Initialize pyenv immediately (not lazy-loaded) to avoid virtualenv activation errors
+if (( $+commands[pyenv] )); then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
 # Create lazy-loading function stubs that load the real aliases on first use
 _load_python_aliases() {
     # Remove the stub functions
@@ -42,11 +48,7 @@ _load_python_aliases() {
     export PYTHON_CFLAGS='-march=native -mtune=native'
     export MAKE_OPTS="-j$(nproc)"
     
-    # Pyenv initialization
-    if (( $+commands[pyenv] )); then
-        eval "$(pyenv init -)"
-        eval "$(pyenv virtualenv-init -)"
-    fi
+    # Pyenv build optimizations only (initialization moved above)
 }
 
 # Create stub functions for the most common commands
