@@ -41,9 +41,15 @@ _load_docker_aliases() {
 }
 
 # Create stub functions that trigger loading on first use
-for cmd in dk dc dps dpsa di dex dlog dcu dcd dcr dclean drmi dsh; do
+for cmd in dk dc dps dpsa di dex dlog dcu dcd dcr dclean drmi; do
     eval "function $cmd() { 
         _load_docker_aliases
-        '$cmd' \"\$@\"
+        eval \"\$aliases[$cmd]\" \"\$@\"
     }"
 done
+
+# Special handling for dsh function
+function dsh() { 
+    _load_docker_aliases
+    dsh "$@"
+}

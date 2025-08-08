@@ -16,8 +16,8 @@ _load_python_aliases() {
     unfunction py python p pi pu pupg pfr pre venv vact pylab pynote pyclean pycache pytree pytest 2>/dev/null
     
     # Python basics
-    alias py='python'
-    alias python='python'
+    alias py='python3'
+    alias python='python3'
     
     # Package management
     alias p='pip'
@@ -52,9 +52,9 @@ _load_python_aliases() {
 }
 
 # Create stub functions for the most common commands
-for cmd in py p pi venv vact; do
+for cmd in py python p pi pu pupg pfr pre venv vact pylab pynote pyclean pycache pytree pytest; do
     eval "function $cmd() { 
         _load_python_aliases
-        '$cmd' \"\$@\"
+        eval \"\$aliases[$cmd]\" \"\$@\"
     }"
 done
