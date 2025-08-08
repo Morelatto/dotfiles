@@ -24,6 +24,6 @@ _load_kubectl_aliases() {
 for cmd in k kg kd; do
     eval "function $cmd() { 
         _load_kubectl_aliases
-        '$cmd' \"\$@\"
+        eval \"\$aliases[$cmd]\" \"\$@\"
     }"
 done
