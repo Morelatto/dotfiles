@@ -24,6 +24,15 @@ if (( $+commands[git] )); then
     alias grb='git rebase'
     alias grh='git reset HEAD'
     alias grhh='git reset HEAD --hard'
+    alias gm='git merge'
+    alias grs='git reset --soft HEAD~1'
+    alias grm='git rm'
+    alias grc='git rm --cached'
+    alias gsh='git show'
+    alias gtag='git tag'
+    alias gpr='git pull --rebase'
+    alias gcam='git commit --amend'
+    alias gcane='git commit --amend --no-edit'
 
     (( $+commands[delta] )) && export GIT_PAGER="delta"
     export GIT_EDITOR="${GIT_EDITOR:-${EDITOR:-nvim}}"
@@ -64,6 +73,11 @@ if (( $+commands[npm] )); then
     alias nauditf='npm audit fix'
     alias nfresh='rm -rf node_modules package-lock.json && npm install'
     alias nuke='rm -rf node_modules'
+    alias nci='npm ci'
+    alias npub='npm publish'
+    alias nlink='npm link'
+    alias nunlink='npm unlink'
+    alias ncache='npm cache clean --force'
 fi
 
 # UV - Python Package Manager
@@ -86,7 +100,6 @@ fi
 
 # Bun
 if (( $+commands[bun] )); then
-    alias b='bun'
     alias bi='bun install'
     alias ba='bun add'
     alias bad='bun add -d'
@@ -166,16 +179,27 @@ fi
 
 # Claude Code CLI
 if (( $+commands[claude] )); then
-    export CLAUDE_OPUS="claude-sonnet-4-1-20250805"
+    export CLAUDE_OPUS="claude-opus-4-1-20250805"
     export CLAUDE_SONNET="claude-sonnet-4-20250514"
 
     alias claude='claude --dangerously-skip-permissions'
     alias cc='claude'
-    alias clr='claude --resume'
-    alias cln='claude --new'
-    alias cls="claude --model $CLAUDE_SONNET"
-    alias clo="claude --model $CLAUDE_OPUS"
+    alias ccr='claude --resume'
+    alias ccn='claude --new'
+    alias ccs="claude --model $CLAUDE_SONNET"
+    alias cco="claude --model $CLAUDE_OPUS"
 
+    if (( $+commands[claude-code-monitor] )); then
+        alias ccd="claude-code-monitor"
+    fi
+
+    if (( $+commands[ccusage] )); then
+        alias ccu="ccusage"
+    fi
+
+    if (( $+commands[claude-trace] )); then
+        alias cct="claude-trace"
+    fi
 fi
 
 # Java Development
@@ -207,7 +231,7 @@ serve() {
 # Docker
 if (( $+commands[docker] )); then
     alias d='docker'
-    alias dc='docker-compose'
+    alias dco='docker-compose'
     alias dps='docker ps'
     alias dpsa='docker ps -a'
     alias di='docker images'
@@ -215,12 +239,14 @@ if (( $+commands[docker] )); then
     alias drmi='docker rmi'
     alias dlog='docker logs'
     alias dexec='docker exec -it'
+    alias dprune='docker system prune -af'
+    alias dvol='docker volume ls'
+    alias dnet='docker network ls'
 fi
 
 # PyCharm
 if (( $+commands[pycharm] )); then
-    alias pc='pycharm &'
-    alias pyc='pycharm-community &'
+    alias pyc='pycharm &'
     alias pycc='rm -rf ~/.cache/JetBrains/PyCharmCE*/caches'
     alias pycsize='du -sh ~/.cache/JetBrains/PyCharmCE*/'
 

@@ -40,6 +40,9 @@ if (( $+commands[fd] )); then
     alias fdd='fd --type d'
     alias fde='fd --extension'
     alias fdi='fd --ignore-case'
+    alias fds='fd --size'
+    alias fdx='fd --exec'
+    alias fdE='fd --exclude'
 fi
 
 # Ripgrep - Better grep
@@ -52,6 +55,10 @@ if (( $+commands[rg] )); then
     alias rgw='rg -w'
     alias rgc='rg --count'
     alias rgl='rg --files-with-matches'
+    alias rgh='rg --hidden'
+    alias rgn='rg --no-ignore'
+    alias rgt='rg --type'
+    alias rgT='rg --type-not'
 fi
 
 # Dust - Better du
@@ -144,3 +151,4 @@ rg-search() {
     local path="${2:-.}"
     rg --color=always --line-number --heading "$pattern" "$path"
 }
+
