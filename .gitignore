@@ -24,6 +24,9 @@ config/ssh/authorized_keys
 *.private
 *.secret
 
+# Application runtime configs with personal paths
+editors/obsidian/obsidian.json
+
 # System specific
 .DS_Store
 Thumbs.db
