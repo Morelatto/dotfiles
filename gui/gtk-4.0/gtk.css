@@ -1,0 +1,66 @@
+/* GTK 4 custom styles for better theme compatibility */
+
+/* Ensure proper dark theme colors for all applications */
+@define-color theme_bg_color #2f343f;
+@define-color theme_fg_color #d3dae3;
+@define-color theme_base_color #383c4a;
+@define-color theme_text_color #d3dae3;
+@define-color accent_bg_color #5294e2;
+@define-color accent_fg_color #ffffff;
+@define-color accent_color #5294e2;
+@define-color destructive_bg_color #F04A50;
+@define-color destructive_fg_color #ffffff;
+@define-color destructive_color #F04A50;
+@define-color success_bg_color #27D796;
+@define-color success_fg_color #ffffff;
+@define-color success_color #27D796;
+@define-color warning_bg_color #F9C440;
+@define-color warning_fg_color #ffffff;
+@define-color warning_color #F9C440;
+@define-color error_bg_color #F04A50;
+@define-color error_fg_color #ffffff;
+@define-color error_color #F04A50;
+
+/* Scrollbars - GTK4 style */
+scrollbar > range > trough {
+    background-color: @theme_bg_color;
+}
+
+scrollbar > range > trough > slider {
+    background-color: alpha(@theme_fg_color, 0.3);
+    border-radius: 3px;
+    min-width: 6px;
+    min-height: 6px;
+}
+
+scrollbar > range > trough > slider:hover {
+    background-color: alpha(@theme_fg_color, 0.5);
+}
+
+/* Window and header styling */
+window, headerbar {
+    background-color: @theme_bg_color;
+    color: @theme_fg_color;
+}
+
+/* Button improvements */
+button {
+    background-color: @theme_base_color;
+    color: @theme_text_color;
+}
+
+button:hover {
+    background-color: alpha(@accent_color, 0.2);
+}
+
+/* Popover and menu styling */
+popover contents, menu {
+    background-color: @theme_bg_color;
+    color: @theme_fg_color;
+}
+
+/* Entry and text styling */
+entry, textview text {
+    background-color: @theme_base_color;
+    color: @theme_text_color;
+}

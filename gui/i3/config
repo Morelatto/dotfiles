@@ -71,16 +71,16 @@ bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
 # switch to workspace
-bindcode $mod+10    workspace  $ws1
-bindcode $mod+11    workspace  $ws2
-bindcode $mod+12    workspace  $ws3
-bindcode $mod+13    workspace  $ws4
-bindcode $mod+14    workspace  $ws5
-bindcode $mod+15    workspace  $ws6
-bindcode $mod+16    workspace  $ws7
-bindcode $mod+17    workspace  $ws8
-bindcode $mod+18    workspace  $ws9
-bindcode $mod+19    workspace  $ws10
+bindcode $mod+10    workspace number 1
+bindcode $mod+11    workspace number 2
+bindcode $mod+12    workspace number 3
+bindcode $mod+13    workspace number 4
+bindcode $mod+14    workspace number 5
+bindcode $mod+15    workspace number 6
+bindcode $mod+16    workspace number 7
+bindcode $mod+17    workspace number 8
+bindcode $mod+18    workspace number 9
+bindcode $mod+19    workspace number 10
 
 # switch to workspace with numpad keys
 bindcode $mod+87 workspace $ws1
@@ -107,40 +107,40 @@ bindcode $mod+Mod2+81 workspace $ws9
 bindcode $mod+Mod2+90 workspace $ws10
 
 # move focused container to workspace
-bindcode $mod+Shift+10    move container to workspace  $ws1
-bindcode $mod+Shift+11    move container to workspace  $ws2
-bindcode $mod+Shift+12    move container to workspace  $ws3
-bindcode $mod+Shift+13    move container to workspace  $ws4
-bindcode $mod+Shift+14    move container to workspace  $ws5
-bindcode $mod+Shift+15    move container to workspace  $ws6
-bindcode $mod+Shift+16    move container to workspace  $ws7
-bindcode $mod+Shift+17    move container to workspace  $ws8
-bindcode $mod+Shift+18    move container to workspace  $ws9
-bindcode $mod+Shift+19    move container to workspace  $ws10
+bindcode $mod+Shift+10    move container to workspace number 1
+bindcode $mod+Shift+11    move container to workspace number 2
+bindcode $mod+Shift+12    move container to workspace number 3
+bindcode $mod+Shift+13    move container to workspace number 4
+bindcode $mod+Shift+14    move container to workspace number 5
+bindcode $mod+Shift+15    move container to workspace number 6
+bindcode $mod+Shift+16    move container to workspace number 7
+bindcode $mod+Shift+17    move container to workspace number 8
+bindcode $mod+Shift+18    move container to workspace number 9
+bindcode $mod+Shift+19    move container to workspace number 10
 
 # move focused container to workspace with numpad keys
-bindcode $mod+Shift+Mod2+87 	move container to workspace  $ws1
-bindcode $mod+Shift+Mod2+88 	move container to workspace  $ws2
-bindcode $mod+Shift+Mod2+89 	move container to workspace  $ws3
-bindcode $mod+Shift+Mod2+83 	move container to workspace  $ws4
-bindcode $mod+Shift+Mod2+84 	move container to workspace  $ws5
-bindcode $mod+Shift+Mod2+85 	move container to workspace  $ws6
-bindcode $mod+Shift+Mod2+79 	move container to workspace  $ws7
-bindcode $mod+Shift+Mod2+80 	move container to workspace  $ws8
-bindcode $mod+Shift+Mod2+81 	move container to workspace  $ws9
-bindcode $mod+Shift+Mod2+90 	move container to workspace  $ws10
+bindcode $mod+Shift+Mod2+87 	move container to workspace $ws1
+bindcode $mod+Shift+Mod2+88 	move container to workspace $ws2
+bindcode $mod+Shift+Mod2+89 	move container to workspace $ws3
+bindcode $mod+Shift+Mod2+83 	move container to workspace $ws4
+bindcode $mod+Shift+Mod2+84 	move container to workspace $ws5
+bindcode $mod+Shift+Mod2+85 	move container to workspace $ws6
+bindcode $mod+Shift+Mod2+79 	move container to workspace $ws7
+bindcode $mod+Shift+Mod2+80 	move container to workspace $ws8
+bindcode $mod+Shift+Mod2+81 	move container to workspace $ws9
+bindcode $mod+Shift+Mod2+90 	move container to workspace $ws10
 
 # move focused container to workspace with numpad keys
-bindcode $mod+Shift+87 	 move container to workspace  $ws1
-bindcode $mod+Shift+88 	 move container to workspace  $ws2
-bindcode $mod+Shift+89 	 move container to workspace  $ws3
-bindcode $mod+Shift+83 	 move container to workspace  $ws4
-bindcode $mod+Shift+84 	 move container to workspace  $ws5
-bindcode $mod+Shift+85 	 move container to workspace  $ws6
-bindcode $mod+Shift+79 	 move container to workspace  $ws7
-bindcode $mod+Shift+80 	 move container to workspace  $ws8
-bindcode $mod+Shift+81 	 move container to workspace  $ws9
-bindcode $mod+Shift+90 	 move container to workspace  $ws10
+bindcode $mod+Shift+87 	 move container to workspace $ws1
+bindcode $mod+Shift+88 	 move container to workspace $ws2
+bindcode $mod+Shift+89 	 move container to workspace $ws3
+bindcode $mod+Shift+83 	 move container to workspace $ws4
+bindcode $mod+Shift+84 	 move container to workspace $ws5
+bindcode $mod+Shift+85 	 move container to workspace $ws6
+bindcode $mod+Shift+79 	 move container to workspace $ws7
+bindcode $mod+Shift+80 	 move container to workspace $ws8
+bindcode $mod+Shift+81 	 move container to workspace $ws9
+bindcode $mod+Shift+90 	 move container to workspace $ws10
 
 # resize window (you can also use the mouse for that):
 #mode "resize" {
@@ -242,7 +242,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+g layout tabbed
+bindsym $mod+y layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -289,13 +289,14 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym $mod+p exec --no-startup-id ~/.config/i3/scripts/audio-device-switch
 
 ## App shortcuts
-bindsym $mod+w exec --no-startup-id /usr/bin/firefox
+# Firefox moved to $mod+Shift+f to make room for workspace switcher
 bindsym $mod+n exec --no-startup-id /usr/bin/thunar
 # Screenshot keybindings - using enhanced screenshot script
 bindsym Print exec --no-startup-id ~/.local/bin/screenshot full           # Full screen (disables picom)
 bindsym Shift+Print exec --no-startup-id ~/.local/bin/screenshot select    # Selection area
 bindsym $mod+Print exec --no-startup-id ~/.local/bin/screenshot window     # Active window
 bindsym Ctrl+Print exec --no-startup-id ~/.local/bin/screenshot clipboard  # Selection to clipboard only
+bindsym --whole-window Ctrl+button2 exec --no-startup-id ~/.local/bin/screenshot window-clipboard  # Window screenshot to clipboard with Ctrl+middle mouse button
 
 # Power Profiles menu switcher (rofi)
 bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
@@ -470,7 +471,7 @@ bar {
 		height 25
 		status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	    	position bottom
-		
+
 		# Disable workspace scrolling on the bar
 		bindsym button4 nop
 		bindsym button5 nop
@@ -573,5 +574,81 @@ bindsym $mod+minus scratchpad show
 
 # Caffeine toggle
 bindsym $mod+F12 exec --no-startup-id caffeine-x11 toggle
+
+####################################
+# i3-workspace-groups Configuration #
+####################################
+
+# Start i3-workspace-groups daemon
+exec_always --no-startup-id pkill i3-workspace-groups; i3-workspace-groups
+
+# Start automatic workspace naming with icons (proven community solution)
+exec_always --no-startup-id pkill -f autoname_workspaces.py; /home/storm/Public/dotfiles/gui/i3/scripts/autoname_workspaces.py &
+
+# Workspace Groups - Project-based workspace management
+# Switch between workspace groups using rofi
+bindsym $mod+g exec --no-startup-id i3-workspace-groups list-groups | rofi -dmenu -i -p "Switch to group" -config ~/.config/rofi/rofidmenu.rasi | xargs -r i3-workspace-groups switch-group
+
+# Create new workspace group
+bindsym $mod+Shift+g exec --no-startup-id rofi -dmenu -p "New group name" -config ~/.config/rofi/rofidmenu.rasi | xargs -r i3-workspace-groups create-group
+
+# Assign current workspace to group
+bindsym $mod+Control+g exec --no-startup-id i3-workspace-groups list-groups | rofi -dmenu -i -p "Assign workspace to group" -config ~/.config/rofi/rofidmenu.rasi | xargs -r i3-workspace-groups assign-workspace
+
+# Enhanced workspace switcher with rofi (replaces basic implementation)
+bindsym $mod+w exec --no-startup-id ~/.config/i3/scripts/workspace-switcher
+
+# Dynamic workspace naming support
+bindsym $mod+comma exec --no-startup-id i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '
+
+# Firefox binding moved to accommodate workspace switcher
+bindsym $mod+Shift+f exec --no-startup-id /usr/bin/firefox
+
+# Move window mode for sending containers to high-numbered workspaces (21-30)
+mode "move_window" {
+    # Move container to workspace 21-30
+    bindsym 1 move container to workspace 21; mode "default"
+    bindsym 2 move container to workspace 22; mode "default"
+    bindsym 3 move container to workspace 23; mode "default"
+    bindsym 4 move container to workspace 24; mode "default"
+    bindsym 5 move container to workspace 25; mode "default"
+    bindsym 6 move container to workspace 26; mode "default"
+    bindsym 7 move container to workspace 27; mode "default"
+    bindsym 8 move container to workspace 28; mode "default"
+    bindsym 9 move container to workspace 29; mode "default"
+    bindsym 0 move container to workspace 30; mode "default"
+
+    # Exit move window mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+m mode "default"
+}
+
+# Enter move window mode
+bindsym $mod+m mode "move_window"
+
+# Extended workspaces 11-20 using Control+mod+[1-0]
+bindsym $mod+Control+1 workspace 11
+bindsym $mod+Control+2 workspace 12
+bindsym $mod+Control+3 workspace 13
+bindsym $mod+Control+4 workspace 14
+bindsym $mod+Control+5 workspace 15
+bindsym $mod+Control+6 workspace 16
+bindsym $mod+Control+7 workspace 17
+bindsym $mod+Control+8 workspace 18
+bindsym $mod+Control+9 workspace 19
+bindsym $mod+Control+0 workspace 20
+
+# Move containers to workspaces 11-20 using Control+mod+Shift+[1-0]
+bindsym $mod+Control+Shift+1 move container to workspace 11
+bindsym $mod+Control+Shift+2 move container to workspace 12
+bindsym $mod+Control+Shift+3 move container to workspace 13
+bindsym $mod+Control+Shift+4 move container to workspace 14
+bindsym $mod+Control+Shift+5 move container to workspace 15
+bindsym $mod+Control+Shift+6 move container to workspace 16
+bindsym $mod+Control+Shift+7 move container to workspace 17
+bindsym $mod+Control+Shift+8 move container to workspace 18
+bindsym $mod+Control+Shift+9 move container to workspace 19
+bindsym $mod+Control+Shift+0 move container to workspace 20
 
 
