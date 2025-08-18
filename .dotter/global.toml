@@ -1,6 +1,4 @@
-# Dotter Global Configuration - Optimized Structure
-
-# Terminal/Shell - All CLI configurations
+# Dotter Global Configuration
 [terminal.files]
 "cli/atuin" = "~/.config/atuin"
 "cli/zsh/.zshenv" = "~/.zshenv"
@@ -11,13 +9,11 @@
 "cli/bash/.bashrc" = "~/.bashrc"
 "cli/bash/.bash_profile" = "~/.bash_profile"
 
-# Desktop - Window manager, terminal emulator, and compositor
 [desktop.files]
 "gui/i3/config" = "~/.config/i3/config"
 "gui/i3/i3blocks" = "~/.config/i3"
 "gui/i3/i3wsr" = "~/.config/i3wsr"
 "gui/i3/scripts" = "~/.config/i3/scripts"
-"gui/polybar" = "~/.config/polybar"
 "gui/dunst" = "~/.config/dunst"
 "gui/rofi" = "~/.config/rofi"
 "gui/picom" = "~/.config/picom"
@@ -31,7 +27,6 @@
 "system/x11/Xresources" = "~/.Xresources"
 "system/x11/xprofile" = "~/.xprofile"
 
-# Development - All programming tools and editors
 [development.files]
 "dev/git" = "~/.config/git"
 "dev/bun" = "~/.config/bun"
@@ -46,16 +41,10 @@
 "dev/claude/CLAUDE.md" = "~/.claude/CLAUDE.md"
 "dev/claude/settings.json" = "~/.claude/settings.json"
 "dev/repomix/repomix.config.json5" = "~/.config/repomix/repomix.config.json5"
-"dev/jetbrains/pycharm/pycharm64.vmoptions" = "~/.config/JetBrains/PyCharmCE2025.1/pycharm64.vmoptions"
-"dev/jetbrains/pycharm/idea.properties" = "~/.config/JetBrains/PyCharmCE2025.1/idea.properties"
-"dev/jetbrains/codestyles" = "~/.config/JetBrains/PyCharmCE2025.1/codestyles"
-"dev/jetbrains/keymaps" = "~/.config/JetBrains/PyCharmCE2025.1/keymaps"
-"dev/jetbrains/options" = "~/.config/JetBrains/PyCharmCE2025.1/options"
 "editors/nvim" = "~/.config/nvim"
 "editors/vim" = "~/.config/vim"
 "editors/sublime-text-3" = "~/.config/sublime-text-3"
 
-# Applications - User applications (browsers, note-taking, etc.)
 [applications.files]
 "gui/firefox" = "~/.config/firefox"
 "editors/obsidian/app.json" = "~/.config/obsidian/app.json"
@@ -63,15 +52,3 @@
 "editors/obsidian/community-plugins.json" = "~/.config/obsidian/community-plugins.json"
 "system/kalu" = "~/.config/kalu"
 
-# === REFERENCE ONLY - Not deployed ===
-# These are kept for version control but commented out
-
-[system-reference.files]
-# System configs that require root - manual installation required
-# To install: sudo cp system/lightdm/slick-greeter.conf /etc/lightdm/
-# "system/lightdm/slick-greeter.conf" = "/etc/lightdm/slick-greeter.conf"
-# "system/pacman/pacman.conf" = "/etc/pacman.conf"
-# "system/x11/xorg.conf.d/10-monitor.conf" = "/etc/X11/xorg.conf.d/10-monitor.conf"
-
-[jetbrains-reference.files]
-# JetBrains IDEs - Manual setup only when needed
