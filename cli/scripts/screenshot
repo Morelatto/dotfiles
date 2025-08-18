@@ -104,13 +104,24 @@ take_screenshot() {
             fi
             ;;
             
+        "window-clipboard")
+            # Window to clipboard only (no save)
+            local window_id=$(xdotool getactivewindow)
+            if maim $maim_args -i "$window_id" -b "$BORDER_WIDTH" | copy_to_clipboard -; then
+                notify "Screenshot" "Window copied to clipboard"
+            else
+                notify "Screenshot Error" "Failed to capture window"
+            fi
+            ;;
+            
         *)
-            echo "Usage: $0 {full|select|window|clipboard} [quality]"
+            echo "Usage: $0 {full|select|window|clipboard|window-clipboard} [quality]"
             echo "  Modes:"
-            echo "    full      - Full screen with picom handling"
-            echo "    select    - Selection area"
-            echo "    window    - Active window"
-            echo "    clipboard - Selection to clipboard only"
+            echo "    full             - Full screen with picom handling"
+            echo "    select           - Selection area"
+            echo "    window           - Active window"
+            echo "    clipboard        - Selection to clipboard only"
+            echo "    window-clipboard - Window to clipboard only"
             echo "  Optional: specify quality 1-10 (default: 9)"
             echo "           1=fast/large files, 10=slow/small files"
             exit 1
