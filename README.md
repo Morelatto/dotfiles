@@ -20,47 +20,18 @@
 
 ## 🚀 Quick Start
 
-**Prerequisites**: EndeavourOS (or Arch) with `mise` and `dotter` installed:
 ```bash
+# Prerequisites
 yay -S mise-bin dotter-rs-bin
-```
 
-### Complete Setup
-```bash
+# Clone and setup
 git clone https://github.com/USER/dotfiles ~/Public/dotfiles
 cd ~/Public/dotfiles
-
-# One command setup
 task setup
+
+# Restart shell
+exec zsh
 ```
-
-### Manual Setup (2 commands)
-```bash
-# 1. Install development tools (node, go, rust, bat, fzf, etc.)
-mise install  
-
-# 2. Deploy configuration files  
-dotter deploy
-```
-
-**Then restart your shell:** `exec zsh`
-
----
-
-## 🏗️ Architecture
-
-**Simple 2-layer architecture** (system packages handled by EndeavourOS):
-
-| Layer | Tool | Purpose | Examples |
-|-------|------|---------|----------|
-| **Development** | `mise` | Language runtimes & CLI tools | Node.js, Go, Rust, bat, eza, fzf, starship |
-| **Configuration** | `dotter` | Deploy config files | ZSH, Git, i3, Neovim configs |
-
-### Why This Works?
-- ✅ **EndeavourOS provides the base** - desktop, fonts, essential tools
-- ✅ **Mise manages dev tools** - languages and modern CLI utilities  
-- ✅ **Dotter handles configs** - all your personal configuration files
-- ✅ **No conflicts** - each tool has a clear purpose
 
 ---
 
@@ -68,15 +39,16 @@ dotter deploy
 <details>
 <summary>What's included</summary>
 
-### Package System
+### Configuration Packages
 
 | Package | Purpose | Primary Components |
 |---------|---------|-------------------|
-| **terminal** | Shell environment | Zsh (conf.d + plugins), Starship prompt, Atuin history sync, custom scripts |
-| **development** | Programming tools | Git with delta, Docker, Neovim, Claude Code, language configs |
-| **desktop** | Window management | i3-gaps with i3blocks/i3wsr/i3grid, Picom, Rofi, Dunst, Polybar |
-| **applications** | Application configs | Firefox user.js, Obsidian settings, GTK themes, PyCharm |
-| **system-reference** | System configs | Lightdm, Pacman, X11 configs (manual install required) |
+| **terminal** | Shell environment | Zsh (conf.d + plugins), custom scripts |  
+| **development** | Programming configs | Git with delta, Docker, Neovim, Claude Code |
+| **desktop** | Window management | i3-gaps with i3blocks/i3wsr, Picom, Rofi, Dunst |
+| **applications** | Application configs | Firefox user.js, Obsidian settings, GTK themes |
+
+**Note**: Development tools (Node.js, Go, Rust, CLI utilities) are managed by `mise`, not dotter packages.
 
 ### Modern CLI Tools
 
