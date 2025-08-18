@@ -126,12 +126,67 @@ repomix                                   # Repository documentation
 
 Modern development tools are managed through **mise** (version manager):
 
-- **Language Runtimes**: Node.js, Python, Go, Rust, Bun (automatically installed)
-- **CLI Tools**: bat, eza, fd, ripgrep, fzf, starship, delta, dust, btop, etc.
-- **Development Tools**: lazygit, lazydocker, gh, glow, httpie, and more
-- **System Packages**: Documented in `packages.toml` for Arch/AUR installations
+#### **Language Runtimes (5 tools)**
+- **Node.js** 22.18.0 LTS - JavaScript runtime with npm 10.9.3
+- **Python** 3.12.11 - Python interpreter with pip support
+- **Go** 1.25.0 - Go programming language with workspace at `/opt/go`
+- **Rust** stable - Rust toolchain with cargo package manager
+- **Bun** 1.2.20 - Fast JavaScript runtime and package manager
 
-Use `mise install` to install all tools or `mise upgrade` to update them.
+#### **Essential CLI Tools (15 tools)**
+- **bat** 0.25.0 - Syntax highlighting cat replacement
+- **eza** 0.23.0 - Modern ls with icons and git integration
+- **fd** 10.2.0 - Fast find replacement
+- **ripgrep** 14.1.1 - Fast grep replacement (rg command)
+- **fzf** 0.65.1 - Fuzzy finder for interactive selections
+- **starship** 1.23.0 - Cross-shell prompt with git integration
+- **delta** 0.18.2 - Git diff viewer with syntax highlighting
+- **dust** 1.2.3 - Interactive du replacement
+- **btop** 1.4.4 - Resource monitor (htop/top replacement)
+- **zoxide** 0.9.8 - Smart cd command with frecency algorithm
+- **atuin** 18.8.0 - Shell history sync with fuzzy search
+- **yq** 4.47.1 - YAML processor
+- **jq** 1.8.1 - JSON processor
+- **sd** 1.0.0 - Intuitive sed replacement
+- **hyperfine** 1.19.0 - Command-line benchmarking tool
+- **tokei** 12.1.2 - Code statistics and line counter
+
+#### **Development Tools (10 tools)**
+- **gh** 2.76.2 - GitHub CLI for repository management
+- **glab** 1.67.0 - GitLab CLI for project management
+- **lazygit** 0.54.2 - Terminal UI for git operations
+- **lazydocker** 0.24.1 - Terminal UI for docker management
+- **glow** 2.1.1 - Markdown renderer for terminal
+- **direnv** 2.37.1 - Directory-specific environment variables
+- **docker-compose** 2.39.2 - Multi-container Docker applications
+- **just** 1.42.4 - Command runner (Makefile alternative)
+- **watchexec** 2.3.2 - File watcher for running commands
+- **bottom** 0.11.1 - System monitor alternative
+
+#### **Container & Kubernetes Tools (3 tools)**
+- **kubectl** 1.33.4 - Kubernetes command-line tool
+- **k9s** 0.50.9 - Terminal UI for Kubernetes clusters
+- **helm** 3.18.5 - Kubernetes package manager
+
+#### **Security Tools (2 tools)**
+- **age** 1.2.1 - File encryption tool
+- **sops** 3.10.2 - Secrets management
+
+#### **Additional Tools (installed separately)**
+- **tldr** 3.4.1 - Simplified man pages (via pip)
+- **httpie** 3.2.4 - User-friendly HTTP client (via pip)
+
+#### **Management Commands**
+```bash
+mise install          # Install all tools from mise.toml
+mise upgrade           # Update all tools to latest versions
+mise list             # Show all installed tools and versions
+mise which <tool>     # Show path to specific tool
+mise doctor           # Check system configuration
+```
+
+#### **System Packages**
+Non-mise tools documented in `packages.toml` for Arch/AUR installations.
 
 ### Local Overrides
 
