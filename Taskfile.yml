@@ -1,77 +1,69 @@
 version: '3'
 
-vars:
-  DOTFILES_DIR: '{{.PWD}}'
-
 tasks:
   default:
     desc: Show available tasks
     cmds:
       - task --list
 
+  setup:
+    desc: Complete setup (tools + configs)
+    cmds:
+      - task: tools
+      - task: deploy
+      - echo "Setup complete! Run exec zsh"
+
   deploy:
-    desc: Deploy dotfiles
+    desc: Deploy configurations
     cmds:
       - dotter deploy
 
-  deploy:force:
-    desc: Force deploy dotfiles (overwrites existing)
+  tools:
+    desc: Install development tools
     cmds:
-      - dotter deploy --force
+      - mise install
+    sources:
+      - mise.toml
 
-  undeploy:
-    desc: Remove all deployed symlinks
+  status:
+    desc: Show status
     cmds:
-      - dotter undeploy
+      - git status -sb
+      - dotter --version
+      - mise list --current
 
   update:
-    desc: Pull latest changes and deploy
+    desc: Update and deploy
     cmds:
       - git pull
       - task: deploy
 
-  status:
-    desc: Show git and deployment status
-    cmds:
-      - echo "📊 Git Status:"
-      - git status -sb
-      - echo ""
-      - echo "🔗 Dotter Status:"
-      - dotter --version
-
-  edit:
-    desc: Edit dotter configuration
-    cmds:
-      - ${EDITOR:-nvim} .dotter/global.toml
-
-  tools:install:
-    desc: Install global CLI tools with bun
-    cmds:
-      - echo "Installing global tools..."
-      - cp -f dev/bun/global/package.json ~/.bun/install/global/package.json
-      - cd ~/.bun/install/global && bun install
-    sources:
-      - dev/bun/global/package.json
-    generates:
-      - ~/.bun/install/global/node_modules/.bin/*
-
-  tools:update:
-    desc: Update global CLI tools
-    cmds:
-      - cd ~/.bun/install/global && bun update
-      - cp ~/.bun/install/global/package.json dev/bun/global/package.json
-      - echo "Global tools updated and package.json synced"
-
   backup:
-    desc: Create backup of current dotfiles
+    desc: Create backup
     cmds:
       - |
         backup_dir="$HOME/.local/share/dotfiles-backups/$(date +%Y%m%d-%H%M%S)"
         mkdir -p "$backup_dir"
-        cp -r .dotter config "$backup_dir/"
-        echo "✅ Backup created: $backup_dir"
+        rsync -av --exclude='.git' --exclude='.idea' . "$backup_dir/"
+        echo "Backup created: $backup_dir"
+
+  # Extended tasks
+  deploy:force:
+    desc: Force deploy (overwrite conflicts)
+    cmds:
+      - dotter deploy --force
+
+  undeploy:
+    desc: Remove deployed symlinks
+    cmds:
+      - dotter undeploy
+
+  upgrade:
+    desc: Upgrade all tools
+    cmds:
+      - mise upgrade
 
   watch:
-    desc: Watch for changes and auto-deploy
+    desc: Watch and auto-deploy
     cmds:
       - dotter watch
