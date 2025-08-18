@@ -43,8 +43,7 @@ Thumbs.db
 TODO.md
 NOTES.md
 
-# Task runner and automation artifacts  
-.task/
+# Automation artifacts
 .setup/retry_files/
 .setup/*.retry
 .setup/vault_pass.txt
