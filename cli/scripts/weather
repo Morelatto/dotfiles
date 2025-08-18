@@ -4,7 +4,7 @@
 
 # API settings ________________________________________________________________
 
-APIKEY="${WEATHER_API_KEY:-0867dd59b3bfcbdf3f98937d4df8c340}"
+APIKEY="${WEATHER_API_KEY:?Error: WEATHER_API_KEY environment variable required. Get your free API key from https://openweathermap.org/api}"
 # if you leave these empty location will be picked based on your ip-adres
 CITY_NAME='São Paulo'
 COUNTRY_CODE='BR'
