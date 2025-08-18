@@ -151,6 +151,6 @@ sudo pacman -S ansible && ansible-pull -U https://github.com/Morelatto/dotfiles.
 
 **Built with ❤️ using Arch Linux**
 
-<sub>Managed with [Dotter](https://github.com/SuperCuber/dotter) • Automated with [Task](https://taskfile.dev/) • Enhanced with [Modern Tools](https://github.com/ibraheemdev/modern-unix)</sub>
+<sub>Managed with [Dotter](https://github.com/SuperCuber/dotter) • Automated with [Ansible](https://github.com/ansible/ansible) • Enhanced with [Modern Tools](https://github.com/ibraheemdev/modern-unix)</sub>
 
 </div>
