@@ -1,55 +1,35 @@
 ---
-# EndeavourOS i3 - Dotfiles Setup
-# For EndeavourOS with i3 edition (already has i3, yay, git, etc)
-# Usage: ansible-playbook ansible.yml -K
-
 - name: EndeavourOS Dotfiles Setup
   hosts: localhost
   connection: local
   gather_facts: yes
   
   vars:
-    dotfiles_dir: "{{ playbook_dir | dirname }}"  # Parent dir since we're in .setup/
+    dotfiles_dir: "{{ playbook_dir | dirname }}"
     
-    # Only what's missing in EndeavourOS i3
     pacman_packages:
-      # Docker
       - docker
-      - docker-compose
-      
-      # Screenshot & clipboard
       - maim
       - xclip
       - xdotool
-      
-      # i3 utilities
       - playerctl
       - xss-lock
       - thunar
       - xfce4-terminal
-      
-      # Archive tools
       - unrar
       - p7zip
       - unzip
-      
-      # System tools
       - tree
       - pv
-      - autojump
-      
-      # Fonts & UI
       - ttf-jetbrains-mono-nerd
       - gsimplecal
     
-    # Tools for our setup
     aur_packages:
-      - mise-bin      # Dev tools manager
-      - dotter-rs-bin # Dotfiles manager
-      - betterlockscreen # Better lock screen
+      - mise-bin
+      - dotter-rs-bin
+      - betterlockscreen
     
   tasks:
-    # 1. PACMAN PACKAGES
     - name: Install pacman packages
       become: yes
       pacman:
@@ -57,19 +37,24 @@
         state: present
         update_cache: yes
     
-    # 2. AUR PACKAGES (EndeavourOS already has yay)
     - name: Install AUR packages
       shell: yay -S --needed --noconfirm {{ aur_packages | join(' ') }}
       register: aur_result
       changed_when: "'installing' in aur_result.stdout"
     
-    # 3. MISE SETUP
     - name: Configure mise
       block:
+        - name: Check if mise is available
+          command: which mise
+          register: mise_check
+          failed_when: false
+          changed_when: false
+        
         - name: Trust mise config
           shell: mise trust {{ dotfiles_dir }}/mise.toml
           args:
             chdir: "{{ dotfiles_dir }}"
+          when: mise_check.rc == 0
         
         - name: Install all mise tools
           shell: mise install -y
@@ -77,8 +62,8 @@
             chdir: "{{ dotfiles_dir }}"
           register: mise_install
           changed_when: mise_install.rc == 0
+          when: mise_check.rc == 0
     
-    # 4. DOTTER DEPLOYMENT
     - name: Deploy dotfiles
       shell: dotter deploy --force
       args:
@@ -86,7 +71,6 @@
       register: dotter_deploy
       changed_when: dotter_deploy.rc == 0
     
-    # 5. DOCKER SETUP (only thing that needs sudo)
     - name: Docker configuration
       become: yes
       block:
@@ -102,7 +86,6 @@
             enabled: yes
             state: started
     
-    # 6. DONE
     - name: Setup complete
       debug:
         msg:

@@ -40,9 +40,17 @@ Thumbs.db
 !.dotter/local.toml  # Exception: this should be tracked
 
 # Personal documentation
-CLAUDE.md
 TODO.md
 NOTES.md
+
+# Task runner and automation artifacts  
+.task/
+.setup/retry_files/
+.setup/*.retry
+.setup/vault_pass.txt
+
+# Ansible facts cache
+/tmp/ansible_facts
 
 # Large binary files (consider excluding wallpapers)
 # Uncomment if you don't want wallpapers in the repo:
