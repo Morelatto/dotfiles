@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+"""
+Simple network bandwidth monitor for i3blocks
+Uses system tools and proper icon handling
+"""
+
+import subprocess
+import os
+import time
+import sys
+
+def get_default_interface():
+    """Get the default network interface"""
+    try:
+        result = subprocess.run(['ip', 'route'], capture_output=True, text=True)
+        for line in result.stdout.split('\n'):
+            if line.startswith('default via'):
+                return line.split()[4]
+    except:
+        pass
+    return None
+
+def get_interface_icon(interface):
+    """Get appropriate icon for interface type"""
+    if not interface:
+        return "󰲝"  # No network icon
+    
+    if interface.startswith(('eth', 'enp')):
+        return "󰈀"  # Ethernet icon
+    elif interface.startswith(('wlan', 'wlp')):
+        return "󰖩"  # WiFi icon
+    else:
+        return "󰌘"  # Generic network icon
+
+def read_bytes(interface, direction):
+    """Read bytes from interface statistics"""
+    try:
+        with open(f'/sys/class/net/{interface}/statistics/{direction}_bytes', 'r') as f:
+            return int(f.read().strip())
+    except:
+        return 0
+
+def format_bytes(bytes_val):
+    """Format bytes to human readable"""
+    if bytes_val >= 1048576:  # MB
+        return f"{bytes_val / 1048576:.1f}MB/s"
+    elif bytes_val >= 1024:  # KB
+        return f"{bytes_val / 1024:.1f}KB/s"
+    else:
+        return f"{bytes_val}B/s"
+
+def main():
+    interface = get_default_interface()
+    icon = get_interface_icon(interface)
+    
+    if not interface:
+        print(f"{icon} No network")
+        return
+    
+    # Read current stats
+    rx_bytes = read_bytes(interface, 'rx')
+    tx_bytes = read_bytes(interface, 'tx')
+    
+    # Store in temp files
+    rx_file = f"/tmp/i3blocks_{interface}_rx"
+    tx_file = f"/tmp/i3blocks_{interface}_tx"
+    
+    # Check if we have previous stats
+    if os.path.exists(rx_file) and os.path.exists(tx_file):
+        try:
+            with open(rx_file, 'r') as f:
+                rx_prev = int(f.read().strip())
+            with open(tx_file, 'r') as f:
+                tx_prev = int(f.read().strip())
+            
+            # Calculate differences
+            rx_diff = max(0, rx_bytes - rx_prev)
+            tx_diff = max(0, tx_bytes - tx_prev)
+            
+            # Format output
+            rx_rate = format_bytes(rx_diff)
+            tx_rate = format_bytes(tx_diff)
+            
+            print(f"{icon} ↓{rx_rate} ↑{tx_rate}")
+        except:
+            print(f"{icon} Calculating...")
+    else:
+        print(f"{icon} Calculating...")
+    
+    # Store current stats
+    with open(rx_file, 'w') as f:
+        f.write(str(rx_bytes))
+    with open(tx_file, 'w') as f:
+        f.write(str(tx_bytes))
+
+if __name__ == "__main__":
+    main()

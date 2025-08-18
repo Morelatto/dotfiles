@@ -14,6 +14,8 @@
 # Desktop - Window manager, terminal emulator, and compositor
 [desktop.files]
 "gui/i3" = "~/.config/i3"
+"gui/i3wsr" = "~/.config/i3wsr"
+"gui/polybar" = "~/.config/polybar"
 "gui/dunst" = "~/.config/dunst"
 "gui/rofi" = "~/.config/rofi"
 "gui/picom" = "~/.config/picom"
@@ -54,7 +56,6 @@
 # Applications - User applications (browsers, note-taking, etc.)
 [applications.files]
 "gui/firefox" = "~/.config/firefox"
-"editors/obsidian/obsidian.json" = "~/.config/obsidian/obsidian.json"
 "editors/obsidian/app.json" = "~/.config/obsidian/app.json"
 "editors/obsidian/appearance.json" = "~/.config/obsidian/appearance.json"
 "editors/obsidian/community-plugins.json" = "~/.config/obsidian/community-plugins.json"
