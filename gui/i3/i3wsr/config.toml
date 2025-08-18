@@ -2,6 +2,7 @@
 firefox = ""
 chromium = ""
 google-chrome = ""
+Google-chrome = ""
 kitty = ""
 alacritty = ""
 xfce4-terminal = ""
@@ -26,5 +27,5 @@ remmina = ""
 default_icon = ""
 
 [options]
-remove_duplicates = false
-no_names = false
+remove_duplicates = true
+no_names = true
