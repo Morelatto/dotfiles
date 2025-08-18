@@ -69,12 +69,7 @@ done
 # Local overrides (not tracked)
 [[ -r "$ZDOTDIR/.zshrc.local" ]] && source "$ZDOTDIR/.zshrc.local"
 
-# fnm
-FNM_PATH="$HOME/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "`fnm env`"
-fi
+# Note: Node.js now managed by mise, FNM removed to avoid conflicts
 
 # Show profiling results if enabled
 [[ -n "$ZPROF" ]] && zprof
