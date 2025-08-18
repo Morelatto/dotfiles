@@ -9,7 +9,7 @@ import sys
 # Icon mappings using FontAwesome names
 ICONS = {
     'terminal': '\uf120',  # fa-terminal
-    'browser': '\uf0c2',   # fa-cloud (or firefox)
+    'browser': '\uf268',   # fa-globe (browser icon)
     'files': '\uf07b',     # fa-folder
     'bluetooth': '\uf293', # fa-bluetooth
     'disk': '\uf0a0',      # fa-hdd
@@ -26,6 +26,21 @@ ICONS = {
     'help': '\uf059',      # fa-question-circle
     'remote': '\uf108',    # fa-desktop (remote desktop)
     'remmina': '\uf108',   # fa-desktop (remote desktop)
+    'firefox': '\uf269',   # fa-firefox
+    'code': '\uf121',      # fa-code
+    'obsidian': '\uf15c',  # fa-file-text
+    'pycharm': '\uf121',   # fa-code
+    'thunar': '\uf07b',    # fa-folder (file manager)
+    'discord': '\uf392',   # fa-discord
+    'spotify': '\uf1bc',   # fa-spotify
+    'vlc': '\uf03d',       # fa-video
+    'gimp': '\uf1fc',      # fa-paint-brush
+    'docker': '\uf308',    # fa-docker
+    'vim': '\uf15c',       # fa-file-text
+    'nvim': '\uf15c',      # fa-file-text
+    'kitty': '\uf120',     # fa-terminal
+    'alacritty': '\uf120', # fa-terminal
+    'gnome-terminal': '\uf120'  # fa-terminal
 }
 
 def get_icon(icon_name):
