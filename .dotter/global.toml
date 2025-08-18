@@ -29,7 +29,6 @@
 
 [development.files]
 "dev/git" = "~/.config/git"
-"dev/bun" = "~/.config/bun"
 "dev/bun/config.toml" = "~/.bunfig.toml"
 "dev/docker/config" = { target = "~/.docker/config.json", type = "symbolic" }
 "dev/docker/daemon.json" = { target = "~/.docker/daemon.json", type = "symbolic" }
@@ -41,6 +40,7 @@
 "dev/claude/CLAUDE.md" = "~/.claude/CLAUDE.md"
 "dev/claude/settings.json" = "~/.claude/settings.json"
 "dev/repomix/repomix.config.json5" = "~/.config/repomix/repomix.config.json5"
+"dev/uv/uv.toml" = "~/.config/uv/uv.toml"
 "editors/nvim" = "~/.config/nvim"
 "editors/vim" = "~/.config/vim"
 "editors/sublime-text-3" = "~/.config/sublime-text-3"
