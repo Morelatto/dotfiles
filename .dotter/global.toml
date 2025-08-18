@@ -41,6 +41,7 @@
 "dev/claude/settings.json" = "~/.claude/settings.json"
 "dev/repomix/repomix.config.json5" = "~/.config/repomix/repomix.config.json5"
 "dev/uv/uv.toml" = "~/.config/uv/uv.toml"
+"dev/mise/config.toml" = "~/.config/mise/config.toml"
 "editors/nvim" = "~/.config/nvim"
 "editors/vim" = "~/.config/vim"
 "editors/sublime-text-3" = "~/.config/sublime-text-3"
