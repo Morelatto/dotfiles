@@ -13,8 +13,10 @@
 
 # Desktop - Window manager, terminal emulator, and compositor
 [desktop.files]
-"gui/i3" = "~/.config/i3"
-"gui/i3wsr" = "~/.config/i3wsr"
+"gui/i3/config" = "~/.config/i3/config"
+"gui/i3/i3blocks" = "~/.config/i3"
+"gui/i3/i3wsr" = "~/.config/i3wsr"
+"gui/i3/scripts" = "~/.config/i3/scripts"
 "gui/polybar" = "~/.config/polybar"
 "gui/dunst" = "~/.config/dunst"
 "gui/rofi" = "~/.config/rofi"
