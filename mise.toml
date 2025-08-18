@@ -64,7 +64,7 @@ EDITOR = "nvim"
 VISUAL = "nvim"
 PAGER = "less"
 LANG = "en_US.UTF-8"
-GOPATH = "~/go"
+GOPATH = "/opt/go"
 
 [tasks.setup]
 description = "Install all tools and dependencies"
