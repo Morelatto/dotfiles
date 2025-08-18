@@ -21,13 +21,18 @@
 ## 🚀 Quick Start
 
 ```bash
-# Prerequisites
-yay -S mise-bin dotter-rs-bin
-
-# Clone and setup
+# Clone repository
 git clone https://github.com/USER/dotfiles ~/Public/dotfiles
 cd ~/Public/dotfiles
-task setup
+
+# Complete automated setup
+ansible-playbook .setup/ansible.yml -K
+
+# Install development tools
+mise install
+
+# Deploy configurations  
+dotter deploy
 
 # Restart shell
 exec zsh
