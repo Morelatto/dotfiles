@@ -20,15 +20,47 @@
 
 ## 🚀 Quick Start
 
+**Prerequisites**: EndeavourOS (or Arch) with `mise` and `dotter` installed:
 ```bash
-# One-liner installation
-curl -sL https://raw.githubusercontent.com/USER/dotfiles/main/bootstrap.sh | bash
+yay -S mise-bin dotter-rs-bin
+```
 
-# Or clone and run
+### Complete Setup
+```bash
 git clone https://github.com/USER/dotfiles ~/Public/dotfiles
 cd ~/Public/dotfiles
-./bootstrap.sh
+
+# One command setup
+task setup
 ```
+
+### Manual Setup (2 commands)
+```bash
+# 1. Install development tools (node, go, rust, bat, fzf, etc.)
+mise install  
+
+# 2. Deploy configuration files  
+dotter deploy
+```
+
+**Then restart your shell:** `exec zsh`
+
+---
+
+## 🏗️ Architecture
+
+**Simple 2-layer architecture** (system packages handled by EndeavourOS):
+
+| Layer | Tool | Purpose | Examples |
+|-------|------|---------|----------|
+| **Development** | `mise` | Language runtimes & CLI tools | Node.js, Go, Rust, bat, eza, fzf, starship |
+| **Configuration** | `dotter` | Deploy config files | ZSH, Git, i3, Neovim configs |
+
+### Why This Works?
+- ✅ **EndeavourOS provides the base** - desktop, fonts, essential tools
+- ✅ **Mise manages dev tools** - languages and modern CLI utilities  
+- ✅ **Dotter handles configs** - all your personal configuration files
+- ✅ **No conflicts** - each tool has a clear purpose
 
 ---
 
