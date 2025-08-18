@@ -35,263 +35,120 @@ exec zsh
 
 ---
 
-## Features
+# System
 <details>
-<summary>What's included</summary>
+<summary>Core components and system architecture</summary>
 
-### Configuration Packages
+## Core
+| Component | Tool |
+|-----------|------|
+| OS | EndeavourOS/Arch Linux ([EndeavourOS](https://endeavouros.com/)) |
+| Tool Manager | [mise](https://mise.jdx.dev/) | Node LTS, Python 3.12, Go/Rust/Bun latest, CLI tools auto-managed |
+| Configuration Manager | [dotter](https://github.com/SuperCuber/dotter) | XDG-compliant deployment, modular package system |
 
-| Package | Purpose | Primary Components |
-|---------|---------|-------------------|
-| **terminal** | Shell environment | Zsh (conf.d + plugins), custom scripts |  
-| **development** | Programming configs | Git with delta, Docker, Neovim, Claude Code |
-| **desktop** | Window management | i3-gaps with i3blocks/i3wsr, Picom, Rofi, Dunst |
-| **applications** | Application configs | Firefox user.js, Obsidian settings, GTK themes |
-
-**Note**: Development tools (Node.js, Go, Rust, CLI utilities) are managed by `mise`, not dotter packages.
-
-### Modern CLI Tools
-
-This configuration replaces traditional Unix utilities with modern alternatives:
-
-| Traditional | Replacement | Improvement |
-|-------------|-------------|-------------|
-| `cat` | `bat` | Syntax highlighting, line numbers, Git integration |
-| `ls` | `eza` | File icons, tree view, Git status indicators |
-| `find` | `fd` | 5x faster, intuitive syntax, respects .gitignore |
-| `grep` | `ripgrep` | 10x faster, recursive by default, smart case |
-| `du` | `dust` | Interactive tree view, percentage breakdowns |
-| `cd` | `zoxide` | Frecency-based directory navigation (via mise) |
-| `top` | `btop` | Modern UI, mouse support, detailed metrics |
-| `man` | `tldr` | Simplified, practical examples |
-| `diff` | `delta` | Side-by-side view, syntax highlighting |
-
-### Development Environment
-
-- **Tool Management**: Mise for version management, system packages via packages.toml
-- **Version Control**: Git with delta, GPG signing, git-crypt  
-- **Containers**: Docker with BuildKit, Compose, experimental features
-- **Languages**: Python (uv), Node.js (bun), Rust (cargo), Go (all via mise)
-- **Editors**: Neovim (primary), Vim, Sublime Text, PyCharm CE
-- **AI Tools**: Claude Code, LLM CLI, Repomix for documentation
-- **Window Management**: i3-gaps with i3wsr (workspace naming), i3grid (positioning), i3blocks (status)
+## Display
+| Component | Tool | Notes |
+|-----------|------|-------|
+| Display Server | X.Org ([X.Org](https://www.x.org/)) | Arc-Dark GTK theme, 20min screen timeout, DPMS power management |
+| Window Manager | [i3-gaps](https://github.com/Airblader/i3) | Super+Enter (terminal), Super+d (rofi), Super+Tab (workspace nav) |
+| Window Tools | [i3wsr](https://github.com/roosta/i3wsr), i3blocks | EndeavourOS i3blocks config with FontAwesome icons |
+| Compositor | [Picom](https://github.com/yshui/picom) | fading enabled, terminal opacity rules |
+| Application Launcher | [Rofi](https://github.com/DaveDavenport/rofi) | Super+d (apps), Super+t (windows), Super+g (workspace groups) |
+| Notification Daemon | [Dunst](https://github.com/dunst-project/dunst) | bottom-right, 300px width, monitor 2 |
+| Status Bar | [Polybar](https://github.com/polybar/polybar) + i3blocks | EndeavourOS setup with system monitoring modules |
+| Wallpaper Manager | [feh](https://github.com/derf/feh) | --bg-fill mode, integrated with betterlockscreen |
+| Screen Locker | [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen) | JetBrainsMono font, blur effect, 5s timeout, custom colors |
+| Calendar | [gsimplecal](https://github.com/dmedvinsky/gsimplecal) | close on unfocus, positioned at (1680,833), highlight today |
 
 </details>
 
 ---
 
-## Configuration
+# Terminal
 <details>
-<summary>Customization and structure</summary>
+<summary>Shell environment and command-line tools</summary>
 
-### Zsh Features
+## Shell Environment
+| Component | Tool | Notes |
+|-----------|------|-------|
+| Shell | [Zsh](https://github.com/zsh-users/zsh) | arrows (history search), Ctrl+Space (alias expand), Alt+E (edit) |
+| Terminal Emulator | [XFCE4 Terminal](https://github.com/xfce-mirror/xfce4-terminal) | FiraCode Nerd Font 11, transparent background, custom colors |
+| Prompt | [Starship](https://github.com/starship/starship) | mise-managed |
+| History | [Atuin](https://github.com/ellie/atuin) | mise-managed |
+| File Manager | [Ranger](https://github.com/ranger/ranger) | ueberzug image preview, show hidden files |
+| Directory Navigation | [Zoxide](https://github.com/ajeetdsouza/zoxide) | mise-managed |
 
-The shell configuration includes powerful features:
-
-- **Modular structure** with conf.d/ configs and plugins/ organization
-- **Smart completion** with fuzzy matching and fzf kill process completion
-- **Git integration** with branch info, status indicators, and shortcuts
-- **Directory navigation** with zoxide, z-style jumping, and atuin history search
-- **Modern aliases** replacing traditional tools (ls→eza, cat→bat, etc.)
-- **AI integration** with Claude Code, LLM CLI, and development helpers
-- **Performance optimized** with lazy loading and caching
-
-### Desktop Environment
-
-The i3 window manager setup includes advanced workspace and window management:
-
-- **i3-gaps** - Tiling window manager with gaps between windows
-- **i3wsr** - Automatic workspace naming with FontAwesome icons based on running applications
-- **i3grid** - Grid-based window positioning and management for precise layout control  
-- **i3blocks** - Modular status bar with system monitoring (CPU, memory, temperature, bandwidth)
-- **Polybar** - Alternative status bar (configured but not active by default)
-- **Rofi** - Application launcher, window switcher, and workspace selector
-
-### AI Development Tools
-
-Ready-to-use AI coding assistants:
-
-```bash
-# Claude Code integration
-claude "help me debug this function"      # Basic usage  
-cc "analyze current directory"            # Shorthand
-ccr                                       # Resume session
-
-# LLM CLI integration  
-llm4 "write a bash function"              # GPT-4o
-llmcommit                                 # Generate commit messages
-
-# Development workflows
-repoai                                    # AI-optimized repo analysis
-repomix                                   # Repository documentation
-```
-
-### Tool Management
-
-Modern development tools are managed through **mise** (version manager):
-
-#### **Language Runtimes (5 tools)**
-- **Node.js** 22.18.0 LTS - JavaScript runtime with npm 10.9.3
-- **Python** 3.12.11 - Python interpreter with pip support
-- **Go** 1.25.0 - Go programming language with workspace at `/opt/go`
-- **Rust** stable - Rust toolchain with cargo package manager
-- **Bun** 1.2.20 - Fast JavaScript runtime and package manager
-
-#### **Essential CLI Tools (15 tools)**
-- **bat** 0.25.0 - Syntax highlighting cat replacement
-- **eza** 0.23.0 - Modern ls with icons and git integration
-- **fd** 10.2.0 - Fast find replacement
-- **ripgrep** 14.1.1 - Fast grep replacement (rg command)
-- **fzf** 0.65.1 - Fuzzy finder for interactive selections
-- **starship** 1.23.0 - Cross-shell prompt with git integration
-- **delta** 0.18.2 - Git diff viewer with syntax highlighting
-- **dust** 1.2.3 - Interactive du replacement
-- **btop** 1.4.4 - Resource monitor (htop/top replacement)
-- **zoxide** 0.9.8 - Smart cd command with frecency algorithm
-- **atuin** 18.8.0 - Shell history sync with fuzzy search
-- **yq** 4.47.1 - YAML processor
-- **jq** 1.8.1 - JSON processor
-- **sd** 1.0.0 - Intuitive sed replacement
-- **hyperfine** 1.19.0 - Command-line benchmarking tool
-- **tokei** 12.1.2 - Code statistics and line counter
-
-#### **Development Tools (10 tools)**
-- **gh** 2.76.2 - GitHub CLI for repository management
-- **glab** 1.67.0 - GitLab CLI for project management
-- **lazygit** 0.54.2 - Terminal UI for git operations
-- **lazydocker** 0.24.1 - Terminal UI for docker management
-- **glow** 2.1.1 - Markdown renderer for terminal
-- **direnv** 2.37.1 - Directory-specific environment variables
-- **docker-compose** 2.39.2 - Multi-container Docker applications
-- **just** 1.42.4 - Command runner (Makefile alternative)
-- **watchexec** 2.3.2 - File watcher for running commands
-- **bottom** 0.11.1 - System monitor alternative
-
-#### **Container & Kubernetes Tools (3 tools)**
-- **kubectl** 1.33.4 - Kubernetes command-line tool
-- **k9s** 0.50.9 - Terminal UI for Kubernetes clusters
-- **helm** 3.18.5 - Kubernetes package manager
-
-#### **Security Tools (2 tools)**
-- **age** 1.2.1 - File encryption tool
-- **sops** 3.10.2 - Secrets management
-
-#### **Additional Tools (installed separately)**
-- **tldr** 3.4.1 - Simplified man pages (via pip)
-- **httpie** 3.2.4 - User-friendly HTTP client (via pip)
-
-#### **Management Commands**
-```bash
-mise install          # Install all tools from mise.toml
-mise upgrade           # Update all tools to latest versions
-mise list             # Show all installed tools and versions
-mise which <tool>     # Show path to specific tool
-mise doctor           # Check system configuration
-```
-
-#### **System Packages**
-Non-mise tools documented in `packages.toml` for Arch/AUR installations.
-
-### Local Overrides
-
-Machine-specific configurations that are not tracked:
-
-- `~/.config/zsh/.zshrc.local` - Personal shell configuration
-- `~/.config/git/config.local` - Personal Git settings (name, email, tokens)
-- `.dotter/local.toml` - Machine-specific package selection
-- `~/.config/*/local/*` - Any local configs per application
-
-### Package Selection
-
-Edit `.dotter/local.toml` to select which packages to deploy:
-
-```toml
-packages = ["terminal", "desktop", "development", "applications"]
-```
-
-Available packages: `terminal`, `desktop`, `development`, `applications`, `system-reference`
+## Core CLI Tools
+| Tool | Replaces | Purpose | Notes |
+|------|----------|---------|-------|
+| [eza](https://github.com/eza-community/eza) | ls | File listing | ll (long), la (all), aliases replace ls |
+| [bat](https://github.com/sharkdp/bat) | cat | Text viewer | replaces cat, syntax highlighting, b/bp/bl aliases |
+| [fd](https://github.com/sharkdp/fd) | find | File search | mise-managed, respects .gitignore |
+| [ripgrep](https://github.com/BurntSushi/ripgrep) | grep | Text search | mise-managed, used by fzf integration |
+| [fzf](https://github.com/junegunn/fzf) | - | Fuzzy finder | mise-managed, integrated with zsh kill completion |
+| [btop](https://github.com/aristocratos/btop4) | htop | System monitor | mise-managed, modern resource monitoring |
+| [dust](https://github.com/bootandy/dust) | du | Disk usage | mise-managed, colorized tree view |
+| [sd](https://github.com/chmln/sd) | sed | Text processing | mise-managed, intuitive regex syntax |
+| [jq](https://github.com/jqlang/jq) | - | JSON processing | mise-managed, essential for CLI JSON work |
+| [yq](https://github.com/mikefarah/yq) | - | YAML processing | mise-managed, jq-like syntax for YAML |
+| [hyperfine](https://github.com/sharkdp/hyperfine) | time | Benchmarking | mise-managed, statistical command timing |
+| [tokei](https://github.com/XAMPPRocky/tokei) | cloc | Code statistics | mise-managed, fast language-aware counting |
 
 </details>
 
 ---
 
-## Commands
+# Development
 <details>
-<summary>Task automation reference</summary>
+<summary>Programming tools and development environment</summary>
 
-### Deployment
+## Core Development Tools
+| Category | Tool | Notes |
+|----------|------|-------|
+| Version Control | [Git](https://github.com/git/git) + [Delta](https://github.com/dandavison/delta) | Dracula theme, side-by-side, line numbers |
+| Text Editors | [Neovim](https://github.com/neovim/neovim), [Vim](https://github.com/vim/vim) | relative line numbers, 4-space tabs, smart indent, case-smart search |
+| Text Editor | [Sublime Text](https://www.sublimetext.com/) | Mariana theme, save on focus lost, auto-find in selection |
+| IDE | [JetBrains PyCharm](https://www.jetbrains.com/pycharm/) | 4GB heap, OpenGL acceleration, custom VM options |
+| AI Assistant | [Claude Code](https://claude.ai/) | custom hooks, OTLP telemetry, 15min bash timeout |
+| Containers | [Docker](https://github.com/docker/docker-ce) + [Compose](https://github.com/docker/compose) | BuildKit enabled, 10GB cache, log rotation, metrics on :9323 |
 
-| Command | Description |
-|---------|-------------|
-| `task deploy` | Deploy all packages with automatic backups |
-| `task deploy:force` | Force deployment, overwriting existing files |
-| `task deploy:dry-run` | Preview changes without applying |
-| `task undeploy` | Remove all managed symlinks |
-| `task update` | Pull latest changes and redeploy |
+## Language Runtimes (via mise)
+| Language | Tool |
+|----------|------|
+| Node.js | [Node.js](https://github.com/nodejs/node) |
+| Python | [Python](https://github.com/python/cpython) |
+| Go | [Go](https://github.com/golang/go) |
+| Rust | [Rust](https://github.com/rust-lang/rust) |
+| JavaScript Runtime | [Bun](https://github.com/oven-sh/bun) | XDG-compliant paths, global bin in ~/.local/bin, 60s test timeout |
 
-### Maintenance
-
-| Command | Description |
-|---------|-------------|
-| `task tools:install` | Install global development tools |
-| `task tools:update` | Update all global tools |
-| `mise install` | Install tools defined in mise.toml |
-| `mise upgrade` | Update all mise-managed tools |
-| `task backup:create` | Create timestamped backup |
-| `task backup:restore` | Restore from latest backup |
-| `task status` | Show current deployment status |
-| `task clean` | Remove broken symlinks and temp files |
-
-### System
-
-| Command | Description |
-|---------|-------------|
-| `task system:install` | Install system configs (requires sudo) |
-| `task packages:install` | Install required system packages |
-| `task watch` | Monitor for configuration changes |
+## CLI Development Tools
+| Tool | Purpose |
+|------|----------|
+| [lazygit](https://github.com/jesseduffield/lazygit) | Git UI | mise-managed, terminal git interface |
+| [lazydocker](https://github.com/jesseduffield/lazydocker) | Docker UI | mise-managed, terminal docker interface |
+| [gh](https://github.com/cli/cli) | GitHub CLI | mise-managed, used for PR/issue management |
+| [glab](https://github.com/profclems/glab) | GitLab CLI | mise-managed, GitLab workflows |
+| [glow](https://github.com/charmbracelet/glow) | Markdown renderer | mise-managed, terminal markdown viewer |
+| [just](https://github.com/casey/just) | Command runner | mise-managed, modern make alternative |
+| [watchexec](https://github.com/watchexec/watchexec) | File watcher | mise-managed, execute on file changes |
+| [direnv](https://github.com/direnv/direnv) | Environment manager | mise-managed, per-directory env vars |
+| [repomix](https://github.com/yamadashy/repomix) | Documentation | 10MB max file size, excludes binary/media files |
 
 </details>
 
 ---
 
-## Technical Details
+# Applications
 <details>
-<summary>Architecture and implementation</summary>
+<summary>User applications and utilities</summary>
 
-### How It Works
-
-1. **Dotter** manages symlinks from repository to system locations
-2. **Task** provides consistent command interface and automation
-3. **Package system** allows granular deployment control
-4. Follows XDG Base Directory specification
-
-### Deployment Model
-
-- **User configurations** deployed to `~/.config/` and `~/.local/`
-- **System configurations** in `system/` require manual deployment to `/etc/`
-- All deployments create backups before overwriting
-- Symlinks allow instant updates when repository changes
-
-### Performance Optimizations
-
-#### Zsh Startup
-- Completion caching with weekly refresh
-- Lazy loading for heavy plugins
-- Conditional PATH modifications
-- Compiled zcompdump for faster loading
-
-#### Tool Loading
-- Commands checked before aliasing
-- Functions loaded on-demand
-- Heavy operations backgrounded
-- Minimal synchronous operations
-
-### Security Features
-
-- **SSH**: Ed25519 keys, strict host checking, no agent forwarding
-- **Git**: GPG signing ready, separate local config, git-crypt support
-- **System**: X11 hardening, firewall configs, restricted permissions
-- **Best Practice**: `.local` pattern for untracked personal data
+## User Applications
+| Category | Tool | Notes |
+|----------|------|-------|
+| Web Browser | [Firefox](https://github.com/mozilla/gecko-dev) | arkenfox user.js, Tree Style Tab, uBlock Origin |
+| Note Taking | [Obsidian](https://obsidian.md/) | 9 plugins: Dataview, Excalidraw, Canvas, Task Progress, Heatmap Calendar |
+| Update Notifier | [Kalu](https://github.com/jjk-jacky/kalu) | 120min interval, AUR support, auto-checks enabled |
+| Package Manager | pacman + [yay](https://github.com/Jguer/yay) | AUR helper for community packages |
 
 </details>
 
