@@ -18,25 +18,13 @@
 
 ---
 
-## 🚀 Quick Start
+## Installation
 
 ```bash
-# Clone repository
-git clone https://github.com/USER/dotfiles ~/Public/dotfiles
-cd ~/Public/dotfiles
-
-# Complete automated setup
-ansible-playbook .setup/ansible.yml -K
-
-# Install development tools
-mise install
-
-# Deploy configurations  
-dotter deploy
-
-# Restart shell
-exec zsh
+sudo pacman -S ansible && ansible-pull -U https://github.com/Morelatto/dotfiles.git .setup/ansible.yml -K
 ```
+
+**What it does:** Installs system packages, development tools (mise), and deploys configurations (dotter) automatically.
 
 ---
 
