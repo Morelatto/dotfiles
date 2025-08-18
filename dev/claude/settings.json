@@ -24,7 +24,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/home/storm/.claude/notification-router.sh"
+            "command": "$HOME/.claude/notification-router.sh"
           }
         ]
       }
@@ -35,7 +35,7 @@
         "hooks": [
           {
             "type": "command", 
-            "command": "/home/storm/.claude/desktop-only-notify.sh \"Task completed successfully\" \"✅ Claude Done\""
+            "command": "$HOME/.claude/desktop-only-notify.sh \"Task completed successfully\" \"✅ Claude Done\""
           }
         ]
       }
@@ -46,7 +46,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/home/storm/.claude/tool-tracker.sh"
+            "command": "$HOME/.claude/tool-tracker.sh"
           }
         ]
       }

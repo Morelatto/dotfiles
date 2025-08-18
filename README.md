@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌩️ Storm's Dotfiles
+# 🌩️ Dotfiles
 
 **Modern dotfiles for EndeavourOS/Arch Linux with automated setup**
 
