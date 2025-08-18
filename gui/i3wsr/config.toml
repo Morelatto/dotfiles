@@ -1,10 +1,3 @@
-[general]
-default_icon = ""
-
-[options]
-remove_duplicates = true
-no_names = true
-
 [icons]
 firefox = ""
 chromium = ""
@@ -26,4 +19,11 @@ gimp = ""
 obsidian = ""
 docker = ""
 remmina = ""
-org.remmina.Remmina = ""
+"org.remmina.Remmina" = ""
+
+[general]
+default_icon = ""
+
+[options]
+remove_duplicates = true
+no_names = true
