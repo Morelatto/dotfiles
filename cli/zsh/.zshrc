@@ -73,3 +73,4 @@ done
 
 # Show profiling results if enabled
 [[ -n "$ZPROF" ]] && zprof
+echo "ZSHRC LOADED BY STARTUP"

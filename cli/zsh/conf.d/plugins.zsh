@@ -56,4 +56,11 @@ load_plugin "zsh-autosuggestions" && {
 }
 
 # Mise - universal tool version manager (replaces fnm, pyenv, nvm, etc.)
-(( $+commands[mise] )) && eval "$(mise activate zsh)"
+if (( $+commands[mise] )); then
+    eval "$(mise activate zsh)"
+    # Clear command hash table after mise activation to ensure correct paths
+    hash -r
+fi
+
+# Zoxide - smart cd command (mise-managed)
+(( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
