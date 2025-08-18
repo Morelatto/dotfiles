@@ -53,6 +53,13 @@ helm = "latest"
 age = "latest"
 sops = "latest"
 
+# Node/Bun global packages (npm backend)
+"npm:@anthropic-ai/claude-code" = "latest"
+"npm:@marp-team/marp-cli" = "latest"
+"npm:@mermaid-js/mermaid-cli" = "latest"
+"npm:npm-check" = "latest"
+"npm:serve" = "latest"
+
 # Currently using system packages but could be managed by mise:
 # neovim = "latest"   # Currently using system nvim
 # tmux = "latest"     # Could be managed by mise
