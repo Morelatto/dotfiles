@@ -61,17 +61,21 @@ if ! read -r used total percentage available <<< "$(get_disk_usage "$DIR")"; the
     exit 1
 fi
 
-# Color coding based on usage percentage
+# Gradual color coding based on usage percentage (more subtle)
 if [ "$percentage" -ge 95 ]; then
-    color="#ff5555"  # Red for critical usage
+    color="#e57474"  # Muted red for critical usage
 elif [ "$percentage" -ge 90 ]; then
-    color="#ffb86c"  # Orange for very high usage
-elif [ "$percentage" -ge 80 ]; then
-    color="#f1fa8c"  # Yellow for high usage
-elif [ "$percentage" -le "$ALERT_LOW" ]; then
-    color="#50fa7b"  # Green for low usage (good)
+    color="#e5a574"  # Muted red-orange
+elif [ "$percentage" -ge 85 ]; then
+    color="#e5c574"  # Muted orange
+elif [ "$percentage" -ge 75 ]; then
+    color="#d9b08c"  # Muted orange-yellow
+elif [ "$percentage" -ge 65 ]; then
+    color="#c9b574"  # Muted yellow-green
+elif [ "$percentage" -ge 50 ]; then
+    color="#a8b574"  # Muted light green
 else
-    color="#bd93f9"  # Purple for normal usage
+    color="#7fb069"  # Muted green for low usage (good)
 fi
 
 # Create display text
@@ -85,5 +89,7 @@ fi
 
 display_text="${used}/${total}"
 
-# Output for i3blocks (original simple format)
-echo "$display_text"
+# Output for i3blocks with color
+echo " $display_text"
+echo " $display_text"
+echo "$color"
