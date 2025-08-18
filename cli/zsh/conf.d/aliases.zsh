@@ -28,6 +28,14 @@ alias cdp='cd ~/Pictures'
 # =============================================================================
 alias cp='cp -Ri'    # Recursive and interactive
 alias md='mkdir'
+
+# =============================================================================
+# Listing Files
+# =============================================================================
+alias ls='ls --color=auto --group-directories-first'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 alias mkdir='mkdir -p'
 alias mv='mv -i'     # Interactive by default
 alias rm='rm -i'     # Interactive by default
