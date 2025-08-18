@@ -27,12 +27,6 @@ yay -S mise-bin dotter-rs-bin
 # Clone and setup
 git clone https://github.com/USER/dotfiles ~/Public/dotfiles
 cd ~/Public/dotfiles
-
-# Optional: Set up environment variables
-cp .env.example ~/.env
-# Edit ~/.env and add your API keys (e.g., WEATHER_API_KEY)
-
-# Deploy configurations
 task setup
 
 # Restart shell

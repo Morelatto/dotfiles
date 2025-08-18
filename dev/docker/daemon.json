@@ -33,7 +33,7 @@
     }
   },
   "metrics-addr": "127.0.0.1:9323",
-  "insecure-registries": [],
+  "insecure-registries": ["REGISTRY_IP:8080"],
   "registry-mirrors": [],
   "default-ulimits": {
     "nofile": {
