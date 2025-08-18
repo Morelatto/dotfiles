@@ -40,10 +40,11 @@ cd ~/Public/dotfiles
 
 | Package | Purpose | Primary Components |
 |---------|---------|-------------------|
-| **terminal** | Shell environment | Zsh configuration, Starship prompt, Atuin history, custom scripts |
-| **development** | Programming tools | Git with delta, Docker, Neovim, language-specific configurations |
-| **desktop** | Window management | i3-gaps, Picom compositor, Rofi launcher, Dunst notifications |
-| **applications** | Application configs | Firefox user.js, Obsidian settings, GTK themes |
+| **terminal** | Shell environment | Zsh (conf.d + plugins), Starship prompt, Atuin history sync, custom scripts |
+| **development** | Programming tools | Git with delta, Docker, Neovim, Claude Code, language configs |
+| **desktop** | Window management | i3-gaps with i3blocks/i3wsr/i3grid, Picom, Rofi, Dunst, Polybar |
+| **applications** | Application configs | Firefox user.js, Obsidian settings, GTK themes, PyCharm |
+| **system-reference** | System configs | Lightdm, Pacman, X11 configs (manual install required) |
 
 ### Modern CLI Tools
 
@@ -56,19 +57,20 @@ This configuration replaces traditional Unix utilities with modern alternatives:
 | `find` | `fd` | 5x faster, intuitive syntax, respects .gitignore |
 | `grep` | `ripgrep` | 10x faster, recursive by default, smart case |
 | `du` | `dust` | Interactive tree view, percentage breakdowns |
-| `cd` | `autojump` | Frecency-based directory navigation |
+| `cd` | `zoxide` | Frecency-based directory navigation (via mise) |
 | `top` | `btop` | Modern UI, mouse support, detailed metrics |
 | `man` | `tldr` | Simplified, practical examples |
 | `diff` | `delta` | Side-by-side view, syntax highlighting |
 
 ### Development Environment
 
-- **Version Control**: Git with delta, GPG signing, git-crypt
+- **Tool Management**: Mise for version management, system packages via packages.toml
+- **Version Control**: Git with delta, GPG signing, git-crypt  
 - **Containers**: Docker with BuildKit, Compose, experimental features
-- **Languages**: Python (uv), Node.js (fnm/bun), Rust (cargo), Go
-- **Editors**: Neovim (primary), Vim, Sublime Text
-- **AI Tools**: Claude Code, LLM CLI, Aider
-- **Documentation**: Marp, Mermaid, Repomix
+- **Languages**: Python (uv), Node.js (bun), Rust (cargo), Go (all via mise)
+- **Editors**: Neovim (primary), Vim, Sublime Text, PyCharm CE
+- **AI Tools**: Claude Code, LLM CLI, Repomix for documentation
+- **Window Management**: i3-gaps with i3wsr (workspace naming), i3grid (positioning), i3blocks (status)
 
 </details>
 
@@ -82,12 +84,24 @@ This configuration replaces traditional Unix utilities with modern alternatives:
 
 The shell configuration includes powerful features:
 
-- **Smart completion** with fuzzy matching and context awareness
+- **Modular structure** with conf.d/ configs and plugins/ organization
+- **Smart completion** with fuzzy matching and fzf kill process completion
 - **Git integration** with branch info, status indicators, and shortcuts
-- **Directory navigation** with autojump, z-style jumping, and history
+- **Directory navigation** with zoxide, z-style jumping, and atuin history search
 - **Modern aliases** replacing traditional tools (ls→eza, cat→bat, etc.)
 - **AI integration** with Claude Code, LLM CLI, and development helpers
 - **Performance optimized** with lazy loading and caching
+
+### Desktop Environment
+
+The i3 window manager setup includes advanced workspace and window management:
+
+- **i3-gaps** - Tiling window manager with gaps between windows
+- **i3wsr** - Automatic workspace naming with FontAwesome icons based on running applications
+- **i3grid** - Grid-based window positioning and management for precise layout control  
+- **i3blocks** - Modular status bar with system monitoring (CPU, memory, temperature, bandwidth)
+- **Polybar** - Alternative status bar (configured but not active by default)
+- **Rofi** - Application launcher, window switcher, and workspace selector
 
 ### AI Development Tools
 
@@ -95,19 +109,29 @@ Ready-to-use AI coding assistants:
 
 ```bash
 # Claude Code integration
-cl "help me debug this function"           # Basic usage
-clhere                                     # Analyze current directory
-clfile script.py "explain this code"      # File analysis
+claude "help me debug this function"      # Basic usage  
+cc "analyze current directory"            # Shorthand
+ccr                                       # Resume session
 
 # LLM CLI integration  
 llm4 "write a bash function"              # GPT-4o
-llmcode "optimize this algorithm"         # Code-focused
 llmcommit                                 # Generate commit messages
 
 # Development workflows
-repodoc                                   # Generate repo documentation
 repoai                                    # AI-optimized repo analysis
+repomix                                   # Repository documentation
 ```
+
+### Tool Management
+
+Modern development tools are managed through **mise** (version manager):
+
+- **Language Runtimes**: Node.js, Python, Go, Rust, Bun (automatically installed)
+- **CLI Tools**: bat, eza, fd, ripgrep, fzf, starship, delta, dust, btop, etc.
+- **Development Tools**: lazygit, lazydocker, gh, glow, httpie, and more
+- **System Packages**: Documented in `packages.toml` for Arch/AUR installations
+
+Use `mise install` to install all tools or `mise upgrade` to update them.
 
 ### Local Overrides
 
@@ -123,8 +147,10 @@ Machine-specific configurations that are not tracked:
 Edit `.dotter/local.toml` to select which packages to deploy:
 
 ```toml
-packages = ["terminal", "development"]
+packages = ["terminal", "desktop", "development", "applications"]
 ```
+
+Available packages: `terminal`, `desktop`, `development`, `applications`, `system-reference`
 
 </details>
 
@@ -150,7 +176,9 @@ packages = ["terminal", "development"]
 |---------|-------------|
 | `task tools:install` | Install global development tools |
 | `task tools:update` | Update all global tools |
-| `task backup` | Create timestamped backup |
+| `mise install` | Install tools defined in mise.toml |
+| `mise upgrade` | Update all mise-managed tools |
+| `task backup:create` | Create timestamped backup |
 | `task backup:restore` | Restore from latest backup |
 | `task status` | Show current deployment status |
 | `task clean` | Remove broken symlinks and temp files |
