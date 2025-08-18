@@ -31,8 +31,8 @@ if (( $+commands[git] )); then
     alias gsh='git show'
     alias gtag='git tag'
     alias gpr='git pull --rebase'
-    alias gcam='git commit --amend'
-    alias gcane='git commit --amend --no-edit'
+    alias gca='git commit --amend'
+    alias gcan='git commit --amend --no-edit'
 
     (( $+commands[delta] )) && export GIT_PAGER="delta"
     export GIT_EDITOR="${GIT_EDITOR:-${EDITOR:-nvim}}"
@@ -376,16 +376,16 @@ if (( $+commands[fzf] )); then
     _fzf_kill_completion() {
         setopt localoptions noshwordsplit noksh_arrays noposixbuiltins
         local selected
-        
+
         # Use a more comprehensive process listing that includes searchable command args
-        selected=$(ps -eo pid,ppid,user,%cpu,%mem,comm,args --sort=-%cpu | 
+        selected=$(ps -eo pid,ppid,user,%cpu,%mem,comm,args --sort=-%cpu |
             awk 'NR==1 {next} {
                 # Format: PID PPID USER %CPU %MEM COMM ARGS...
                 # Create searchable line with key info
                 cmd = $7; for(i=8; i<=NF; i++) cmd = cmd " " $i
                 # Dynamic program name extraction
                 prog = $6  # Start with comm field
-                
+
                 # Extract meaningful name from command path
                 if (cmd ~ /\/[^\/\s]+/) {
                     # Extract basename from full path in command
@@ -404,7 +404,7 @@ if (( $+commands[fzf] )); then
                         }
                     }
                 }
-                
+
                 # Special handling for JVM applications
                 if (prog == "java" && cmd ~ /-jar/) {
                     match(cmd, /-jar\s+([^\/\s]*\/)?([^\/\s]+)\.jar/, jar_match)
@@ -412,7 +412,7 @@ if (( $+commands[fzf] )); then
                         prog = jar_match[2]
                     }
                 }
-                
+
                 # Special handling for Python scripts
                 if ((prog == "python" || prog == "python3") && cmd ~ /\.py/) {
                     match(cmd, /([^\/\s]+)\.py/, py_match)
@@ -420,7 +420,7 @@ if (( $+commands[fzf] )); then
                         prog = py_match[1]
                     }
                 }
-                
+
                 # Special handling for Node.js
                 if (prog == "node") {
                     if (cmd ~ /\/node_modules\/\.bin\//) {
@@ -435,25 +435,25 @@ if (( $+commands[fzf] )); then
                         }
                     }
                 }
-                
+
                 printf "%s %s %s %s %s %s %s\n", $1, $2, $3, $4, $5, prog, substr(cmd, 1, 80)
-            }' | 
+            }' |
             fzf --multi \
                 --header="Select processes to kill (TAB for multi-select, type to search)" \
                 --preview 'ps -fp {1} 2>/dev/null' \
                 --preview-window=down:4:wrap \
-                --bind 'ctrl-r:reload(ps -eo pid,ppid,user,%cpu,%mem,comm,args --sort=-%cpu | awk "NR==1 {next} {cmd = \$7; for(i=8; i<=NF; i++) cmd = cmd \" \" \$i; prog = \$6; if (cmd ~ /\/[^\/\\s]+/) { split(cmd, cmd_parts, \" \"); for (i in cmd_parts) { if (cmd_parts[i] ~ /^\/.*\/[^\/]+\$/) { split(cmd_parts[i], path_parts, \"/\"); basename = path_parts[length(path_parts)]; gsub(/\\.(py|js|sh|rb|pl|jar|exe)\$/, \"\", basename); gsub(/-bin\$/, \"\", basename); if (basename != \"\" && basename != prog) { prog = basename; break } } } } if (prog == \"java\" && cmd ~ /-jar/) { match(cmd, /-jar\\s+([^\\/\\s]*\\/)?([^\\/\\s]+)\\.jar/, jar_match); if (jar_match[2] != \"\") { prog = jar_match[2] } } printf \"%s %s %s %s %s %s %s\\n\", \$1, \$2, \$3, \$4, \$5, prog, substr(cmd, 1, 80)}")' | 
+                --bind 'ctrl-r:reload(ps -eo pid,ppid,user,%cpu,%mem,comm,args --sort=-%cpu | awk "NR==1 {next} {cmd = \$7; for(i=8; i<=NF; i++) cmd = cmd \" \" \$i; prog = \$6; if (cmd ~ /\/[^\/\\s]+/) { split(cmd, cmd_parts, \" \"); for (i in cmd_parts) { if (cmd_parts[i] ~ /^\/.*\/[^\/]+\$/) { split(cmd_parts[i], path_parts, \"/\"); basename = path_parts[length(path_parts)]; gsub(/\\.(py|js|sh|rb|pl|jar|exe)\$/, \"\", basename); gsub(/-bin\$/, \"\", basename); if (basename != \"\" && basename != prog) { prog = basename; break } } } } if (prog == \"java\" && cmd ~ /-jar/) { match(cmd, /-jar\\s+([^\\/\\s]*\\/)?([^\\/\\s]+)\\.jar/, jar_match); if (jar_match[2] != \"\") { prog = jar_match[2] } } printf \"%s %s %s %s %s %s %s\\n\", \$1, \$2, \$3, \$4, \$5, prog, substr(cmd, 1, 80)}")' |
             awk '{print $1}')
-        
+
         if [[ -n "$selected" ]]; then
             local pids=(${(f)selected})
             compadd -a pids
         fi
     }
-    
+
     # Register the completion function
     compdef _fzf_kill_completion kill
-    
+
     # Also enable for killall and pkill
     compdef _fzf_kill_completion killall
     compdef _fzf_kill_completion pkill
