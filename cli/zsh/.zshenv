@@ -38,10 +38,6 @@ export SAVEHIST=50000
 export LESS="-R -F -X"
 export LESSHISTFILE=-
 
-# Bun configuration
-export BUN_INSTALL="$HOME/.bun"
-path=($BUN_INSTALL/bin(N) $BUN_INSTALL/install/global/node_modules/.bin(N) $path)
-
 # Docker configuration
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
