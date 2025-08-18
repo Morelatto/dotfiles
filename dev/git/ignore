@@ -149,3 +149,4 @@ temp/
 .env.*.local
 .history/
 .phpunit.result.cache
+**/CLAUDE.local.md

@@ -15,5 +15,41 @@
     "OTEL_METRICS_INCLUDE_SESSION_ID": "true",
     "OTEL_METRICS_INCLUDE_ACCOUNT_UUID": "true"
   },
-  "includeCoAuthoredBy": false
+  "includeCoAuthoredBy": false,
+  "model": "sonnet",
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/storm/.claude/notification-router.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command", 
+            "command": "/home/storm/.claude/desktop-only-notify.sh \"Task completed successfully\" \"✅ Claude Done\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/storm/.claude/tool-tracker.sh"
+          }
+        ]
+      }
+    ]
+  }
 }
