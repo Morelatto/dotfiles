@@ -48,7 +48,7 @@ sudo pacman -S ansible && ansible-pull -U https://github.com/Morelatto/dotfiles.
 | Compositor | [Picom](https://github.com/yshui/picom) | fading enabled, terminal opacity rules |
 | Application Launcher | [Rofi](https://github.com/DaveDavenport/rofi) | Super+d (apps), Super+t (windows), Super+g (workspace groups) |
 | Notification Daemon | [Dunst](https://github.com/dunst-project/dunst) | bottom-right, 300px width, monitor 2 |
-| Status Bar | [Polybar](https://github.com/polybar/polybar) + i3blocks | EndeavourOS setup with system monitoring modules |
+| Status Bar | [i3blocks](https://github.com/vivien/i3blocks) | EndeavourOS setup with system monitoring modules |
 | Wallpaper Manager | [feh](https://github.com/derf/feh) | --bg-fill mode, integrated with betterlockscreen |
 | Screen Locker | [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen) | JetBrainsMono font, blur effect, 5s timeout, custom colors |
 | Calendar | [gsimplecal](https://github.com/dmedvinsky/gsimplecal) | close on unfocus, positioned at (1680,833), highlight today |
