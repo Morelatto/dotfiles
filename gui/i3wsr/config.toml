@@ -1,0 +1,29 @@
+[general]
+default_icon = ""
+
+[options]
+remove_duplicates = true
+no_names = true
+
+[icons]
+firefox = ""
+chromium = ""
+google-chrome = ""
+kitty = ""
+alacritty = ""
+xfce4-terminal = ""
+Xfce4-terminal = ""
+gnome-terminal = ""
+code = ""
+vim = ""
+nvim = ""
+jetbrains-pycharm-ce = ""
+thunar = ""
+discord = ""
+spotify = ""
+vlc = ""
+gimp = ""
+obsidian = ""
+docker = ""
+remmina = ""
+org.remmina.Remmina = ""
