@@ -44,8 +44,22 @@ esac
 # Get CPU usage
 cpu_usage=$(get_cpu_usage)
 
-# Simple progress bar (3 characters only)
-progress_bar=$(create_progress_bar "$cpu_usage" 3 "thin")
+# Create Unicode block indicator (8 levels)
+blocks="▁▂▃▄▅▆▇█"
+block_index=$((cpu_usage * 7 / 100))
+if [ $block_index -gt 7 ]; then block_index=7; fi
+block_char=${blocks:$block_index:1}
 
-# Minimal output - just essential info
-echo " ${cpu_usage}% ${progress_bar}"
+# Subtle color coding based on usage levels
+if [ $cpu_usage -le 50 ]; then
+    color="#7fb069"  # Muted green for low usage
+elif [ $cpu_usage -le 80 ]; then
+    color="#d9b08c"  # Muted orange for medium usage
+else
+    color="#e57474"  # Muted red for high usage
+fi
+
+# Output with color and Unicode block
+echo " ${cpu_usage}% ${block_char}"
+echo " ${cpu_usage}% ${block_char}"
+echo "$color"

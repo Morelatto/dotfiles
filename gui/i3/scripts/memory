@@ -30,8 +30,22 @@ mem_total_bytes=$((mem_total * 1024))
 used_formatted=$(format_bytes "$mem_used_bytes")
 total_formatted=$(format_bytes "$mem_total_bytes")
 
-# Simple progress bar (3 characters only)
-progress_bar=$(create_progress_bar "$mem_percentage" 3 "thin")
+# Create Unicode block indicator (8 levels)
+blocks="▁▂▃▄▅▆▇█"
+block_index=$((mem_percentage * 7 / 100))
+if [ $block_index -gt 7 ]; then block_index=7; fi
+block_char=${blocks:$block_index:1}
 
-# Minimal output - just essential info
-echo " ${mem_percentage}% ${progress_bar}"
+# Subtle color coding based on usage levels
+if [ $mem_percentage -le 60 ]; then
+    color="#7fb069"  # Muted green for low memory usage
+elif [ $mem_percentage -le 85 ]; then
+    color="#d9b08c"  # Muted orange for medium memory usage
+else
+    color="#e57474"  # Muted red for high memory usage
+fi
+
+# Output with color and Unicode block
+echo " ${mem_percentage}% ${block_char}"
+echo " ${mem_percentage}% ${block_char}"
+echo "$color"

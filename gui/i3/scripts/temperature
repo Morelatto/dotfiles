@@ -50,8 +50,25 @@ temp_int=${temp%.*}
 # Handle edge cases
 if [ "$temp" = "0" ] || [ -z "$temp" ] || [ "$temp_int" -lt 20 ]; then
     echo " N/A"
+    echo " N/A"
+    echo "#6272a4"  # Muted gray for unknown/unavailable
     exit 0
 fi
 
-# Minimal output - just temperature
+# Dynamic color coding based on temperature (in Celsius)
+if [ "$temp_int" -le 50 ]; then
+    color="#7fb069"  # Muted green for cool temperatures (good)
+elif [ "$temp_int" -le 65 ]; then
+    color="#a8b574"  # Muted light green for warm
+elif [ "$temp_int" -le 75 ]; then
+    color="#d9b08c"  # Muted orange for getting hot
+elif [ "$temp_int" -le 85 ]; then
+    color="#e5c574"  # Muted orange-yellow for hot
+else
+    color="#e57474"  # Muted red for very hot (concerning)
+fi
+
+# Output with color coding
 echo " ${temp_int}°C"
+echo " ${temp_int}°C"
+echo "$color"
