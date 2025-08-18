@@ -31,7 +31,7 @@ ICONS = {
     'obsidian': '\uf15c',  # fa-file-text
     'pycharm': '\uf121',   # fa-code
     'thunar': '\uf07b',    # fa-folder (file manager)
-    'discord': '\uf392',   # fa-discord
+    'discord': '\uf23a',   # fa-comment-alt (chat/discord)
     'spotify': '\uf1bc',   # fa-spotify
     'vlc': '\uf03d',       # fa-video
     'gimp': '\uf1fc',      # fa-paint-brush
