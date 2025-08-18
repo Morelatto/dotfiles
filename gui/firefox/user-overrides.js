@@ -91,3 +91,10 @@ user_pref("privacy.cpd.history", false); // 2812 to match when you use Ctrl-Shif
   // user_pref("privacy.cpd.formdata", false); // 2812 optional
 
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+
+/* GTK Theme Integration */
+user_pref("widget.use-xdg-desktop-portal.file-picker", 1);
+user_pref("widget.gtk.overlay-scrollbars.enabled", false);
+user_pref("widget.non-native-theme.enabled", false);
+user_pref("browser.theme.content-theme", 0); // 0=auto, 1=light, 2=dark
+user_pref("browser.theme.toolbar-theme", 0); // 0=auto, 1=light, 2=dark
