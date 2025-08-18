@@ -1,0 +1,56 @@
+# Global mise configuration
+# Development tools and CLI utilities
+
+[tools]
+# Languages
+node = "lts"
+python = "3.12"
+go = "latest"
+rust = "latest"
+bun = "latest"
+
+# CLI Tools
+bat = "latest"
+eza = "latest"
+fd = "latest"
+ripgrep = "latest"
+fzf = "latest"
+starship = "latest"
+delta = "latest"
+dust = "latest"
+btop = "latest"
+yq = "latest"
+jq = "latest"
+zoxide = "latest"
+atuin = "latest"
+lazygit = "latest"
+lazydocker = "latest"
+glow = "latest"
+bottom = "latest"
+sd = "latest"
+hyperfine = "latest"
+tokei = "latest"
+
+# Development Tools
+gh = "latest"
+glab = "latest"
+direnv = "latest"
+watchexec = "latest"
+just = "latest"
+
+# Container Tools
+docker-compose = "latest"
+kubectl = "latest"
+k9s = "latest"
+helm = "latest"
+
+# Security Tools
+age = "latest"
+sops = "latest"
+
+# NPM packages
+"npm:@anthropic-ai/claude-code" = "latest"
+"npm:@marp-team/marp-cli" = "latest"
+"npm:@mermaid-js/mermaid-cli" = "latest"
+"npm:npm-check" = "latest"
+"npm:serve" = "latest"
