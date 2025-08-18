@@ -1,49 +1,52 @@
 #!/usr/bin/env bash
-# Caffeine toggle for i3blocks - controls DPMS directly
-# Uses FontAwesome icons
-
-# State file to track caffeine status
+# Caffeine for i3blocks with systemd integration
 STATE_FILE="/tmp/.caffeine_active_${USER}"
+INHIBIT_PID_FILE="/tmp/.caffeine_inhibit_pid_${USER}"
 
-# Handle mouse clicks
-case $BLOCK_BUTTON in
-    1) # Left click - toggle DPMS
-        if [ -f "$STATE_FILE" ]; then
-            # Caffeine is ON, turn it OFF (re-enable screen timeout)
-            rm -f "$STATE_FILE"
-            xset +dpms
-            xset s 1200
-            xset dpms 1800 1800 1800
-            notify-send -i dialog-information "Caffeine OFF" "Screen lock enabled (20 min)" -t 2000
-        else
-            # Caffeine is OFF, turn it ON (disable screen timeout)
-            touch "$STATE_FILE"
-            xset -dpms
-            xset s off
-            notify-send -i dialog-warning "Caffeine ON" "Screen lock disabled" -t 2000
+# Handle clicks to toggle
+if [ -n "$BLOCK_BUTTON" ]; then
+    if [ -f "$STATE_FILE" ]; then
+        # Turn OFF
+        rm -f "$STATE_FILE"
+        
+        # Kill systemd-inhibit if running
+        if [ -f "$INHIBIT_PID_FILE" ]; then
+            kill $(cat "$INHIBIT_PID_FILE" 2>/dev/null) 2>/dev/null
+            rm -f "$INHIBIT_PID_FILE"
         fi
-        # Force i3blocks refresh
-        pkill -RTMIN+10 i3blocks
-        ;;
-    3) # Right click - show current status
-        if [ -f "$STATE_FILE" ]; then
-            notify-send -i dialog-information "Caffeine Status" "Active - Screen lock disabled" -t 2000
-        else
-            TIMEOUT=$(xset q | grep "timeout:" | awk '{print $2}')
-            notify-send -i dialog-information "Caffeine Status" "Inactive - Lock in ${TIMEOUT}s" -t 2000
-        fi
-        ;;
-esac
+        
+        # Restore X11 settings
+        xset +dpms
+        xset s 1200
+        xset dpms 1800 1800 1800
+    else
+        # Turn ON
+        touch "$STATE_FILE"
+        
+        # X11 settings
+        xset -dpms
+        xset s off
+        
+        # systemd inhibit (same as emergency command that worked)
+        nohup systemd-inhibit --what=sleep:idle:handle-lid-switch:handle-power-key \
+                              --who="caffeine" \
+                              --why="User requested no shutdown" \
+                              sleep infinity > /dev/null 2>&1 &
+        INHIBIT_PID=$!
+        echo $INHIBIT_PID > "$INHIBIT_PID_FILE"
+    fi
+    
+    # Force immediate i3blocks refresh
+    pkill -SIGUSR1 i3blocks 2>/dev/null
+fi
 
-# Output: FontAwesome icon based on state
+# Output icon
 if [ -f "$STATE_FILE" ]; then
-    # Active - Coffee icon (caffeine ON)
-    echo -e "\uf0f4"   # FontAwesome coffee icon (U+F0F4)
-    echo -e "\uf0f4"
-    echo "#FFEB3B"     # Bright yellow
+    echo " ☀️ "
+    echo " ☀️ "
+    echo "#FFA500"
 else
-    # Inactive - Moon icon (caffeine OFF)
-    echo -e "\uf186"   # FontAwesome moon icon (U+F186)
-    echo -e "\uf186"
-    echo "#666666"     # Dark gray
+    echo " 🌙 "
+    echo " 🌙 "
+    echo "#D3D3D3"
 fi
