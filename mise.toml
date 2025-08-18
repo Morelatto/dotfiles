@@ -19,10 +19,11 @@ starship = "latest"   # Used for prompt
 delta = "latest"      # Used for git diffs
 dust = "latest"       # Used as du replacement
 btop = "latest"       # Used as top/htop replacement
-tldr = "latest"       # Better man pages
-yq = "latest"         # YAML processor
+yq = "latest"         # YAML processor  
 jq = "latest"         # JSON processor
-httpie = "latest"     # Better curl
+
+# Tools not in mise registry - install via system packages:
+# tldr, httpie, procs - add to packages.toml instead
 
 # Missing from current setup but useful
 zoxide = "latest"     # Better cd (not currently configured)
@@ -31,7 +32,6 @@ lazygit = "latest"    # Terminal UI for git
 lazydocker = "latest" # Terminal UI for docker
 glow = "latest"       # Markdown renderer
 bottom = "latest"     # Alternative system monitor
-procs = "latest"      # Better ps
 sd = "latest"         # Better sed
 hyperfine = "latest"  # Benchmarking tool
 tokei = "latest"      # Code statistics
@@ -64,6 +64,7 @@ EDITOR = "nvim"
 VISUAL = "nvim"
 PAGER = "less"
 LANG = "en_US.UTF-8"
+GOPATH = "~/go"
 
 [tasks.setup]
 description = "Install all tools and dependencies"

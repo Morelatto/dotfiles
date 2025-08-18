@@ -55,8 +55,11 @@ load_plugin "zsh-autosuggestions" && {
     # ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 }
 
-# Pyenv initialization (required for virtualenv-init to work)
-if (( $+commands[pyenv] )); then
+# Mise - universal tool version manager (replaces pyenv, nvm, etc)
+(( $+commands[mise] )) && eval "$(mise activate zsh)"
+
+# Pyenv initialization (fallback for systems without mise)
+if (( $+commands[pyenv] )) && ! (( $+commands[mise] )); then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 fi
