@@ -13,7 +13,12 @@ xset dpms 1800 1800 1800
 # Set GTK theme
 export GTK_THEME=Arc-Dark
 
-# Keyboard repeat rate (optional, adjust as needed)
+# Firefox GTK integration
+export MOZ_USE_XINPUT2=1
+export MOZ_ENABLE_WAYLAND=0
+export MOZ_GTK_TITLEBAR_DECORATION=client
+
+# Keyboard repeat rate (optional, adjust as needed)  
 # xset r rate 300 50
 
 # Mouse acceleration (optional, adjust as needed)
