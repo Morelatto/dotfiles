@@ -26,4 +26,4 @@ default_icon = ""
 
 [options]
 remove_duplicates = true
-no_names = true
+no_names = false
