@@ -144,7 +144,7 @@ aur_packages = [
 # Python packages installed globally via pip/uv
 python_packages = [
     "ipython",
-    "jupyter",
+    "jupyter", 
     "black",
     "ruff",
     "mypy",
@@ -152,9 +152,9 @@ python_packages = [
     "poetry",
     "pipenv",
     "virtualenv",
-    "httpie",
-    "tldr",
-    "yt-dlp",
+    "httpie",       # Better curl (available via pip)
+    "tldr",         # Better man pages (available via pip)
+    "yt-dlp", 
     "speedtest-cli",
     "repomix",
 ]
@@ -175,19 +175,19 @@ node_packages = [
 ]
 
 [cargo]
-# Rust packages installed via cargo
+# Rust packages installed via cargo  
 rust_packages = [
     "bat",
-    "eza",
+    "eza", 
     "fd-find",
     "ripgrep",
     "dust",
     "zoxide",
     "bottom",
-    "procs",
+    "procs",        # Better ps command (available via cargo)
     "sd",
     "hyperfine",
-    "tokei",
+    "tokei", 
     "git-delta",
     "dotter",
 ]
