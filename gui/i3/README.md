@@ -5,6 +5,37 @@
 This guide explains the i3 window manager configuration, providing a comprehensive reference for understanding and using
 this tiling window manager setup.
 
+### Component Purposes
+
+- **config**: Main i3 window manager configuration with all keybindings and rules
+- **i3blocks/**: Status bar configuration and modules
+- **i3wsr/**: Automatic workspace naming with application icons
+- **i3grid/**: Grid-based window positioning and management tool
+- **scripts/**: Utility scripts for system monitoring and controls
+
+## Additional Components
+
+### i3wsr - Workspace Naming
+- Automatically renames workspaces based on running applications
+- Shows FontAwesome icons for visual identification
+- Configuration includes icons for Firefox, terminals, IDEs, etc.
+- Workspace names update dynamically as windows open/close
+
+### i3grid - Window Grid Management
+- Provides grid-based window positioning and resizing
+- Allows precise window placement in grid layouts
+- Complements i3's tiling with manual positioning control
+
+### Status Bar Scripts
+The `scripts/` directory contains various system monitoring utilities:
+- **caffeine**: Prevents system sleep/suspend with toggle functionality
+- **bandwidth**: Shows network upload/download speeds
+- **cpu_usage**: Displays CPU utilization percentage
+- **disk**: Shows disk usage and available space
+- **memory**: Displays RAM usage and availability
+- **temperature**: Shows CPU temperature monitoring
+- **get-icon.py**: FontAwesome icon generator for consistent iconography
+
 ## Core Concepts
 
 ### What is i3?
@@ -283,9 +314,10 @@ When activated with `$mod + m`, provides quick access to workspaces 21-30:
 |--------------|---------------------------------|----------------------------|
 | Main config  | `~/.config/i3/config`           | Primary i3 configuration   |
 | i3blocks     | `~/.config/i3/i3blocks.conf`    | Status bar configuration   |
-| Rofi theme   | `~/.config/rofi/rofidmenu.rasi` | Application launcher theme |
 | i3wsr config | `~/.config/i3wsr/config.toml`   | Workspace naming rules     |
+| i3grid config| `~/.config/i3/i3gridrc`         | Grid window management     |
 | Scripts      | `~/.config/i3/scripts/`         | Helper scripts             |
+| Rofi theme   | `~/.config/rofi/rofidmenu.rasi` | Application launcher theme |
 
 ## Summary
 
