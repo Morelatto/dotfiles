@@ -98,3 +98,8 @@ user_pref("widget.gtk.overlay-scrollbars.enabled", false);
 user_pref("widget.non-native-theme.enabled", false);
 user_pref("browser.theme.content-theme", 0); // 0=auto, 1=light, 2=dark
 user_pref("browser.theme.toolbar-theme", 0); // 0=auto, 1=light, 2=dark
+
+/* Internal Domain Resolution */
+user_pref("browser.fixup.domainsuffixwhitelist.lan", true);
+user_pref("browser.fixup.domainsuffixwhitelist.local", true);
+user_pref("browser.fixup.domainsuffixwhitelist.internal", true);
