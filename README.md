@@ -4,6 +4,9 @@
 
 **Modern dotfiles for EndeavourOS/Arch Linux with automated setup**
 
+<!-- SCREENSHOT: Desktop overview - main desktop with i3-gaps, rofi, terminal, browser open -->
+<!-- Alt: Desktop showcase showing i3-gaps layout, terminal with fastfetch, browser, and rofi launcher -->
+
 <a href="https://archlinux.org/">
   <img src="https://img.shields.io/badge/Arch%20Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white">
 </a>
@@ -32,6 +35,9 @@ sudo pacman -S ansible && ansible-pull -U https://github.com/Morelatto/dotfiles.
 <details>
 <summary>Core components and system architecture</summary>
 
+<!-- SCREENSHOT: System info - fastfetch output in terminal showing OS, kernel, packages, etc. -->
+<!-- Alt: Terminal screenshot with fastfetch displaying system specifications and ASCII art -->
+
 ## Core
 | Component | Tool |
 |-----------|------|
@@ -44,9 +50,15 @@ sudo pacman -S ansible && ansible-pull -U https://github.com/Morelatto/dotfiles.
 |-----------|------|-------|
 | Display Server | X.Org ([X.Org](https://www.x.org/)) | Arc-Dark GTK theme, 20min screen timeout, DPMS power management |
 | Window Manager | [i3-gaps](https://github.com/Airblader/i3) | Super+Enter (terminal), Super+d (rofi), Super+Tab (workspace nav) |
+
+<!-- SCREENSHOT: i3-gaps showcase - multiple windows tiled, showing gaps, workspace indicators -->
+<!-- Alt: i3 window manager layout with terminal, browser, and code editor in tiled arrangement -->
 | Window Tools | [i3wsr](https://github.com/roosta/i3wsr), i3blocks | EndeavourOS i3blocks config with FontAwesome icons |
 | Compositor | [Picom](https://github.com/yshui/picom) | fading enabled, terminal opacity rules |
 | Application Launcher | [Rofi](https://github.com/DaveDavenport/rofi) | Super+d (apps), Super+t (windows), Super+g (workspace groups) |
+
+<!-- SCREENSHOT: Rofi launcher - show rofi drun menu open with applications list -->
+<!-- Alt: Rofi application launcher showing available applications with search functionality -->
 | Notification Daemon | [Dunst](https://github.com/dunst-project/dunst) | bottom-right, 300px width, monitor 2 |
 | Status Bar | [i3blocks](https://github.com/vivien/i3blocks) | EndeavourOS setup with system monitoring modules |
 | Wallpaper Manager | [feh](https://github.com/derf/feh) | --bg-fill mode, integrated with betterlockscreen |
@@ -60,6 +72,9 @@ sudo pacman -S ansible && ansible-pull -U https://github.com/Morelatto/dotfiles.
 # Terminal
 <details>
 <summary>Shell environment and command-line tools</summary>
+
+<!-- SCREENSHOT: Terminal showcase - split terminal windows showing modern CLI tools (eza, bat, btop) -->
+<!-- Alt: Terminal session demonstrating modern command-line tools with syntax highlighting and colors -->
 
 ## Shell Environment
 | Component | Tool | Notes |
@@ -95,6 +110,9 @@ sudo pacman -S ansible && ansible-pull -U https://github.com/Morelatto/dotfiles.
 <details>
 <summary>Programming tools and development environment</summary>
 
+<!-- SCREENSHOT: Development setup - code editor with syntax highlighting, terminal with git, lazygit -->
+<!-- Alt: Development environment showing code editor, git workflow, and integrated terminal -->
+
 ## Core Development Tools
 | Category | Tool | Notes |
 |----------|------|-------|
@@ -118,6 +136,9 @@ sudo pacman -S ansible && ansible-pull -U https://github.com/Morelatto/dotfiles.
 | Tool | Purpose |
 |------|----------|
 | [lazygit](https://github.com/jesseduffield/lazygit) | Git UI | mise-managed, terminal git interface |
+
+<!-- SCREENSHOT: Lazygit interface - show lazygit TUI with commit history, diffs, staging area -->
+<!-- Alt: Lazygit terminal interface displaying git repository status and commit management -->
 | [lazydocker](https://github.com/jesseduffield/lazydocker) | Docker UI | mise-managed, terminal docker interface |
 | [gh](https://github.com/cli/cli) | GitHub CLI | mise-managed, used for PR/issue management |
 | [glab](https://github.com/profclems/glab) | GitLab CLI | mise-managed, GitLab workflows |
@@ -134,6 +155,9 @@ sudo pacman -S ansible && ansible-pull -U https://github.com/Morelatto/dotfiles.
 # Applications
 <details>
 <summary>User applications and utilities</summary>
+
+<!-- SCREENSHOT: Applications showcase - Firefox with Tree Style Tab, Obsidian workspace -->
+<!-- Alt: Application screenshots showing Firefox browser with extensions and Obsidian note-taking -->
 
 ## User Applications
 | Category | Tool | Notes |
