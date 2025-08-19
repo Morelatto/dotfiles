@@ -54,3 +54,15 @@ sops = "latest"
 "npm:@mermaid-js/mermaid-cli" = "latest"
 "npm:npm-check" = "latest"
 "npm:serve" = "latest"
+"npm:repomix" = "latest"
+"npm:eslint" = "latest"
+"npm:prettier" = "latest"
+"npm:typescript" = "latest"
+"npm:mcp-chrome-bridge" = "latest"
+
+# Python Tools (via pipx/uvx)
+"pipx:claude-monitor" = "latest"
+"pipx:crawl4ai" = "latest"  
+"pipx:gitingest" = "latest"
+"pipx:llm" = "latest"
+# Note: ruff managed separately via UV to avoid conflicts

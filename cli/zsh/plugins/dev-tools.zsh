@@ -327,7 +327,7 @@ if (( $+commands[repomix] )); then
             return 1
         fi
 
-        local size=$(du -h "$tmpfile" | cut -f1)
+        local size=$(command du -h "$tmpfile" | cut -f1)
         rm -f "$tmpfile"
         echo "📋 Copied to clipboard ($size)"
     }
