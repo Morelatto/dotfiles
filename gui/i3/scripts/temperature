@@ -34,7 +34,7 @@ get_cpu_temp() {
 # Handle mouse clicks (simplified)
 case $BLOCK_BUTTON in
     1) # Left click - show all temperature sensors
-        show_notification "$(get_all_temps)" "" "normal" "5000"
+        show_notification "Temperature Sensors" "$(get_all_temps)" "normal" "5000"
         ;;
     3) # Right click - temperature monitoring tools
         if command -v sensors >/dev/null 2>&1; then
@@ -49,8 +49,8 @@ temp_int=${temp%.*}
 
 # Handle edge cases
 if [ "$temp" = "0" ] || [ -z "$temp" ] || [ "$temp_int" -lt 20 ]; then
-    echo " N/A"
-    echo " N/A"
+    echo "N/A"
+    echo "N/A"
     echo "#6272a4"  # Muted gray for unknown/unavailable
     exit 0
 fi
@@ -69,6 +69,6 @@ else
 fi
 
 # Output with color coding
-echo " ${temp_int}°C"
-echo " ${temp_int}°C"
+echo "${temp_int}°C"
+echo "${temp_int}°C"
 echo "$color"

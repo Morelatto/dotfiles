@@ -154,11 +154,19 @@ show_notification() {
     local urgency="${3:-normal}"
     local timeout="${4:-5000}"
     
-    notify-send \
+    # Ensure proper environment for notifications from i3blocks
+    export DISPLAY="${DISPLAY:-:0}"
+    
+    # Use notify-send with proper system icon
+    if ! notify-send \
         --app-name="i3blocks" \
         --urgency="$urgency" \
         --expire-time="$timeout" \
-        "$title" "$message"
+        --icon="dialog-information" \
+        "$title" "$message" 2>/dev/null; then
+        # Fallback to basic notify-send with icon
+        notify-send --icon="dialog-information" "$title" "$message" 2>/dev/null || true
+    fi
 }
 
 # Get CPU frequency
@@ -176,4 +184,62 @@ get_load_percentage() {
     # Cap at 100%
     if ((percentage > 100)); then percentage=100; fi
     echo "$percentage"
+}
+
+# Get detailed CPU information for notifications
+get_detailed_cpu_info() {
+    local cpu_model=$(grep "model name" /proc/cpuinfo | head -1 | cut -d: -f2 | sed 's/^ *//')
+    local cpu_cores=$(nproc)
+    local cpu_freq=$(get_cpu_frequency)
+    local load_avg=$(cut -d' ' -f1-3 /proc/loadavg)
+    local uptime=$(uptime | sed 's/.*up \([^,]*\),.*/\1/')
+    
+    echo "Model: $cpu_model
+Cores: $cpu_cores
+Frequency: $cpu_freq
+Load Average: $load_avg
+Uptime: $uptime
+
+Top Processes (CPU):
+$(ps aux --no-headers | sort -rk3 | head -5 | awk '{printf "%-12s %5.1f%% %s\n", $1, $3, $11}')"
+}
+
+# Get detailed memory information for notifications  
+get_detailed_memory_info() {
+    local mem_info=$(free -h | grep Mem)
+    local swap_info=$(free -h | grep Swap)
+    local mem_total=$(echo "$mem_info" | awk '{print $2}')
+    local mem_used=$(echo "$mem_info" | awk '{print $3}')
+    local mem_free=$(echo "$mem_info" | awk '{print $4}')
+    local mem_available=$(echo "$mem_info" | awk '{print $7}')
+    local swap_total=$(echo "$swap_info" | awk '{print $2}')
+    local swap_used=$(echo "$swap_info" | awk '{print $3}')
+    
+    echo "Total: $mem_total
+Used: $mem_used
+Free: $mem_free  
+Available: $mem_available
+Swap: $swap_used / $swap_total
+
+Top Processes (Memory):
+$(ps aux --no-headers | sort -rk4 | head -5 | awk '{printf "%-12s %5.1f%% %s\n", $1, $4, $11}')"
+}
+
+# Get all temperature sensors for detailed notification
+get_all_temps() {
+    if command -v sensors >/dev/null 2>&1; then
+        echo "Temperature Sensors
+───────────────────
+$(sensors 2>/dev/null | grep -E '(Package|Core|Tctl|temp|CPU).*[0-9]+\.[0-9]+°C' | head -10)
+
+Thermal Zones:
+$(find /sys/class/thermal/ -name "temp" -exec sh -c 'echo "$(basename "$(dirname "{}")"): $(($(cat "{}") / 1000))°C"' \; 2>/dev/null | head -5)"
+    else
+        echo "Temperature Monitoring
+─────────────────────
+sensors command not found.
+Install lm-sensors package:
+sudo pacman -S lm-sensors
+sudo sensors-detect"
+    fi
 }
