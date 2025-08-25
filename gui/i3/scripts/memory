@@ -8,7 +8,7 @@ source "$script_dir/polybar-utils.sh"
 # Handle mouse clicks (simplified)
 case $BLOCK_BUTTON in
     1) # Left click - show detailed memory info
-        show_notification "$(get_detailed_memory_info)" "" "normal" "5000"
+        show_notification "Memory Information" "$(get_detailed_memory_info)" "normal" "5000"
         ;;
     3) # Right click - open htop
         if command -v htop >/dev/null 2>&1; then
@@ -46,6 +46,6 @@ else
 fi
 
 # Output with color and Unicode block
-echo " ${mem_percentage}% ${block_char}"
-echo " ${mem_percentage}% ${block_char}"
+echo "${mem_percentage}% ${block_char}"
+echo "${mem_percentage}% ${block_char}"
 echo "$color"

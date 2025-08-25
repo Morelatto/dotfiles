@@ -3,6 +3,10 @@
 # Disk usage monitoring script for i3blocks
 # Displays disk usage with color coding and detailed info on click
 
+# Source utility functions from dotfiles
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$script_dir/polybar-utils.sh"
+
 # Get the directory to check (default to $HOME if not specified)
 DIR="${BLOCK_INSTANCE:-$HOME}"
 ALERT_LOW="${1:-10}"  # Low space alert threshold (default 10%)
@@ -17,30 +21,32 @@ get_disk_usage() {
 
 get_disk_details() {
     local path="$1"
-    echo "Disk Usage for $path:"
-    echo "$(df -h "$path" 2>/dev/null)"
-    echo ""
-    echo "Largest directories:"
-    # Show top 5 largest directories (limited depth to avoid long scan)
+    echo "Disk Usage for $path
+────────────────────
+$(df -h "$path" 2>/dev/null | grep -v "Filesystem")
+
+Quick Directory Scan:"
+    # Fast directory scan with timeout to avoid delays
     if [ -d "$path" ]; then
-        du -sh "$path"/* 2>/dev/null | sort -hr | head -5 2>/dev/null || echo "Unable to scan directories"
+        timeout 2s du -sh "$path"/* 2>/dev/null | sort -hr | head -5 2>/dev/null || echo "Scan timeout - directory too large"
     fi
 }
 
 get_io_stats() {
     if command -v iostat >/dev/null 2>&1; then
-        echo ""
-        echo "I/O Statistics:"
-        iostat -d 1 1 | tail -n +4 | head -5
+        echo "
+
+I/O Statistics:
+$(iostat -d 1 1 2>/dev/null | tail -n +4 | head -3 | head -c 200)..."
     fi
 }
 
 # Handle mouse clicks
 case $BLOCK_BUTTON in
     1) # Left click - show detailed disk info
-        notify-send "Disk Usage Details" \
+        show_notification "Disk Usage Details" \
             "$(get_disk_details "$DIR")$(get_io_stats)" \
-            -t 10000
+            "normal" "8000"
         ;;
     3) # Right click - open file manager
         if command -v thunar >/dev/null 2>&1; then
@@ -90,6 +96,6 @@ fi
 display_text="${used}/${total}"
 
 # Output for i3blocks with color
-echo " $display_text"
-echo " $display_text"
+echo "$display_text"
+echo "$display_text"
 echo "$color"

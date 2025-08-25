@@ -14,7 +14,7 @@ ICONS = {
     'bluetooth': '\uf293', # fa-bluetooth
     'disk': '\uf0a0',      # fa-hdd
     'cpu': '\uf2db',       # fa-microchip  
-    'memory': '\uf538',    # fa-memory
+    'memory': '\uf012',    # fa-cogs (very basic icon)
     'temperature': '\uf2c9', # fa-thermometer
     'ethernet': '\uf796',  # fa-ethernet
     'wifi': '\uf1eb',      # fa-wifi
