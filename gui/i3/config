@@ -196,8 +196,6 @@ bindsym $mod+Control+g exec --no-startup-id i3-workspace-groups list-groups | ro
 bindsym $mod+w exec --no-startup-id ~/.config/i3/scripts/workspace-switcher
 bindsym $mod+comma exec --no-startup-id i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '
 
-# WORKSPACE REMINDER
-bindsym $mod+i exec --no-startup-id ~/.local/bin/workspace-overlay
 
 # MOVE WINDOW MODE
 mode "move_window" {
@@ -231,8 +229,6 @@ for_window [class=TelegramDesktop] focus
 
 # FLOATING RULES
 for_window [class="Yad" instance="yad"] floating enable
-for_window [class="WorkspaceOverlay"] floating enable, border none, sticky enable
-for_window [title="workspace-overlay-term"] floating enable, border none, sticky enable
 for_window [class="Galculator" instance="galculator"] floating enable
 for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 for_window [class="Xsane" instance="xsane"] floating enable
