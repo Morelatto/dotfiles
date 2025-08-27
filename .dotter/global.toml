@@ -11,7 +11,7 @@
 
 [desktop.files]
 "gui/i3/config" = "~/.config/i3/config"
-"gui/i3/i3blocks" = "~/.config/i3"
+"gui/i3/i3blocks/i3blocks.conf" = "~/.config/i3/i3blocks.conf"
 "gui/i3/i3wsr" = "~/.config/i3wsr"
 "gui/i3/scripts" = "~/.config/i3/scripts"
 "gui/dunst" = "~/.config/dunst"
@@ -38,7 +38,9 @@
 "dev/pip" = "~/.config/pip"
 "dev/pyenv" = "~/.pyenv"
 "dev/claude/CLAUDE.md" = "~/.claude/CLAUDE.md"
-"dev/claude/settings.json" = "~/.claude/settings.json"
+"dev/claude/config.json" = "~/.claude/settings.json"
+"dev/claude/notify-config.json" = "~/.config/claude/notification-config.json"
+"dev/claude/notify.sh" = "~/.local/bin/claude-notify-enhanced.sh"
 "dev/repomix/repomix.config.json5" = "~/.config/repomix/repomix.config.json5"
 "dev/uv/uv.toml" = "~/.config/uv/uv.toml"
 "dev/mise/config.toml" = "~/.config/mise/config.toml"

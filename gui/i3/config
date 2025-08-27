@@ -175,11 +175,11 @@ bindsym $mod+p exec --no-startup-id ~/.config/i3/scripts/audio-device-switch
 # APPLICATIONS
 bindsym $mod+n exec --no-startup-id /usr/bin/thunar
 bindsym $mod+Shift+f exec --no-startup-id /usr/bin/firefox
-bindsym Print exec --no-startup-id ~/.local/bin/screenshot full
-bindsym Shift+Print exec --no-startup-id ~/.local/bin/screenshot select
-bindsym $mod+Print exec --no-startup-id ~/.local/bin/screenshot window
-bindsym Ctrl+Print exec --no-startup-id ~/.local/bin/screenshot clipboard
-bindsym --whole-window Ctrl+button2 exec --no-startup-id ~/.local/bin/screenshot window-clipboard
+bindsym Print exec --no-startup-id ~/.config/i3/scripts/screenshot full
+bindsym Shift+Print exec --no-startup-id ~/.config/i3/scripts/screenshot select
+bindsym $mod+Print exec --no-startup-id ~/.config/i3/scripts/screenshot window
+bindsym Ctrl+Print exec --no-startup-id ~/.config/i3/scripts/screenshot clipboard
+bindsym --whole-window Ctrl+button2 exec --no-startup-id ~/.config/i3/scripts/screenshot window-clipboard
 bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
 bindsym $mod+F12 exec --no-startup-id BLOCK_BUTTON=1 ~/.config/i3/scripts/caffeine
 
@@ -254,7 +254,7 @@ exec --no-startup-id sleep 1 && feh --bg-fill ~/.config/wallpapers/default.png
 bar {
 		font pango: Noto Sans Regular 10, FontAwesome 10
 		height 25
-		status_command i3blocks -c ~/.config/i3/i3blocks.conf
+		status_command ~/.config/i3/scripts/i3blocks-wrapper.sh
 	    	position bottom
 		bindsym button4 nop
 		bindsym button5 nop
