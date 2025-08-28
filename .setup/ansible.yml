@@ -50,10 +50,8 @@
           failed_when: false
           changed_when: false
         
-        - name: Trust mise config
-          shell: mise trust {{ dotfiles_dir }}/mise.toml
-          args:
-            chdir: "{{ dotfiles_dir }}"
+        - name: Trust mise global config
+          shell: mise trust ~/.config/mise/config.toml
           when: mise_check.rc == 0
         
         - name: Install all mise tools
