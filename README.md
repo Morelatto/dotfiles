@@ -72,7 +72,7 @@ sudo pacman -S ansible && ansible-pull -U https://github.com/Morelatto/dotfiles.
 | File Browser | [Ranger](https://github.com/ranger/ranger) | Image previews, bulk operations, VCS integration, custom actions | System |
 | Directory Jump | [Zoxide](https://github.com/ajeetdsouza/zoxide) | Frecency algorithm, fuzzy matching, database import, cd replacement | mise |
 
-## Modern CLI Tools (mise-managed)
+## CLI Tools
 | Tool | Replaces | Purpose | Key Features |
 |------|----------|---------|--------------|
 | [eza](https://github.com/eza-community/eza) | ls | File listing | Icons, git status, tree view, sorting options |
@@ -116,7 +116,7 @@ sudo pacman -S ansible && ansible-pull -U https://github.com/Morelatto/dotfiles.
 | Rust | [Rust](https://github.com/rust-lang/rust) |
 | JavaScript Runtime | [Bun](https://github.com/oven-sh/bun) | XDG-compliant paths, global bin in ~/.local/bin, 60s test timeout |
 
-## Development Workflow Tools (mise-managed)
+## Development Tools
 
 | Tool | Purpose | Key Shortcuts/Features |
 |------|---------|------------------------|
