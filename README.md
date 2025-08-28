@@ -4,9 +4,6 @@
 
 **Modern dotfiles for EndeavourOS/Arch Linux with automated setup**
 
-<!-- SCREENSHOT: Desktop overview - main desktop with i3-gaps, rofi, terminal, browser open -->
-<!-- Alt: Desktop showcase showing i3-gaps layout, terminal with fastfetch, browser, and rofi launcher -->
-
 <a href="https://archlinux.org/">
   <img src="https://img.shields.io/badge/Arch%20Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white">
 </a>
@@ -35,30 +32,22 @@ sudo pacman -S ansible && ansible-pull -U https://github.com/Morelatto/dotfiles.
 <details>
 <summary>Core components and system architecture</summary>
 
-<!-- SCREENSHOT: System info - fastfetch output in terminal showing OS, kernel, packages, etc. -->
-<!-- Alt: Terminal screenshot with fastfetch displaying system specifications and ASCII art -->
-
-## Core
-| Component | Tool |
-|-----------|------|
-| OS | EndeavourOS/Arch Linux ([EndeavourOS](https://endeavouros.com/)) |
-| Tool Manager | [mise](https://mise.jdx.dev/) | Node LTS, Python 3.12, Go/Rust/Bun latest, CLI tools auto-managed |
-| Configuration Manager | [dotter](https://github.com/SuperCuber/dotter) | XDG-compliant deployment, modular package system |
+## Core Infrastructure
+| Component | Tool | Implementation Details |
+|-----------|------|------------------------|
+| OS | [EndeavourOS](https://endeavouros.com/)/Arch Linux | Rolling release, systemd-boot, pacman parallel downloads, AUR enabled |
+| Tool Manager | [mise](https://mise.jdx.dev/) | 52 tools managed • Node LTS, Python 3.12, Go/Rust/Bun/Neovim latest • Auto-activation via .mise.toml |
+| Config Deploy | [dotter](https://github.com/SuperCuber/dotter) | 5 packages (terminal/desktop/dev/apps) • Symlink strategy • Pre/post deploy hooks • Cache at .dotter/cache.toml |
+| Automation | [Ansible](https://github.com/ansible/ansible) | ansible-pull one-liner • Installs 60+ packages • Configures Docker • Sets up mise + dotter |
 
 ## Display
 | Component | Tool | Notes |
 |-----------|------|-------|
 | Display Server | X.Org ([X.Org](https://www.x.org/)) | Arc-Dark GTK theme, 20min screen timeout, DPMS power management |
 | Window Manager | [i3-gaps](https://github.com/Airblader/i3) | Super+Enter (terminal), Super+d (rofi), Super+Tab (workspace nav) |
-
-<!-- SCREENSHOT: i3-gaps showcase - multiple windows tiled, showing gaps, workspace indicators -->
-<!-- Alt: i3 window manager layout with terminal, browser, and code editor in tiled arrangement -->
 | Window Tools | [i3wsr](https://github.com/roosta/i3wsr), i3blocks | EndeavourOS i3blocks config with FontAwesome icons |
 | Compositor | [Picom](https://github.com/yshui/picom) | fading enabled, terminal opacity rules |
 | Application Launcher | [Rofi](https://github.com/DaveDavenport/rofi) | Super+d (apps), Super+t (windows), Super+g (workspace groups) |
-
-<!-- SCREENSHOT: Rofi launcher - show rofi drun menu open with applications list -->
-<!-- Alt: Rofi application launcher showing available applications with search functionality -->
 | Notification Daemon | [Dunst](https://github.com/dunst-project/dunst) | bottom-right, 300px width, monitor 2 |
 | Status Bar | [i3blocks](https://github.com/vivien/i3blocks) | EndeavourOS setup with system monitoring modules |
 | Wallpaper Manager | [feh](https://github.com/derf/feh) | --bg-fill mode, integrated with betterlockscreen |
@@ -73,34 +62,32 @@ sudo pacman -S ansible && ansible-pull -U https://github.com/Morelatto/dotfiles.
 <details>
 <summary>Shell environment and command-line tools</summary>
 
-<!-- SCREENSHOT: Terminal showcase - split terminal windows showing modern CLI tools (eza, bat, btop) -->
-<!-- Alt: Terminal session demonstrating modern command-line tools with syntax highlighting and colors -->
-
 ## Shell Environment
-| Component | Tool | Notes |
-|-----------|------|-------|
-| Shell | [Zsh](https://github.com/zsh-users/zsh) | arrows (history search), Ctrl+Space (alias expand), Alt+E (edit) |
-| Terminal Emulator | [XFCE4 Terminal](https://github.com/xfce-mirror/xfce4-terminal) | FiraCode Nerd Font 11, transparent background, custom colors |
-| Prompt | [Starship](https://github.com/starship/starship) | mise-managed |
-| History | [Atuin](https://github.com/ellie/atuin) | mise-managed |
-| File Manager | [Ranger](https://github.com/ranger/ranger) | ueberzug image preview, show hidden files |
-| Directory Navigation | [Zoxide](https://github.com/ajeetdsouza/zoxide) | mise-managed |
+| Component | Tool | Key Features | Source |
+|-----------|------|--------------|--------|
+| Shell | [Zsh](https://github.com/zsh-users/zsh) | Modular config, extensive aliases, smart completion, XDG compliant | System |
+| Terminal | [XFCE4 Terminal](https://github.com/xfce-mirror/xfce4-terminal) | Nerd Font support, transparency, custom colorscheme, large scrollback | System |
+| Prompt | [Starship](https://github.com/starship/starship) | Git status, command duration, exit codes, language versions | mise |
+| History | [Atuin](https://github.com/ellie/atuin) | Fuzzy search, workspace filtering, secrets protection, sync support | mise |
+| File Browser | [Ranger](https://github.com/ranger/ranger) | Image previews, bulk operations, VCS integration, custom actions | System |
+| Directory Jump | [Zoxide](https://github.com/ajeetdsouza/zoxide) | Frecency algorithm, fuzzy matching, database import, cd replacement | mise |
 
-## Core CLI Tools
-| Tool | Replaces | Purpose | Notes |
-|------|----------|---------|-------|
-| [eza](https://github.com/eza-community/eza) | ls | File listing | ll (long), la (all), aliases replace ls |
-| [bat](https://github.com/sharkdp/bat) | cat | Text viewer | replaces cat, syntax highlighting, b/bp/bl aliases |
-| [fd](https://github.com/sharkdp/fd) | find | File search | mise-managed, respects .gitignore |
-| [ripgrep](https://github.com/BurntSushi/ripgrep) | grep | Text search | mise-managed, used by fzf integration |
-| [fzf](https://github.com/junegunn/fzf) | - | Fuzzy finder | mise-managed, integrated with zsh kill completion |
-| [btop](https://github.com/aristocratos/btop4) | htop | System monitor | mise-managed, modern resource monitoring |
-| [dust](https://github.com/bootandy/dust) | du | Disk usage | mise-managed, colorized tree view |
-| [sd](https://github.com/chmln/sd) | sed | Text processing | mise-managed, intuitive regex syntax |
-| [jq](https://github.com/jqlang/jq) | - | JSON processing | mise-managed, essential for CLI JSON work |
-| [yq](https://github.com/mikefarah/yq) | - | YAML processing | mise-managed, jq-like syntax for YAML |
-| [hyperfine](https://github.com/sharkdp/hyperfine) | time | Benchmarking | mise-managed, statistical command timing |
-| [tokei](https://github.com/XAMPPRocky/tokei) | cloc | Code statistics | mise-managed, fast language-aware counting |
+## Modern CLI Tools (mise-managed)
+| Tool | Replaces | Purpose | Key Features |
+|------|----------|---------|--------------|
+| [eza](https://github.com/eza-community/eza) | ls | File listing | Icons, git status, tree view, sorting options |
+| [bat](https://github.com/sharkdp/bat) | cat | File viewer | Syntax highlighting, git integration, line numbers |
+| [fd](https://github.com/sharkdp/fd) | find | File search | Fast performance, gitignore aware, regex support |
+| [ripgrep](https://github.com/BurntSushi/ripgrep) | grep | Text search | Recursive by default, parallel search, PCRE2 |
+| [fzf](https://github.com/junegunn/fzf) | - | Fuzzy finder | Interactive selection, preview window, shell integration |
+| [btop](https://github.com/aristocratos/btop) | htop | System monitor | GPU monitoring, network graphs, mouse support |
+| [dust](https://github.com/bootandy/dust) | du | Disk usage | Tree visualization, percentage bars, fast scanning |
+| [sd](https://github.com/chmln/sd) | sed | Find & replace | Intuitive syntax, literal strings, preview mode |
+| [delta](https://github.com/dandavison/delta) | diff | Git diffs | Syntax highlighting, side-by-side view, word-level diff |
+| [jq](https://github.com/jqlang/jq) | - | JSON processor | Query language, streaming, transformations |
+| [yq](https://github.com/mikefarah/yq) | - | YAML processor | Multiple formats, in-place editing, path expressions |
+| [hyperfine](https://github.com/sharkdp/hyperfine) | time | Benchmarking | Statistical analysis, warmup runs, export formats |
+| [tokei](https://github.com/XAMPPRocky/tokei) | cloc | Code statistics | Language detection, fast counting, exclude patterns |
 
 </details>
 
@@ -110,14 +97,11 @@ sudo pacman -S ansible && ansible-pull -U https://github.com/Morelatto/dotfiles.
 <details>
 <summary>Programming tools and development environment</summary>
 
-<!-- SCREENSHOT: Development setup - code editor with syntax highlighting, terminal with git, lazygit -->
-<!-- Alt: Development environment showing code editor, git workflow, and integrated terminal -->
-
 ## Core Development Tools
 | Category | Tool | Notes |
 |----------|------|-------|
 | Version Control | [Git](https://github.com/git/git) + [Delta](https://github.com/dandavison/delta) | Dracula theme, side-by-side, line numbers |
-| Text Editors | [Neovim](https://github.com/neovim/neovim), [Vim](https://github.com/vim/vim) | relative line numbers, 4-space tabs, smart indent, case-smart search |
+| Text Editor | [AstroNvim](https://github.com/AstroNvim/AstroNvim) (Neovim v5+) | 47 plugins, LSP/DAP, Git integration, fuzzy finder, file explorer, terminal |
 | Text Editor | [Sublime Text](https://www.sublimetext.com/) | Mariana theme, save on focus lost, auto-find in selection |
 | IDE | [JetBrains PyCharm](https://www.jetbrains.com/pycharm/) | 4GB heap, OpenGL acceleration, custom VM options |
 | AI Assistant | [Claude Code](https://claude.ai/) | custom hooks, OTLP telemetry, 15min bash timeout |
@@ -132,21 +116,19 @@ sudo pacman -S ansible && ansible-pull -U https://github.com/Morelatto/dotfiles.
 | Rust | [Rust](https://github.com/rust-lang/rust) |
 | JavaScript Runtime | [Bun](https://github.com/oven-sh/bun) | XDG-compliant paths, global bin in ~/.local/bin, 60s test timeout |
 
-## CLI Development Tools
-| Tool | Purpose |
-|------|----------|
-| [lazygit](https://github.com/jesseduffield/lazygit) | Git UI | mise-managed, terminal git interface |
+## Development Workflow Tools (mise-managed)
 
-<!-- SCREENSHOT: Lazygit interface - show lazygit TUI with commit history, diffs, staging area -->
-<!-- Alt: Lazygit terminal interface displaying git repository status and commit management -->
-| [lazydocker](https://github.com/jesseduffield/lazydocker) | Docker UI | mise-managed, terminal docker interface |
-| [gh](https://github.com/cli/cli) | GitHub CLI | mise-managed, used for PR/issue management |
-| [glab](https://github.com/profclems/glab) | GitLab CLI | mise-managed, GitLab workflows |
-| [glow](https://github.com/charmbracelet/glow) | Markdown renderer | mise-managed, terminal markdown viewer |
-| [just](https://github.com/casey/just) | Command runner | mise-managed, modern make alternative |
-| [watchexec](https://github.com/watchexec/watchexec) | File watcher | mise-managed, execute on file changes |
-| [direnv](https://github.com/direnv/direnv) | Environment manager | mise-managed, per-directory env vars |
-| [repomix](https://github.com/yamadashy/repomix) | Documentation | 10MB max file size, excludes binary/media files |
+| Tool | Purpose | Key Shortcuts/Features |
+|------|---------|------------------------|
+| [lazygit](https://github.com/jesseduffield/lazygit) | Git TUI | `lg` alias, cherry-pick, interactive rebase |
+| [lazydocker](https://github.com/jesseduffield/lazydocker) | Docker TUI | `lzd` alias, container logs, resource graphs |
+| [gh](https://github.com/cli/cli) | GitHub CLI | PR creation, issue management, workflow runs |
+| [glab](https://github.com/profclems/glab) | GitLab CLI | MR management, CI/CD pipelines, project ops |
+| [glow](https://github.com/charmbracelet/glow) | Markdown viewer | Render in terminal, paging, local/remote files |
+| [just](https://github.com/casey/just) | Task runner | Justfile recipes, parameters, dependencies |
+| [watchexec](https://github.com/watchexec/watchexec) | File watcher | Auto-restart, debouncing, ignore patterns |
+| [direnv](https://github.com/direnv/direnv) | Env manager | .envrc files, automatic load/unload |
+| [bottom](https://github.com/ClementTsang/bottom) | System monitor | `btm` command, process tree, disk I/O |
 
 </details>
 
@@ -155,9 +137,6 @@ sudo pacman -S ansible && ansible-pull -U https://github.com/Morelatto/dotfiles.
 # Applications
 <details>
 <summary>User applications and utilities</summary>
-
-<!-- SCREENSHOT: Applications showcase - Firefox with Tree Style Tab, Obsidian workspace -->
-<!-- Alt: Application screenshots showing Firefox browser with extensions and Obsidian note-taking -->
 
 ## User Applications
 | Category | Tool | Notes |
