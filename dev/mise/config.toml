@@ -10,6 +10,9 @@ go = "latest"
 rust = "stable"  # Use stable for rust, not latest
 bun = "latest"
 
+# Editors
+neovim = "latest"       # Neovim via mise
+
 # Modern CLI tools (replacements for standard Unix tools)
 bat = "latest"        # Better cat with syntax highlighting
 eza = "latest"        # Better ls with colors and icons
@@ -64,6 +67,7 @@ sops = "latest"       # Secrets management
 "npm:prettier" = "latest"
 "npm:typescript" = "latest"
 "npm:mcp-chrome-bridge" = "latest"
+"npm:task-master-ai" = "latest"
 
 # Python tools (via pipx backend)
 "pipx:claude-monitor" = "latest"
