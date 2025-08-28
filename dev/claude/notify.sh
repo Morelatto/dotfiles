@@ -3,89 +3,78 @@
 # Claude Code Notification System
 # Sends notifications via Gotify when Claude Code events occur
 #
-# Usage: claude-notify-enhanced.sh <hook_type>
+# Usage: claude-notify.sh <hook_type>
 # Hook types: start, stop
 
 set -euo pipefail
 
-# Script configuration
 readonly SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"
 readonly HOOK_TYPE="${1:-}"
-
-# Gotify configuration
 readonly GOTIFY_URL="http://192.168.1.111/message"
 readonly GOTIFY_TOKEN="${GOTIFY_TOKEN:-ARBFidJvnd1EeXU}"
 readonly GOTIFY_PRIORITY_START=5
 readonly GOTIFY_PRIORITY_STOP=7
-
-# Prometheus configuration for metrics
 readonly PROMETHEUS_ENDPOINT="http://localhost:9090"
-
-# Session and context information
 readonly PROJECT_NAME="$(basename "$(pwd)")"
 readonly SESSION_ID="${CLAUDE_SESSION_ID:-$(date +%H%M%S)}"
 
-# Error handling
 error_exit() {
-    local line_num="${1}"
-    local error_code="${2}"
-    echo "Error on line ${line_num}: exited with status ${error_code}" >&2
-    exit "${error_code}"
+    echo "Error on line ${1}: exited with status ${2}" >&2
+    exit "${2}"
 }
 
 trap 'error_exit ${LINENO} $?' ERR
 
-# Validate input
 validate_hook_type() {
-    local hook="${1}"
-    
-    if [[ -z "${hook}" ]]; then
+    [[ -n "${1}" ]] || {
         echo "Usage: ${SCRIPT_NAME} <hook_type>" >&2
         echo "Valid hook types: start, stop" >&2
         exit 1
-    fi
+    }
 }
 
-# Prometheus metrics functions
-query_prometheus() {
-    local query="${1}"
+prom_query() {
+    local response
+    response="$(curl -sSf --max-time 2 "${PROMETHEUS_ENDPOINT}/api/v1/query" \
+        --data-urlencode "query=${1}" 2>/dev/null)" || return 1
+    echo "${response}" | jq -r '.data.result[0].value[1] // ""' 2>/dev/null || echo ""
+}
+
+get_session_id() {
+    local response
+    response="$(curl -sSf --max-time 2 "${PROMETHEUS_ENDPOINT}/api/v1/query?query=claude_code_cost_usage_USD_total" 2>/dev/null)" || return 1
+    echo "${response}" | jq -r '.data.result | sort_by(.value[0]) | reverse | .[0].metric.session_id // ""' 2>/dev/null
+}
+
+get_model() {
+    local session_id="${1:-${SESSION_ID}}"
     
-    local response
-    if response="$(curl -sSf --max-time 2 \
-        "${PROMETHEUS_ENDPOINT}/api/v1/query" \
-        --data-urlencode "query=${query}" 2>/dev/null)"; then
-        echo "${response}" | jq -r '.data.result[0].value[1] // ""' 2>/dev/null || echo ""
-    else
-        echo ""
-    fi
-}
-
-get_current_session_id() {
-    local response
-    if response="$(curl -sSf --max-time 2 \
-        "${PROMETHEUS_ENDPOINT}/api/v1/query?query=claude_code_cost_usage_USD_total" 2>/dev/null)"; then
-        echo "${response}" | jq -r '.data.result | sort_by(.value[0]) | reverse | .[0].metric.session_id // ""' 2>/dev/null || echo ""
-    else
-        echo ""
-    fi
+    [[ -z "${session_id}" || "${session_id}" == "$(date +%H%M%S)" ]] && {
+        session_id="$(get_session_id)" || { echo "claude"; return; }
+    }
+    
+    local response model_name
+    response="$(curl -sSf --max-time 2 "${PROMETHEUS_ENDPOINT}/api/v1/query" \
+        --data-urlencode "query=claude_code_cost_usage_USD_total{session_id=\"${session_id}\"}" 2>/dev/null)" || { echo "claude"; return; }
+    
+    model_name="$(echo "${response}" | jq -r '.data.result[0].metric.model // ""' 2>/dev/null)"
+    
+    case "${model_name}" in
+        *haiku*) echo "haiku" ;;
+        *sonnet*) echo "sonnet" ;;
+        *opus*) echo "opus" ;;
+        *) echo "${model_name:-claude}" ;;
+    esac
 }
 
 format_metric() {
-    local value="${1}"
-    local type="${2}"
-    
-    if [[ -z "${value}" || "${value}" == "0" ]]; then
-        echo ""
-        return
-    fi
+    local value="${1}" type="${2}"
+    [[ -z "${value}" || "${value}" == "0" ]] && return
     
     case "${type}" in
-        cost)
-            printf "$%.2f" "${value}"
-            ;;
+        cost) printf "$%.2f" "${value}" ;;
         tokens)
-            local num_int
-            num_int="$(printf "%.0f" "${value}")"
+            local num_int="$(printf "%.0f" "${value}")"
             if (( num_int >= 1000000 )); then
                 printf "%.1fM tokens" "$(echo "scale=1; ${num_int}/1000000" | bc)"
             elif (( num_int >= 1000 )); then
@@ -95,98 +84,61 @@ format_metric() {
             fi
             ;;
         duration)
-            local seconds
-            seconds="$(printf "%.0f" "${value}")"
-            if (( seconds >= 60 )); then
-                printf "%.1fm" "$(echo "scale=1; ${seconds}/60" | bc)"
-            else
-                printf "%ds" "${seconds}"
-            fi
+            local seconds="$(printf "%.0f" "${value}")"
+            (( seconds >= 60 )) && printf "%.1fm" "$(echo "scale=1; ${seconds}/60" | bc)" || printf "%ds" "${seconds}"
             ;;
     esac
 }
 
-get_session_metrics() {
+get_metrics() {
     local session_id="${1:-${SESSION_ID}}"
     
-    # Get current session ID if needed
-    if [[ -z "${session_id}" || "${session_id}" == "$(date +%H%M%S)" ]]; then
-        session_id="$(get_current_session_id)"
-        if [[ -z "${session_id}" ]]; then
-            echo ""
-            return
-        fi
-    fi
+    [[ -z "${session_id}" || "${session_id}" == "$(date +%H%M%S)" ]] && {
+        session_id="$(get_session_id)" || return
+    }
     
-    # Wait for metrics to be available on stop event
-    if [[ "${HOOK_TYPE}" == "stop" ]]; then
-        sleep 2
-    fi
+    [[ "${HOOK_TYPE}" == "stop" ]] && sleep 2
     
-    local metrics=()
+    local metrics=() cost tokens duration
     
-    # Get cost
-    local cost
-    cost="$(query_prometheus "sum(claude_code_cost_usage_USD_total{session_id=\"${session_id}\"})")"
+    cost="$(prom_query "sum(claude_code_cost_usage_USD_total{session_id=\"${session_id}\"})")"
     cost="$(format_metric "${cost}" "cost")"
     [[ -n "${cost}" ]] && metrics+=("${cost}")
     
-    # Get tokens
-    local tokens
-    tokens="$(query_prometheus "sum(claude_code_token_usage_tokens_total{session_id=\"${session_id}\"})")"
+    tokens="$(prom_query "sum(claude_code_token_usage_tokens_total{session_id=\"${session_id}\"})")"
     tokens="$(format_metric "${tokens}" "tokens")"
     [[ -n "${tokens}" ]] && metrics+=("${tokens}")
     
-    # Get duration
-    local duration
-    duration="$(query_prometheus "sum(claude_code_active_time_seconds_total{session_id=\"${session_id}\"})")"
+    duration="$(prom_query "sum(claude_code_active_time_seconds_total{session_id=\"${session_id}\"})")"
     duration="$(format_metric "${duration}" "duration")"
     [[ -n "${duration}" ]] && metrics+=("${duration}")
     
-    # Join metrics
-    if [[ ${#metrics[@]} -gt 0 ]]; then
-        IFS=' • ' echo "${metrics[*]}"
-    else
-        echo ""
-    fi
+    (( ${#metrics[@]} > 0 )) && IFS=' • ' echo "${metrics[*]}"
 }
 
 generate_message() {
-    local hook_type="${1}"
+    local hook_type="${1}" session_id="${2:-${SESSION_ID}}"
+    local model_name="$(get_model "${session_id}")"
     
     case "${hook_type}" in
-        start)
-            echo "🚀 Task Started • [${PROJECT_NAME}]"
-            ;;
+        start) echo "🚀 Task Started • [${PROJECT_NAME}] • ${model_name}" ;;
         stop)
-            local metrics
-            metrics="$(get_session_metrics)"
-            
+            local metrics="$(get_metrics "${session_id}")"
             if [[ -n "${metrics}" ]]; then
-                echo "✅ Task Complete • [${PROJECT_NAME}] • ${metrics}"
+                echo "✅ Task Complete • [${PROJECT_NAME}] • ${model_name} • ${metrics}"
             else
-                echo "✅ Task Complete • [${PROJECT_NAME}]"
+                echo "✅ Task Complete • [${PROJECT_NAME}] • ${model_name}"
             fi
             ;;
-        *)
-            echo "ℹ️ Event: ${hook_type} • [${PROJECT_NAME}]"
-            ;;
+        *) echo "ℹ️ Event: ${hook_type} • [${PROJECT_NAME}] • ${model_name}" ;;
     esac
 }
 
 send_notification() {
-    local message="${1}"
-    local priority="${2}"
-    
-    # Create JSON payload
     local payload
-    payload="$(jq -n \
-        --arg title "Claude Code" \
-        --arg message "${message}" \
-        --arg priority "${priority}" \
+    payload="$(jq -n --arg title "Claude Code" --arg message "${1}" --arg priority "${2}" \
         '{title: $title, message: $message, priority: ($priority | tonumber)}')"
     
-    # Send notification
     curl -sSf --max-time 5 -X POST "${GOTIFY_URL}" \
         -H "Content-Type: application/json" \
         -H "X-Gotify-Key: ${GOTIFY_TOKEN}" \
@@ -196,33 +148,24 @@ send_notification() {
     }
 }
 
-# Main execution
 main() {
     validate_hook_type "${HOOK_TYPE}"
     
-    local message priority
-    
+    local priority
     case "${HOOK_TYPE}" in
-        start)
-            priority="${GOTIFY_PRIORITY_START}"
-            ;;
-        stop)
-            priority="${GOTIFY_PRIORITY_STOP}"
-            ;;
-        *)
-            priority=5
-            ;;
+        start) priority="${GOTIFY_PRIORITY_START}" ;;
+        stop) priority="${GOTIFY_PRIORITY_STOP}" ;;
+        *) priority=5 ;;
     esac
     
-    message="$(generate_message "${HOOK_TYPE}")"
+    local message="$(generate_message "${HOOK_TYPE}")"
     
     if send_notification "${message}" "${priority}"; then
         echo "Notification sent: ${HOOK_TYPE}"
     else
         echo "Failed to send notification" >&2
-        exit 0  # Don't fail the hook
+        exit 0
     fi
 }
 
-# Run main function
 main
