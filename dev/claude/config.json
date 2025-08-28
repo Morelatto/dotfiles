@@ -18,13 +18,12 @@
   "includeCoAuthoredBy": false,
   "model": "opus",
   "hooks": {
-    "SessionEnd": [
+    "Stop": [
       {
-        "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.local/bin/claude-notify-enhanced.sh stop"
+            "command": "$HOME/.local/bin/claude-notify.sh stop"
           }
         ]
       }
@@ -32,6 +31,6 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "mise exec -- ccstatusline"
+    "command": "ccstatusline"
   }
 }

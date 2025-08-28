@@ -1,249 +1,228 @@
-#!/bin/bash
-
-# Essential Claude Code notification system
+#!/usr/bin/env bash
+#
+# Claude Code Notification System
+# Sends notifications via Gotify when Claude Code events occur
+#
 # Usage: claude-notify-enhanced.sh <hook_type>
+# Hook types: start, stop
 
-HOOK_TYPE="$1"
+set -euo pipefail
 
-# Configuration
-CONFIG_FILE="$HOME/.config/claude/notification-config.json"
-LOG_DIR="$HOME/.claude/logs"
+# Script configuration
+readonly SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"
+readonly HOOK_TYPE="${1:-}"
 
-# Ensure directories exist
-mkdir -p "$LOG_DIR" "$(dirname "$CONFIG_FILE")"
+# Gotify configuration
+readonly GOTIFY_URL="http://192.168.1.111/message"
+readonly GOTIFY_TOKEN="${GOTIFY_TOKEN:-ARBFidJvnd1EeXU}"
+readonly GOTIFY_PRIORITY_START=5
+readonly GOTIFY_PRIORITY_STOP=7
 
-# Read configuration
-if [[ ! -f "$CONFIG_FILE" ]]; then
-    echo "ERROR: Configuration file not found at $CONFIG_FILE"
-    exit 1
-fi
+# Prometheus configuration for metrics
+readonly PROMETHEUS_ENDPOINT="http://localhost:9090"
 
-CONFIG=$(cat "$CONFIG_FILE")
+# Session and context information
+readonly PROJECT_NAME="$(basename "$(pwd)")"
+readonly SESSION_ID="${CLAUDE_SESSION_ID:-$(date +%H%M%S)}"
 
-# Extract session and context information
-PROJECT_NAME=$(basename "$(pwd)")
-SESSION_ID="${CLAUDE_SESSION_ID:-$(date +%H%M%S)}"
-TIMESTAMP=$(date '+%Y-%m-%dT%H:%M:%S.%3NZ')
-USER=$(whoami)
-HOSTNAME=$(hostname)
+# Error handling
+error_exit() {
+    local line_num="${1}"
+    local error_code="${2}"
+    echo "Error on line ${line_num}: exited with status ${error_code}" >&2
+    exit "${error_code}"
+}
 
-# Prometheus query function
+trap 'error_exit ${LINENO} $?' ERR
+
+# Validate input
+validate_hook_type() {
+    local hook="${1}"
+    
+    if [[ -z "${hook}" ]]; then
+        echo "Usage: ${SCRIPT_NAME} <hook_type>" >&2
+        echo "Valid hook types: start, stop" >&2
+        exit 1
+    fi
+}
+
+# Prometheus metrics functions
 query_prometheus() {
-    local query="$1"
-    local prom_enabled=$(echo "$CONFIG" | jq -r '.prometheus.enabled // false')
-    local prom_endpoint=$(echo "$CONFIG" | jq -r '.prometheus.endpoint // "http://localhost:9090"')
+    local query="${1}"
     
-    if [[ "$prom_enabled" != "true" ]]; then
+    local response
+    if response="$(curl -sSf --max-time 2 \
+        "${PROMETHEUS_ENDPOINT}/api/v1/query" \
+        --data-urlencode "query=${query}" 2>/dev/null)"; then
+        echo "${response}" | jq -r '.data.result[0].value[1] // ""' 2>/dev/null || echo ""
+    else
         echo ""
-        return
     fi
-    
-    curl -s "$prom_endpoint/api/v1/query" \
-        --data-urlencode "query=$query" \
-        2>/dev/null | jq -r '.data.result[0].value[1] // ""' 2>/dev/null || echo ""
 }
 
-# Get current session ID from Prometheus
 get_current_session_id() {
-    local prom_enabled=$(echo "$CONFIG" | jq -r '.prometheus.enabled // false')
-    if [[ "$prom_enabled" != "true" ]]; then
+    local response
+    if response="$(curl -sSf --max-time 2 \
+        "${PROMETHEUS_ENDPOINT}/api/v1/query?query=claude_code_cost_usage_USD_total" 2>/dev/null)"; then
+        echo "${response}" | jq -r '.data.result | sort_by(.value[0]) | reverse | .[0].metric.session_id // ""' 2>/dev/null || echo ""
+    else
+        echo ""
+    fi
+}
+
+format_metric() {
+    local value="${1}"
+    local type="${2}"
+    
+    if [[ -z "${value}" || "${value}" == "0" ]]; then
         echo ""
         return
     fi
     
-    curl -s "http://localhost:9090/api/v1/query?query=claude_code_cost_usage_USD_total" \
-        2>/dev/null | jq -r '.data.result | sort_by(.value[0]) | reverse | .[0].metric.session_id // ""' 2>/dev/null || echo ""
+    case "${type}" in
+        cost)
+            printf "$%.2f" "${value}"
+            ;;
+        tokens)
+            local num_int
+            num_int="$(printf "%.0f" "${value}")"
+            if (( num_int >= 1000000 )); then
+                printf "%.1fM tokens" "$(echo "scale=1; ${num_int}/1000000" | bc)"
+            elif (( num_int >= 1000 )); then
+                printf "%.1fK tokens" "$(echo "scale=1; ${num_int}/1000" | bc)"
+            else
+                echo "${num_int} tokens"
+            fi
+            ;;
+        duration)
+            local seconds
+            seconds="$(printf "%.0f" "${value}")"
+            if (( seconds >= 60 )); then
+                printf "%.1fm" "$(echo "scale=1; ${seconds}/60" | bc)"
+            else
+                printf "%ds" "${seconds}"
+            fi
+            ;;
+    esac
 }
 
-# Get session metrics
 get_session_metrics() {
-    local session_id="$1"
-    local metrics_enabled=$(echo "$CONFIG" | jq -r '.prometheus.include_metrics')
+    local session_id="${1:-${SESSION_ID}}"
     
-    if [[ -z "$session_id" ]] || [[ "$session_id" == "$(date +%H%M%S)" ]]; then
-        session_id=$(get_current_session_id)
-        if [[ -z "$session_id" ]]; then
-            echo '{"cost": "", "tokens": "", "duration": ""}'
+    # Get current session ID if needed
+    if [[ -z "${session_id}" || "${session_id}" == "$(date +%H%M%S)" ]]; then
+        session_id="$(get_current_session_id)"
+        if [[ -z "${session_id}" ]]; then
+            echo ""
             return
         fi
     fi
     
-    if [[ "$HOOK_TYPE" == "stop" ]]; then
-        sleep 2  # Wait for metrics
+    # Wait for metrics to be available on stop event
+    if [[ "${HOOK_TYPE}" == "stop" ]]; then
+        sleep 2
     fi
     
-    local cost="" tokens="" duration=""
+    local metrics=()
     
     # Get cost
-    if [[ $(echo "$metrics_enabled" | jq -r '.cost // false') == "true" ]]; then
-        cost=$(query_prometheus "sum(claude_code_cost_usage_USD_total{session_id=\"$session_id\"})")
-        if [[ -n "$cost" ]] && [[ "$cost" != "0" ]] && [[ "$cost" != "null" ]]; then
-            cost=$(printf "%.4f" "$cost")
-        else
-            cost=""
-        fi
-    fi
+    local cost
+    cost="$(query_prometheus "sum(claude_code_cost_usage_USD_total{session_id=\"${session_id}\"})")"
+    cost="$(format_metric "${cost}" "cost")"
+    [[ -n "${cost}" ]] && metrics+=("${cost}")
     
     # Get tokens
-    if [[ $(echo "$metrics_enabled" | jq -r '.tokens // false') == "true" ]]; then
-        local total_tokens=$(query_prometheus "sum(claude_code_token_usage_tokens_total{session_id=\"$session_id\"})")
-        
-        if [[ -n "$total_tokens" ]] && [[ "$total_tokens" != "0" ]] && [[ "$total_tokens" != "null" ]]; then
-            local token_num=$(printf "%.0f" "$total_tokens")
-            if (( token_num >= 1000000 )); then
-                tokens=$(printf "%.1fM tokens" $(echo "$token_num / 1000000" | bc -l 2>/dev/null || echo 0))
-            elif (( token_num >= 1000 )); then
-                tokens=$(printf "%.1fK tokens" $(echo "$token_num / 1000" | bc -l 2>/dev/null || echo 0))
-            else
-                tokens="$token_num tokens"
-            fi
-        fi
-    fi
+    local tokens
+    tokens="$(query_prometheus "sum(claude_code_token_usage_tokens_total{session_id=\"${session_id}\"})")"
+    tokens="$(format_metric "${tokens}" "tokens")"
+    [[ -n "${tokens}" ]] && metrics+=("${tokens}")
     
     # Get duration
-    if [[ $(echo "$metrics_enabled" | jq -r '.duration // false') == "true" ]]; then
-        local active_time=$(query_prometheus "sum(claude_code_active_time_seconds_total{session_id=\"$session_id\"})")
-        if [[ -n "$active_time" ]] && [[ "$active_time" != "0" ]] && [[ "$active_time" != "null" ]]; then
-            if (( $(echo "$active_time >= 60" | bc -l 2>/dev/null || echo 0) )); then
-                duration=$(printf "%.1fm" $(echo "$active_time / 60" | bc -l 2>/dev/null || echo 0))
-            else
-                duration=$(printf "%.0fs" "$active_time")
-            fi
-        fi
-    fi
+    local duration
+    duration="$(query_prometheus "sum(claude_code_active_time_seconds_total{session_id=\"${session_id}\"})")"
+    duration="$(format_metric "${duration}" "duration")"
+    [[ -n "${duration}" ]] && metrics+=("${duration}")
     
-    echo "{\"cost\": \"$cost\", \"tokens\": \"$tokens\", \"duration\": \"$duration\"}"
+    # Join metrics
+    if [[ ${#metrics[@]} -gt 0 ]]; then
+        IFS=' • ' echo "${metrics[*]}"
+    else
+        echo ""
+    fi
 }
 
-# Generate notification content
-generate_notification() {
-    local hook_type="$1"
-    local title="" message="" priority="" urgency=""
+generate_message() {
+    local hook_type="${1}"
     
-    case "$hook_type" in
-        "start")
-            title="🚀 Task Started"
-            message="Task Started • [$PROJECT_NAME]"
-            priority=$(echo "$CONFIG" | jq -r '.gotify.priorities.start // 5')
-            urgency="low"
+    case "${hook_type}" in
+        start)
+            echo "🚀 Task Started • [${PROJECT_NAME}]"
             ;;
-        "stop")
-            title="✅ Task Complete"
+        stop)
+            local metrics
+            metrics="$(get_session_metrics)"
             
-            local metrics=$(get_session_metrics "$SESSION_ID")
-            local cost=$(echo "$metrics" | jq -r '.cost // ""')
-            local tokens=$(echo "$metrics" | jq -r '.tokens // ""')
-            local duration=$(echo "$metrics" | jq -r '.duration // ""')
-            
-            local summary_parts=()
-            [[ -n "$tokens" ]] && summary_parts+=("$tokens")
-            [[ -n "$cost" ]] && summary_parts+=("\$$cost")
-            [[ -n "$duration" ]] && summary_parts+=("$duration")
-            
-            local metrics_summary=""
-            if [[ ${#summary_parts[@]} -gt 0 ]]; then
-                metrics_summary=" • $(IFS=' • '; echo "${summary_parts[*]}")"
+            if [[ -n "${metrics}" ]]; then
+                echo "✅ Task Complete • [${PROJECT_NAME}] • ${metrics}"
+            else
+                echo "✅ Task Complete • [${PROJECT_NAME}]"
             fi
-            
-            message="Task Complete • [$PROJECT_NAME]$metrics_summary"
-            priority=$(echo "$CONFIG" | jq -r '.gotify.priorities.stop // 7')
-            urgency="normal"
             ;;
         *)
-            title="ℹ️ Claude Event"
-            message="Event: $hook_type in [$PROJECT_NAME]"
-            priority=5
-            urgency="normal"
+            echo "ℹ️ Event: ${hook_type} • [${PROJECT_NAME}]"
             ;;
     esac
-    
-    echo "$title|$message|$priority|$urgency"
 }
 
-# Send Gotify notification
-send_gotify() {
-    local title="$1" message="$2" priority="$3"
+send_notification() {
+    local message="${1}"
+    local priority="${2}"
     
-    local gotify_enabled=$(echo "$CONFIG" | jq -r '.gotify.enabled // true')
-    local token="${GOTIFY_TOKEN:-ARBFidJvnd1EeXU}"
+    # Create JSON payload
+    local payload
+    payload="$(jq -n \
+        --arg title "Claude Code" \
+        --arg message "${message}" \
+        --arg priority "${priority}" \
+        '{title: $title, message: $message, priority: ($priority | tonumber)}')"
     
-    if [[ "$gotify_enabled" != "true" ]]; then
-        return
-    fi
-    
-    local gotify_url=$(echo "$CONFIG" | jq -r '.gotify.url // "http://192.168.1.111/message"')
-    
-    curl -s -X POST "$gotify_url" \
+    # Send notification
+    curl -sSf --max-time 5 -X POST "${GOTIFY_URL}" \
         -H "Content-Type: application/json" \
-        -H "X-Gotify-Key: $token" \
-        -d "{
-            \"title\": \"$title\",
-            \"message\": \"$message\",
-            \"priority\": $priority
-        }" >/dev/null 2>&1
-}
-
-# Send desktop notification
-send_desktop() {
-    local title="$1" message="$2" urgency="$3"
-    
-    local desktop_enabled=$(echo "$CONFIG" | jq -r '.desktop.enabled // true')
-    if [[ "$desktop_enabled" != "true" ]]; then
-        return
-    fi
-    
-    local expire_time=$(echo "$CONFIG" | jq -r ".desktop.expire_times.$HOOK_TYPE // 5000")
-    
-    notify-send "$title" "$message" \
-        --icon=dialog-information \
-        --urgency="$urgency" \
-        --expire-time="$expire_time" \
-        --app-name="Claude Code"
-}
-
-# Log notification
-log_notification() {
-    local log_enabled=$(echo "$CONFIG" | jq -r '.logging.enabled // true')
-    if [[ "$log_enabled" != "true" ]]; then
-        return
-    fi
-    
-    local log_file="$LOG_DIR/notifications.json"
-    local log_entry="{
-        \"timestamp\": \"$TIMESTAMP\",
-        \"session_id\": \"$SESSION_ID\",
-        \"hook_type\": \"$HOOK_TYPE\",
-        \"project\": \"$PROJECT_NAME\",
-        \"title\": \"$1\",
-        \"message\": \"$2\"
-    }"
-    
-    if [[ -f "$log_file" ]]; then
-        echo ",$log_entry" >> "$log_file"
-    else
-        echo "[$log_entry" > "$log_file"
-    fi
+        -H "X-Gotify-Key: ${GOTIFY_TOKEN}" \
+        -d "${payload}" >/dev/null 2>&1 || {
+        echo "Warning: Failed to send notification" >&2
+        return 1
+    }
 }
 
 # Main execution
 main() {
-    if [[ -z "$HOOK_TYPE" ]]; then
-        echo "Usage: $0 <hook_type>"
-        exit 1
+    validate_hook_type "${HOOK_TYPE}"
+    
+    local message priority
+    
+    case "${HOOK_TYPE}" in
+        start)
+            priority="${GOTIFY_PRIORITY_START}"
+            ;;
+        stop)
+            priority="${GOTIFY_PRIORITY_STOP}"
+            ;;
+        *)
+            priority=5
+            ;;
+    esac
+    
+    message="$(generate_message "${HOOK_TYPE}")"
+    
+    if send_notification "${message}" "${priority}"; then
+        echo "Notification sent: ${HOOK_TYPE}"
+    else
+        echo "Failed to send notification" >&2
+        exit 0  # Don't fail the hook
     fi
-    
-    # Generate content
-    local content=$(generate_notification "$HOOK_TYPE")
-    IFS='|' read -r title message priority urgency <<< "$content"
-    
-    # Log the notification
-    log_notification "$title" "$message"
-    
-    # Send notifications
-    send_gotify "$title" "$message" "$priority"
-    send_desktop "$title" "$message" "$urgency"
-    
-    echo "Enhanced notification sent: $HOOK_TYPE"
 }
 
-main "$@"
+# Run main function
+main
