@@ -20,4 +20,5 @@ fi
 
 mkdir -p ~/.cache/{vim,nvim}/{backup,swap,undo}
 
+
 [[ -f ~/README.md ]] && rm -f ~/README.md 2>/dev/null || true
