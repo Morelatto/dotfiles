@@ -54,6 +54,11 @@ age = "latest"        # Modern encryption
 sops = "latest"       # Secrets management
 
 # NPM global packages (via mise)
+"npm:@anthropic-ai/claude-code" = "latest"
+"npm:@marp-team/marp-cli" = "latest"
+"npm:@mermaid-js/mermaid-cli" = "latest"
+"npm:npm-check" = "latest"
+"npm:serve" = "latest"
 "npm:repomix" = "latest"
 "npm:eslint" = "latest"
 "npm:prettier" = "latest"
