@@ -1,0 +1,52 @@
+{
+  "gotify": {
+    "enabled": true,
+    "url": "http://192.168.1.111/message",
+    "priorities": {
+      "start": 5,
+      "stop": 7,
+      "error": 10,
+      "warning": 8,
+      "info": 5
+    }
+  },
+  "desktop": {
+    "enabled": false,
+    "expire_times": {
+      "start": 5000,
+      "stop": 8000,
+      "error": 15000,
+      "warning": 10000
+    }
+  },
+  "logging": {
+    "enabled": true,
+    "log_dir": "~/.claude/logs",
+    "max_entries": 1000
+  },
+  "filters": {
+    "quiet_hours": {
+      "enabled": false,
+      "start": "22:00",
+      "end": "08:00"
+    },
+    "min_interval_seconds": 2
+  },
+  "content": {
+    "include_session_id": true,
+    "include_project_context": true,
+    "include_user_info": true,
+    "truncate_prompts": 50
+  },
+  "prometheus": {
+    "enabled": true,
+    "endpoint": "http://localhost:9090",
+    "include_metrics": {
+      "cost": true,
+      "tokens": true,
+      "duration": true,
+      "api_requests": false,
+      "code_changes": false
+    }
+  }
+}
