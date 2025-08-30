@@ -40,7 +40,10 @@ ICONS = {
     'nvim': '\uf15c',      # fa-file-text
     'kitty': '\uf120',     # fa-terminal
     'alacritty': '\uf120', # fa-terminal
-    'gnome-terminal': '\uf120'  # fa-terminal
+    'gnome-terminal': '\uf120',  # fa-terminal
+    'libreoffice': '\uf1c2',      # fa-file-archive (document icon)
+    'vscode': '\uf121',           # fa-code
+    'code-oss': '\uf121'          # fa-code (same as vscode)
 }
 
 def get_icon(icon_name):
