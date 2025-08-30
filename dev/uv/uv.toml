@@ -6,7 +6,7 @@ compile-bytecode = true        # Create .pyc files for faster startup
 link-mode = "hardlink"        # Use hardlinks for better performance on Linux
 
 # Cache management  
-cache-dir = "~/.cache/uv"     # Explicit cache location
+# cache-dir is set via UV_CACHE_DIR environment variable instead
 
 # Index configuration
 [[index]]
