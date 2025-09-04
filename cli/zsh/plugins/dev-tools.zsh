@@ -33,6 +33,34 @@ if (( $+commands[git] )); then
     alias gpr='git pull --rebase'
     alias gca='git commit --amend'
     alias gcan='git commit --amend --no-edit'
+    
+    # Smart URL cleanup function
+    _git_clean_url() {
+        local url="$1"
+        if [[ "$url" =~ github\.com ]]; then
+            echo "$url" | sed -E 's|^https?://github\.com/([^/]+/[^/?#]+).*|\1|' | sed 's|^|https://github.com/|; s|$|.git|'
+        else
+            echo "$url"
+        fi
+    }
+    
+    # Override git command to auto-clean clone URLs
+    git() {
+        if [[ "$1" == "clone" && -n "$2" ]]; then
+            local cleaned_url=$(_git_clean_url "$2")
+            if [[ "$cleaned_url" != "$2" ]]; then
+                echo "Cleaned URL: $2 → $cleaned_url"
+                command git clone "$cleaned_url" "${@:3}"
+            else
+                command git "$@"
+            fi
+        else
+            command git "$@"
+        fi
+    }
+    
+    # Smart git clone alias (for those who prefer explicit gcl)
+    alias gcl='git clone'
 
     (( $+commands[delta] )) && export GIT_PAGER="delta"
     export GIT_EDITOR="${GIT_EDITOR:-${EDITOR:-nvim}}"
