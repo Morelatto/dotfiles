@@ -216,9 +216,9 @@ mode "move_window" {
 bindsym $mod+m mode "move_window"
 
 # WORKSPACE ASSIGNMENTS
-assign [class="Thunar"] number 3
-assign [class="thunderbird"] number 4
-assign [class="TelegramDesktop"] number 5
+# assign [class="Thunar"] number 3
+# assign [class="thunderbird"] number 4
+# assign [class="TelegramDesktop"] number 5
 
 # WINDOW FOCUS RULES
 for_window [class=Xfce4-terminal] focus
