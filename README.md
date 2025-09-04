@@ -2,7 +2,7 @@
 
 # 🌩️ Dotfiles
 
-**Modern dotfiles for EndeavourOS/Arch Linux with automated setup**
+**Modern dotfiles for Linux with automated setup**
 
 <a href="https://archlinux.org/">
   <img src="https://img.shields.io/badge/Arch%20Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white">
