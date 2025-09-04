@@ -44,3 +44,7 @@ export COMPOSE_DOCKER_CLI_BUILD=1
 
 # Kubectl configuration
 export KUBECTL_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/kubectl"
+
+# Python/pip/uv cache configuration
+export UV_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/uv"
+export PIP_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/pip"
