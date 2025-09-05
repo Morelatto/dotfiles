@@ -30,11 +30,5 @@ if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
     eval $(dbus-launch --sh-syntax --exit-with-session)
 fi
 
-# Import environment to systemd user session
+# Import environment to systemd user session for better service integration
 systemctl --user import-environment PATH DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP
-
-# Start XDG desktop portal (helps with D-Bus service integration)
-/usr/lib/xdg-desktop-portal &
-
-# Ensure GVFS is properly initialized
-/usr/lib/gvfsd &
