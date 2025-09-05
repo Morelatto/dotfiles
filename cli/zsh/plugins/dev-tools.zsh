@@ -33,7 +33,7 @@ if (( $+commands[git] )); then
     alias gpr='git pull --rebase'
     alias gca='git commit --amend'
     alias gcan='git commit --amend --no-edit'
-    
+
     # Smart URL cleanup function
     _git_clean_url() {
         local url="$1"
@@ -43,7 +43,7 @@ if (( $+commands[git] )); then
             echo "$url"
         fi
     }
-    
+
     # Override git command to auto-clean clone URLs
     git() {
         if [[ "$1" == "clone" && -n "$2" ]]; then
@@ -58,7 +58,7 @@ if (( $+commands[git] )); then
             command git "$@"
         fi
     }
-    
+
     # Smart git clone alias (for those who prefer explicit gcl)
     alias gcl='git clone'
 
