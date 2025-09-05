@@ -50,4 +50,4 @@ export UV_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/uv"
 export PIP_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/pip"
 
 # GUI sudo password prompt
-export SUDO_ASKPASS="/usr/lib/ssh/x11-ssh-askpass"
+export SUDO_ASKPASS="/usr/bin/lxqt-openssh-askpass"
