@@ -48,3 +48,6 @@ export KUBECTL_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/kubectl"
 # Python/pip/uv cache configuration
 export UV_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/uv"
 export PIP_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/pip"
+
+# GUI sudo password prompt
+export SUDO_ASKPASS="/usr/lib/ssh/x11-ssh-askpass"
