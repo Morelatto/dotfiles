@@ -31,10 +31,13 @@ libreoffice = ""
 "libreoffice-draw" = ""
 "libreoffice-base" = ""
 "libreoffice-math" = ""
+Virt-viewer = ""
+pavucontrol = ""
 
 [general]
-default_icon = ""
+default_icon = ""
 
 [options]
 remove_duplicates = true
 no_names = true
+
