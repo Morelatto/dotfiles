@@ -249,6 +249,7 @@ exec --no-startup-id dunst
 exec_always --no-startup-id autotiling
 exec --no-startup-id ~/.screenlayout/monitor.sh
 exec --no-startup-id sleep 1 && feh --bg-fill ~/.config/wallpapers/default.png
+exec --no-startup-id systemctl --user start gvfs-daemon.service
 
 # BAR
 bar {
