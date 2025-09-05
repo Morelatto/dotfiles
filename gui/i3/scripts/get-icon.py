@@ -43,7 +43,16 @@ ICONS = {
     'gnome-terminal': '\uf120',  # fa-terminal
     'libreoffice': '\uf1c2',      # fa-file-archive (document icon)
     'vscode': '\uf121',           # fa-code
-    'code-oss': '\uf121'          # fa-code (same as vscode)
+    'code-oss': '\uf121',         # fa-code (same as vscode)
+    'vm': '\uf233',               # fa-server (virtual machine)
+    'virtualbox': '\uf26c',       # fa-tv (virtualbox)
+    'virt-manager': '\uf013',     # fa-cog (vm manager)
+    'virt-viewer': '\uf085',      # fa-cogs (vm working)
+    'unknown': '\uf2d0',          # fa-cube (generic app)
+    'window': '\uf2d2',           # fa-window-maximize  
+    'app': '\uf249',              # fa-rocket (application)
+    'generic': '\uf013',          # fa-cog (generic)
+    'pavucontrol': '\uf028'       # fa-volume-up (audio control)
 }
 
 def get_icon(icon_name):
