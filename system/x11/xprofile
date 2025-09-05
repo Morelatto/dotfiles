@@ -23,3 +23,18 @@ export MOZ_GTK_TITLEBAR_DECORATION=client
 
 # Mouse acceleration (optional, adjust as needed)
 # xset m 2 1
+
+# D-Bus and desktop integration fixes
+# Ensure D-Bus session is properly initialized
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+    eval $(dbus-launch --sh-syntax --exit-with-session)
+fi
+
+# Import environment to systemd user session
+systemctl --user import-environment PATH DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP
+
+# Start XDG desktop portal (helps with D-Bus service integration)
+/usr/lib/xdg-desktop-portal &
+
+# Ensure GVFS is properly initialized
+/usr/lib/gvfsd &
