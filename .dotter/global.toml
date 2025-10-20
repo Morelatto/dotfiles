@@ -1,5 +1,7 @@
 # Dotter Global Configuration
-[terminal.files]
+# Use profiles in .dotter/profiles/ to select which packages to deploy
+
+[shell.files]
 "cli/atuin" = "~/.config/atuin"
 "cli/zsh/.zshenv" = "~/.zshenv"
 "cli/zsh" = "~/.config/zsh"
@@ -9,25 +11,7 @@
 "cli/bash/.bashrc" = "~/.bashrc"
 "cli/bash/.bash_profile" = "~/.bash_profile"
 
-[desktop.files]
-"gui/i3/config" = "~/.config/i3/config"
-"gui/i3/i3blocks/i3blocks.conf" = "~/.config/i3/i3blocks.conf"
-"gui/i3/i3wsr" = "~/.config/i3wsr"
-"gui/i3/scripts" = "~/.config/i3/scripts"
-"gui/dunst" = "~/.config/dunst"
-"gui/rofi" = "~/.config/rofi"
-"gui/picom" = "~/.config/picom"
-"gui/xfce4" = "~/.config/xfce4"
-"gui/autostart" = "~/.config/autostart"
-"gui/gtk-3.0" = "~/.config/gtk-3.0"
-"gui/gtk-4.0" = "~/.config/gtk-4.0"
-"gui/assets/wallpapers" = { target = "~/.config/wallpapers", type = "symbolic" }
-"gui/gsimplecal" = "~/.config/gsimplecal"
-"gui/betterlockscreen/betterlockscreenrc" = "~/.config/betterlockscreenrc"
-"system/x11/Xresources" = "~/.Xresources"
-"system/x11/xprofile" = "~/.xprofile"
-
-[development.files]
+[dev.files]
 "dev/git" = "~/.config/git"
 "dev/bun/config.toml" = "~/.bunfig.toml"
 "dev/docker/config" = { target = "~/.docker/config.json", type = "symbolic" }
@@ -46,10 +30,27 @@
 "editors/vim" = "~/.config/vim"
 "editors/sublime-text-3" = "~/.config/sublime-text-3"
 
-[applications.files]
+[gui.files]
+"gui/i3/config" = "~/.config/i3/config"
+"gui/i3/i3blocks/i3blocks.conf" = "~/.config/i3/i3blocks.conf"
+"gui/i3/i3wsr" = "~/.config/i3wsr"
+"gui/i3/scripts" = "~/.config/i3/scripts"
+"gui/dunst" = "~/.config/dunst"
+"gui/rofi" = "~/.config/rofi"
+"gui/picom" = "~/.config/picom"
+"gui/xfce4" = "~/.config/xfce4"
+"gui/autostart" = "~/.config/autostart"
+"gui/gtk-3.0" = "~/.config/gtk-3.0"
+"gui/gtk-4.0" = "~/.config/gtk-4.0"
+"gui/assets/wallpapers" = { target = "~/.config/wallpapers", type = "symbolic" }
+"gui/gsimplecal" = "~/.config/gsimplecal"
+"gui/betterlockscreen/betterlockscreenrc" = "~/.config/betterlockscreenrc"
 "gui/firefox" = "~/.config/firefox"
 "editors/obsidian/app.json" = "~/.config/obsidian/app.json"
 "editors/obsidian/appearance.json" = "~/.config/obsidian/appearance.json"
 "editors/obsidian/community-plugins.json" = "~/.config/obsidian/community-plugins.json"
-"system/kalu" = "~/.config/kalu"
 
+[system.files]
+"system/x11/Xresources" = "~/.Xresources"
+"system/x11/xprofile" = "~/.xprofile"
+"system/kalu" = "~/.config/kalu"
