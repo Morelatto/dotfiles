@@ -1,8 +1,8 @@
 # Dotter specific
 .dotter/cache.toml
 .dotter/cache/
-# Note: .dotter/local.toml SHOULD be version controlled according to dotter docs
-# It contains package selections, not sensitive data
+.dotter/local.toml
+.dotter/local.toml.backup-*
 
 # Generated files
 *.tmp
@@ -37,7 +37,6 @@ Thumbs.db
 
 # Local overrides
 *.local
-!.dotter/local.toml  # Exception: this should be tracked
 
 # Personal documentation
 TODO.md
