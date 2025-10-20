@@ -5,6 +5,7 @@ packages:
   - curl
   - unzip
   - tree
+  - zsh
   - docker.io
   - maim
   - xclip
