@@ -1,14 +1,22 @@
 ---
-- name: EndeavourOS Dotfiles Setup
+- name: Dotfiles Setup
   hosts: localhost
   connection: local
   gather_facts: yes
-  
+
   vars:
     dotfiles_dir: "{{ playbook_dir | dirname }}"
     profile: "{{ profile | default('full') }}"
 
-    pacman_packages:
+    # Generic package names (distro-agnostic where possible)
+    common_packages:
+      - git
+      - curl
+      - unzip
+      - tree
+
+    # Arch-specific packages
+    arch_packages:
       - docker
       - maim
       - xclip
@@ -19,29 +27,73 @@
       - xfce4-terminal
       - unrar
       - p7zip
-      - unzip
-      - tree
       - pv
       - ttf-jetbrains-mono-nerd
       - gsimplecal
-    
+
+    # Debian/Ubuntu packages
+    debian_packages:
+      - docker.io
+      - maim
+      - xclip
+      - xdotool
+      - playerctl
+      - xss-lock
+      - thunar
+      - xfce4-terminal
+      - unrar
+      - p7zip-full
+      - pv
+      - fonts-jetbrains-mono
+
+    # AUR packages (Arch only)
     aur_packages:
       - mise-bin
       - dotter-rs-bin
       - betterlockscreen
-    
+
   tasks:
-    - name: Install pacman packages
+    - name: Install common packages
+      become: yes
+      package:
+        name: "{{ common_packages }}"
+        state: present
+
+    - name: Install Arch packages
       become: yes
       pacman:
-        name: "{{ pacman_packages }}"
+        name: "{{ arch_packages }}"
         state: present
         update_cache: yes
-    
-    - name: Install AUR packages
+      when: ansible_os_family == "Archlinux"
+
+    - name: Install Debian/Ubuntu packages
+      become: yes
+      apt:
+        name: "{{ debian_packages }}"
+        state: present
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Install AUR packages (Arch only)
       shell: yay -S --needed --noconfirm {{ aur_packages | join(' ') }}
       register: aur_result
       changed_when: "'installing' in aur_result.stdout"
+      when: ansible_os_family == "Archlinux"
+
+    - name: Install mise (non-Arch)
+      shell: curl https://mise.run | sh
+      args:
+        creates: ~/.local/bin/mise
+      when: ansible_os_family != "Archlinux"
+
+    - name: Install dotter (non-Arch)
+      shell: |
+        curl -fsSL https://github.com/SuperCuber/dotter/releases/latest/download/dotter-x86_64-unknown-linux-gnu -o ~/.local/bin/dotter
+        chmod +x ~/.local/bin/dotter
+      args:
+        creates: ~/.local/bin/dotter
+      when: ansible_os_family != "Archlinux"
     
     - name: Configure mise
       block:
