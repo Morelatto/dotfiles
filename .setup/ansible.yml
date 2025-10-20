@@ -8,92 +8,40 @@
     dotfiles_dir: "{{ playbook_dir | dirname }}"
     profile: "{{ profile | default('full') }}"
 
-    # Generic package names (distro-agnostic where possible)
-    common_packages:
-      - git
-      - curl
-      - unzip
-      - tree
-
-    # Arch-specific packages
-    arch_packages:
-      - docker
-      - maim
-      - xclip
-      - xdotool
-      - playerctl
-      - xss-lock
-      - thunar
-      - xfce4-terminal
-      - unrar
-      - p7zip
-      - pv
-      - ttf-jetbrains-mono-nerd
-      - gsimplecal
-
-    # Debian/Ubuntu packages
-    debian_packages:
-      - docker.io
-      - maim
-      - xclip
-      - xdotool
-      - playerctl
-      - xss-lock
-      - thunar
-      - xfce4-terminal
-      - unrar
-      - p7zip-full
-      - pv
-      - fonts-jetbrains-mono
-
-    # AUR packages (Arch only)
-    aur_packages:
-      - mise-bin
-      - dotter-rs-bin
-      - betterlockscreen
-
   tasks:
-    - name: Install common packages
+    - name: Load OS-specific variables
+      include_vars: "{{ item }}"
+      with_first_found:
+        - "{{ playbook_dir }}/vars/{{ ansible_distribution }}.yml"
+        - "{{ playbook_dir }}/vars/{{ ansible_os_family }}.yml"
+        - "{{ playbook_dir }}/vars/default.yml"
+
+    - name: Install system packages
       become: yes
       package:
-        name: "{{ common_packages }}"
-        state: present
-
-    - name: Install Arch packages
-      become: yes
-      pacman:
-        name: "{{ arch_packages }}"
+        name: "{{ packages }}"
         state: present
         update_cache: yes
-      when: ansible_os_family == "Archlinux"
 
-    - name: Install Debian/Ubuntu packages
-      become: yes
-      apt:
-        name: "{{ debian_packages }}"
-        state: present
-        update_cache: yes
-      when: ansible_os_family == "Debian"
-
-    - name: Install AUR packages (Arch only)
+    - name: Install AUR packages
       shell: yay -S --needed --noconfirm {{ aur_packages | join(' ') }}
       register: aur_result
       changed_when: "'installing' in aur_result.stdout"
-      when: ansible_os_family == "Archlinux"
+      when: use_aur | default(false)
 
-    - name: Install mise (non-Arch)
+    - name: Install mise
       shell: curl https://mise.run | sh
       args:
         creates: ~/.local/bin/mise
-      when: ansible_os_family != "Archlinux"
+      when: not use_aur
 
-    - name: Install dotter (non-Arch)
+    - name: Install dotter
       shell: |
         curl -fsSL https://github.com/SuperCuber/dotter/releases/latest/download/dotter-x86_64-unknown-linux-gnu -o ~/.local/bin/dotter
         chmod +x ~/.local/bin/dotter
       args:
         creates: ~/.local/bin/dotter
-      when: ansible_os_family != "Archlinux"
+      when: not use_aur
     
     - name: Configure mise
       block:

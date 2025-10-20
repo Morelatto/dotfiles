@@ -1,0 +1,9 @@
+---
+# Default/fallback packages (minimal)
+packages:
+  - git
+  - curl
+  - unzip
+  - tree
+
+use_aur: false
