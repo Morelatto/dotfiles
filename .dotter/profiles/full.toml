@@ -1,0 +1,12 @@
+# Full profile: everything (shell + dev + GUI + system)
+# For desktop workstations
+# Copy to .dotter/local.toml to use
+
+packages = ["shell", "dev", "gui", "system"]
+
+[variables]
+hostname = "{{ env "HOSTNAME" }}"
+distro = "Arch"
+is_desktop = true
+is_laptop = false
+monitors = "dual"

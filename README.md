@@ -20,11 +20,15 @@
 
 ## Installation
 
+**Full setup (desktop):**
 ```bash
-sudo pacman -S ansible && ansible-pull -U https://github.com/Morelatto/dotfiles.git .setup/ansible.yml -K
+ansible-pull -U https://github.com/Morelatto/dotfiles.git .setup/ansible.yml -K
 ```
 
-**What it does:** Installs system packages, development tools (mise), and deploys configurations (dotter) automatically.
+**Minimal setup (servers):**
+```bash
+ansible-pull -U https://github.com/Morelatto/dotfiles.git .setup/ansible.yml -K --extra-vars "profile=minimal"
+```
 
 ---
 

@@ -1,0 +1,11 @@
+# Minimal profile: shell + dev tools only (no GUI)
+# For servers, code-server, containers, remote machines
+# Copy to .dotter/local.toml to use
+
+packages = ["shell", "dev"]
+
+[variables]
+hostname = "{{ env "HOSTNAME" }}"
+distro = "Arch"
+is_desktop = false
+is_laptop = false

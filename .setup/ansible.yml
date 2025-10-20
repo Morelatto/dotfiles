@@ -6,7 +6,8 @@
   
   vars:
     dotfiles_dir: "{{ playbook_dir | dirname }}"
-    
+    profile: "{{ profile | default('full') }}"
+
     pacman_packages:
       - docker
       - maim
@@ -62,6 +63,12 @@
           changed_when: mise_install.rc == 0
           when: mise_check.rc == 0
     
+    - name: Select dotter profile
+      copy:
+        src: "{{ dotfiles_dir }}/.dotter/profiles/{{ profile }}.toml"
+        dest: "{{ dotfiles_dir }}/.dotter/local.toml"
+        force: yes
+
     - name: Deploy dotfiles
       shell: dotter deploy --force
       args:
@@ -87,5 +94,5 @@
     - name: Setup complete
       debug:
         msg:
-          - "✅ Done! Please logout and login again."
-          - "Run: exec zsh"
+          - "✅ Done! Profile: {{ profile }}"
+          - "Please logout and login again, or run: exec zsh"
