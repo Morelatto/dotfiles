@@ -1,0 +1,11 @@
+---
+# Ansible Galaxy requirements for dotfiles bootstrap
+
+collections:
+  # Required for AUR package management on Arch Linux
+  - name: kewlfft.aur
+    version: ">=0.11.0"
+
+  # Community general collection (includes pacman, flatpak modules)
+  - name: community.general
+    version: ">=8.0.0"
