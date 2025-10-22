@@ -1,5 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=ProtonVPN
-Exec=protonvpn-app --start-minimized
-Hidden=false

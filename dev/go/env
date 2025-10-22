@@ -1,7 +1,0 @@
-GOPROXY=https://proxy.golang.org,direct
-GOSUMDB=sum.golang.org
-GOPATH=$HOME/go
-GOBIN=$HOME/go/bin
-CGO_ENABLED=1
-GO111MODULE=on
-GOCACHE=$HOME/.cache/go-build
