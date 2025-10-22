@@ -1,0 +1,139 @@
+---
+# Desktop environment packages (i3, rofi, apps, etc.)
+# Only runs when profile == 'full'
+
+- name: Install core desktop environment packages (Arch Linux)
+  become: yes
+  community.general.pacman:
+    name:
+      # Window manager & desktop core
+      - i3-wm
+      - rofi
+      - picom
+      - dunst
+      - i3blocks
+      - feh
+      - dex
+      - polkit-gnome
+      # System monitoring (required by i3blocks scripts)
+      - lm-sensors
+      - sysstat
+      - libnotify
+      - alsa-utils
+      # Network & system tools
+      - networkmanager
+      - xsel
+      - blueman
+      - pavucontrol
+      # X11 utilities & tools
+      - maim
+      - xclip
+      - xdotool
+      - playerctl
+      - xss-lock
+      # GUI applications
+      - thunar
+      - xfce4-terminal
+      - firefox
+      # Fonts
+      - ttf-jetbrains-mono-nerd
+      # Desktop widgets
+      - gsimplecal
+    state: present
+    update_cache: yes
+  when: ansible_distribution == "Archlinux"
+  tags: desktop
+
+- name: Install core desktop environment packages (Debian/Ubuntu)
+  become: yes
+  apt:
+    name:
+      # Window manager & desktop core
+      - i3-wm
+      - rofi
+      - picom
+      - dunst
+      - i3blocks
+      - feh
+      - dex
+      - policykit-1-gnome
+      # System monitoring (required by i3blocks scripts)
+      - lm-sensors
+      - sysstat
+      - libnotify-bin
+      - alsa-utils
+      # Network & system tools
+      - network-manager
+      - xsel
+      - blueman
+      - pavucontrol
+      # X11 utilities & tools
+      - maim
+      - xclip
+      - xdotool
+      - playerctl
+      - xss-lock
+      # GUI applications
+      - thunar
+      - xfce4-terminal
+      - firefox-esr
+      # Fonts
+      - fonts-jetbrains-mono
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+  tags: desktop
+
+- name: Create AUR builder user for desktop packages
+  become: yes
+  user:
+    name: aur_builder
+    group: wheel
+    create_home: no
+    system: yes
+  when: ansible_distribution == "Archlinux"
+  tags: desktop
+
+- name: Allow aur_builder to run pacman without password
+  become: yes
+  copy:
+    content: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+    dest: /etc/sudoers.d/11-aur_builder
+    mode: '0644'
+    validate: 'visudo -cf %s'
+  when: ansible_distribution == "Archlinux"
+  tags: desktop
+
+- name: Install desktop AUR packages (Arch Linux only)
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      # Applications
+      - obsidian
+      - sublime-text-4
+      - jetbrains-toolbox
+      # i3 enhancements
+      - i3wsr
+      # System utilities
+      - kalu
+    state: present
+  become: yes
+  become_user: aur_builder
+  when: ansible_distribution == "Archlinux"
+  tags: desktop
+
+- name: Install desktop apps via Flatpak (cross-distro)
+  block:
+    - name: Add Flathub repository
+      community.general.flatpak_remote:
+        name: flathub
+        state: present
+        flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+
+    - name: Install desktop apps via Flatpak
+      community.general.flatpak:
+        name:
+          - md.obsidian.Obsidian
+        state: present
+  when: ansible_os_family == "Debian"
+  tags: desktop
