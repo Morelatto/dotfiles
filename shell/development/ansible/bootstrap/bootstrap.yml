@@ -1,0 +1,103 @@
+---
+- name: Dotfiles Setup
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+
+  vars:
+    dotfiles_dir: "{{ playbook_dir | dirname | dirname | dirname }}"
+    profile: "{{ profile | default('full') }}"
+
+  tasks:
+    - name: Load OS-specific variables
+      include_vars: "{{ item }}"
+      with_first_found:
+        - "{{ playbook_dir }}/vars/{{ ansible_distribution }}.yml"
+        - "{{ playbook_dir }}/vars/{{ ansible_os_family }}.yml"
+        - "{{ playbook_dir }}/vars/default.yml"
+
+    - name: Install system packages
+      become: yes
+      package:
+        name: "{{ packages }}"
+        state: present
+        update_cache: yes
+
+    - name: Install AUR packages
+      shell: yay -S --needed --noconfirm {{ aur_packages | join(' ') }}
+      register: aur_result
+      changed_when: "'installing' in aur_result.stdout"
+      when: use_aur | default(false)
+
+    - name: Install desktop environment packages
+      include_tasks: tasks/desktop_packages.yml
+      when: profile == 'full'
+
+    - name: Install mise
+      shell: curl https://mise.run | sh
+      args:
+        creates: ~/.local/bin/mise
+      when: not use_aur
+
+    - name: Install dotter
+      shell: |
+        curl -fsSL https://github.com/SuperCuber/dotter/releases/latest/download/dotter-x86_64-unknown-linux-gnu -o ~/.local/bin/dotter
+        chmod +x ~/.local/bin/dotter
+      args:
+        creates: ~/.local/bin/dotter
+      when: not use_aur
+    
+    - name: Configure mise
+      block:
+        - name: Check if mise is available
+          command: which mise
+          register: mise_check
+          failed_when: false
+          changed_when: false
+        
+        - name: Trust mise global config
+          shell: mise trust ~/.config/mise/config.toml
+          when: mise_check.rc == 0
+        
+        - name: Install all mise tools
+          shell: mise install -y
+          args:
+            chdir: "{{ dotfiles_dir }}"
+          register: mise_install
+          changed_when: mise_install.rc == 0
+          when: mise_check.rc == 0
+    
+    - name: Select dotter profile
+      copy:
+        src: "{{ dotfiles_dir }}/.dotter/profiles/{{ profile }}.toml"
+        dest: "{{ dotfiles_dir }}/.dotter/local.toml"
+        force: yes
+
+    - name: Deploy dotfiles
+      shell: dotter deploy --force
+      args:
+        chdir: "{{ dotfiles_dir }}"
+      register: dotter_deploy
+      changed_when: dotter_deploy.rc == 0
+    
+    - name: Docker configuration
+      become: yes
+      ignore_errors: yes
+      block:
+        - name: Add user to docker group
+          user:
+            name: "{{ ansible_user_id }}"
+            groups: docker
+            append: yes
+
+        - name: Enable docker service
+          systemd:
+            name: docker
+            enabled: yes
+            state: started
+    
+    - name: Setup complete
+      debug:
+        msg:
+          - "✅ Done! Profile: {{ profile }}"
+          - "Please logout and login again, or run: exec zsh"
