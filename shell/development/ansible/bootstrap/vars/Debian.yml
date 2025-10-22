@@ -1,0 +1,39 @@
+---
+# Debian/Ubuntu package names
+
+# Base system packages (installed on all profiles - CLI only)
+packages:
+  - git
+  - curl
+  - unzip
+  - tree
+  - zsh
+  - docker.io
+  - unrar
+  - p7zip-full
+  - pv
+
+# Desktop packages (Debian/Ubuntu equivalents)
+desktop_packages:
+  - i3-wm
+  - rofi
+  - picom
+  - dunst
+  - i3blocks
+  - feh
+  - dex
+  - policykit-1-gnome
+  - lm-sensors
+  - sysstat
+  - libnotify-bin
+  - alsa-utils
+  - network-manager
+  - xsel
+  - blueman
+  - pavucontrol
+  - firefox-esr
+
+# Note: Some packages like obsidian, sublime-text, jetbrains-toolbox
+# are better installed via Flatpak or downloaded from vendors on Debian
+
+use_aur: false
