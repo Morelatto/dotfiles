@@ -1,0 +1,46 @@
+{
+  "$schema": "https://repomix.com/schemas/latest/schema.json",
+  "ignore": {
+    "useGitignore": true,
+    "useDefaultPatterns": true,
+    "customPatterns": [
+      "**/*.csv",
+      "**/*.xlsx",
+      "**/*.parquet",
+      "**/*.pkl",
+      "**/*.bin",
+      "**/*.pt",
+      "**/*.h5",
+      "**/*.hdf5",
+      "**/*.pdf",
+      "**/*.mp4",
+      "**/*.mp3",
+      "**/*.wav",
+      "**/*.bak",
+      "**/*.backup",
+      "**/*.old",
+      "**/archive/**",
+      "**/phases/**"
+    ]
+  },
+  "input": {
+    "maxFileSize": 10000000
+  },
+  "output": {
+    "style": "markdown",
+    "filePath": "repomix-output.md",
+    "removeComments": false,
+    "removeEmptyLines": false,
+    "compress": false,
+    "truncateBase64": true,
+    "directoryStructure": true,
+    "files": true,
+    "topFilesLength": 10,
+    "git": {
+      "sortByChanges": true
+    }
+  },
+  "tokenCount": {
+    "encoding": "o200k_base"
+  }
+}

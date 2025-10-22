@@ -1,0 +1,33 @@
+[Added Associations]
+application/json=org.x.editor.desktop;nvim.desktop;
+text/markdown=org.x.editor.desktop;
+image/png=firefox.desktop;
+application/toml=org.x.editor.desktop;
+text/x-python=nvim.desktop;org.x.editor.desktop;
+text/html=firefox.desktop;org.x.editor.desktop;
+text/plain=org.x.editor.desktop;
+application/schema+json=org.x.editor.desktop;
+video/mp4=vlc.desktop;
+video/x-matroska=vlc.desktop;
+text/x-python3=org.x.editor.desktop;
+application/x-shellscript=org.x.editor.desktop;
+image/jpeg=firefox.desktop;
+text/csv=libreoffice-calc.desktop;org.x.editor.desktop;
+
+[Default Applications]
+image/jpeg=firefox.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/chrome=firefox.desktop
+text/html=firefox.desktop
+application/x-extension-htm=firefox.desktop
+application/x-extension-html=firefox.desktop
+application/x-extension-shtml=firefox.desktop
+application/xhtml+xml=firefox.desktop
+application/x-extension-xhtml=firefox.desktop
+application/x-extension-xht=firefox.desktop
+application/pdf=firefox.desktop
+
+[Removed Associations]
+application/pdf=com.google.Chrome.desktop
+application/*=com.google.Chrome.desktop

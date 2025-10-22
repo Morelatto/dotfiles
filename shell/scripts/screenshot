@@ -1,0 +1,133 @@
+#!/usr/bin/env bash
+# Enhanced screenshot utility with picom handling
+
+# Configuration
+SCREENSHOT_DIR="$HOME/Pictures/Screenshot"
+DATE_FORMAT="%F_%H-%M-%S"
+# PNG Compression Settings (maim-specific):
+# For PNG files: 1=fast/large files, 10=slow/small files
+# - Level 1-3: Fast compression, larger files (good for quick captures)
+# - Level 6-7: Balanced (similar to zlib default)
+# - Level 9-10: Best compression, smaller files (recommended for storage)
+# Since PNG decompression is always fast regardless of compression level,
+# we prefer level 9 for optimal file size without excessive processing time
+MAIM_QUALITY=9  # Best compression without going to extreme (10)
+BORDER_WIDTH=2
+BORDER_COLOR="0.5,0.5,0.5,0.5"
+NOTIFICATION_ICON="camera-photo"
+
+# Ensure screenshot directory exists
+mkdir -p "$SCREENSHOT_DIR"
+
+# Generate filename
+get_filename() {
+    echo "$SCREENSHOT_DIR/$(date +$DATE_FORMAT)-Screenshot.png"
+}
+
+# Send notification
+notify() {
+    local title="$1"
+    local message="$2"
+    notify-send -i "$NOTIFICATION_ICON" "$title" "$message"
+}
+
+# Copy to clipboard
+copy_to_clipboard() {
+    local file="$1"
+    if [[ -f "$file" ]]; then
+        # Copy the full file path as text to clipboard
+        echo -n "$file" | xclip -selection clipboard
+        return $?
+    elif [[ "$file" == "-" ]]; then
+        # For clipboard-only mode, still copy the image
+        xclip -selection clipboard -t image/png
+        return $?
+    fi
+    return 1
+}
+
+# Main screenshot function
+take_screenshot() {
+    local mode="$1"
+    local quality="${2:-$MAIM_QUALITY}"  # Allow quality override
+    local file
+    local maim_args="--hidecursor --quality $quality"
+    
+    case "$mode" in
+        "full")
+            # Full screen - disable picom temporarily for clean capture
+            file=$(get_filename)
+            pkill picom 2>/dev/null
+            sleep 0.1  # Brief pause for picom to fully stop
+            
+            if maim $maim_args "$file"; then
+                copy_to_clipboard "$file"
+                notify "Screenshot" "Saved to clipboard"
+            else
+                notify "Screenshot Error" "Failed to capture screen"
+            fi
+            
+            # Restart picom in background
+            picom -b 2>/dev/null &
+            ;;
+            
+        "select")
+            # Selection - no need to disable picom
+            file=$(get_filename)
+            if maim $maim_args -s -b "$BORDER_WIDTH" -c "$BORDER_COLOR" "$file"; then
+                copy_to_clipboard "$file"
+                notify "Screenshot" "Saved to clipboard"
+            else
+                notify "Screenshot" "Cancelled"
+            fi
+            ;;
+            
+        "window")
+            # Active window - no need to disable picom
+            file=$(get_filename)
+            local window_id=$(xdotool getactivewindow)
+            
+            if maim $maim_args -i "$window_id" -b "$BORDER_WIDTH" "$file"; then
+                copy_to_clipboard "$file"
+                notify "Screenshot" "Saved to clipboard"
+            else
+                notify "Screenshot Error" "Failed to capture window"
+            fi
+            ;;
+            
+        "clipboard")
+            # Selection to clipboard only (no save)
+            if maim $maim_args -s -b "$BORDER_WIDTH" -c "$BORDER_COLOR" | copy_to_clipboard -; then
+                notify "Screenshot" "Copied to clipboard"
+            else
+                notify "Screenshot" "Cancelled"
+            fi
+            ;;
+            
+        "window-clipboard")
+            # Window to clipboard only (no save)
+            local window_id=$(xdotool getactivewindow)
+            if maim $maim_args -i "$window_id" -b "$BORDER_WIDTH" | copy_to_clipboard -; then
+                notify "Screenshot" "Window copied to clipboard"
+            else
+                notify "Screenshot Error" "Failed to capture window"
+            fi
+            ;;
+            
+        *)
+            echo "Usage: $0 {full|select|window|clipboard|window-clipboard} [quality]"
+            echo "  Modes:"
+            echo "    full             - Full screen with picom handling"
+            echo "    select           - Selection area"
+            echo "    window           - Active window"
+            echo "    clipboard        - Selection to clipboard only"
+            echo "    window-clipboard - Window to clipboard only"
+            echo "  Optional: specify quality 1-10 (default: 9)"
+            echo "           1=fast/large files, 10=slow/small files"
+            exit 1
+            ;;
+    esac
+}
+
+# Execute
+take_screenshot "${1:-full}" "$2"

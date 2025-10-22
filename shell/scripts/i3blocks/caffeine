@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+# Caffeine for i3blocks with systemd integration
+STATE_FILE="/tmp/.caffeine_active_${USER}"
+INHIBIT_PID_FILE="/tmp/.caffeine_inhibit_pid_${USER}"
+
+# Handle clicks to toggle
+if [ -n "$BLOCK_BUTTON" ]; then
+    if [ -f "$STATE_FILE" ]; then
+        # Turn OFF
+        rm -f "$STATE_FILE"
+        
+        # Kill systemd-inhibit if running
+        if [ -f "$INHIBIT_PID_FILE" ]; then
+            kill $(cat "$INHIBIT_PID_FILE" 2>/dev/null) 2>/dev/null
+            rm -f "$INHIBIT_PID_FILE"
+        fi
+        
+        # Restore X11 settings
+        xset +dpms
+        xset s 1200
+        xset dpms 1800 1800 1800
+    else
+        # Turn ON
+        touch "$STATE_FILE"
+        
+        # X11 settings
+        xset -dpms
+        xset s off
+        
+        # systemd inhibit (same as emergency command that worked)
+        nohup systemd-inhibit --what=sleep:idle:handle-lid-switch:handle-power-key \
+                              --who="caffeine" \
+                              --why="User requested no shutdown" \
+                              sleep infinity > /dev/null 2>&1 &
+        INHIBIT_PID=$!
+        echo $INHIBIT_PID > "$INHIBIT_PID_FILE"
+    fi
+    
+    # Force immediate i3blocks refresh
+    pkill -SIGUSR1 i3blocks 2>/dev/null
+fi
+
+# Output icon
+if [ -f "$STATE_FILE" ]; then
+    echo " ☀️ "
+    echo " ☀️ "
+    echo "#FFA500"
+else
+    echo " 🌙 "
+    echo " 🌙 "
+    echo "#D3D3D3"
+fi

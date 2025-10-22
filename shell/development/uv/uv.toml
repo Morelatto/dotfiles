@@ -1,0 +1,17 @@
+# uv global configuration
+# https://docs.astral.sh/uv/reference/settings/
+
+# Performance optimizations
+compile-bytecode = true        # Create .pyc files for faster startup
+link-mode = "hardlink"        # Use hardlinks for better performance on Linux
+
+# Cache management  
+# cache-dir is set via UV_CACHE_DIR environment variable instead
+
+# Index configuration
+[[index]]
+url = "https://pypi.org/simple"
+
+# Resolver settings
+resolution = "highest"        # Use latest compatible versions
+prerelease = "disallow"       # Avoid prereleases unless explicitly requested

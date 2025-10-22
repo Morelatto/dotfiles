@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+# Minimal Temperature - Clean output
+# Source utility functions from dotfiles
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$script_dir/block-utils.sh"
+
+get_cpu_temp() {
+    if command -v sensors >/dev/null 2>&1; then
+        # Try different temperature sources in order of preference
+        local temp_sources=(
+            "Package id 0"
+            "Tctl"
+            "CPU Temperature"
+            "Core 0"
+        )
+        
+        for source in "${temp_sources[@]}"; do
+            local temp=$(sensors 2>/dev/null | grep "$source" | grep -oE '\+[0-9]+\.[0-9]+' | head -1)
+            if [ -n "$temp" ]; then
+                echo "${temp#+}"
+                return
+            fi
+        done
+        
+        # Fallback: get any temperature reading
+        local temp=$(sensors 2>/dev/null | grep -oE '\+[0-9]+\.[0-9]+°C' | head -1 | grep -oE '[0-9]+\.[0-9]+')
+        echo "${temp:-0}"
+    else
+        echo "0"
+    fi
+}
+
+# Handle mouse clicks (simplified)
+case $BLOCK_BUTTON in
+    1) # Left click - show all temperature sensors
+        show_notification "Temperature Sensors" "$(get_all_temps)" "normal" "5000"
+        ;;
+    3) # Right click - temperature monitoring tools
+        if command -v sensors >/dev/null 2>&1; then
+            i3-msg -q exec "xfce4-terminal -e 'watch -n 1 sensors'"
+        fi
+        ;;
+esac
+
+# Get temperature
+temp=$(get_cpu_temp)
+temp_int=${temp%.*}
+
+# Handle edge cases
+if [ "$temp" = "0" ] || [ -z "$temp" ] || [ "$temp_int" -lt 20 ]; then
+    echo "N/A"
+    echo "N/A"
+    echo "#6272a4"  # Muted gray for unknown/unavailable
+    exit 0
+fi
+
+# Dynamic color coding based on temperature (in Celsius)
+if [ "$temp_int" -le 50 ]; then
+    color="#7fb069"  # Muted green for cool temperatures (good)
+elif [ "$temp_int" -le 65 ]; then
+    color="#a8b574"  # Muted light green for warm
+elif [ "$temp_int" -le 75 ]; then
+    color="#d9b08c"  # Muted orange for getting hot
+elif [ "$temp_int" -le 85 ]; then
+    color="#e5c574"  # Muted orange-yellow for hot
+else
+    color="#e57474"  # Muted red for very hot (concerning)
+fi
+
+# Output with color coding
+echo "${temp_int}°C"
+echo "${temp_int}°C"
+echo "$color"

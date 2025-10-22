@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+"""
+FontAwesome icon generator script for polybar/i3blocks
+Uses fontawesome library to safely generate icons
+"""
+
+import sys
+
+# Icon mappings using FontAwesome names
+ICONS = {
+    'terminal': '\uf120',  # fa-terminal
+    'browser': '\uf268',   # fa-globe (browser icon)
+    'files': '\uf07b',     # fa-folder
+    'bluetooth': '\uf293', # fa-bluetooth
+    'disk': '\uf0a0',      # fa-hdd
+    'cpu': '\uf2db',       # fa-microchip  
+    'memory': '\uf012',    # fa-cogs (very basic icon)
+    'temperature': '\uf2c9', # fa-thermometer
+    'ethernet': '\uf796',  # fa-ethernet
+    'wifi': '\uf1eb',      # fa-wifi
+    'network': '\uf6ff',   # fa-network-wired
+    'volume': '\uf028',    # fa-volume-up
+    'power': '\uf011',     # fa-power-off
+    'settings': '\uf013',  # fa-cog
+    'time': '\uf017',      # fa-clock
+    'help': '\uf059',      # fa-question-circle
+    'remote': '\uf108',    # fa-desktop (remote desktop)
+    'remmina': '\uf108',   # fa-desktop (remote desktop)
+    'firefox': '\uf269',   # fa-firefox
+    'code': '\uf121',      # fa-code
+    'obsidian': '\uf15c',  # fa-file-text
+    'pycharm': '\uf121',   # fa-code
+    'thunar': '\uf07b',    # fa-folder (file manager)
+    'discord': '\uf23a',   # fa-comment-alt (chat/discord)
+    'spotify': '\uf1bc',   # fa-spotify
+    'vlc': '\uf03d',       # fa-video
+    'gimp': '\uf1fc',      # fa-paint-brush
+    'docker': '\uf308',    # fa-docker
+    'vim': '\uf15c',       # fa-file-text
+    'nvim': '\uf15c',      # fa-file-text
+    'kitty': '\uf120',     # fa-terminal
+    'alacritty': '\uf120', # fa-terminal
+    'gnome-terminal': '\uf120',  # fa-terminal
+    'libreoffice': '\uf1c2',      # fa-file-archive (document icon)
+    'vscode': '\uf121',           # fa-code
+    'code-oss': '\uf121',         # fa-code (same as vscode)
+    'vm': '\uf233',               # fa-server (virtual machine)
+    'virtualbox': '\uf26c',       # fa-tv (virtualbox)
+    'virt-manager': '\uf013',     # fa-cog (vm manager)
+    'virt-viewer': '\uf085',      # fa-cogs (vm working)
+    'unknown': '\uf2d0',          # fa-cube (generic app)
+    'window': '\uf2d2',           # fa-window-maximize  
+    'app': '\uf249',              # fa-rocket (application)
+    'generic': '\uf013',          # fa-cog (generic)
+    'pavucontrol': '\uf028'       # fa-volume-up (audio control)
+}
+
+def get_icon(icon_name):
+    """Get FontAwesome icon by name"""
+    return ICONS.get(icon_name, '\uf128')  # default to question mark
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: get-icon.py <icon_name>")
+        sys.exit(1)
+    
+    icon_name = sys.argv[1]
+    print(get_icon(icon_name), end='')

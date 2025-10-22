@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+# Minimal CPU Usage - Clean output
+# Source utility functions from dotfiles
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$script_dir/block-utils.sh"
+
+get_cpu_usage() {
+    local cpu_line=$(grep "^cpu " /proc/stat)
+    local prev_cpu_line=$(cat /tmp/cpu_stats 2>/dev/null || echo "$cpu_line")
+    
+    echo "$cpu_line" > /tmp/cpu_stats
+    
+    read -r _ user nice system idle iowait irq softirq steal _ <<< "$cpu_line"
+    local total=$((user + nice + system + idle + iowait + irq + softirq + steal))
+    local work=$((user + nice + system + irq + softirq + steal))
+    
+    read -r _ prev_user prev_nice prev_system prev_idle prev_iowait prev_irq prev_softirq prev_steal _ <<< "$prev_cpu_line"
+    local prev_total=$((prev_user + prev_nice + prev_system + prev_idle + prev_iowait + prev_irq + prev_softirq + prev_steal))
+    local prev_work=$((prev_user + prev_nice + prev_system + prev_irq + prev_softirq + prev_steal))
+    
+    local total_diff=$((total - prev_total))
+    local work_diff=$((work - prev_work))
+    
+    if [ $total_diff -eq 0 ]; then
+        echo "0"
+    else
+        echo $((work_diff * 100 / total_diff))
+    fi
+}
+
+# Handle mouse clicks (simplified)
+case $BLOCK_BUTTON in
+    1) # Left click - show detailed CPU info
+        show_notification "CPU Information" "$(get_detailed_cpu_info)" "normal" "5000"
+        ;;
+    3) # Right click - open htop
+        if command -v htop >/dev/null 2>&1; then
+            i3-msg -q exec "xfce4-terminal -e htop"
+        fi
+        ;;
+esac
+
+# Get CPU usage
+cpu_usage=$(get_cpu_usage)
+
+# Create Unicode block indicator (8 levels)
+blocks="▁▂▃▄▅▆▇█"
+block_index=$((cpu_usage * 7 / 100))
+if [ $block_index -gt 7 ]; then block_index=7; fi
+block_char=${blocks:$block_index:1}
+
+# Subtle color coding based on usage levels
+if [ $cpu_usage -le 50 ]; then
+    color="#7fb069"  # Muted green for low usage
+elif [ $cpu_usage -le 80 ]; then
+    color="#d9b08c"  # Muted orange for medium usage
+else
+    color="#e57474"  # Muted red for high usage
+fi
+
+# Output with color and Unicode block
+echo "${cpu_usage}% ${block_char}"
+echo "${cpu_usage}% ${block_char}"
+echo "$color"
