@@ -1,7 +1,7 @@
-# Full profile: everything (shell + dev + GUI + system)
+# Full profile: everything (shell + desktop)
 # For desktop workstations
 
-packages = ["shell", "dev", "gui", "system"]
+packages = ["shell", "desktop"]
 
 [variables]
 hostname = "stable"

@@ -7,18 +7,15 @@ echo "🚀 Starting dotfiles deployment..."
 mkdir -p ~/.local/bin
 mkdir -p ~/.cache/zsh
 
-# Package-specific directories
+# Shell package directories (terminal environment)
 if grep -q '"shell"' .dotter/local.toml 2>/dev/null; then
-    mkdir -p ~/.config/zsh
+    mkdir -p ~/.config/{zsh,git,nvim}
     mkdir -p ~/.ssh/sockets
 fi
 
-if grep -q '"dev"' .dotter/local.toml 2>/dev/null; then
-    mkdir -p ~/.config/{git,nvim}
-fi
-
-if grep -q '"gui"' .dotter/local.toml 2>/dev/null; then
-    mkdir -p ~/.config/{i3,picom,dunst,gtk-3.0,gtk-4.0}
+# Desktop package directories (X11/i3 environment)
+if grep -q '"desktop"' .dotter/local.toml 2>/dev/null; then
+    mkdir -p ~/.config/{i3,picom,dunst,gtk-3.0,gtk-4.0,rofi}
 fi
 
 echo "✅ Pre-deploy setup complete!"

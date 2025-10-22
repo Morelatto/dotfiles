@@ -2,55 +2,68 @@
 # Use profiles in .dotter/profiles/ to select which packages to deploy
 
 [shell.files]
-"cli/atuin" = "~/.config/atuin"
-"cli/zsh/.zshenv" = "~/.zshenv"
-"cli/zsh" = "~/.config/zsh"
-"cli/ranger" = "~/.config/ranger"
-"cli/ssh" = "~/.ssh"
-"cli/scripts" = "~/.local/bin"
-"cli/bash/.bashrc" = "~/.bashrc"
-"cli/bash/.bash_profile" = "~/.bash_profile"
+# Core shell infrastructure
+"shell/core/zsh/.zshenv" = "~/.zshenv"
+"shell/core/zsh" = "~/.config/zsh"
+"shell/core/bash/.bashrc" = "~/.bashrc"
+"shell/core/bash/.bash_profile" = "~/.bash_profile"
+"shell/core/ssh" = "~/.ssh"
+"shell/core/mise/config.toml" = "~/.config/mise/config.toml"
 
-[dev.files]
-"dev/git" = "~/.config/git"
-"dev/bun/config.toml" = "~/.bunfig.toml"
-"dev/docker/config" = { target = "~/.docker/config.json", type = "symbolic" }
-"dev/docker/daemon.json" = { target = "~/.docker/daemon.json", type = "symbolic" }
-"dev/ansible/ansible.cfg" = "~/.ansible.cfg"
-"dev/cargo" = "~/.cargo"
-"dev/go" = "~/.config/go"
-"dev/pip" = "~/.config/pip"
-"dev/pyenv" = "~/.pyenv"
-"dev/claude/config.json" = "~/.claude/settings.json"
-"dev/claude/notify.sh" = "~/.local/bin/claude-notify-enhanced.sh"
-"dev/repomix/repomix.config.json5" = "~/.config/repomix/repomix.config.json5"
-"dev/uv/uv.toml" = "~/.config/uv/uv.toml"
-"dev/mise/config.toml" = "~/.config/mise/config.toml"
-"editors/nvim" = "~/.config/nvim"
-"editors/vim" = "~/.config/vim"
-"editors/sublime-text-3" = "~/.config/sublime-text-3"
+# Development tools
+"shell/development/git" = "~/.config/git"
+"shell/development/cargo" = "~/.cargo"
+"shell/development/bun/config.toml" = "~/.bunfig.toml"
+"shell/development/go" = "~/.config/go"
+"shell/development/pip" = "~/.config/pip"
+"shell/development/pyenv" = "~/.pyenv"
+"shell/development/uv/uv.toml" = "~/.config/uv/uv.toml"
+"shell/development/docker/config" = { target = "~/.docker/config.json", type = "symbolic" }
+"shell/development/docker/daemon.json" = { target = "~/.docker/daemon.json", type = "symbolic" }
+"shell/development/ansible/ansible.cfg" = "~/.config/ansible/ansible.cfg"
 
-[gui.files]
-"gui/i3/config" = "~/.config/i3/config"
-"gui/i3/i3blocks/i3blocks.conf" = "~/.config/i3/i3blocks.conf"
-"gui/i3/i3wsr" = "~/.config/i3wsr"
-"gui/i3/scripts" = "~/.config/i3/scripts"
-"gui/dunst" = "~/.config/dunst"
-"gui/rofi" = "~/.config/rofi"
-"gui/picom" = "~/.config/picom"
-"gui/xfce4" = "~/.config/xfce4"
-"gui/autostart" = "~/.config/autostart"
-"gui/gtk-3.0" = "~/.config/gtk-3.0"
-"gui/gtk-4.0" = "~/.config/gtk-4.0"
-"gui/assets/wallpapers" = { target = "~/.config/wallpapers", type = "symbolic" }
-"gui/gsimplecal" = "~/.config/gsimplecal"
-"gui/betterlockscreen/betterlockscreenrc" = "~/.config/betterlockscreenrc"
-"gui/firefox" = "~/.config/firefox"
-"editors/obsidian/app.json" = "~/.config/obsidian/app.json"
-"editors/obsidian/appearance.json" = "~/.config/obsidian/appearance.json"
-"editors/obsidian/community-plugins.json" = "~/.config/obsidian/community-plugins.json"
+# User applications
+"shell/applications/atuin" = "~/.config/atuin"
+"shell/applications/ranger" = "~/.config/ranger"
+"shell/applications/claude/config.json" = "~/.claude/settings.json"
+"shell/applications/repomix/repomix.config.json5" = "~/.config/repomix/repomix.config.json5"
+"shell/applications/nvim" = "~/.config/nvim"
+"shell/applications/vim" = "~/.config/vim"
+"desktop/applications/sublime-text-3" = "~/.config/sublime-text-3"
 
-[system.files]
-"system/x11/Xresources" = "~/.Xresources"
-"system/x11/xprofile" = "~/.xprofile"
-"system/kalu" = "~/.config/kalu"
+# Scripts
+"shell/scripts" = "~/.local/bin"
+
+[desktop.files]
+# Core desktop environment
+"desktop/core/i3/config" = "~/.config/i3/config"
+"desktop/core/i3/i3blocks/i3blocks.conf" = "~/.config/i3/i3blocks.conf"
+"desktop/core/i3/i3wsr" = "~/.config/i3wsr"
+"desktop/core/picom" = "~/.config/picom"
+"desktop/core/autostart" = "~/.config/autostart"
+"desktop/core/gtk-3.0" = "~/.config/gtk-3.0"
+"desktop/core/gtk-4.0" = "~/.config/gtk-4.0"
+"desktop/core/x11/Xresources" = "~/.Xresources"
+"desktop/core/x11/xprofile" = "~/.xprofile"
+# System files should be deployed by Ansible, not dotter
+# "desktop/core/lightdm/slick-greeter.conf" = { target = "/etc/lightdm/slick-greeter.conf", type = "symbolic" }
+
+# Core desktop services
+"desktop/core/dunst" = "~/.config/dunst"
+"desktop/core/betterlockscreen/betterlockscreenrc" = "~/.config/betterlockscreenrc"
+
+# Desktop applications
+"shell/applications/rofi" = "~/.config/rofi"
+"desktop/applications/xfce4" = "~/.config/xfce4"
+"desktop/applications/gsimplecal" = "~/.config/gsimplecal"
+"desktop/applications/firefox" = "~/.config/firefox"
+"desktop/applications/obsidian/app.json" = "~/.config/obsidian/app.json"
+"desktop/applications/obsidian/appearance.json" = "~/.config/obsidian/appearance.json"
+"desktop/applications/obsidian/community-plugins.json" = "~/.config/obsidian/community-plugins.json"
+"desktop/applications/jetbrains" = "~/.config/jetbrains"
+"desktop/applications/kalu" = "~/.config/kalu"
+
+# Desktop assets
+"desktop/assets/wallpapers" = { target = "~/.config/wallpapers", type = "symbolic" }
+# System files should be deployed by Ansible, not dotter
+# "shell/core/pacman/pacman.conf" = { target = "/etc/pacman.conf", type = "symbolic" }

@@ -1,10 +1,10 @@
-# Minimal profile: shell + dev tools only (no GUI)
+# Minimal profile: shell tools only (no GUI)
 # For servers, code-server, containers, remote machines
 
-packages = ["shell", "dev"]
+packages = ["shell"]
 
 [variables]
 hostname = "stable"
-distro = "Arch"
+distro = "Debian"
 is_desktop = false
 is_laptop = false
