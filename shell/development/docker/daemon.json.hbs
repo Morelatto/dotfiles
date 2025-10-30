@@ -1,0 +1,62 @@
+{
+  "data-root": "/var/lib/docker",
+  "storage-driver": "overlay2",
+  "storage-opts": [
+    "overlay2.override_kernel_check=true"
+  ],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "10m",
+    "max-file": "3",
+    "labels": "environment,service",
+    "compress": "true"
+  },
+  "dns": ["8.8.8.8", "1.1.1.1"],
+  "max-concurrent-downloads": 10,
+  "max-concurrent-uploads": 5,
+  "max-download-attempts": 5,
+  "live-restore": true,
+  "userland-proxy": false,
+  "experimental": true,
+  "features": {
+    "buildkit": true
+  },
+  "builder": {
+    "gc": {
+      "enabled": true,
+      "policy": [
+        {
+          "keepStorage": "10GB",
+          "filter": ["unused-for=168h"]
+        }
+      ]
+    }
+  },
+  "metrics-addr": "127.0.0.1:9323",
+  "insecure-registries": ["{{docker_registry}}"],
+  "registry-mirrors": [],
+  "default-ulimits": {
+    "nofile": {
+      "Name": "nofile",
+      "Hard": 65536,
+      "Soft": 32768
+    },
+    "nproc": {
+      "Name": "nproc",
+      "Hard": 4096,
+      "Soft": 2048
+    }
+  },
+  "default-runtime": "runc",
+  "runtimes": {
+    "runc": {
+      "path": "runc"
+    }
+  },
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "cgroup-parent": "",
+  "seccomp-profile": "",
+  "selinux-enabled": false,
+  "debug": false,
+  "hosts": []
+}

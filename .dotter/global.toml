@@ -11,6 +11,8 @@
 "shell/core/mise/config.toml" = "~/.config/mise/config.toml"
 
 # Development tools
+"shell/development/git/git/config.hbs" = "~/.config/git/config"
+"shell/development/git/git/config-work.hbs" = "~/.config/git/config-work"
 "shell/development/git" = "~/.config/git"
 "shell/development/cargo" = "~/.cargo"
 "shell/development/bun/config.toml" = "~/.bunfig.toml"
@@ -19,7 +21,7 @@
 "shell/development/pyenv" = "~/.pyenv"
 "shell/development/uv/uv.toml" = "~/.config/uv/uv.toml"
 "shell/development/docker/config" = { target = "~/.docker/config.json", type = "symbolic" }
-"shell/development/docker/daemon.json" = { target = "~/.docker/daemon.json", type = "symbolic" }
+"shell/development/docker/daemon.json.hbs" = "~/.docker/daemon.json"
 "shell/development/ansible/ansible.cfg" = "~/.config/ansible/ansible.cfg"
 
 # User applications
