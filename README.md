@@ -8,75 +8,101 @@
 
 </div>
 
-> **Ansible** provisions system packages, **Dotter** manages XDG‑compliant configs, **Mise** handles dev toolchains.
+> **Ansible** provisions packages and bootstraps • **Dotter** manages XDG-compliant configs • **Mise** handles dev toolchains
 
----
+<br>
+
+<div align="center">
 
 ## Prerequisites
 
 <table>
   <tr>
-    <th width="33%">Operating System</th>
-    <th width="33%">Network</th>
-    <th width="34%">Tools</th>
+    <th width="33%" align="center">Operating System</th>
+    <th width="33%" align="center">Network</th>
+    <th width="34%" align="center">Tools</th>
   </tr>
   <tr>
-    <td align="center">
-      <img width="32" alt="Linux" src="https://cdn.simpleicons.org/linux/FFFFFF"><br>
-      <b>Linux</b><br>
+    <td align="center" valign="middle" height="200">
+      <img width="64" height="64" alt="Linux" src="https://cdn.simpleicons.org/linux/FFFFFF">
+      <br><br>
+      <b>Linux</b>
+      <br>
       <sub>any modern Linux distro</sub>
     </td>
-    <td align="center">
-      <img width="32" alt="Internet" src="https://cdn.simpleicons.org/curl/073551"><br>
-      <b>Internet Access</b><br>
+    <td align="center" valign="middle" height="200">
+      <img width="64" height="64" alt="Internet" src="https://cdn.simpleicons.org/curl/073551">
+      <br><br>
+      <b>Internet Access</b>
+      <br>
       <sub>for downloading packages</sub>
     </td>
-    <td align="center">
-      <img width="32" alt="Ansible" src="https://cdn.simpleicons.org/ansible/EE0000"><br>
-      <b>Ansible</b><br>
+    <td align="center" valign="middle" height="200">
+      <img width="64" height="64" alt="Ansible" src="https://cdn.simpleicons.org/ansible/EE0000">
+      <br><br>
+      <b>Ansible</b>
+      <br>
       <sub>automation platform</sub>
     </td>
   </tr>
 </table>
 
----
+</div>
+
+<br>
+<br>
+
+<div align="center">
 
 ## Installation
 
-<table>
+<table width="100%">
   <tr>
     <th width="50%">Desktop</th>
     <th width="50%">Minimal</th>
   </tr>
   <tr>
-    <td valign="top">
-      <pre>ansible-pull <span style="color:#4285F4">-U</span> https://github.com/Morelatto/dotfiles.git \
-  dev/ansible/ansible.yml <span style="color:#4285F4">-K</span></pre>
-      <ul>
-        <li>Shell, CLI tools, dev toolchain (Mise)</li>
-        <li>i3 window manager + compositor + theming</li>
-        <li>Rofi launcher, status bar, notifications</li>
-        <li>Desktop applications (Firefox, Obsidian)</li>
-      </ul>
+    <td valign="top" align="center">
+      <sub>
+      <code>ansible-pull <span style="color:#4285F4">-U</span> https://github.com/Morelatto/dotfiles.git dev/ansible/ansible.yml <span style="color:#4285F4">-K</span></code>
+      </sub>
+      <br><br>
+      <sub>
+      Complete shell environment with modern CLI utilities<br>
+      X11 tiling window manager with compositor<br>
+      Application launcher and desktop notifications<br>
+      Web browser, productivity apps, and IDEs
+      </sub>
+      <br><br>
       <sub><i>For workstations and laptops</i></sub>
     </td>
-    <td valign="top">
-      <pre>ansible-pull <span style="color:#4285F4">-U</span> https://github.com/Morelatto/dotfiles.git \
-  dev/ansible/ansible.yml <span style="color:#4285F4">-K</span> <span style="color:#4285F4">-e</span> <span style="color:#EA4335">profile=minimal</span></pre>
-      <ul>
-        <li>Shell environment (Zsh + modern tools)</li>
-        <li>Core CLI utilities (bat, eza, ripgrep, fzf)</li>
-        <li>Dev toolchain (Node, Python, Go, Rust)</li>
-        <li>Text editor (Neovim)</li>
-      </ul>
+    <td valign="top" align="center">
+      <sub>
+      <code>ansible-pull <span style="color:#4285F4">-U</span> https://github.com/Morelatto/dotfiles.git dev/ansible/ansible.yml <span style="color:#4285F4">-K -e</span> <span style="color:#EA4335">profile=minimal</span></code>
+      </sub>
+      <br><br>
+      <sub>
+      Shell environment with essential CLI utilities<br>
+      Modern replacements for GNU coreutils<br>
+      Multi-language development toolchain<br>
+      Terminal-based text editor and version control
+      </sub>
+      <br><br>
       <sub><i>For servers, containers, headless systems</i></sub>
     </td>
   </tr>
 </table>
 
----
+</div>
+
+<br>
+<br>
+
+<div align="center">
 
 ## System
+
+</div>
 
 <details>
 <summary>Core infrastructure, automation, and display environment</summary>
@@ -189,9 +215,14 @@
 
 </details>
 
----
+<br>
+<br>
+
+<div align="center">
 
 ## Terminal
+
+</div>
 
 <details>
 <summary>Shell environment and command-line tools</summary>
@@ -334,9 +365,14 @@
 
 </details>
 
----
+<br>
+<br>
+
+<div align="center">
 
 ## Development
+
+</div>
 
 <details>
 <summary>Programming tools and development environment</summary>
@@ -542,9 +578,14 @@
 
 </details>
 
----
+<br>
+<br>
+
+<div align="center">
 
 ## Applications
+
+</div>
 
 <details>
 <summary>User applications and utilities</summary>
@@ -586,27 +627,74 @@
 
 </details>
 
----
-
-## Design Principles
-
-* **XDG‑first.** Config in `~/.config`, caches in `~/.cache`, data in `~/.local/share`, state in `~/.local/state` (where supported). ([Freedesktop Specifications][6])
-* **Idempotent.** Safe to re‑run on existing machines.
-* **Profiles are versioned; selection is local.** Keep profile definitions in VCS; select at deploy time.
-* **No secrets in git.** Use `.local` overlays and OS keyrings.
-* **Modular over monolithic.** Ansible roles, Dotter packages, Zsh conf.d.
-* **Declarative & documented.** "What" before "how," and why in comments.
-
----
+<br>
+<br>
 
 <div align="center">
 
-**Built on Linux**
-Powered by <a href="https://www.ansible.com">Ansible</a>, <a href="https://github.com/SuperCuber/dotter">Dotter</a>, and <a href="https://mise.jdx.dev">Mise</a> • MIT License
+## Design Principles
 
 </div>
 
----
+<table width="100%">
+<tr>
+<td align="center" valign="top" width="16.66%">
+<br>
+<strong>XDG‑first</strong>
+<br><br>
+<sub>Config in <code>~/.config</code>, caches in <code>~/.cache</code>, data in <code>~/.local/share</code></sub>
+<br><br>
+</td>
+<td align="center" valign="top" width="16.66%">
+<br>
+<strong>Idempotent</strong>
+<br><br>
+<sub>Safe to re‑run on existing machines</sub>
+<br><br>
+</td>
+<td align="center" valign="top" width="16.66%">
+<br>
+<strong>Versioned</strong>
+<br><br>
+<sub>Profiles in VCS, select at deploy time</sub>
+<br><br>
+</td>
+<td align="center" valign="top" width="16.66%">
+<br>
+<strong>Secure</strong>
+<br><br>
+<sub>No secrets in git, use local overlays</sub>
+<br><br>
+</td>
+<td align="center" valign="top" width="16.66%">
+<br>
+<strong>Modular</strong>
+<br><br>
+<sub>Ansible roles, Dotter packages, Zsh conf.d</sub>
+<br><br>
+</td>
+<td align="center" valign="top" width="16.66%">
+<br>
+<strong>Declarative</strong>
+<br><br>
+<sub>"What" before "how", document why</sub>
+<br><br>
+</td>
+</tr>
+</table>
+
+</div>
+
+<br>
+
+<div align="center">
+
+<br>
+
+**Built on Linux**<br>
+Powered by <a href="https://www.ansible.com">Ansible</a>, <a href="https://github.com/SuperCuber/dotter">Dotter</a>, and <a href="https://mise.jdx.dev">Mise</a> • MIT License
+
+</div>
 
 <!-- Reference Links -->
 [1]: https://mise.jdx.dev
