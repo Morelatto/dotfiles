@@ -1,0 +1,263 @@
+#!/bin/bash
+# SSH Tunnel Manager - Resilient SSH tunnel with auto-reconnect
+#
+# Usage: ssh-tunnel-manager [--no-autossh] REMOTE_HOST PRIMARY_PORT [ADDITIONAL_PORTS...]
+# Example: ssh-tunnel-manager user@10.0.0.1 8080 3000 5000
+#
+# This script creates persistent SSH tunnels with:
+# - Automatic reconnection via autossh (default)
+# - Tailscale authentication handling
+# - Health checking and monitoring
+# - Browser-based auth URL opening
+# - Graceful error handling
+
+set -e
+
+# Parse options
+USE_AUTOSSH=true
+if [[ "${1:-}" == "--no-autossh" ]]; then
+    USE_AUTOSSH=false
+    shift
+fi
+
+# Configuration
+REMOTE_HOST="${1:-}"
+PRIMARY_PORT="${2:-}"
+ADDITIONAL_PORTS=("${@:3}")
+
+# Validate arguments
+if [[ -z "$REMOTE_HOST" ]] || [[ -z "$PRIMARY_PORT" ]]; then
+    cat << 'EOF'
+Usage: ssh-tunnel-manager [--no-autossh] REMOTE_HOST PRIMARY_PORT [ADDITIONAL_PORTS...]
+
+Options:
+  --no-autossh    Use plain ssh instead of autossh (no auto-reconnect)
+
+Examples:
+  ssh-tunnel-manager user@10.0.0.1 8080 3000 5000
+  ssh-tunnel-manager --no-autossh user@10.0.0.1 8080
+
+This will create resilient tunnels with automatic reconnection.
+EOF
+    exit 1
+fi
+
+# Build port forwarding arguments
+PORTS="-L ${PRIMARY_PORT}:localhost:${PRIMARY_PORT}"
+PORT_LIST=("$PRIMARY_PORT")
+for port in "${ADDITIONAL_PORTS[@]}"; do
+    PORTS="$PORTS -L ${port}:localhost:${port}"
+    PORT_LIST+=("$port")
+done
+
+# Extract host/IP for process matching
+REMOTE_IDENTIFIER=$(echo "$REMOTE_HOST" | grep -oE '[0-9.]+$' || echo "$REMOTE_HOST")
+
+# Determine process name to check
+PROCESS_NAME="ssh"
+if [[ "$USE_AUTOSSH" == "true" ]] && command -v autossh > /dev/null 2>&1; then
+    PROCESS_NAME="autossh"
+fi
+
+# Check if tunnel is already running
+if pgrep -f "${PROCESS_NAME}.*${REMOTE_IDENTIFIER}" > /dev/null 2>&1; then
+    if lsof -i :"$PRIMARY_PORT" -sTCP:LISTEN > /dev/null 2>&1; then
+        echo "✓ Tunnel is already running"
+        echo "  Primary: http://localhost:${PRIMARY_PORT}"
+        for port in "${ADDITIONAL_PORTS[@]}"; do
+            echo "  Port:    http://localhost:${port}"
+        done
+        echo ""
+        echo "To stop: pkill -f '${PROCESS_NAME}.*${REMOTE_IDENTIFIER}'"
+        exit 0
+    else
+        echo "⚠ Tunnel process exists but ports not listening, restarting..."
+        pkill -9 -f "^autossh.*${REMOTE_IDENTIFIER}" 2>/dev/null || :
+        pkill -9 -f "^/usr/bin/ssh.*${REMOTE_IDENTIFIER}" 2>/dev/null || :
+        sleep 2
+    fi
+fi
+
+echo "Setting up resilient SSH tunnel to ${REMOTE_HOST}..."
+echo ""
+
+# Kill any existing tunnels (ignore errors if no process found)
+# Use more specific patterns to avoid killing this script
+pkill -9 -f "^autossh.*${REMOTE_IDENTIFIER}" 2>/dev/null || :
+pkill -9 -f "^/usr/bin/ssh.*${REMOTE_IDENTIFIER}" 2>/dev/null || :
+sleep 1
+
+# Test connection and handle Tailscale auth
+echo "Checking authentication..."
+set +e  # Temporarily disable exit on error for timeout command
+AUTH_OUTPUT=$(timeout 8 ssh -o BatchMode=yes -o ConnectTimeout=5 "$REMOTE_HOST" echo "auth_ok" 2>&1)
+AUTH_EXIT=$?
+set -e  # Re-enable exit on error
+
+# Debug output (optional - enable with DEBUG=1)
+if [[ "${DEBUG:-}" == "1" ]]; then
+    echo "[DEBUG] Exit code: $AUTH_EXIT" >&2
+    echo "[DEBUG] Output (first 200 chars): ${AUTH_OUTPUT:0:200}" >&2
+fi
+
+# Check if auth is needed
+if echo "$AUTH_OUTPUT" | grep -q "To authenticate, visit:"; then
+    AUTH_URL=$(echo "$AUTH_OUTPUT" | grep -oE 'https://login\.tailscale\.com/a/[a-zA-Z0-9]+' | head -1)
+
+    echo ""
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "⚠  TAILSCALE AUTHENTICATION REQUIRED"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+    echo "Please open this URL in your browser:"
+    echo ""
+    echo "  $AUTH_URL"
+    echo ""
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+
+    # Try to open in browser
+    if command -v xdg-open > /dev/null 2>&1; then
+        echo "Opening in default browser..."
+        xdg-open "$AUTH_URL" > /dev/null 2>&1 &
+    elif command -v firefox > /dev/null 2>&1; then
+        echo "Opening in Firefox..."
+        firefox "$AUTH_URL" > /dev/null 2>&1 &
+    fi
+
+    echo "Press Enter after you've authenticated..."
+    read -r
+
+    echo ""
+    echo "Waiting for authentication to propagate..."
+    sleep 3
+    echo ""
+elif echo "$AUTH_OUTPUT" | grep -q "auth_ok"; then
+    echo "✓ Already authenticated"
+    echo ""
+else
+    echo "⚠ Unexpected response from server:"
+    echo "$AUTH_OUTPUT"
+    echo ""
+fi
+
+# Common SSH options for resilience
+SSH_OPTS=(
+    -o "ServerAliveInterval=10"
+    -o "ServerAliveCountMax=6"
+    -o "TCPKeepAlive=yes"
+    -o "Compression=yes"
+    -o "ConnectTimeout=10"
+    -o "ControlMaster=no"
+    -o "ExitOnForwardFailure=no"
+    -o "StreamLocalBindUnlink=yes"
+)
+
+# Start the tunnel
+if [[ "$USE_AUTOSSH" == "true" ]] && command -v autossh > /dev/null 2>&1; then
+    # Use autossh for auto-reconnect
+    LOG_DIR="${HOME}/.local/var/log"
+    mkdir -p "$LOG_DIR"
+    LOG_FILE="$LOG_DIR/ssh-tunnel-${REMOTE_IDENTIFIER}.log"
+
+    echo "Starting resilient SSH tunnel with auto-reconnect..."
+    echo "Log file: $LOG_FILE"
+    echo ""
+
+    # autossh environment variables
+    export AUTOSSH_GATETIME=0        # Don't wait before first connection
+    export AUTOSSH_POLL=10           # Check connection health every 10 seconds
+    export AUTOSSH_LOGLEVEL=3        # Moderate logging
+    export AUTOSSH_LOGFILE="$LOG_FILE"
+
+    # Start autossh
+    # shellcheck disable=SC2086
+    autossh -M 0 -f \
+        $PORTS \
+        "${SSH_OPTS[@]}" \
+        -N "$REMOTE_HOST"
+
+    TUNNEL_TYPE="autossh"
+    RECONNECT_INFO="Auto-reconnect: ENABLED"
+else
+    # Use plain ssh
+    echo "Starting SSH tunnel (no auto-reconnect)..."
+    echo ""
+
+    # shellcheck disable=SC2086
+    ssh -fN $PORTS \
+        "${SSH_OPTS[@]}" \
+        "$REMOTE_HOST" 2>&1 | grep -v "Tailscale SSH" &
+
+    TUNNEL_TYPE="ssh"
+    RECONNECT_INFO="Auto-reconnect: DISABLED (use autossh for auto-reconnect)"
+fi
+
+# Wait and verify
+echo "Verifying tunnel..."
+sleep 5
+
+# Check if SSH process started (autossh forks ssh then exits, so check for ssh)
+if ! pgrep -f "ssh.*${REMOTE_IDENTIFIER}" > /dev/null 2>&1; then
+    echo ""
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "✗ TUNNEL FAILED TO START"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+    if [[ "$USE_AUTOSSH" == "true" ]]; then
+        echo "Check the log file: $LOG_FILE"
+    fi
+    exit 1
+fi
+
+# Give it time to establish the tunnel
+for i in {1..10}; do
+    if lsof -i :"$PRIMARY_PORT" -sTCP:LISTEN > /dev/null 2>&1; then
+        break
+    fi
+    sleep 1
+done
+
+if lsof -i :"$PRIMARY_PORT" -sTCP:LISTEN > /dev/null 2>&1; then
+    echo ""
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "✓ TUNNEL STARTED SUCCESSFULLY!"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+    echo "  Primary: http://localhost:${PRIMARY_PORT}"
+    for port in "${ADDITIONAL_PORTS[@]}"; do
+        echo "  Port:    http://localhost:${port}"
+    done
+    echo ""
+    echo "  $RECONNECT_INFO"
+    if [[ "$USE_AUTOSSH" == "true" ]]; then
+        echo "  Connection check: Every 10 seconds"
+        echo "  Timeout tolerance: 60 seconds"
+        echo ""
+        echo "  View logs: tail -f $LOG_FILE"
+    fi
+    echo ""
+    echo "  To stop: pkill -f 'ssh.*${REMOTE_IDENTIFIER}'"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+    exit 0
+else
+    echo ""
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "⚠  TUNNEL SLOW TO START"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+    echo "${TUNNEL_TYPE} is running but ports not listening yet."
+    echo "This may be due to slow connection or remote server issues."
+    echo ""
+    if [[ "$USE_AUTOSSH" == "true" ]]; then
+        echo "The tunnel will keep retrying in the background."
+        echo "View logs: tail -f $LOG_FILE"
+    fi
+    echo ""
+    echo "Check status with: lsof -i :${PRIMARY_PORT}"
+    echo "To stop: pkill -f 'ssh.*${REMOTE_IDENTIFIER}'"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+    exit 0
+fi
