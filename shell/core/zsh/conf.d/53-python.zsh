@@ -83,3 +83,11 @@ done
 nopyc() {
     find . -name '*.pyc' -delete && find . -name '__pycache__' -type d -exec rm -rf {} +
 }
+
+# =============================================================================
+# Development Server
+# =============================================================================
+serve() {
+    local port="${1:-8000}"
+    python3 -m http.server "$port"
+}
