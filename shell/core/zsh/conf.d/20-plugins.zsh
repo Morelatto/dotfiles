@@ -1,7 +1,9 @@
 #!/usr/bin/env zsh
-# Essential plugins only
+# External Plugins and Lazy-Load Configuration
 
-# Helper function
+# =============================================================================
+# Plugin Loader Helper
+# =============================================================================
 load_plugin() {
     local plugin=$1
     local paths=(
@@ -15,6 +17,10 @@ load_plugin() {
     done
     return 1
 }
+
+# =============================================================================
+# Core ZSH Plugins
+# =============================================================================
 
 # Load syntax highlighting first
 load_plugin "zsh-syntax-highlighting"
@@ -37,20 +43,20 @@ fi
 load_plugin "zsh-autosuggestions" && {
     # Suggestion appearance (dim gray)
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
-    
+
     # Strategy: try history first, then completion
     ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-    
+
     # Limit buffer size for performance (don't suggest for very long commands)
     ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-    
+
     # Ignore patterns - don't suggest these from history
     # ZSH_AUTOSUGGEST_HISTORY_IGNORE="cd *"  # Example: ignore cd commands
     # ZSH_AUTOSUGGEST_COMPLETION_IGNORE="git *"  # Example: ignore git subcommands
-    
+
     # Use async mode (default for zsh 5.0.8+)
     # ZSH_AUTOSUGGEST_USE_ASYNC=true
-    
+
     # Manual rebind for performance (advanced users only)
     # ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 }

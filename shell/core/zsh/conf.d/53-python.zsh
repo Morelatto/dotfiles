@@ -19,14 +19,32 @@ _load_python_aliases() {
     alias py='python3'
     alias python='python3'
     
-    # Package management
+    # Package management - pip
     alias p='pip'
     alias pi='pip install'
     alias pu='pip uninstall'
     alias pupg='pip install --upgrade pip'
     alias pfr='pip freeze > requirements.txt'
     alias pre='pip install -r requirements.txt'
-    
+
+    # Package management - uv (modern Python package manager)
+    if (( $+commands[uv] )); then
+        alias uvs='uv sync'
+        alias uvsd='uv sync --dev'
+        alias uva='uv add'
+        alias uvad='uv add --dev'
+        alias uvr='uv remove'
+        alias uvrun='uv run'
+        alias uvvenv='uv venv'
+        alias uvact='source .venv/bin/activate'
+        alias uvpi='uv pip install'
+        alias uvpie='uv pip install -e .'
+        alias uvpu='uv pip uninstall'
+        alias uvpl='uv pip list'
+        alias uvtooli='uv tool install'
+        alias uvtoolr='uv tool run'
+    fi
+
     # Virtual environments with pyenv
     alias venv='python -m venv .venv && source .venv/bin/activate'
     alias vact='source .venv/bin/activate'
@@ -53,8 +71,15 @@ _load_python_aliases() {
 
 # Create stub functions for the most common commands
 for cmd in py python p pi pu pupg pfr pre venv vact pylab pynote pyclean pycache pytree pytest; do
-    eval "function $cmd() { 
+    eval "function $cmd() {
         _load_python_aliases
         eval \"\$aliases[$cmd]\" \"\$@\"
     }"
 done
+
+# =============================================================================
+# Python Project Cleanup
+# =============================================================================
+nopyc() {
+    find . -name '*.pyc' -delete && find . -name '__pycache__' -type d -exec rm -rf {} +
+}

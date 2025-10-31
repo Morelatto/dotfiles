@@ -240,7 +240,7 @@
     <td><img width="28" alt="Zsh" src="https://cdn.simpleicons.org/zsh"></td>
     <td><a href="https://github.com/zsh-users/zsh">Zsh</a></td>
     <td>Primary shell</td>
-    <td>Modular config, extensive aliases, smart completion, XDG compliant. Bash as fallback.</td>
+    <td>Modular conf.d/ with decade-based numbering (00-89), extensive aliases, smart completion, XDG compliant.</td>
   </tr>
   <tr>
     <td><img width="28" alt="XFCE" src="https://cdn.simpleicons.org/xfce/2284F2"></td>

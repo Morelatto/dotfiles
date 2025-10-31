@@ -5,6 +5,7 @@
 # Core shell infrastructure
 "shell/core/zsh/.zshenv" = "~/.zshenv"
 "shell/core/zsh" = "~/.config/zsh"
+"shell/core/zsh/conf.d/secrets.zsh.local" = "~/.config/zsh/conf.d/secrets.zsh"
 "shell/core/bash/.bashrc" = "~/.bashrc"
 "shell/core/bash/.bash_profile" = "~/.bash_profile"
 "shell/core/ssh" = "~/.ssh"

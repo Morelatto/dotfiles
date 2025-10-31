@@ -1,43 +1,10 @@
 #!/usr/bin/env zsh
-# System & Network Tools - System management and network utilities
+# Network Administration - Network tools and monitoring
 
 # =============================================================================
-# Systemd - Service and system management
+# SSH Tunnels
 # =============================================================================
-if (( $+commands[systemctl] )); then
-    # Service control
-    alias sc='systemctl'
-    alias scs='systemctl status'
-    alias scstart='sudo systemctl start'
-    alias scstop='sudo systemctl stop'
-    alias screstart='sudo systemctl restart'
-    alias screload='sudo systemctl reload'
-    alias scenable='sudo systemctl enable'
-    alias scdisable='sudo systemctl disable'
-
-    # Service queries
-    alias sclist='systemctl list-units'
-    alias scfailed='systemctl --failed'
-    alias scservices='systemctl list-units --type=service'
-    alias sctimers='systemctl list-timers'
-
-    # Daemon management
-    alias scdaemon-reload='sudo systemctl daemon-reload'
-
-    # Journal logs
-    alias jctl='journalctl'
-    alias jctlf='journalctl -f'
-    alias jctlu='journalctl -u'
-    alias jctlb='journalctl -b'
-    alias jctltoday='journalctl --since=today'
-    alias jctlerr='journalctl -p err'
-
-    # Power management
-    alias poweroff='systemctl poweroff'
-    alias reboot='systemctl reboot'
-    alias suspend='systemctl suspend'
-    alias hibernate='systemctl hibernate'
-fi
+alias kubeflow-tunnel='ssh-tunnel-manager $KUBEFLOW_HOST $KUBEFLOW_PRIMARY_PORT $KUBEFLOW_EXTRA_PORTS'
 
 # =============================================================================
 # IP Command - Modern network management
@@ -213,47 +180,7 @@ if (( $+commands[wg] )); then
 fi
 
 # =============================================================================
-# Process Management
-# =============================================================================
-# Process viewers
-if (( $+commands[btop] )); then
-    alias top='btop'
-    alias htop='btop'
-elif (( $+commands[htop] )); then
-    alias top='htop'
-fi
-
-# Process listing
-alias ps='ps aux'
-alias pstree='pstree -a'
-alias psgrep='ps aux | grep -v grep | grep -i'
-alias pscpu='ps aux --sort=-%cpu | head -20'
-alias psmem='ps aux --sort=-%mem | head -20'
-
-# Process control
-alias killall='killall -v'
-if (( $+commands[fuser] )); then
-    alias whoport='sudo fuser -v'
-fi
-
-# =============================================================================
-# System Information
-# =============================================================================
-# Memory and CPU
-alias meminfo='free -h'
-alias cpuinfo='lscpu'
-alias diskinfo='df -h'
-alias diskusage='du -h --max-depth=1'
-alias mountinfo='mount | column -t'
-
-# Network connections
-alias ports='ss -tulanp'
-alias listening='ss -tln'
-alias connections='ss -tan'
-alias established='ss -tan state established'
-
-# =============================================================================
-# Utility Functions
+# Network Information Functions
 # =============================================================================
 # Show all IP addresses
 myip() {
@@ -277,21 +204,10 @@ portinfo() {
     sudo ss -tulpn | grep ":$port"
 }
 
-# System summary
-sysinfo() {
-    echo "=== System Information ==="
-    echo "Hostname: $(hostname)"
-    echo "Kernel: $(uname -r)"
-    echo "Uptime: $(uptime -p)"
-    echo
-    echo "=== Memory ==="
-    free -h
-    echo
-    echo "=== Disk Usage ==="
-    df -h /
-    echo
-    echo "=== Network ==="
-    ip -brief -color address show | grep -v '^lo'
-}
-
-typer() { xdotool type "$(xsel -bo)"; }
+# =============================================================================
+# Network Connections
+# =============================================================================
+alias ports='ss -tulanp'
+alias listening='ss -tln'
+alias connections='ss -tan'
+alias established='ss -tan state established'

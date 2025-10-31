@@ -5,22 +5,11 @@
 [[ -z "$DISPLAY" && -z "$WAYLAND_DISPLAY" ]] && return 0
 
 # =============================================================================
-# Clipboard operations
+# X11 Automation
 # =============================================================================
-if (( $+commands[xsel] )); then
-    alias copy='xsel -ib'
-    alias paste='xsel -o'
-    alias copyclip='xsel -ib'
-    alias pasteclip='xsel -ob'
-elif (( $+commands[xclip] )); then
-    alias copy='xclip -selection clipboard'
-    alias paste='xclip -selection clipboard -o'
-    alias copyclip='xclip -selection clipboard'
-    alias pasteclip='xclip -selection clipboard -o'
-elif (( $+commands[wl-copy] )); then
-    # Wayland clipboard support
-    alias copy='wl-copy'
-    alias paste='wl-paste'
+# Type clipboard contents (useful for password managers)
+if (( $+commands[xdotool] && $+commands[xsel] )); then
+    typer() { xdotool type "$(xsel -bo)"; }
 fi
 
 # =============================================================================
@@ -51,6 +40,14 @@ elif (( $+commands[maim] )); then
     alias screenshot='maim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png'
     alias screenshot-select='maim -s ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png'
 fi
+
+# =============================================================================
+# Desktop File Manager Cleanup
+# =============================================================================
+# Remove macOS .DS_Store files (Finder metadata)
+nomac() {
+    find . -name '.DS_Store' -delete
+}
 
 # =============================================================================
 # Common GUI applications shortcuts
