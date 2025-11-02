@@ -1,0 +1,6 @@
+<application>
+  <component name="EditorColorsManagerImpl">
+    <!-- Use Dark theme by default -->
+    <global_color_scheme name="Dark" />
+  </component>
+</application>

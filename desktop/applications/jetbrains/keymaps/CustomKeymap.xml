@@ -1,0 +1,104 @@
+<keymap version="1" name="CustomKeymap" parent="$default">
+  <!-- Terminal shortcuts -->
+  <action id="ActivateTerminalToolWindow">
+    <keyboard-shortcut first-keystroke="ctrl t" />
+  </action>
+  <action id="Terminal.OpenInTerminal">
+    <keyboard-shortcut first-keystroke="ctrl shift t" />
+  </action>
+  
+  <!-- Common shortcuts -->
+  <action id="Synchronize">
+    <keyboard-shortcut first-keystroke="ctrl alt y" />
+    <keyboard-shortcut first-keystroke="ctrl alt r" />
+  </action>
+  
+  <!-- Code navigation -->
+  <action id="GotoDeclaration">
+    <keyboard-shortcut first-keystroke="ctrl b" />
+    <mouse-shortcut keystroke="ctrl button1" />
+  </action>
+  <action id="GotoImplementation">
+    <keyboard-shortcut first-keystroke="ctrl alt b" />
+  </action>
+  
+  <!-- Refactoring -->
+  <action id="RenameElement">
+    <keyboard-shortcut first-keystroke="shift f6" />
+  </action>
+  
+  <!-- Search -->
+  <action id="FindInPath">
+    <keyboard-shortcut first-keystroke="ctrl shift f" />
+  </action>
+  <action id="ReplaceInPath">
+    <keyboard-shortcut first-keystroke="ctrl shift r" />
+  </action>
+  
+  <!-- Version control -->
+  <action id="Vcs.QuickListPopupAction">
+    <keyboard-shortcut first-keystroke="ctrl k" />
+  </action>
+  <action id="CheckinProject">
+    <keyboard-shortcut first-keystroke="ctrl shift k" />
+  </action>
+  
+  <!-- Run/Debug -->
+  <action id="Run">
+    <keyboard-shortcut first-keystroke="shift f10" />
+  </action>
+  <action id="Debug">
+    <keyboard-shortcut first-keystroke="shift f9" />
+  </action>
+  <action id="Stop">
+    <keyboard-shortcut first-keystroke="ctrl f2" />
+  </action>
+  
+  <!-- Editor -->
+  <action id="CommentByLineComment">
+    <keyboard-shortcut first-keystroke="ctrl slash" />
+  </action>
+  <action id="CommentByBlockComment">
+    <keyboard-shortcut first-keystroke="ctrl shift slash" />
+  </action>
+  <action id="ReformatCode">
+    <keyboard-shortcut first-keystroke="ctrl alt l" />
+  </action>
+  
+  <!-- Navigation -->
+  <action id="Back">
+    <keyboard-shortcut first-keystroke="ctrl alt left" />
+    <mouse-shortcut keystroke="button4" />
+  </action>
+  <action id="Forward">
+    <keyboard-shortcut first-keystroke="ctrl alt right" />
+    <mouse-shortcut keystroke="button5" />
+  </action>
+  
+  <!-- Tool windows -->
+  <action id="ActivateProjectToolWindow">
+    <keyboard-shortcut first-keystroke="alt 1" />
+  </action>
+  <action id="ActivateStructureToolWindow">
+    <keyboard-shortcut first-keystroke="alt 7" />
+  </action>
+  <action id="ActivateVersionControlToolWindow">
+    <keyboard-shortcut first-keystroke="alt 9" />
+  </action>
+  
+  <!-- File operations -->
+  <action id="NewElement">
+    <keyboard-shortcut first-keystroke="alt insert" />
+  </action>
+  <action id="SaveAll">
+    <keyboard-shortcut first-keystroke="ctrl s" />
+  </action>
+  
+  <!-- Completion -->
+  <action id="CodeCompletion">
+    <keyboard-shortcut first-keystroke="ctrl space" />
+  </action>
+  <action id="SmartTypeCompletion">
+    <keyboard-shortcut first-keystroke="ctrl shift space" />
+  </action>
+</keymap>

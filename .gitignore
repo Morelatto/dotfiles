@@ -27,6 +27,9 @@ config/ssh/authorized_keys
 # Application runtime configs with personal paths
 editors/obsidian/obsidian.json
 
+# JetBrains IDE personal paths
+desktop/applications/jetbrains/options/trusted-paths.xml
+
 # System specific
 .DS_Store
 Thumbs.db
