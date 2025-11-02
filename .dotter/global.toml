@@ -57,7 +57,7 @@
 
 # Desktop applications
 "shell/applications/rofi" = "~/.config/rofi"
-"desktop/applications/xfce4" = "~/.config/xfce4"
+"desktop/applications/xfce4" = { target = "~/.config/xfce4", type = "template" }
 "desktop/applications/gsimplecal" = "~/.config/gsimplecal"
 "desktop/applications/firefox" = "~/.config/firefox"
 "desktop/applications/obsidian/app.json" = "~/.config/obsidian/app.json"
