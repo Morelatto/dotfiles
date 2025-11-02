@@ -12,8 +12,8 @@
 "shell/core/mise/config.toml" = "~/.config/mise/config.toml"
 
 # Development tools
-"shell/development/git/git/config.hbs" = "~/.config/git/config"
-"shell/development/git/git/config-work.hbs" = "~/.config/git/config-work"
+"shell/development/git/config.hbs" = "~/.config/git/config"
+"shell/development/git/config-work.hbs" = "~/.config/git/config-work"
 "shell/development/git" = "~/.config/git"
 "shell/development/cargo" = "~/.cargo"
 "shell/development/bun/config.toml" = "~/.bunfig.toml"
